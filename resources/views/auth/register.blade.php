@@ -66,7 +66,7 @@
                                 </div>
                             </div>
 
-                            {{-- Lab --}}
+                            {{-- Lab. if role is admin, lab is "ALL" else choose from options --}}
                             <div class="row mb-3">
                                 <label for="lab"
                                     class="col-md-4 col-form-label text-md-end">{{ __('Lab') }}</label>
@@ -74,6 +74,7 @@
                                 <div class="col-md-6">
                                     <select name="lab" id="lab"
                                         class="form-control @error('lab') is-invalid @enderror">
+                                        <option value="all">All</option>
                                         <option value="lab-1">Alan Kay Lab</option>
                                         <option value="lab-2">Nicklaus Writh Lab</option>
                                         <option value="lab-3">John Backus Lab</option>
