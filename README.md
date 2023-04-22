@@ -1,99 +1,66 @@
-# Lab Management
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-## Requirements
+<p align="center">
+<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+</p>
 
-### 15th March 2023
+## About Laravel
 
-1. Student login/logout using ID Scan
-    - Store time spent, roll number, department, year.
-2. Lab Technician Login for each Lab
-3. lab-wise stock management (Laptops, PC, network switches, printers, etc.)
-    - serial number (optional)
-    - system model number
-    - system make
-    - system count
-4. Super admin to monitor all labs
-    - Advanced search by Serial number, mode number and labs
-    - Scrap management for consumables - PC, Laptops, network switches, printers, etc.
-5. Lab Technicians are admins and can login to the system.
-    - Lab Technicians can add new devices to the system (own labs).
-    - Modify the existing devices (own labs).
-    - Scrap machines (own labs).
-    - generate reports (own labs).
-    - logout all students (own labs).
-7. Super admin (1 total)
-    - Can add new devices to the system (for all labs).
-    - Modify the existing devices (for all labs)
-    - Scrap machines (for all labs).
-    - Generate reports (for all labs).
-    - View number of logged in students (lab-wise).
-    - changes roles of lab technicians (admins) to super admin.
-    - logout all students (from all labs)
-8. Report generation 
-    - Admin and Super admin can generate reports.
-    - List of devices in the particular lab and departments.
-    - Report in Excel and PDF format.
-9. Bill management (separate portal)
-    - Store bills in drive
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-____
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-## System Requirements
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-- 8 GB RAM computer with ubuntu (server edition)
+## Learning Laravel
 
-____
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-## Tech stack
+You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
-- Laravel (PHP)
-- SQLite
-- React + Bootstrap
-- Desktop-view first
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-____
+## Laravel Sponsors
 
-## Schema
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-**Database**: SQLite3
+### Premium Partners
 
-### Roles
+- **[Vehikl](https://vehikl.com/)**
+- **[Tighten Co.](https://tighten.co)**
+- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+- **[64 Robots](https://64robots.com)**
+- **[Cubet Techno Labs](https://cubettech.com)**
+- **[Cyber-Duck](https://cyber-duck.co.uk)**
+- **[Many](https://www.many.co.uk)**
+- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
+- **[DevSquad](https://devsquad.com)**
+- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
+- **[OP.GG](https://op.gg)**
+- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
+- **[Lendio](https://lendio.com)**
 
-Assignment of roles for users
+## Contributing
 
-- Username
-- password
-- role (technician / admin)
-- lab (Lab name / room number / ALL)
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-### Attendance
+## Code of Conduct
 
-Stores the in and out time for auditing purposes
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-- Roll number (using barcode)
-  - year
-  - department
-- Time in
-- Time out
-- Lab name
+## Security Vulnerabilities
 
-### Devices
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-Store the information of devices.
+## License
 
-- Device name
-- Serial Number (optional)
-- System model number
-- System make
-- System count
-- Lab name / Room number
-
-### Scrap
-
-Store the information of scrapped devices.
-
-- Device name
-- Serial Number (optional)
-- System model number
-- Count
-- Lab name
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

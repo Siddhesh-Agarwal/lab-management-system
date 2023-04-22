@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -24,5 +25,24 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    public function error(){
+        return view("errors.unauthorized");
+    }
+
+    public function sample(){
+        return view('layouts.contact');
+    }
+
+    public function login()
+    {
+        return view('auth.login');
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return view('auth.login');
     }
 }

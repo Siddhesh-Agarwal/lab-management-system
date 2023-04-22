@@ -52,10 +52,12 @@
                                     class="col-md-4 col-form-label text-md-end">{{ __('Role') }}</label>
 
                                 <div class="col-md-6">
-                                    <select name="role" id="role"
-                                        class="form-control @error('role') is-invalid @enderror">
-                                        <option value="admin">Admin</option>
-                                        <option value="user">Lab Technician</option>
+                                    <select name="role" id="role">
+                                        <? php $array = ['Admin', 'Lab Technician']?>
+
+                                        @foreach ($array as $optionValue)
+                                            <option value={{ $optionValue }}>{{ $optionValue }}</option>
+                                        @endforeach
                                     </select>
 
                                     @error('role')
@@ -84,7 +86,6 @@
                                         <option value="lab-7">Jimgray Lab</option>
                                         <option value="lab-8">DSP/VLSI Lab</option>
                                     </select>
-
                                     @error('lab')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
