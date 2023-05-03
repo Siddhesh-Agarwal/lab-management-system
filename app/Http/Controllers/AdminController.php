@@ -17,7 +17,7 @@ class AdminController extends Controller
 
     public function tables()
     {
-        return view('layouts.tables');
+        return view('admin.tables');
     }
 
     public function add_device()
@@ -80,16 +80,16 @@ class AdminController extends Controller
 
     public function simple_search()
     {
-        return view('layouts.simplesearch');
+        return view('admin.simplesearch');
     }
 
     public function advance_search()
     {
-        return view('layouts.advancesearch');
+        return view('admin.advancesearch');
     }
 
     public function contact()
     {
-        return view('layouts.contact');
+        return view('admin.contact');
     }
 }

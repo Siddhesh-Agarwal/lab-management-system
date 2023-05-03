@@ -8,7 +8,7 @@
                     <div class="card-header">{{ __('Register') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('register') }}">
+                        <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                             @csrf
 
                             {{-- Name --}}
@@ -47,23 +47,20 @@
                             </div>
 
                             {{-- role --}}
-                            <div class="row mb-3">
+                            <div class="row mb-3 form-group">
                                 <label for="role"
                                     class="col-md-4 col-form-label text-md-end">{{ __('Role') }}</label>
 
                                 <div class="col-md-6">
-                                    <select name="role" id="role">
-                                        <? php $array = ['Admin', 'Lab Technician']?>
-
-                                        @foreach ($array as $optionValue)
-                                            <option value={{ $optionValue }}>{{ $optionValue }}</option>
-                                        @endforeach
+                                    <input class="form-control" type="text" id="role" name="role">
+                                    <select name="role" id="role" class="form-control">
+                                        <option value="admin">Admin</option>
+                                        <option value="superadmin">Lab Technician</option>
                                     </select>
-
                                     @error('role')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                     @enderror
                                 </div>
                             </div>
@@ -72,10 +69,8 @@
                             <div class="row mb-3">
                                 <label for="lab"
                                     class="col-md-4 col-form-label text-md-end">{{ __('Lab') }}</label>
-
                                 <div class="col-md-6">
-                                    <select name="lab" id="lab"
-                                        class="form-control @error('lab') is-invalid @enderror">
+                                    <select name="lab" id="lab" class="form-control">
                                         <option value="all">All</option>
                                         <option value="lab-1">Alan Kay Lab</option>
                                         <option value="lab-2">Nicklaus Writh Lab</option>

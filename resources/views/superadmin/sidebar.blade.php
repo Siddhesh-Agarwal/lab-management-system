@@ -109,21 +109,15 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="../charts/chartjs.html" class="nav-link">
+                            <a href={{ route('superadmin.add') }} class="nav-link">
                                 <i class="fas fa-user-plus nav-icon"></i>
                                 <p>Add Admin</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="../charts/flot.html" class="nav-link">
+                            <a href={{ route('superadmin.details') }} class="nav-link">
                                 <i class="fas fa-users nav-icon"></i>
-                                <p>Admins Details</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="../charts/inline.html" class="nav-link">
-                                <i class="fas fa-wrench nav-icon"></i>
-                                <p>Modify Admins</p>
+                                <p>Admin Details</p>
                             </a>
                         </li>
                     </ul>

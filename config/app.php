@@ -1,5 +1,6 @@
 <?php
 
+use Brian2694\Toastr\Toastr;
 use Illuminate\Support\Facades\Facade;
 
 return [
@@ -57,7 +58,14 @@ return [
     'url' => env('APP_URL', 'http://localhost'),
 
     'asset_url' => env('ASSET_URL'),
+    'providers'=>[
+        Brian2694\Toastr\ToastrServiceProvider::class,
+    ],
+    'aliases'=>[
+        'Toastr'=>Brian2694\Toastr\Facades\Toastr::class,
 
+    ],
+    Brian2694\Toastr\ToastrServiceProvider::class,
     /*
     |--------------------------------------------------------------------------
     | Application Timezone
@@ -182,6 +190,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+
         /*
          * Package Service Providers...
          */
@@ -208,8 +217,8 @@ return [
     |
     */
 
-    'aliases' => Facade::defaultAliases()->merge([
-        // 'ExampleClass' => App\Example\ExampleClass::class,
-    ])->toArray(),
 
+'aliases'=>Facade::defaultAliases()->merge([
+
+])->toArray(),
 ];

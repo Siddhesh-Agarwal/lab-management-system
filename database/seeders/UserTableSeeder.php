@@ -15,20 +15,12 @@ class UserTableSeeder extends Seeder
     {
         $users = [
             [
-                'name' => "shree",
-                'email' => "admin123@gmail.com",
-                'password' => bcrypt('password'),
-                'role' => 'admin',
-                'labname' => 'alanKay',
-            ],
-            [
-                'name' => "varun",
-                'email' => "superadmin123@gmail.com",
+                'name' => "Shree",
+                'email' => "superadmin@gmail.com",
                 'password' => bcrypt('password'),
                 'role' => 'superadmin',
-                'labname' => 'gimgray',
+                'labname' => 'GimGray',
             ],
-
         ];
 
         User::insert($users);

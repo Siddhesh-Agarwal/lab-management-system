@@ -37,6 +37,12 @@ Route::prefix('superadmin')->middleware('superadmin.auth')->group(function () {
     Route::get('/simple-search', [SuperAdminController::class, 'simple_search'])->name('superadmin.search');
     Route::get('/advance-search', [SuperAdminController::class, 'advance_search'])->name('superadmin.advance.search');
     Route::get('/data-tables', [SuperAdminController::class, 'tables'])->name('superadmin.tables');
+    Route::get('/admin-add', [SuperAdminController::class, 'add_admin'])->name('superadmin.add');
+    Route::post('/', [SuperAdminController::class, 'create'])->name('superadmin.add.admin');
+    Route::delete('/{id}', [SuperAdminController::class, 'delete_admin'])->name('superadmin.delete.admin');
+    Route::get('/edit/{id}', [SuperAdminController::class, 'edit_admin'])->name('superadmin.edit.admin');
+    Route::patch('/{id}', [SuperAdminController::class, 'update_admin'])->name('superadmin.update.admin');
+    Route::get('/admin-details', [SuperAdminController::class, 'details'])->name('superadmin.details');
     Route::get('/', [SuperAdminController::class, 'logout'])->name('superadmin.logout');
 });
 

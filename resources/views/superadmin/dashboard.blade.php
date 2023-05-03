@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin Dashboard</title>
+    <title>Super Admin Dashboard</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -15,6 +15,9 @@
     <link rel="stylesheet" href={{ url("plugins/overlayScrollbars/css/OverlayScrollbars.min.css") }}>
     <!-- Theme style -->
     <link rel="stylesheet" href={{ url("dist/css/adminlte.min.css") }}>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
@@ -68,7 +71,7 @@
 
     <!-- REQUIRED SCRIPTS -->
     <!-- jQuery -->
-    <script src={{ url("plugins/jquery/jquery.min.js") }}></script>
+    <script src={{ url("plugins/jquery/jquery.min.js") }}></>
     <!-- Bootstrap -->
     <script src={{ url("plugins/bootstrap/js/bootstrap.bundle.min.js") }}></script>
     <!-- overlayScrollbars -->
@@ -87,9 +90,7 @@
 
     <!-- AdminLTE for demo purposes -->
     <script src={{ url("dist/js/demo.js") }}></script>
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src={{ url("dist/js/pages/dashboard2.js") }}></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 
 </html>
