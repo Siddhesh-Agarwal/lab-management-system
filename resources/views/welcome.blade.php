@@ -16,9 +16,8 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Alkatra&display=swap');
+
         body {
-            /* background-image: url('dist/img/lab-home1.jpg'); */
-            /* background-size: cover; */
             background-color: #111010
         }
 
@@ -38,11 +37,12 @@
                 bottom: 0;
                 left: 0;
                 background-image: linear-gradient(to bottom right, #002f4b, #424040);
-                opacity: .8;
+                opacity: .7;
             }
         }
 
         .banner .navbar {
+            font-family: 'Alkatra', cursive;
             margin-top: 2%;
         }
 
@@ -57,17 +57,39 @@
             margin-right: 10%;
         }
 
+        ul {
+            flex-wrap: nowrap;
+        }
+
+        nav ul:hover a:hover {
+            color: #0098db;
+            box-shadow: 0 2px 0 0 currentColor;
+        }
+
         .banner .nav li a {
             color: #fff;
             font-size: 1.2em;
+            text-decoration: none;
+            transition: 0.25s ease;
+            margin: 10px;
         }
 
-        .banner .info {
+        .banner .info{
             margin-top: 12%;
             transform: translateY(-15%);
         }
 
-        .banner .info h1 {
+        .about-banner h1{
+            font-size: 2.5em;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: 2px;
+            font-family: 'Bruno Ace SC', cursive;
+            font-size: 100px;
+            margin-top:250px;
+        }
+
+        .banner .info h1{
             font-size: 2.5em;
             font-weight: 900;
             color: #fff;
@@ -85,6 +107,7 @@
 
         .banner .info a {
             margin-left: 50%;
+            font-family: 'Alkatra', cursive;
             transform: translateX(-50%);
             background-color: #F5A518;
             padding: 10px 20px;
@@ -97,14 +120,16 @@
         }
 
         .banner .info .animated-text {
-            background-image: -webkit-linear-gradient(rgb(4, 139, 197) 50%, #ffd800 50%);
+            background-image: -webkit-linear-gradient(#0098db 50%, #ffd800 50%);
             background-size: 100% 50px;
             -webkit-text-fill-color: transparent;
             -webkit-background-clip: text;
             -webkit-animation: stripes 3s ease-in-out infinite;
             animation: stripes 3s ease-in-out infinite;
             font-size: 100px;
-
+        }
+        .navbar-brand a{
+            color: #ffffff;
         }
 
         @-webkit-keyframes stripes {
@@ -118,15 +143,15 @@
                 background-position: 0 50px;
             }
         }
-
-        .login-banner {
-            height: 100vh;
+        .about-banner{
+            height: 160vh;
             width: 100%;
             background-image: url('dist/img/stud-login1.jpg');
             background-position: top;
-            background-size: contain;
+            background-size: cover;
             background-repeat: no-repeat;
         }
+
     </style>
 
 </head>
@@ -137,7 +162,9 @@
             <div class="col-md-12">
                 <nav class="navbar">
                     <div class="navbar-brand">
-                        SKCET
+                        <a href="https://www.skcet.ac.in/" target="_blank">
+                            SKCET
+                        </a>
                     </div>
                     <ul class="nav">
                         <li class="nav-item">
@@ -161,16 +188,10 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid">
+    <div class="container-fluid about-banner">
         <div class="row align-items-start text-center">
             <div class="col-md-6">
-                <h1>hel</h1>
-            </div>
-            <div class="col-md-4">
-                <h1>hel</h1>
-            </div>
-            <div class="col-md-2">
-                <h1>hel</h1>
+                <h1>Student Entry<br>Details</h1>
             </div>
         </div>
     </div>

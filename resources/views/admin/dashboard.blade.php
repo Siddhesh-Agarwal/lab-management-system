@@ -8,13 +8,19 @@
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
-        href={{ url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback") }}>
+        href={{ url("https://fonts.googleapis.com/css2?family=Alkatra&display=swap") }}>
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href={{ url("plugins/fontawesome-free/css/all.min.css") }}>
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href={{ url("plugins/overlayScrollbars/css/OverlayScrollbars.min.css") }}>
     <!-- Theme style -->
     <link rel="stylesheet" href={{ url("dist/css/adminlte.min.css") }}>
+    <style>
+        *{
+            font-family: 'Alkatra', cursive;
+        }
+    </style>
+
 </head>
 
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
