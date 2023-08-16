@@ -12,6 +12,7 @@
     "dependencies": {
         "sweetalert": "^2.1.2",
         "sweetalert2": "^11.7.3",
-        "toastr": "^2.1.4"
+        "toastr": "^2.1.4",
+        "v-toaster": "^1.0.3"
     }
 }

@@ -34,12 +34,11 @@
             </div>
         </div>
 
-        <!-- Sidebar Menu -->
+
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
-                <!-- Add icons to the links using the .nav-icon class
-       with font-awesome or any other icon font library -->
+
                 <li class="nav-item menu-close">
                     <a href="#" class="nav-link active">
                         <i class="nav-icon fas fa-sitemap"></i>
@@ -50,78 +49,246 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="./index.html" class="nav-link">
+                            {{-- <a href="{{ route('admin.otherdevice') }}" class="nav-link">
+                                --}}
+                            <a href="{{ route('admin.lablist', ['lab_name' => 'Alan Kay']) }}" class="nav-link lab-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Nicklaus Writh</p>
+                                <p>Alan Kay</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="./index2.html" class="nav-link active">
+                            {{-- <a href="./index2.html" class="nav-link ">
+                                    --}}
+                            <a href="{{ route('admin.lablist', ['lab_name' => 'DSP VLSI']) }}" class="nav-link lab-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>John Backus</p>
+                                <p>DSP/VLSI</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="./index3.html" class="nav-link">
+                            <a href="{{ route('admin.lablist', ['lab_name' => 'Djikstra']) }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Djikstra</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="./index3.html" class="nav-link">
+                            <a href="{{ route('admin.lablist', ['lab_name' => 'Donald Knuth']) }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Donald Knuth</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="./index3.html" class="nav-link">
+                            <a href="{{ route('admin.lablist', ['lab_name' => 'EF Codd']) }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>EF Codd</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="./index3.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Donald Knuth</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="./index3.html" class="nav-link">
+                            <a href="{{ route('admin.lablist', ['lab_name' => 'Jimgray']) }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Jimgray</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="./index3.html" class="nav-link">
+                            <a href="{{ route('admin.lablist', ['lab_name' => 'Nicklaus Writh']) }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>DSP/VLSI</p>
+                                <p>Nicklaus Writh</p>
                             </a>
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-laptop"></i>
+                <li class="nav-item menu-close">
+                    <a href="#" class="nav-link ">
+                        <i class="nav-icon fas fa-sitemap"></i>
                         <p>
                             Manage Devices
-                            <i class="fas fa-angle-left right"></i>
+                            <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href={{ route('admin.add.device') }} class="nav-link">
-                                <i class="fas fa-plus-circle nav-icon"></i>
-                                <p>Device Add</p>
+                            {{-- <a href="{{ route('admin.otherdevice') }}" class="nav-link">
+                                 --}}
+                            <a href="{{ route('admin.listdevice', ['lab_name' => urlencode('Alan Kay')]) }}"
+                                class="nav-link lab-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Alan Kay</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/examples/project-detail.html" class="nav-link">
-                                <i class="fas fa-eye nav-icon"></i>
-                                <p>Device Details</p>
+                            {{-- <a href="./index2.html" class="nav-link ">
+                                 --}}
+                            <a href="{{ route('admin.listdevice', ['lab_name' => urlencode('DSP VLSI')]) }}"
+                                class="nav-link lab-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>
+                                    <p>DSP/VLSI</p>
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.listdevice', ['lab_name' => 'Djikstra']) }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Djikstra</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.listdevice', ['lab_name' => urlencode('Donald Knuth')]) }}"
+                                class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Donald Knuth</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.listdevice', ['lab_name' => urlencode('EF Codd')]) }}"
+                                class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>EF Codd</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.listdevice', ['lab_name' => 'Jimgray']) }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Jimgray</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.listdevice', ['lab_name' => urlencode('Nicklaus Writh')]) }}"
+                                class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Nicklaus Writh</p>
                             </a>
                         </li>
                     </ul>
                 </li>
+                <li class="nav-item menu-close">
+                    <a href="#" class="nav-link ">
+                        <i class="nav-icon fas fa-sitemap"></i>
+                        <p>
+                            OtherDevices
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            {{-- <a href="{{ route('admin.otherdevice') }}" class="nav-link">
+                                --}}
+                            <a href="{{ route('admin.otherdevice', ['lab_name' => urlencode('Alan Kay')]) }}"
+                                class="nav-link lab-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Alan Kay</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            {{-- <a href="./index2.html" class="nav-link ">
+                                    --}}
+                            <a href="{{ route('admin.otherdevice', ['lab_name' => urlencode('DSP VLSI')]) }}"
+                                class="nav-link lab-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>
+                                    <p>DSP/VLSI</p>
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.otherdevice', ['lab_name' => 'Djikstra']) }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Djikstra</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.otherdevice', ['lab_name' => urlencode('Donald Knuth')]) }}"
+                                class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Donald Knuth</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.otherdevice', ['lab_name' => urlencode('EF Codd')]) }}"
+                                class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>EF Codd</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.otherdevice', ['lab_name' => 'Jimgray']) }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Jimgray</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.otherdevice', ['lab_name' => urlencode('Nicklaus Writh')]) }}"
+                                class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Nicklaus Writh</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item menu-close">
+                    <a href="#" class="nav-link ">
+                        <i class="nav-icon fas fa-sitemap"></i>
+                        <p>
+                            Manage Devices
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            {{-- <a href="{{ route('admin.otherdevice') }}" class="nav-link">
+                                 --}}
+                            <a href="{{ route('admin.listdevice', ['lab_name' => urlencode('Alan Kay')]) }}"
+                                class="nav-link lab-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Alan Kay</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            {{-- <a href="./index2.html" class="nav-link ">
+                                 --}}
+                            <a href="{{ route('admin.listdevice', ['lab_name' => urlencode('DSP VLSI')]) }}"
+                                class="nav-link lab-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>
+                                    <p>DSP/VLSI</p>
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.listdevice', ['lab_name' => 'Djikstra']) }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Djikstra</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.listdevice', ['lab_name' => urlencode('Donald Knuth')]) }}"
+                                class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Donald Knuth</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.listdevice', ['lab_name' => urlencode('EF Codd')]) }}"
+                                class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>EF Codd</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.listdevice', ['lab_name' => 'Jimgray']) }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Jimgray</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.listdevice', ['lab_name' => urlencode('Nicklaus Writh')]) }}"
+                                class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Nicklaus Writh</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-search"></i>
@@ -144,9 +311,9 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href={{ route('admin.tables') }} class="nav-link">
+                            <a href={{ route('admin.student.details') }} class="nav-link">
                                 <i class="fas fa-tasks nav-icon"></i>
-                                <p>Data Tables</p>
+                                <p>Student Details</p>
                             </a>
                         </li>
                     </ul>

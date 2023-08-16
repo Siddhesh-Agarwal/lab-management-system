@@ -50,54 +50,77 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="./index.html" class="nav-link">
+                            <a href={{ url('superadmin/addlablistdevice') }} class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Nicklaus Writh</p>
+                                <p>Add System</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="./index2.html" class="nav-link active">
+                            <a  href={{ url('/superadmin/lablist') }} class="nav-link active">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>John Backus</p>
+                                <p>System Details</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="./index3.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Djikstra</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="./index3.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Donald Knuth</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="./index3.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>EF Codd</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="./index3.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Donald Knuth</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="./index3.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Jimgray</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="./index3.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>DSP/VLSI</p>
-                            </a>
-                        </li>
+                        
                     </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link ">
+                        <i class="nav-icon fas fa-sitemap"></i>
+                        <p>
+                            Other Devices
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href={{ url('superadmin/addotherdevice') }} class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Add Devices</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href={{ route('superadmin.otherdevice') }} class="nav-link ">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Devices Details</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link ">
+                        <i class="nav-icon fas fa-sitemap"></i>
+                        <p>
+                            Additional Devices
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href={{ url('superadmin/savelablistdevices') }} class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Add Additioanl Devices</p>
+                            </a>    
+                        </li>
+                        <li class="nav-item">
+                            <a href={{ route('superadmin.lablistdevices') }} class="nav-link ">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Device Details</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href={{ url('/superadmin/labmovelist') }} class="nav-link">
+                        <i class="nav-icon fas fa-cog"></i>
+                        <p>
+                            Lab Request
+                            {{-- <span class="badge badge-success">{{ $totalDeviceCount }}</span> --}}
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
@@ -117,7 +140,7 @@
                         <li class="nav-item">
                             <a href={{ route('superadmin.details') }} class="nav-link">
                                 <i class="fas fa-users nav-icon"></i>
-                                <p>Admin Details</p>
+                                <p>Admins Details</p>
                             </a>
                         </li>
                     </ul>
@@ -132,13 +155,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="../UI/general.html" class="nav-link">
+                            <a href={{ route('temp.list') }} class="nav-link">
                                 <i class="fas fa-recycle nav-icon"></i>
                                 <p>General</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="../UI/general.html" class="nav-link">
+                            <a href={{ route('scrap.list') }} class="nav-link">
                                 <i class="fas fa-edit nav-icon"></i>
                                 <p>Sample</p>
                             </a>

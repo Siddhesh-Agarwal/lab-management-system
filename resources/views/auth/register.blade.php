@@ -52,10 +52,9 @@
                                     class="col-md-4 col-form-label text-md-end">{{ __('Role') }}</label>
 
                                 <div class="col-md-6">
-                                    <input class="form-control" type="text" id="role" name="role">
                                     <select name="role" id="role" class="form-control">
                                         <option value="admin">Admin</option>
-                                        <option value="superadmin">Lab Technician</option>
+                                        <option value="superadmin">Super Admin</option>
                                     </select>
                                     @error('role')
                                     <span class="invalid-feedback" role="alert">
@@ -65,21 +64,21 @@
                                 </div>
                             </div>
 
+
                             {{-- Lab. if role is admin, lab is "ALL" else choose from options --}}
                             <div class="row mb-3">
                                 <label for="lab"
                                     class="col-md-4 col-form-label text-md-end">{{ __('Lab') }}</label>
                                 <div class="col-md-6">
-                                    <select name="lab" id="lab" class="form-control">
-                                        <option value="all">All</option>
-                                        <option value="lab-1">Alan Kay Lab</option>
-                                        <option value="lab-2">Nicklaus Writh Lab</option>
-                                        <option value="lab-3">John Backus Lab</option>
-                                        <option value="lab-4">Djikstra Lab</option>
-                                        <option value="lab-5">Donald Knuth Lab</option>
-                                        <option value="lab-6">EF Codd Lab</option>
-                                        <option value="lab-7">Jimgray Lab</option>
-                                        <option value="lab-8">DSP/VLSI Lab</option>
+                                    <select name="labname" id="labname" class="form-control">
+                                        <option value="Alan Kay">Alan Kay Lab</option>
+                                        <option value="Nicklaus Writh">Nicklaus Writh Lab</option>
+                                        <option value="John Backus">John Backus Lab</option>
+                                        <option value="Djikstra Lab">Djikstra Lab</option>
+                                        <option value="Donald Knuth">Donald Knuth Lab</option>
+                                        <option value="EF Codd">EF Codd Lab</option>
+                                        <option value="Jimgray">Jimgray Lab</option>
+                                        <option value="DSP/VLSI">DSP/VLSI Lab</option>
                                     </select>
                                     @error('lab')
                                         <span class="invalid-feedback" role="alert">

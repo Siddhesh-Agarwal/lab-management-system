@@ -1,26 +1,6 @@
 @extends('superadmin.dashboard')
 
 @section('content')
-    @if (Session::has('notification'))
-        <script>
-            // const Toast = Swal.mixin({
-            //     toast: true,
-            //     position: 'top-right',
-            //     iconColor: 'white',
-            //     customClass: {
-            //         popup: 'colored-toast'
-            //     },
-            //     showConfirmButton: false,
-            //     timer: 1500,
-            //     timerProgressBar: true
-            // })
-            // await Toast.fire({
-            //     icon: 'success',
-            //     title: 'Success'
-            // })
-            toastr.success('{{ Session::get('notification') }}');
-        </script>
-    @endif
     <div class="card card-primary" style="margin:20px">
         <div class="card-header">
             <h3 class="card-title">Add Admin</h3>
@@ -32,7 +12,8 @@
             <div class="card-body">
                 <div class="form-group">
                     <label for="exampleInputName">Name</label>
-                    <input type="text" name="name" class="form-control" placeholder="Enter name" value={{ old('name') }}>
+                    <input required type="text" name="name" class="form-control" placeholder="Enter name"
+                        value={{ old('name') }}>
                     @error('name')
                         <div class="alert alert-danger" role="alert" style="margin-top: 5px">
                             <i class="fas fa-exclamation-triangle"></i>
@@ -42,7 +23,7 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail">Email</label>
-                    <input type="email" name="email" class="form-control" id="exampleInputEmail"
+                    <input required type="email" name="email" class="form-control" id="exampleInputEmail"
                         placeholder="Enter email" value={{ old('email') }}>
                     @error('email')
                         <div class="alert alert-danger" role="alert" style="margin-top: 5px">
@@ -53,7 +34,7 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword">Password</label>
-                    <input type="password" name="password" class="form-control" id="exampleInputPassword"
+                    <input required type="password" name="password" class="form-control" id="exampleInputPassword"
                         placeholder="Password" value={{ old('password') }}>
                     @error('password')
                         <div class="alert alert-danger" role="alert" style="margin-top: 5px">
@@ -64,18 +45,23 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputRole">Role</label>
-                    <input type="text" class="form-control" id="exampleInputRole" placeholder="Admin" disabled>
+                    <select name="role" id="role" class="form-control">
+                        <option value="admin">Admin</option>
+                        <option value="superadmin">Super admin</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputLabName">Lab Name</label>
-                    <input type="text" name="labname" class="form-control" id="exampleInputLabName"
-                        placeholder="Enter a Lab name" value={{ old('labname') }}>
-                    @error('labname')
-                        <div class="alert alert-danger" role="alert" style="margin-top: 5px">
-                            <i class="fas fa-exclamation-triangle"></i>
-                            <span style="padding-left: 5px">{{ $message }}</span>
-                        </div>
-                    @enderror
+                    <select name="labname" id="labname" class="form-control">
+                        <option value="Alan Kay">Alan Kay Lab</option>
+                        <option value="Nicklaus Writh">Nicklaus Writh Lab</option>
+                        <option value="John Backus">John Backus Lab</option>
+                        <option value="Djikstra Lab">Djikstra Lab</option>
+                        <option value="Donald Knuth">Donald Knuth Lab</option>
+                        <option value="EF Codd">EF Codd Lab</option>
+                        <option value="Jimgray">Jimgray Lab</option>
+                        <option value="DSP/VLSI">DSP/VLSI Lab</option>
+                    </select>
                 </div>
             </div>
             <!-- /.card-body -->

@@ -17,10 +17,6 @@
         @import url('https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Alkatra&display=swap');
 
-        body {
-            background-color: #111010
-        }
-
         .banner {
             height: 100vh;
             width: 100%;
@@ -74,22 +70,22 @@
             margin: 10px;
         }
 
-        .banner .info{
+        .banner .info {
             margin-top: 12%;
             transform: translateY(-15%);
         }
 
-        .about-banner h1{
+        .about-banner h1 {
             font-size: 2.5em;
             font-weight: 900;
             color: #fff;
             letter-spacing: 2px;
             font-family: 'Bruno Ace SC', cursive;
             font-size: 100px;
-            margin-top:250px;
+            margin-top: 250px;
         }
 
-        .banner .info h1{
+        .banner .info h1 {
             font-size: 2.5em;
             font-weight: 900;
             color: #fff;
@@ -120,7 +116,7 @@
         }
 
         .banner .info .animated-text {
-            background-image: -webkit-linear-gradient(#0098db 50%, #ffd800 50%);
+            background-image: -webkit-linear-gradient(#0098db 50%, #F99C1B 50%);
             background-size: 100% 50px;
             -webkit-text-fill-color: transparent;
             -webkit-background-clip: text;
@@ -128,7 +124,8 @@
             animation: stripes 3s ease-in-out infinite;
             font-size: 100px;
         }
-        .navbar-brand a{
+
+        .navbar-brand a {
             color: #ffffff;
         }
 
@@ -143,7 +140,8 @@
                 background-position: 0 50px;
             }
         }
-        .about-banner{
+
+        .about-banner {
             height: 160vh;
             width: 100%;
             background-image: url('dist/img/stud-login1.jpg');
@@ -152,8 +150,73 @@
             background-repeat: no-repeat;
         }
 
-    </style>
+        .student-form {
+            margin-top: 33%;
 
+        }
+
+        .regno-input {
+            width: 25rem;
+            padding: 0.5rem 1rem;
+            color: #000000;
+            background-color: #FFFFFF;
+            font-size: 1.75rem;
+            border-width: 1px #ccc solid;
+            border-style: solid;
+            border-radius: 0.5rem;
+            box-shadow: 24px 0px 11px rgba(240, 240, 240, 0.616);
+        }
+
+        .regno-button {
+            margin-top: 30px;
+        }
+
+        /* CSS */
+
+        .button-home {
+            appearance: none;
+            background-color: transparent;
+            border: 2px solid #1A1A1A;
+            border-radius: 15px;
+            box-sizing: border-box;
+            color: #CBCBCB;
+            cursor: pointer;
+            display: block;
+            font-family: Roobert, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            font-size: 16px;
+            font-weight: 600;
+            line-height: normal;
+            min-height: 60px;
+            width: 240px;
+            margin: 0;
+            margin-inline: auto;
+            padding: 16px 24px;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            will-change: transform;
+        }
+
+        .button-home:disabled {
+            pointer-events: none;
+        }
+
+        .button-home:hover {
+            color: #f5f5f5;
+            background-color: #1A1A1A;
+            box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+            transform: translateY(-2px);
+        }
+
+        .button-home:active {
+            box-shadow: none;
+            transform: translateY(0);
+        }
+    </style>
 </head>
 
 <body>
@@ -162,109 +225,31 @@
             <div class="col-md-12">
                 <nav class="navbar">
                     <div class="navbar-brand">
+                        <span style="margin-right:20px">
+                            <img src="dist/img/landingpage_logo.jpg" height="55px" />
+                        </span>
                         <a href="https://www.skcet.ac.in/" target="_blank">
                             SKCET
                         </a>
                     </div>
                     <ul class="nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Home</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">Register</a>
                         </li>
                     </ul>
                 </nav>
             </div>
             <div class="col-md-8 offset-md-2 info">
                 <h1 class="text-center animated-text">SKCET LAB</h1>
-                <p class="text-center">
-                    Think placement... Think SKCET !!
+                <p class="text-center" style="color: #e9e9e9">
+                    Think Placement... Think SKCET !!
                 </p>
-                <a href="#" class="btn btn primary">GET STARTED</a>
+              
+                <button onclick='{{ route('login') }}' class="button-home">GET STARTED</button>
+             
             </div>
         </div>
     </div>
-    <div class="container-fluid about-banner">
-        <div class="row align-items-start text-center">
-            <div class="col-md-6">
-                <h1>Student Entry<br>Details</h1>
-            </div>
-        </div>
-    </div>
-
-    {{--
-        <div class="container-lg container-fluid bg-red">
-            <div class="row">
-                <!-- /.col -->
-                <div class="col-md-6">
-                    <div class="card" style="390px">
-                        <div class="card-header">
-                            <h3 class="card-title">Carousel</h3>
-                        </div>
-                        <!-- /.card-header -->
-                        <div class="card-body">
-                            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                                <ol class="carousel-indicators">
-                                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                                </ol>
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                        <img class="d-block w-100"
-                                            src="https://placehold.it/900x500/39CCCC/ffffff&text=I+Love+Bootstrap"
-                                            alt="First slide">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img class="d-block w-100"
-                                            src="https://placehold.it/900x500/3c8dbc/ffffff&text=I+Love+Bootstrap"
-                                            alt="Second slide">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img class="d-block w-100"
-                                            src="https://placehold.it/900x500/f39c12/ffffff&text=I+Love+Bootstrap"
-                                            alt="Third slide">
-                                    </div>
-                                </div>
-                                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
-                                    data-slide="prev">
-                                    <span class="carousel-control-custom-icon" aria-hidden="true">
-                                        <i class="fas fa-chevron-left"></i>
-                                    </span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
-                                    data-slide="next">
-                                    <span class="carousel-control-custom-icon" aria-hidden="true">
-                                        <i class="fas fa-chevron-right"></i>
-                                    </span>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </div>
-                        </div>
-                        <!-- /.card-body -->
-                    </div>
-                    <!-- /.card -->
-                </div>
-                <div class="col-md-6">
-
-                </div>
-                <!-- /.col -->
-            </div>
-            <!-- /.row --> --}}
-
-
-
-    <!-- jQuery -->
-    <script src={{ url('plugins/jquery/jquery.min.js') }}></script>
-    <!-- Bootstrap 4 -->
-    <script src={{ url('plugins/bootstrap/js/bootstrap.bundle.min.js') }}></script>
-    <!-- AdminLTE App -->
-    <script src={{ url('dist/js/adminlte.min.js') }}></script>
 </body>
 
 </html>

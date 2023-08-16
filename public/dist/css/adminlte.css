@@ -4385,6 +4385,7 @@ input[type="button"].btn-block {
 
 .tab-content > .active {
   display: block;
+  background-color: red;
 }
 
 .navbar {

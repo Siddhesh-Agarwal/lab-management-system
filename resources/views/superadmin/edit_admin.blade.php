@@ -32,6 +32,7 @@
                         </div>
                     @enderror
                 </div>
+      
                 <div class="form-group">
                     <label for="exampleInputPassword">Password</label>
                     <input type="password" name="password" class="form-control" id="exampleInputPassword"
@@ -57,7 +58,7 @@
                 <div class="form-group">
                     <label for="exampleInputLabName">Lab Name</label>
                     <input type="text" name="labname" class="form-control" id="exampleInputLabName"
-                        value={{ $user->labname }}>
+                        value={{ urldecode($user->labname) }}>
                     @error('labname')
                         <div class="alert alert-danger" role="alert" style="margin-top: 5px">
                             <i class="fas fa-exclamation-triangle"></i>

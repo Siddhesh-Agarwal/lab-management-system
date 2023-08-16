@@ -14,11 +14,12 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Rendering engine</th>
-                                        <th>Browser</th>
-                                        <th>Platform(s)</th>
-                                        <th>Engine version</th>
-                                        <th>CSS grade</th>
+                                        <th>S no</th>
+                                        <th>Name</th>
+                                        <th>Roll Number</th>
+                                        <th>Department</th>
+                                        <th>labname</th>
+                                        <th>isLoggedIn</th>
                                     </tr>
                                 </thead>
                                 <tbody>

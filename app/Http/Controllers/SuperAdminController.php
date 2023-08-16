@@ -32,24 +32,29 @@ class SuperAdminController extends Controller
 
     public function create(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required|min:8|max:15',
-            'labname' => 'required',
-        ]);
-
-        $data = [
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-            'role' => "admin",
-            'labname' => $request->labname,
-        ];
-
-        User::create($data);
-        Toastr::success('Admin was added successfully!', 'Success');
-        return redirect()->back()->with('notification','Admin was added successfully');
+        try{
+            $request->validate([
+                'name' => 'required',
+                'email' => 'required',
+                'password' => 'required|min:8|max:15',
+                'labname' => 'required',
+            ]);
+    
+            $data = [
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => bcrypt($request->password),
+                'role' => $request->role,
+                'labname' => urldecode($request->labname),
+            ];
+    
+            User::create($data);
+            
+            return redirect(route('superadmin.details'))->with('notification', 'success add');
+        }
+        catch(\Exception $e){
+            return redirect(route('superadmin.details'))->with('notification', 'error');
+        }
     }
 
     public function details()
@@ -61,13 +66,12 @@ class SuperAdminController extends Controller
 
     public function add_admin()
     {
-
         return view('superadmin.add_admin');
     }
     public function delete_admin(Request $request)
     {
         User::destroy($request->id);
-        return redirect()->route('superadmin.details')->with('message', 'The Admin was deleted successfully!');
+        return redirect()->route('superadmin.details')->with('notification', 'success delete');
     }
 
     public function tables()
@@ -84,26 +88,31 @@ class SuperAdminController extends Controller
     public function edit_admin(int $id)
     {
         $user = User::find($id);
-        return view('superadmin.edit_admin', compact('user'));
+        return view('superadmin.edit_admin', compact(urlencode('user')));
     }
     public function update_admin(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required|min:8|max:15',
-            'role' => 'required',
-            'labname' => 'required',
-        ]);
-
-        User::find($id)->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-            'role'  => $request->role,
-            'labname' => $request->labname
-        ]);
-
-        return redirect()->route('superadmin.details')->with('message', 'The Admin was updated successfully!');
+        try{
+            $request->validate([
+                'name' => 'required',
+                'email' => 'required',
+                // 'password' => 'required|min:8|max:15',
+                'role' => 'required',
+                'labname' => 'required',
+            ]);
+    
+            User::find($id)->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                // 'password' => bcrypt($request->password),
+                'role'  => $request->role,
+                'labname' => urldecode($request->labname)
+            ]);
+    
+            return redirect()->route('superadmin.details')->with('notification', 'success update');
+        }
+        catch(\Exception $e){
+            return redirect()->route('superadmin.details')->with('notification', 'error');
+        }
     }
 }

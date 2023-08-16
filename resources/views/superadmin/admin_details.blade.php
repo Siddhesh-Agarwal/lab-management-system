@@ -1,22 +1,14 @@
 @extends('superadmin.dashboard')
 
 @section('content')
-    @if (Session::has('message'))
+    @if (Session::has('notification'))
         <script>
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-right',
-                iconColor: 'white',
-                customClass: {
-                    popup: 'colored-toast'
-                },
-                showConfirmButton: false,
-                timer: 1500,
-                timerProgressBar: true
-            })
-            await Toast.fire({
+            Swal.fire({
+                position: 'top-end',
                 icon: 'success',
-                title: 'Success'
+                title: 'Admin has added Successfully',
+                showConfirmButton: false,
+                timer: 3500
             })
         </script>
     @endif
@@ -71,7 +63,8 @@
                                         {{ $data->labname }}
                                     </td>
                                     <td class="project-actions" style="display: flex;">
-                                        <a class="btn btn-info btn-sm" href={{ url('superadmin/edit/' . $data->id) }} style="margin-right:5px">
+                                        <a class="btn btn-info btn-sm" href={{ url('superadmin/edit/' . $data->id) }}
+                                            style="margin-right:5px">
                                             <i class="fas fa-pencil-alt fa-lg">
                                             </i>
                                         </a>
