@@ -17,12 +17,18 @@
             margin-top: 75px;
         }
     </style>
-    @if (Session::has('notification'))
+    @if (session('success '))
         <script>
-            toastr.success('{{ Session::get('notification') }}');
+            toastr.success('{{ Session::get('success') }}');
         </script>
     @endif
-    {{-- <script src="{{ asset('plugin/toastr/toastr.min.js') }}"></script> --}}
+
+    @if (session('error'))
+        <script>
+            toastr.error('{{ Session::get('notification') }}');
+        </script>
+    @endif
+
     <div class="container" style='magin-top:20px'>
 
         @if ($data->count() == 0)
@@ -37,7 +43,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    {{-- <h3 class="card-title">DataTable with minimal features & hover style</h3> --}}
+
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">

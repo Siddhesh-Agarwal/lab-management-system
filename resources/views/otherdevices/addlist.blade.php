@@ -15,29 +15,16 @@
             width: 30%;
         }
     </style>
-    @if (Session::has('notification'))
-        @if (Session::get('notification') == 'success')
-            <script>
-                var message = '{{ Session::get('notification') }}';
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: message,
-                    showConfirmButton: false,
-                    timer: 3500
-                })
-            </script>
-        @else
-            <script>
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'error',
-                    title: "Something went wrong !<br/> put lab name correctly !",
-                    showConfirmButton: false,
-                    timer: 3500
-                })
-            </script>
-        @endif
+    @if (session('success '))
+        <script>
+            toastr.success('{{ Session::get('success') }}');
+        </script>
+    @endif
+
+    @if (session('error'))
+        <script>
+            toastr.error('{{ Session::get('notification') }}');
+        </script>
     @endif
 
     <body>

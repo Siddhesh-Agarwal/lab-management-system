@@ -16,9 +16,16 @@
             width: 30%;
         }
     </style>
-    @if (Session::has('notification'))
+
+    @if (session('success '))
         <script>
-            toastr.success('{{ Session::get('notification') }}');
+            toastr.success('{{ Session::get('success') }}');
+        </script>
+    @endif
+
+    @if (session('error'))
+        <script>
+            toastr.error('{{ Session::get('notification') }}');
         </script>
     @endif
 
@@ -62,9 +69,9 @@
                 <option value="Jimgray">Jimgray Lab</option>
                 <option value="DSP VLSI">DSP VLSI Lab</option>
             </select>
-            <button type="submit" class="btn btn-primary">Add</button>
-            <hr>
-            <a href='{{ url('superadmin/lablist') }}' class="btn btn-danger">Back</a>
-
+            <div style="display:flex; justify-content:space-between; width:100%; margin-top:2%">
+                <button type="submit" class="btn btn-primary">Add</button>
+                <a href='{{ url('superadmin/lablist') }}' class="btn btn-danger">Back</a>
+            </div>
         </form>
     @endsection

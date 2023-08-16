@@ -7,6 +7,8 @@ use App\Models\Student;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Lablist;
+use App\Models\Lab;
 
 class AdminController extends Controller
 {
@@ -197,15 +199,14 @@ class AdminController extends Controller
         $lab_name=Auth::user()->labname;
         $searchTerm = $request->input('search_term');
         $results=Lab::where('serial_number','LIKE','%'.$searchTerm.'%')
-                     ->where('lab_name',$lab_name)
-        ->get();
+                     ->where('lab_name',$lab_name)->get();
         // dd($results);
         return view('admin.labsearch', ['results' => $results]);
 
     }
     public function searchByLabDevice(Request $request)
     {
-        $lab_name=Auth::user()->labname;
+        $lab_name = Auth::user()->labname;
         $searchTerm = $request->input('search_termd');
         $resultd=Lab::where('device_name','LIKE','%'.$searchTerm.'%')
                       ->where('lab_name',$lab_name)
@@ -220,7 +221,6 @@ class AdminController extends Controller
         $searchTerm = $request->input('search_terms');
         $result=Lablist::where('system_number','LIKE','%'.$searchTerm.'%')
                         ->where('lab_name',$lab_name)
-        
         ->get();
         // dd($result);
         return view('admin.labsearch', ['result' => $result]);

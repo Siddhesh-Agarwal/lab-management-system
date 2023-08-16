@@ -23,40 +23,18 @@
         }
     </style>
 
-    @if (Session::has('notification'))
-        {{ Session::get('notification') }}}
-        @if (Session::get('notification') === 'success delete')
-            <script>
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Successfully deleted !',
-                    showConfirmButton: false,
-                    timer: 4000
-                })
-            </script>
-        @elseif(Session::get('notification') === 'success update')
-            <script>
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Successfully updated !',
-                    showConfirmButton: false,
-                    timer: 4000
-                })
-            </script>
-        @else
-            <script>
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'error',
-                    title: 'Something went wrong !',
-                    showConfirmButton: false,
-                    timer: 4000
-                })
-            </script>
-        @endif
+    @if (session('success '))
+        <script>
+            toastr.success('{{ Session::get('success') }}');
+        </script>
     @endif
+
+    @if (session('error'))
+        <script>
+            toastr.error('{{ Session::get('notification') }}');
+        </script>
+    @endif
+    
     <div class="container" style='magin-top:20px'>
         <section class="content">
             <div class="container-fluid">

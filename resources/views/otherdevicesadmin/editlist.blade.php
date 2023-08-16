@@ -15,9 +15,15 @@
             width: 30%;
         }
     </style>
-    @if (Session::has('notification'))
+    @if (session('success '))
         <script>
-            toastr.success('{{ Session::get('notification') }}');
+            toastr.success('{{ Session::get('success') }}');
+        </script>
+    @endif
+
+    @if (session('error'))
+        <script>
+            toastr.error('{{ Session::get('notification') }}');
         </script>
     @endif
     <h2>Update Devices</h2>
@@ -35,9 +41,10 @@
         <input type="number" class="form-control" name="wifi_access_points" value="{{ $data->wifi_access_points }}">
         <input type="hidden" name="id" value="{{ $data->id }}">
         <input type="text" hidden value={{ Auth::user()->labname }} id="lab_name" name="lab_name">
-        <button type="submit" class="btn btn-primary">Update</button>
-        <hr>
-        <a href='{{ route('admin.otherdevice', ['lab_name'=>Auth::user()->labname]) }}' class="btn btn-danger">Back</a>
-
+        <div style="display:flex; justify-content:space-between; width:100%; margin-top:2%">
+            <button type="submit" class="btn btn-primary">Update</button>
+            <a href='{{ route('admin.otherdevice', ['lab_name' => Auth::user()->labname]) }}'
+                class="btn btn-danger">Back</a>
+        </div>
     </form>
 @endsection

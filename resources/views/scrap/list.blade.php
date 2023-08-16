@@ -30,8 +30,16 @@
 
 <body>
     <div class="container" style='magin-top:20px'>
-        @if (Session::has('success'))
-            toastr.success("{{ Session::get('success') }}");
+        @if (session('success '))
+            <script>
+                toastr.success('{{ Session::get('success') }}');
+            </script>
+        @endif
+
+        @if (session('error'))
+            <script>
+                toastr.error('{{ Session::get('notification') }}');
+            </script>
         @endif
         <div class="row">
             <div class="column">

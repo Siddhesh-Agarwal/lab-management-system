@@ -16,11 +16,19 @@
             width: 30%;
         }
     </style>
-    @if (Session::has('notification'))
+
+    @if (session('success '))
         <script>
-            toastr.success('{{ Session::get('notification') }}');
+            toastr.success('{{ Session::get('success') }}');
         </script>
     @endif
+
+    @if (session('error'))
+        <script>
+            toastr.error('{{ Session::get('notification') }}');
+        </script>
+    @endif
+    
     <h2>Update Devices</h2>
 
     <form id="exchangeForm" method="post" action="{{ url('admin/save-labmove') }}" class="row g-3">

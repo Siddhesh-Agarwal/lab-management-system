@@ -1,17 +1,18 @@
 @extends('superadmin.dashboard')
 
 @section('content')
-    @if (Session::has('notification'))
+    @if (session('success '))
         <script>
-            Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'Admin has added Successfully',
-                showConfirmButton: false,
-                timer: 3500
-            })
+            toastr.success('{{ Session::get('success') }}');
         </script>
     @endif
+
+    @if (session('error'))
+        <script>
+            toastr.error('{{ Session::get('notification') }}');
+        </script>
+    @endif
+    
     @if ($details->count() == 0)
         <h1 style="text-align: center">
             <td colspan="3" class="text-center">No Admins Found</td>

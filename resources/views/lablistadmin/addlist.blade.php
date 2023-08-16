@@ -45,10 +45,10 @@
             <textarea name="desc" class="form-control" id="desc" cols="30" rows="10"
                 placeholder="Enter Description"></textarea>
             <input type="text" hidden value={{ urlencode(Auth::user()->labname) }} id="lab_name" name="lab_name">
-            <button type="submit" class="btn btn-primary">Add</button>
-            <hr>
-            <a href='{{ route('admin.lablist', ['lab_name' => urlencode(Auth::user()->labname)]) }}'
-                class="btn btn-danger">Back</a>
-
+            <div style="display:flex; justify-content:space-between; width:100%; margin-top:2%">
+                <button type="submit" class="btn btn-primary">Add</button>
+                <a href='{{ route('admin.lablist', ['lab_name' => Auth::user()->labname]) }}'
+                    class="btn btn-danger">Back</a>
+            </div>
         </form>
     @endsection

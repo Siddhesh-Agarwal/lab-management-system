@@ -51,16 +51,28 @@
                 <label for="desc">Service Description:</label><br>
                 <textarea type="text" class="form-control" id="desc" name="desc" placeholder="Enter desc" rows="4"
                     cols="50"></textarea><br>
-                <label for="lab_name">Lab Name:</label> 
-                <input type="text" class="form-control" id="lab_name" name="lab_name" placeholder="Enter Lab Name"
-                    required>
-                {{-- <input type="text"  value={{ Auth::user()->labname }} id="lab_name" name="lab_name"> --}}
-                <button type="submit" class="btn btn-primary">Add</button>
-                <hr>
-                {{-- <a href='{{ url('admin/listdevice') }}' class="btn btn-danger">Back</a>
-                 --}}
-                 <a href='{{ route('admin.listdevice', ['lab_name'=>Auth::user()->labname]) }}' class="btn btn-danger">Back</a>
-
+                <label for="lab_name">Lab Name:</label>
+                <select name="lab_name" id="lab_name" class="form-control">
+                    <option value="Alan Kay">Alan Kay Lab</option>
+                    <option value="Nicklaus Writh">Nicklaus
+                        Writh
+                        Lab</option>
+                    <option value="John Backus">John Backus Lab
+                    </option>
+                    <option value="Djikstra Lab">Djikstra Lab
+                    </option>
+                    <option value="Donald Knuth">Donald Knuth
+                        Lab
+                    </option>
+                    <option value="EF Codd">EF Codd Lab</option>
+                    <option value="Jimgray">Jimgray Lab</option>
+                    <option value="DSP VLSI">DSP VLSI Lab</option>
+                </select>
+                <div style="display:flex; justify-content:space-between; width:100%; margin-top:2%">
+                    <button type="submit" class="btn btn-primary">Add</button>
+                    <a href='{{ route('admin.listdevice', ['lab_name' => Auth::user()->labname]) }}'
+                        class="btn btn-danger">Back</a>
+                </div>
             </form>
 
         </body>

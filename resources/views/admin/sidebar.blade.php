@@ -98,7 +98,7 @@
                 </li>
                 <li class="nav-item menu-close">
                     <a href="#" class="nav-link ">
-                        <i class="nav-icon fas fa-sitemap"></i>
+                        <i class="nav-icon fas fa-plug"></i>
                         <p>
                             Manage Devices
                             <i class="right fas fa-angle-left"></i>
@@ -108,7 +108,7 @@
                         <li class="nav-item">
                             {{-- <a href="{{ route('admin.otherdevice') }}" class="nav-link">
                                  --}}
-                            <a href="{{ route('admin.listdevice', ['lab_name' => urlencode('Alan Kay')]) }}"
+                            <a href="{{ route('admin.listdevice', ['lab_name' => 'Alan Kay']) }}"
                                 class="nav-link lab-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Alan Kay</p>
@@ -117,7 +117,7 @@
                         <li class="nav-item">
                             {{-- <a href="./index2.html" class="nav-link ">
                                  --}}
-                            <a href="{{ route('admin.listdevice', ['lab_name' => urlencode('DSP VLSI')]) }}"
+                            <a href="{{ route('admin.listdevice', ['lab_name' => 'DSP VLSI']) }}"
                                 class="nav-link lab-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>
@@ -132,14 +132,14 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.listdevice', ['lab_name' => urlencode('Donald Knuth')]) }}"
+                            <a href="{{ route('admin.listdevice', ['lab_name' => 'Donald Knuth']) }}"
                                 class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Donald Knuth</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.listdevice', ['lab_name' => urlencode('EF Codd')]) }}"
+                            <a href="{{ route('admin.listdevice', ['lab_name' => 'EF Codd']) }}"
                                 class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>EF Codd</p>
@@ -152,7 +152,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.listdevice', ['lab_name' => urlencode('Nicklaus Writh')]) }}"
+                            <a href="{{ route('admin.listdevice', ['lab_name' => 'Nicklaus Writh']) }}"
                                 class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Nicklaus Writh</p>
@@ -164,7 +164,7 @@
                     <a href="#" class="nav-link ">
                         <i class="nav-icon fas fa-sitemap"></i>
                         <p>
-                            OtherDevices
+                            Other Devices
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -172,7 +172,7 @@
                         <li class="nav-item">
                             {{-- <a href="{{ route('admin.otherdevice') }}" class="nav-link">
                                 --}}
-                            <a href="{{ route('admin.otherdevice', ['lab_name' => urlencode('Alan Kay')]) }}"
+                            <a href="{{ route('admin.otherdevice', ['lab_name' => 'Alan Kay']) }}"
                                 class="nav-link lab-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Alan Kay</p>
@@ -181,7 +181,7 @@
                         <li class="nav-item">
                             {{-- <a href="./index2.html" class="nav-link ">
                                     --}}
-                            <a href="{{ route('admin.otherdevice', ['lab_name' => urlencode('DSP VLSI')]) }}"
+                            <a href="{{ route('admin.otherdevice', ['lab_name' => 'DSP VLSI']) }}"
                                 class="nav-link lab-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>
@@ -196,14 +196,14 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.otherdevice', ['lab_name' => urlencode('Donald Knuth')]) }}"
+                            <a href="{{ route('admin.otherdevice', ['lab_name' => 'Donald Knuth']) }}"
                                 class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Donald Knuth</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.otherdevice', ['lab_name' => urlencode('EF Codd')]) }}"
+                            <a href="{{ route('admin.otherdevice', ['lab_name' => 'EF Codd']) }}"
                                 class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>EF Codd</p>
@@ -216,7 +216,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.otherdevice', ['lab_name' => urlencode('Nicklaus Writh')]) }}"
+                            <a href="{{ route('admin.otherdevice', ['lab_name' => 'Nicklaus Writh']) }}"
                                 class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Nicklaus Writh</p>
@@ -224,71 +224,6 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item menu-close">
-                    <a href="#" class="nav-link ">
-                        <i class="nav-icon fas fa-sitemap"></i>
-                        <p>
-                            Manage Devices
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            {{-- <a href="{{ route('admin.otherdevice') }}" class="nav-link">
-                                 --}}
-                            <a href="{{ route('admin.listdevice', ['lab_name' => urlencode('Alan Kay')]) }}"
-                                class="nav-link lab-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Alan Kay</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            {{-- <a href="./index2.html" class="nav-link ">
-                                 --}}
-                            <a href="{{ route('admin.listdevice', ['lab_name' => urlencode('DSP VLSI')]) }}"
-                                class="nav-link lab-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>
-                                    <p>DSP/VLSI</p>
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('admin.listdevice', ['lab_name' => 'Djikstra']) }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Djikstra</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('admin.listdevice', ['lab_name' => urlencode('Donald Knuth')]) }}"
-                                class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Donald Knuth</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('admin.listdevice', ['lab_name' => urlencode('EF Codd')]) }}"
-                                class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>EF Codd</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('admin.listdevice', ['lab_name' => 'Jimgray']) }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Jimgray</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('admin.listdevice', ['lab_name' => urlencode('Nicklaus Writh')]) }}"
-                                class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Nicklaus Writh</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-search"></i>
@@ -299,13 +234,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href={{ route('admin.search') }} class="nav-link">
+                            <a href={{route('admin.advance.search') }} class="nav-link">
                                 <i class="fas fa-search-plus nav-icon"></i>
-                                <p>Simple Search</p>
+                                <p>Lab Search</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href={{ route('admin.advance.search') }} class="nav-link">
+                            <a href={{  route('admin.searchlabs') }} class="nav-link">
                                 <i class="fas fa-star nav-icon"></i>
                                 <p>Enhanced</p>
                             </a>

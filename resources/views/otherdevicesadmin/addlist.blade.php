@@ -16,9 +16,15 @@
             width: 30%;
         }
     </style>
-    @if (Session::has('notification'))
+    @if (session('success '))
         <script>
-            toastr.success('{{ Session::get('notification') }}');
+            toastr.success('{{ Session::get('success') }}');
+        </script>
+    @endif
+
+    @if (session('error'))
+        <script>
+            toastr.error('{{ Session::get('notification') }}');
         </script>
     @endif
 
@@ -44,8 +50,9 @@
             <input name="wifi_access_points" class="form-control" id="wifi_access_poitns" type="number"
                 placeholder="Enter Wifi access point" required></input>
             <input type="text" value={{ urlencode(Auth::user()->labname) }} id="lab_name" name="lab_name" hidden>
-            <button type="submit" class="btn btn-primary">Add</button>
-            <hr>
-            <a href='{{ url('admin/otherdevice') }}' class="btn btn-danger">Back</a>
+            <div style="display:flex; justify-content:space-between; width:100%; margin-top:2%">
+                <button type="submit" class="btn btn-primary">Add</button>
+                <a href='{{ url('admin/otherdevice') }}' class="btn btn-danger">Back</a>
+            </div>
         </form>
     @endsection

@@ -31,10 +31,14 @@ Route::get('/', function () {
 Route::post('/forget_password', [AdminController::class, 'password']);
 
 Route::prefix('admin')->middleware('admin.auth')->group(function () {
+    Route::post('/search', [AdminController::class, 'searchBySerial'])->name('admin.searchSerial');
+    Route::post('/searchSystem', [AdminController::class, 'searchBySystem'])->name('admin.searchSystem');
+    Route::post('/searchDevice', [AdminController::class, 'searchByDevice'])->name('admin.searchDevice');
+
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/forcelogout', [AdminController::class, 'forceLogout'])->name('admin.force');
     Route::get('/contact', [AdminController::class, 'contact'])->name('admin.contact');
-    Route::get('/simple-search', [AdminController::class, 'simple_search'])->name('admin.search');
+    Route::get('/simple-search', [AdminController::class, 'simple_search'])->name('admin.searchlabs');
     Route::get('/advance-search', [AdminController::class, 'advance_search'])->name('admin.advance.search');
     Route::get('/device-details', [AdminController::class, 'device_details'])->name('admin.device.details');
     Route::get('/data-tables', [AdminController::class, 'tables'])->name('admin.tables');
@@ -64,6 +68,9 @@ Route::prefix('admin')->middleware('admin.auth')->group(function () {
 });
 
 Route::prefix('superadmin')->middleware('superadmin.auth')->group(function () {
+    Route::post('/search', [SuperAdminController::class, 'searchBySerial'])->name('superadmin.searchSerial');
+    Route::post('/searchSystem', [SuperAdminController::class, 'searchBySystem'])->name('superadmin.searchSystem');
+    Route::post('/searchDevice', [SuperAdminController::class, 'searchByDevice'])->name('superadmin.searchDevice'); 
     Route::get('/dashboard', [SuperAdminController::class, 'index'])->name('superadmin.dashboard');
     Route::get('/contact', [SuperAdminController::class, 'contact'])->name('superadmin.contact');
     Route::get('/simple-search', [SuperAdminController::class, 'simple_search'])->name('superadmin.search');
@@ -82,7 +89,6 @@ Route::prefix('superadmin')->middleware('superadmin.auth')->group(function () {
     Route::get('savelablistdevices', [LabController::class, 'adds'])->name('superadmin.savelablistdevices');
     Route::get('addlablistdevices', [LabController::class, 'indexs'])->name('superadmin.lablistdevices');
     Route::get('editlablistdevices/{id}', [LabController::class, 'edits'])->name('superadmin.editlablistdevices');
-    // Route::get('superadmin/searchlablistdevices/{lab_name}',[LablistController::class,'search'])->name('superadmin.searchlablistdevices');
     Route::get('searchlablistdevices', [LablistController::class,'searchlab'])->name('superadmin.searchlablistdevices');
     Route::get('searchotherdevices', [OtherDeviceController::class,'searchlab'])->name('superadmin.searchotherdevices');
     Route::get('labmovelist', [LabMoveController::class, 'index'])->name('superadmin.lablist');

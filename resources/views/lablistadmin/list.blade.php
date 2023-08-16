@@ -23,9 +23,15 @@
         }
     </style>
 
-    @if (Session::has('notification'))
+    @if (session('success '))
         <script>
-            toastr.success('{{ Session::get('notification') }}');
+            toastr.success('{{ Session::get('success') }}');
+        </script>
+    @endif
+
+    @if (session('error'))
+        <script>
+            toastr.error('{{ Session::get('notification') }}');
         </script>
     @endif
     <div class="container" style='magin-top:20px'>
@@ -38,73 +44,72 @@
                                 {{-- <h3 class="card-title">DataTable with minimal features & hover style</h3> --}}
                             </div>
                             <!-- /.card-header -->
-                                <div class="card-body">
+                            <div class="card-body">
                                 @if ($lab_name === Auth::user()->labname)
                                     <a href="{{ url('admin/addlablistdevice') }}" class="btn btn-primary">Add</a>
-                                    
-                                @endif  
+                                @endif
                             </div>
-                            @if(count($data)>0)
-                            <div class="card-body">
-                                {{-- <h1>Devices for {{ $lab_name }}</h1> --}}
+                            @if (count($data) > 0)
+                                <div class="card-body">
+                                    {{-- <h1>Devices for {{ $lab_name }}</h1> --}}
 
-                                <table class="table">
-                                    <thead>
-                                        {{-- @foreach ($data as $key => $dev)  --}}
-                                        {{-- <tr>
+                                    <table class="table">
+                                        <thead>
+                                            {{-- @foreach ($data as $key => $dev)  --}}
+                                            {{-- <tr>
                                             <td colspan="7">
                                                 <h1>Devices for {{ $lab_name }}</h1>
                                             </td> --}}
-                                        <tr>
-                                            <td>S.no</td>
-                                            <td>Device</td>
-                                            <td>Spec</td>
-                                            <td>System Number</td>
-                                            <td>System Description</td>
-                                            <td>Lab Name</td>
-                                            @if ($data[0]->lab_name === Auth::user()->labname)
-                                                <td>Action</td>
-                                            @endif
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                        @foreach ($data as $key => $dev)
                                             <tr>
-                                                <td>{{ $key + 1 }}</td>
-                                                <td>{{ $dev->device_name }}</td>
-                                                <td>{{ $dev->spec }}</td>
-                                                <td>{{ $dev->system_number }}</td>
-                                                <td>{{ $dev->desc }}</td>
-                                                <td>{{ $dev->lab_name }}</td>
-                                                @if (Auth::user()->labname == $dev->lab_name)
-                                                    <td>
-                                                        <div class="button-actions">
-                                                            <a href="{{ url('admin/editlablistdevice/' . $dev->id) }}"
-                                                                class="btn btn-primary"><i
-                                                                    class="fas fa-edit fa-1x"></i></a>
-                                                            <a  class="btn btn-danger"
-                                                            href="{{ url('admin/addlabmovelist/' . $dev->id) }}">
-                                                                <i class="fas fa-exchange-alt fa-1x"></i>
-                                                            </a>
-
-                                                        </div>
-                                                    </td>
+                                                <td>S.no</td>
+                                                <td>Device</td>
+                                                <td>Spec</td>
+                                                <td>System Number</td>
+                                                <td>System Description</td>
+                                                <td>Lab Name</td>
+                                                @if ($data[0]->lab_name === Auth::user()->labname)
+                                                    <td>Action</td>
                                                 @endif
-                                               
-                                               
-                                            <tr>
-                                        @endforeach
+                                            </tr>
+                                        </thead>
+                                        <tbody>
 
-                                    </tbody>
-                                </table>
+                                            @foreach ($data as $key => $dev)
+                                                <tr>
+                                                    <td>{{ $key + 1 }}</td>
+                                                    <td>{{ $dev->device_name }}</td>
+                                                    <td>{{ $dev->spec }}</td>
+                                                    <td>{{ $dev->system_number }}</td>
+                                                    <td>{{ $dev->desc }}</td>
+                                                    <td>{{ $dev->lab_name }}</td>
+                                                    @if (Auth::user()->labname == $dev->lab_name)
+                                                        <td>
+                                                            <div class="button-actions">
+                                                                <a href="{{ url('admin/editlablistdevice/' . $dev->id) }}"
+                                                                    class="btn btn-primary"><i
+                                                                        class="fas fa-edit fa-1x"></i></a>
+                                                                <a class="btn btn-danger"
+                                                                    href="{{ url('admin/addlabmovelist/' . $dev->id) }}">
+                                                                    <i class="fas fa-exchange-alt fa-1x"></i>
+                                                                </a>
 
-                                <!-- /.card-body -->
-                            </div>
+                                                            </div>
+                                                        </td>
+                                                    @endif
+
+
+                                                <tr>
+                                            @endforeach
+
+                                        </tbody>
+                                    </table>
+
+                                    <!-- /.card-body -->
+                                </div>
                             @else
-                            <h1>No devices Found</h1>
+                                <h1>No devices Found</h1>
                             @endif
-                        
+
                             <!-- /.card -->
                         </div>
                         <!-- /.col -->

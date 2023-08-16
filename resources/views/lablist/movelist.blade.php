@@ -23,17 +23,18 @@
         }
     </style>
 
-    @if (Session::has('notification'))
-        @if (Session::has('notification') === 'success')
-            <script>
-                toastr.success('{{ Session::get('notification') }}');
-            </script>
-        @else
-            <script>
-                toastr.error('{{ Session::get('notification') }}');
-            </script>
-        @endif
+    @if (session('success '))
+        <script>
+            toastr.success('{{ Session::get('success') }}');
+        </script>
     @endif
+
+    @if (session('error'))
+        <script>
+            toastr.error('{{ Session::get('notification') }}');
+        </script>
+    @endif
+    
     <div class="container" style='magin-top:20px'>
         <section class="content">
             <div class="container-fluid">
