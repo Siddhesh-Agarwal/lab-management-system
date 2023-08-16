@@ -152,7 +152,6 @@
 
         .student-form {
             margin-top: 33%;
-
         }
 
         .regno-input {
@@ -244,9 +243,9 @@
                 <p class="text-center" style="color: #e9e9e9">
                     Think Placement... Think SKCET !!
                 </p>
-              
+
                 <button onclick='{{ route('login') }}' class="button-home">GET STARTED</button>
-             
+
             </div>
         </div>
     </div>
