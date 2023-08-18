@@ -46,13 +46,13 @@
     <form method="post" action="{{ url('admin/updatelablistdevice') }}" class="row g-3">
         @csrf
 
-        <lable for="device_name">Device Name:</lable>
+        <label for="device_name">Device Name:</label>
         <input type="text" class="form-control" name="device_name" value="{{ $data->device_name }}">
-        <lable for="spec">Spec:</lable>
+        <label for="spec">Spec:</label>
         <input type="text" class="form-control" name="spec" value="{{ $data->spec }}">
-        <lable for="system_number">System Number:</lable>
+        <label for="system_number">System Number:</label>
         <input type="text" class="form-control" name="system_number" value="{{ $data->system_number }}">
-        <lable for="desc">System Description:</lable>
+        <label for="desc">System Description:</label>
         <textarea type="text" class="form-control" name="desc">{{ $data->desc }}</textarea>
         <input type="hidden" name="id" value="{{ $data->id }}">
         {{-- <label for="lab_name">Lab Name:</label> 

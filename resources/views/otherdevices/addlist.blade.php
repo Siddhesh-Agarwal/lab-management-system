@@ -47,14 +47,14 @@
         <form method="post" action="{{ url('superadmin/saveotherdevice') }}" class="row g-3">
             @csrf
 
-            <lable for="network_switches">Netwok Switches</lable>
+            <label for="network_switches">Netwok Switches</label>
             <input type="number" class="form-control" name="network_switches" id="network_switches"
                 placeholder="Enter Network Switches" required>
-            <lable for="ups_load">Ups Load</lable>
+            <label for="ups_load">Ups Load</label>
             <input type="number" class="form-control" name="ups_load" id="ups_load" placeholder="Enter ups load" required>
-            <lable for="ac_load">AC Load</lable>
+            <label for="ac_load">AC Load</label>
             <input type="number" class="form-control" name="ac_load" id="ac_load" placeholder="Enter AC load" required>
-            <lable for='wifi_access_poitns'>Wifi Access Point</lable>
+            <label for='wifi_access_poitns'>Wifi Access Point</label>
             <input name="wifi_access_points" class="form-control" id="wifi_access_poitns" type="number"
                 placeholder="Enter Wifi access point"></input>
             {{-- <input type="text" hidden value={{ Auth::user()->labname }} id="lab_name" name="lab_name"> --}}

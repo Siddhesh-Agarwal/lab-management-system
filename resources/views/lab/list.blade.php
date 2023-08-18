@@ -113,7 +113,7 @@
                                         <!-- /.card-body -->
                                     </div>
                                 @else
-                                    <h1>No devices Found</h1>
+                                    <h1 style="text-align: center">No devices Found</h1>
                                 @endif
                                 <!-- /.card -->
                             </div>

@@ -46,7 +46,7 @@
             @csrf
 
             <input class="input" type="hidden" name="id" value="{{ $data->id }}">
-            <label for="device_name">Device Name:</label>
+            <label for="device_name">Device name:</label>
             <input type="text" class="form-control" id="device_name" name="device_name" placeholder="Enter Device Name"
                 required value="{{ $data->device_name }}">
             <label for="serial_number">Serial Number:</label>
@@ -60,6 +60,7 @@
                 placeholder="Enter Count" required value="{{ $data->count }}">
             <label for="desc">Service Description:</label>
             <textarea type="text" class="form-control" id="desc" name="desc" rows="4" cols="50">{{ $data->desc }}</textarea>
+            <label for="desc" style="margin-top: 10px">Lab name:</label>
             <select name="lab_name" id="lab_name" class="form-control">
                 <option value="Alan Kay" {{ Auth::user()->labname === 'Alan Kay' ? 'selected' : '' }}>Alan Kay Lab</option>
                 <option value="Nicklaus Writh" {{ Auth::user()->labname === 'Nicklaus Writh' ? 'selected' : '' }}>Nicklaus
