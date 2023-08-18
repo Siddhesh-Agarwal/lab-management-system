@@ -38,7 +38,6 @@
 </style>
 
 @section('content')
-    <!-- For demo purpose -->
     <div class="container py-5">
         <div class="row text-center text-white">
             <div class="col-lg-8 mx-auto">
@@ -46,7 +45,6 @@
             </div>
         </div>
     </div>
-    <!-- End -->
 
     <div class="container">
         <div class="row text-center">
