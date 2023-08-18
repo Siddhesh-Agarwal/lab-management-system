@@ -16,11 +16,32 @@
             width: 30%;
         }
     </style>
-    @if (Session::has('notification'))
+
+    @if (Session::has('success'))
+        <div id="success-alert" class="alert alert-success" role=alert>
+            {{ Session::get('success') }}
+        </div>
         <script>
-            toastr.success('{{ Session::get('notification') }}');
+            // Auto-close the success alert after 5 seconds
+            setTimeout(function() {
+                $('#success-alert').fadeOut('slow');
+            }, 5000);
+
+            // Auto-close the error alert after 5 seconds
         </script>
     @endif
+
+    @if (Session::has('error'))
+        <div id="error-alert" class="alert alert-danger" role=alert>
+            {{ Session::get('error') }}
+        </div>
+        <script>
+            setTimeout(function() {
+                $('#error-alert').fadeOut('slow');
+            }, 5000);
+        </script>
+    @endif
+
 
     <form method="post" action="{{ url('admin/updatelistdevice') }}" class="row g-3">
         @csrf
@@ -47,7 +68,7 @@
                 Lab</option>
             <option value="John Backus">John Backus Lab
             </option>
-            <option value="Djikstra Lab">Djikstra Lab
+            <option value="Djikstra">Djikstra Lab
             </option>
             <option value="Donald Knuth">Donald Knuth
                 Lab

@@ -15,25 +15,34 @@
             width: 30%;
         }
     </style>
-    @if (session('success '))
-        <script>
-            toastr.success('{{ Session::get('success') }}');
-        </script>
-    @endif
-
-    @if (session('error'))
-        <script>
-            toastr.error('{{ Session::get('notification') }}');
-        </script>
-    @endif
 
     <body>
 
         @if (Session::has('success'))
-            <div class="alert alert-success" role=alert>
+            <div id="success-alert" class="alert alert-success" role=alert>
                 {{ Session::get('success') }}
             </div>
+            <script>
+                // Auto-close the success alert after 5 seconds
+                setTimeout(function() {
+                    $('#success-alert').fadeOut('slow');
+                }, 5000);
+
+                // Auto-close the error alert after 5 seconds
+            </script>
         @endif
+
+        @if (Session::has('error'))
+            <div id="error-alert" class="alert alert-danger" role=alert>
+                {{ Session::get('error') }}
+            </div>
+            <script>
+                setTimeout(function() {
+                    $('#error-alert').fadeOut('slow');
+                }, 5000);
+            </script>
+        @endif
+
 
         <form method="post" action="{{ url('superadmin/saveotherdevice') }}" class="row g-3">
             @csrf
@@ -57,7 +66,7 @@
                     Lab</option>
                 <option value="John Backus" {{ Auth::user()->labname === 'John Backus' ? 'selected' : '' }}>John Backus Lab
                 </option>
-                <option value="Djikstra Lab" {{ Auth::user()->labname === 'Djikstra Lab' ? 'selected' : '' }}>Djikstra Lab
+                <option value="Djikstra" {{ Auth::user()->labname === 'Djikstra' ? 'selected' : '' }}>Djikstra Lab
                 </option>
                 <option value="Donald Knuth" {{ Auth::user()->labname === 'Donald Knuth' ? 'selected' : '' }}>Donald Knuth
                     Lab

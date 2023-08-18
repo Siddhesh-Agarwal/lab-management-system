@@ -10,7 +10,7 @@
         }
 
         table th {
-            color: black;
+            color: rgba(255, 152, 55, 0.785)
         }
 
         body {
@@ -21,13 +21,35 @@
             display: flex;
             flex-direction: row;
         }
+
+
     </style>
 
-    @if (Session::has('notification'))
+    @if (Session::has('success'))
+        <div id="success-alert" class="alert alert-success" role=alert>
+            {{ Session::get('success') }}
+        </div>
         <script>
-            toastr.success('{{ Session::get('notification') }}');
+            // Auto-close the success alert after 5 seconds
+            setTimeout(function() {
+                $('#success-alert').fadeOut('slow');
+            }, 5000);
+
+            // Auto-close the error alert after 5 seconds
         </script>
     @endif
+
+    @if (Session::has('error'))
+        <div id="error-alert" class="alert alert-danger" role=alert>
+            {{ Session::get('error') }}
+        </div>
+        <script>
+            setTimeout(function() {
+                $('#error-alert').fadeOut('slow');
+            }, 5000);
+        </script>
+    @endif
+
     <div class="container" style='magin-top:20px'>
         <section class="content">
             <div class="container-fluid">
@@ -35,30 +57,29 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                {{-- <h3 class="card-title">DataTable with minimal features & hover style</h3> --}}
                             </div>
                             <!-- /.card-header -->
 
                             <div class="card-body">
-                                 @if(!session('search_flag'))
-                                <form id="search-form" action="{{ route('superadmin.searchlabdevices') }}"
-                                    method="GET">
-                                    <div class="input-group">
-                                        <input type="text" name="lab_name" class="form-control"
-                                            placeholder="Search by Lab Name">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="submit">Search</button>
-
+                                @if (!session('search_flag'))
+                                    <form id="search-form" action="{{ route('superadmin.searchlabdevices') }}"
+                                        method="GET">
+                                        <div class="input-group" style="margin-bottom:30px">
+                                            <input type="text" name="lab_name" class="form-control"
+                                                placeholder="Search by Lab Name">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-primary" type="submit">Search</button>
+                                            </div>
                                         </div>
-                                    </div>
-                                </form>
-                                @endif 
-                                 @if (session('search_flag'))
+                                    </form>
+                                @endif
+                                @if (session('search_flag'))
                                     <div id="back-button-section">
-                                        <a href="{{ route('superadmin.lablistdevices') }}" class="btn btn-secondary">Back</a>
+                                        <a href="{{ route('superadmin.lablistdevices') }}"
+                                            class="btn btn-secondary">Back</a>
                                     </div>
-                                @endif 
-                                 
+                                @endif
+
                                 <table class="table">
                                     <thead>
                                         <tr>
@@ -105,15 +126,7 @@
                     </div>
                     <!-- /.row -->
                 </div>
-                {{-- <script>
-                    // JavaScript to show/hide the back button when search is clicked
-                    const searchForm = document.querySelector('#search-form');
-                    const backButtonSection = document.querySelector('#back-button-section');
-            
-                    searchForm.addEventListener('submit', () => {
-                        backButtonSection.style.display = 'block';
-                    });
-                </script> --}}
+                <!-- /.container-fluid -->
                 @php
                     session()->forget('search_flag');
                 @endphp

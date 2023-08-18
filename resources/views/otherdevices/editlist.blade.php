@@ -16,17 +16,32 @@
             width: 30%;
         }
     </style>
-    @if (session('success '))
+
+    @if (Session::has('success'))
+        <div id="success-alert" class="alert alert-success" role=alert>
+            {{ Session::get('success') }}
+        </div>
         <script>
-            toastr.success('{{ Session::get('success') }}');
+            // Auto-close the success alert after 5 seconds
+            setTimeout(function() {
+                $('#success-alert').fadeOut('slow');
+            }, 5000);
+
+            // Auto-close the error alert after 5 seconds
         </script>
     @endif
 
-    @if (session('error'))
+    @if (Session::has('error'))
+        <div id="error-alert" class="alert alert-danger" role=alert>
+            {{ Session::get('error') }}
+        </div>
         <script>
-            toastr.error('{{ Session::get('notification') }}');
+            setTimeout(function() {
+                $('#error-alert').fadeOut('slow');
+            }, 5000);
         </script>
     @endif
+
     <h2>Update Devices</h2>
 
     <form method="post" action="{{ url('superadmin/updateotherdevice') }}" class="row g-3">
@@ -47,7 +62,7 @@
             <option value="Nicklaus Writh" {{ $data->lab_name === 'Nicklaus Writh' ? 'selected' : '' }}>Nicklaus Writh Lab
             </option>
             <option value="John Backus" {{ $data->lab_name === 'John Backus' ? 'selected' : '' }}>John Backus Lab</option>
-            <option value="Djikstra Lab" {{ $data->lab_name === 'Djikstra Lab' ? 'selected' : '' }}>Djikstra Lab</option>
+            <option value="Djikstra" {{ $data->lab_name === 'Djikstra' ? 'selected' : '' }}>Djikstra Lab</option>
             <option value="Donald Knuth" {{ $data->lab_name === 'Donald Knuth' ? 'selected' : '' }}>Donald Knuth Lab
             </option>
             <option value="EF Codd" {{ $data->lab_name === 'EF Codd' ? 'selected' : '' }}>EF Codd Lab</option>

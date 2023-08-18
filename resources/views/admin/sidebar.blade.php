@@ -161,8 +161,8 @@
                     </ul>
                 </li>
                 <li class="nav-item menu-close">
-                    <a href="#" class="nav-link ">
-                        <i class="nav-icon fas fa-sitemap"></i>
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-wrench"></i>
                         <p>
                             Other Devices
                             <i class="right fas fa-angle-left"></i>

@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use Brian2694\Toastr\Facades\Toastr;
-
 
 class SuperAdminController extends Controller
 {
@@ -50,10 +48,10 @@ class SuperAdminController extends Controller
     
             User::create($data);
             
-            return redirect(route('superadmin.details'))->with('notification', 'success add');
+            return redirect(route('superadmin.details'))->with('success', 'Success admin was added !');
         }
         catch(\Exception $e){
-            return redirect(route('superadmin.details'))->with('notification', 'error');
+            return redirect(route('superadmin.details'))->with('error', 'Something went wrong !');
         }
     }
 
@@ -71,7 +69,7 @@ class SuperAdminController extends Controller
     public function delete_admin(Request $request)
     {
         User::destroy($request->id);
-        return redirect()->route('superadmin.details')->with('notification', 'success delete');
+        return redirect()->route('superadmin.details')->with('success', 'Success admin was deleted !');
     }
 
     public function tables()
@@ -109,10 +107,10 @@ class SuperAdminController extends Controller
                 'labname' => urldecode($request->labname)
             ]);
     
-            return redirect()->route('superadmin.details')->with('notification', 'success update');
+            return redirect()->route('superadmin.details')->with('success', 'Success admin was updated !');
         }
         catch(\Exception $e){
-            return redirect()->route('superadmin.details')->with('notification', 'error');
+            return redirect()->route('superadmin.details')->with('error', 'Something went wrong !');
         }
     }
 }

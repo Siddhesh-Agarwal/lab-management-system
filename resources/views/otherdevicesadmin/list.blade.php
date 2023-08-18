@@ -23,18 +23,31 @@
         }
     </style>
 
-    @if (session('success '))
+    @if (Session::has('success'))
+        <div id="success-alert" class="alert alert-success" role=alert>
+            {{ Session::get('success') }}
+        </div>
         <script>
-            toastr.success('{{ Session::get('success') }}');
+            // Auto-close the success alert after 5 seconds
+            setTimeout(function() {
+                $('#success-alert').fadeOut('slow');
+            }, 5000);
+
+            // Auto-close the error alert after 5 seconds
         </script>
     @endif
 
-    @if (session('error'))
+    @if (Session::has('error'))
+        <div id="error-alert" class="alert alert-danger" role=alert>
+            {{ Session::get('error') }}
+        </div>
         <script>
-            toastr.error('{{ Session::get('notification') }}');
+            setTimeout(function() {
+                $('#error-alert').fadeOut('slow');
+            }, 5000);
         </script>
     @endif
-    
+
     <section class="content">
         @if ($data[0]->lab_name === Auth::user()->labname)
             {{-- <a href="{{ url('admin/addotherdevice') }}" class="btn btn-primary">Add</a><br><br> --}}
@@ -106,11 +119,6 @@
                     @endif
                 @endforeach
             </div>
-            {{-- <button class="btn btn-lg bg-purple">Edit</button>
-                         --}}
-            {{-- <div class="button-actions"> --}}
-
-            {{-- </div> --}}
         </div>
     </section>
 @endsection

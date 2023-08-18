@@ -16,18 +16,31 @@
             width: 30%;
         }
     </style>
-    @if (Session::has('notification'))
-        <script>
-            toastr.success('{{ Session::get('notification') }}');
-        </script>
-    @endif
 
     <body>
-
         @if (Session::has('success'))
-            <div class="alert alert-success" role=alert>
+            <div id="success-alert" class="alert alert-success" role=alert>
                 {{ Session::get('success') }}
             </div>
+            <script>
+                // Auto-close the success alert after 5 seconds
+                setTimeout(function() {
+                    $('#success-alert').fadeOut('slow');
+                }, 5000);
+
+                // Auto-close the error alert after 5 seconds
+            </script>
+        @endif
+
+        @if (Session::has('error'))
+            <div id="error-alert" class="alert alert-danger" role=alert>
+                {{ Session::get('error') }}
+            </div>
+            <script>
+                setTimeout(function() {
+                    $('#error-alert').fadeOut('slow');
+                }, 5000);
+            </script>
         @endif
 
         <form method="post" action="{{ url('admin/savelablistdevice') }}" class="row g-3">

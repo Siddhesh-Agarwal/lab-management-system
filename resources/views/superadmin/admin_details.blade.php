@@ -1,18 +1,6 @@
 @extends('superadmin.dashboard')
 
 @section('content')
-    @if (session('success '))
-        <script>
-            toastr.success('{{ Session::get('success') }}');
-        </script>
-    @endif
-
-    @if (session('error'))
-        <script>
-            toastr.error('{{ Session::get('notification') }}');
-        </script>
-    @endif
-    
     @if ($details->count() == 0)
         <h1 style="text-align: center">
             <td colspan="3" class="text-center">No Admins Found</td>
@@ -20,6 +8,30 @@
     @else
         <!-- Main content -->
         <section class="content" style="margin: 20px">
+            @if (Session::has('success'))
+                <div id="success-alert" class="alert alert-success" role=alert>
+                    {{ Session::get('success') }}
+                </div>
+                <script>
+                    // Auto-close the success alert after 5 seconds
+                    setTimeout(function() {
+                        $('#success-alert').fadeOut('slow');
+                    }, 5000);
+
+                    // Auto-close the error alert after 5 seconds
+                </script>
+            @endif
+
+            @if (Session::has('error'))
+                <div id="error-alert" class="alert alert-danger" role=alert>
+                    {{ Session::get('error') }}
+                </div>
+                <script>
+                    setTimeout(function() {
+                        $('#error-alert').fadeOut('slow');
+                    }, 5000);
+                </script>
+            @endif
             <!-- Default box -->
             <div class="card">
                 <div class="card-header">

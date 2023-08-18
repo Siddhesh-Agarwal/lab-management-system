@@ -30,17 +30,31 @@
 
 <body>
     <div class="container" style='magin-top:20px'>
-        @if (session('success '))
+        @if (Session::has('success'))
+            <div id="success-alert" class="alert alert-success" role=alert>
+                {{ Session::get('success') }}
+            </div>
             <script>
-                toastr.success('{{ Session::get('success') }}');
+                // Auto-close the success alert after 5 seconds
+                setTimeout(function() {
+                    $('#success-alert').fadeOut('slow');
+                }, 5000);
+
+                // Auto-close the error alert after 5 seconds
             </script>
         @endif
 
-        @if (session('error'))
+        @if (Session::has('error'))
+            <div id="error-alert" class="alert alert-danger" role=alert>
+                {{ Session::get('error') }}
+            </div>
             <script>
-                toastr.error('{{ Session::get('notification') }}');
+                setTimeout(function() {
+                    $('#error-alert').fadeOut('slow');
+                }, 5000);
             </script>
         @endif
+        
         <div class="row">
             <div class="column">
 

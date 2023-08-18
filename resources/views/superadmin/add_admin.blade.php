@@ -56,7 +56,7 @@
                         <option value="Alan Kay">Alan Kay Lab</option>
                         <option value="Nicklaus Writh">Nicklaus Writh Lab</option>
                         <option value="John Backus">John Backus Lab</option>
-                        <option value="Djikstra Lab">Djikstra Lab</option>
+                        <option value="Djikstra">Djikstra Lab</option>
                         <option value="Donald Knuth">Donald Knuth Lab</option>
                         <option value="EF Codd">EF Codd Lab</option>
                         <option value="Jimgray">Jimgray Lab</option>

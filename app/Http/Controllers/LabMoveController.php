@@ -15,13 +15,8 @@ class LabMoveController extends Controller
     //
     public function index()
     {
-        // dd($sample);
         $data = Labmove_table::get();
         $totalDeviceCount = Labmove_table::count();
-        // dd($totalDeviceCount);
-        // $sample = Lab_Table::select('lab_name')->where('lab_name', 'like', 'Nicklaus Writh')->pluck();  
-        // return view('lablist.list', ["datas" => $data, "labname" => $sample]);
-        // return view('lablist.movelist', compact(('data')));
         return view('lablist.movelist', ['data' => $data, 'totalDeviceCount' => $totalDeviceCount]);
     }
     public function adda($id)

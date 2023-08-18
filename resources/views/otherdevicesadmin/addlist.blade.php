@@ -16,17 +16,31 @@
             width: 30%;
         }
     </style>
-    @if (session('success '))
-        <script>
-            toastr.success('{{ Session::get('success') }}');
-        </script>
-    @endif
 
-    @if (session('error'))
-        <script>
-            toastr.error('{{ Session::get('notification') }}');
-        </script>
-    @endif
+           @if (Session::has('success'))
+            <div id="success-alert" class="alert alert-success" role=alert>
+                {{ Session::get('success') }}
+            </div>
+            <script>
+                // Auto-close the success alert after 5 seconds
+                setTimeout(function() {
+                    $('#success-alert').fadeOut('slow');
+                }, 5000);
+
+                // Auto-close the error alert after 5 seconds
+            </script>
+        @endif
+
+        @if (Session::has('error'))
+            <div id="error-alert" class="alert alert-danger" role=alert>
+                {{ Session::get('error') }}
+            </div>
+            <script>
+                setTimeout(function() {
+                    $('#error-alert').fadeOut('slow');
+                }, 5000);
+            </script>
+        @endif
 
     <body>
 

@@ -66,7 +66,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link ">
-                        <i class="nav-icon fas fa-sitemap"></i>
+                        <i class="nav-icon fas fa-desktop"></i>
                         <p>
                             Other Devices
                             <i class="right fas fa-angle-left"></i>
@@ -90,7 +90,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link ">
-                        <i class="nav-icon fas fa-sitemap"></i>
+                        <i class="nav-icon fas fa-plus-square"></i>
                         <p>
                             Additional Devices
                             <i class="right fas fa-angle-left"></i>
@@ -100,7 +100,7 @@
                         <li class="nav-item">
                             <a href={{ url('superadmin/savelablistdevices') }} class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Add Additioanl Devices</p>
+                                <p>Add Additional Devices</p>
                             </a>    
                         </li>
                         <li class="nav-item">
@@ -114,11 +114,10 @@
                 </li>
                 <li class="nav-item">
                     <a href={{ url('/superadmin/labmovelist') }} class="nav-link">
-                        <i class="nav-icon fas fa-cog"></i>
+                        <i class="nav-icon fas fa-inbox"></i>
                         <p>
                             Lab Request
                             {{-- <span class="badge badge-success">{{ $totalDeviceCount }}</span> --}}
-                            <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                 </li>
