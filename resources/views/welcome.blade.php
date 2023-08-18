@@ -53,15 +53,6 @@
             margin-right: 10%;
         }
 
-        ul {
-            flex-wrap: nowrap;
-        }
-
-        nav ul:hover a:hover {
-            color: #0098db;
-            box-shadow: 0 2px 0 0 currentColor;
-        }
-
         .banner .nav li a {
             color: #fff;
             font-size: 1.2em;
@@ -105,14 +96,10 @@
             margin-left: 50%;
             font-family: 'Alkatra', cursive;
             transform: translateX(-50%);
-            background-color: #F5A518;
+            /* background-color: #F5A518; */
             padding: 10px 20px;
             font-size: 1.6em;
             font-weight: 600px;
-        }
-
-        .banner .info a:hover {
-            background-color: #F59923;
         }
 
         .banner .info .animated-text {
@@ -150,25 +137,6 @@
             background-repeat: no-repeat;
         }
 
-        .student-form {
-            margin-top: 33%;
-        }
-
-        .regno-input {
-            width: 25rem;
-            padding: 0.5rem 1rem;
-            color: #000000;
-            background-color: #FFFFFF;
-            font-size: 1.75rem;
-            border-width: 1px #ccc solid;
-            border-style: solid;
-            border-radius: 0.5rem;
-            box-shadow: 24px 0px 11px rgba(240, 240, 240, 0.616);
-        }
-
-        .regno-button {
-            margin-top: 30px;
-        }
 
         /* CSS */
 
@@ -231,11 +199,6 @@
                             SKCET
                         </a>
                     </div>
-                    <ul class="nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">Login</a>
-                        </li>
-                    </ul>
                 </nav>
             </div>
             <div class="col-md-8 offset-md-2 info">
@@ -243,8 +206,9 @@
                 <p class="text-center" style="color: #e9e9e9">
                     Think Placement... Think SKCET !!
                 </p>
-
-                <button onclick='{{ route('login') }}' class="button-home">GET STARTED</button>
+                <a href="{{ route('login') }}">
+                <button onclick={{ route('login') }}" class="button-home">GET STARTED</button>
+                </a>
 
             </div>
         </div>

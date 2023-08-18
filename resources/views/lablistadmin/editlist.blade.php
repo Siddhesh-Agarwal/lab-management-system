@@ -45,8 +45,7 @@
 
     <form method="post" action="{{ url('admin/updatelablistdevice') }}" class="row g-3">
         @csrf
-
-        <label for="device_name">Device Name:</label>
+        <label for="device_name">Device name:</label>
         <input type="text" class="form-control" name="device_name" value="{{ $data->device_name }}">
         <label for="spec">Spec:</label>
         <input type="text" class="form-control" name="spec" value="{{ $data->spec }}">
@@ -58,10 +57,10 @@
         {{-- <label for="lab_name">Lab Name:</label> 
         <input type="text" class="form-control" id="lab_name" name="lab_name" placeholder="Enter Lab Name" value="{{ $data->lab_name }}">  --}}
         <input type="text" hidden value={{ urlencode(Auth::user()->labname) }} id="lab_name" name="lab_name">
+        <div style="display:flex; justify-content:space-between; width:100%; margin-top:2%">
         <button type="submit" class="btn btn-primary">Update</button>
-        <hr>
         <a href='{{ route('admin.lablist', ['lab_name' => urlencode(Auth::user()->labname)]) }}'
             class="btn btn-danger">Back</a>
-
+        </div>
     </form>
 @endsection

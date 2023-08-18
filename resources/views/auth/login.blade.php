@@ -6,6 +6,11 @@
             <div class="col-md-8 outer-login">
                 <div class="card">
                     <div class="card-header">{{ __('Login') }}</div>
+                    @if (Session::has('error'))
+                        <div id="error-alert" class="alert alert-danger" role=alert style="text-align: center">
+                            {{ Session::get('error') }}
+                        </div>
+                    @endif
                     <div class="card-body login">
                         <form method="POST" action="{{ route('login') }}" id="form-login">
                             @csrf
@@ -18,12 +23,6 @@
                                     <input id="email" type="email"
                                         class="form-control @error('email') is-invalid @enderror" name="email"
                                         value="{{ old('email') }}" required autofocus>
-
-                                    @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
                                 </div>
                             </div>
 
@@ -34,26 +33,20 @@
                                 <div class="col-md-6">
                                     <input id="password" type="password"
                                         class="form-control @error('password') is-invalid @enderror" name="password">
-
-                                    @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
                                 </div>
-                            </div> 
+                            </div>
 
                             <div class="row mb-0">
-                                <div class="col-md-8 offset-md-4">
+                                <div class="col-md-8 offset-md-6">
                                     <button type="submit" class="btn btn-primary">
                                         {{ __('Login') }}
                                     </button>
 
-                                    @if (Route::has('password.request'))
+                                    {{-- @if (Route::has('password.request'))
                                         <a class="btn btn-link" href="{{ route('password.request') }}">
                                             {{ __('Forgot Your Password?') }}
                                         </a>
-                                    @endif
+                                    @endif --}}
                                 </div>
                             </div>
                         </form>
