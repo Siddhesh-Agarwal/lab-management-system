@@ -42,7 +42,7 @@
     <div class="container py-5">
         <div class="row text-center text-white">
             <div class="col-lg-8 mx-auto">
-                <h1 class="display-4">Team Page</h1>
+                <h1 class="display-4">Contact Us</h1>
             </div>
         </div>
     </div>
