@@ -7,7 +7,6 @@ use App\Models\Lab;
 use App\Models\Labmove_table;
 use App\Models\Lab_Table;
 use App\Models\Temp;
-use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 
 class LabController extends Controller
@@ -59,7 +58,7 @@ class LabController extends Controller
 
             return redirect()->route('admin.listdevice', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with(['success' => 'Device Added successfully!']);
         } catch (\Exception $e) {
-            return redirect()->route('admin.listdevice', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with(['error' => 'Something went wrong!']);
+            return redirect()->route('admin.listdevice', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with(['error' => $e->getMessage()]);
         }
     }
     public function saves(Request $request)

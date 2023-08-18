@@ -55,7 +55,7 @@
         <lable for="wifi_access_points">Wifi Access Point:</lable>
         <input type="number" class="form-control" name="wifi_access_points" value="{{ $data->wifi_access_points }}">
         <input type="hidden" name="id" value="{{ $data->id }}">
-        <input type="text" hidden value={{ Auth::user()->labname }} id="lab_name" name="lab_name">
+        <input type="text" hidden value={{ urlencode(Auth::user()->labname) }} id="lab_name" name="lab_name">
         <div style="display:flex; justify-content:space-between; width:100%; margin-top:2%">
             <button type="submit" class="btn btn-primary">Update</button>
             <a href='{{ route('admin.otherdevice', ['lab_name' => Auth::user()->labname]) }}'

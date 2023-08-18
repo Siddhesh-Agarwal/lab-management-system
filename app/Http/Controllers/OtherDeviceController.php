@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Labmove_table;
 use App\Models\Lab_Table;
 use App\Models\OtherDevice;
-use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 
 class OtherDeviceController extends Controller
@@ -45,9 +44,11 @@ class OtherDeviceController extends Controller
             $ac_load = $request->ac_load;
             $wifi_access_points = $request->wifi_access_points;
             $lab_name = urldecode($request->lab_name);
-
             $lab = Lab_Table::where('lab_name', $lab_name)->first();
+            
             $lab_id = $lab ? $lab->id : null;
+            // dd($lab_id);
+
             $dev = new OtherDevice();
             $dev->network_switches = $network_switches;
             $dev->ups_load = $ups_load;
@@ -57,12 +58,10 @@ class OtherDeviceController extends Controller
             $dev->lab_id = $lab_id;
             $dev->save();
 
-            return redirect()->back()->with('notification', 'success');
+            return redirect()->back()->with('success', 'Device Added successfully!');
         } catch (\Exception $e) {
-            return redirect()->back()->with('notification', $e->getMessage());
+            return redirect()->back()->with('error', 'Something went wrong !');
         }
-
-        // $data=array('device_name'=>$name,'serial_number'=>$serial_number,'system_model_number'=>$system_model_number,'count'=>$count,'lab_name'=>$lab_name);
 
     }
 
@@ -86,12 +85,11 @@ class OtherDeviceController extends Controller
             $dev->lab_name = $lab_name;
             $dev->lab_id = $lab_id;
             $dev->save();
-            return redirect()->back()->with('notification', 'success');
+            return redirect()->back()->with('success', 'Device added successfully !');
         } catch (\Exception $e) {
-            return redirect()->back()->with('notification', 'Error');
-
+            return redirect()->back()->with('error', 'Something went wrong !');
         }
-        // $data=array('device_name'=>$name,'serial_number'=>$serial_number,'system_model_number'=>$system_model_number,'count'=>$count,'lab_name'=>$lab_name);
+
     }
     public function edit($id)
     {
@@ -129,10 +127,10 @@ class OtherDeviceController extends Controller
                 'lab_id' => $lab_id,
             ]);
 
-            return redirect()->back()->with('notification', 'success-device-update');
+            return redirect()->back()->with('success', 'Device updated successfully');
         }
         catch(\Exception $e){
-            return redirect()->back()->with('notification', 'error-device-update');
+            return redirect()->back()->with('notification', 'Something went wrong !');
         }
     }
 
@@ -158,11 +156,10 @@ class OtherDeviceController extends Controller
                 'lab_id' => $lab_id,
             ]);
     
-            Toastr::success('Device Updated successfully!', 'Success');
-            return redirect()->route('admin.otherdevice', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with('notification', 'success update');
+            return redirect()->route('admin.otherdevice', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with('success', 'Device updated successfully !');
         }
         catch(\Exception $e){
-            return redirect()->route('admin.otherdevice', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with('notification', 'error');
+            return redirect()->route('admin.otherdevice', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with('error', 'Something went wrong !');
         }
     }
     public function searchlab(Request $request)
@@ -171,18 +168,18 @@ class OtherDeviceController extends Controller
         $totalDeviceCount = Labmove_table::count();
         $data = OtherDevice::where('lab_name', 'like', "%$labName%")->get();
         session(['search_flag' => true]);
+
         return view('otherdevices.list', ['lab_name' => $labName, 'data' => $data, 'totalDeviceCount' => $totalDeviceCount]);
-        // return view('lablist.list', compact('data', 'labName', 'totalDeviceCount'));
     }
     public function delete($id)
     {
         try{
             $data = OtherDevice::find($id);
             $data->delete();
-            return redirect()->back()->with('notification', 'success delete');
+            return redirect()->back()->with('success', 'Device deleted successfully !');
         }
         catch(\Exception $e){
-            return redirect()->back()->with('notification', 'error');
+            return redirect()->back()->with('error', 'Something went wrong !');
         }
     }
 }

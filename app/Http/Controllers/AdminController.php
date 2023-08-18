@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Lablist;
+use App\Models\StudentRecord;
 use App\Models\Lab;
 
 class AdminController extends Controller
@@ -17,7 +18,9 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.content');
+        $data_box = session('data_box');
+
+        return view('admin.content', compact('data_box'));
     }
 
     public function tables()
@@ -44,7 +47,7 @@ class AdminController extends Controller
         $count = Student::where('isLoggedIn', 1)->count();
 
         $student = Student::all();
-        // dd($count);
+    
         foreach ($logs as $log) {
             $log->update(['isLoggedIn' => 0]);
         }
@@ -63,14 +66,20 @@ class AdminController extends Controller
         $request->validate([
             'rollno' => 'required',
         ]);
-
+        
+        $main = StudentRecord::where('regNo', '=', $request->input('rollno'))->first();
+        
+        // dd($main);
+        $res = Student::where('rollno', '=', $request->input('rollno'))->latest()->get()->first();
         $data = [
+            'name' => $main->name,
             'rollno' => $request->input('rollno'),
+            'degree' => $main->degree,
+            'branch' => $main->branch,
+            'pic' => $main->pic,
             'systemNumber' => $this->generateSystemNumber(),
             'labname' => urldecode($request->labname),
         ];
-
-        $res = Student::where('rollno', '=', $request->input('rollno'))->latest()->get()->first();
 
         $workedTime = 0;
         $InTime = 0;
@@ -79,23 +88,26 @@ class AdminController extends Controller
         if (is_null($res)) {
             
             Student::create($data);
-
+            
             Logs::create(array(
                 'rollno' => $request->rollno,
                 'systemNumber' => $data['systemNumber'], 
-                'labname' => urldecode($request->labname),
+                'labname' => $request->labname,
                 'random' => 0,
             ));
             
             $stud = Student::where('rollno', '=', $request->input('rollno'))->latest()->get()->first();
             $stud->update(['isLoggedIn' => 1]);
             $InTime = $stud->updated_at;
-            $message = sprintf("Welcome %s!<br>You are in!<br>Your system number is %d", $request->input('rollno'), $data['systemNumber']);
-
-            return redirect()->action([AdminController::class, 'index'])->with('message', $message);
+            $message = sprintf("Your system number is SK-AK-%d", $data['systemNumber']);
+            $data_box = [
+                "datas" => $data,
+                "message" => $message
+            ];
+            // dd($data_box);
+            return redirect()->action([AdminController::class, 'index'])->with('data_box' , $data_box);
             
         } else {
-
             if ($res->isLoggedIn === 0) {
                 Logs::create(array(
                     'rollno' => $res->rollno,
@@ -103,13 +115,17 @@ class AdminController extends Controller
                     'labname' => $request->labname,
                     'random' => 0,
                 ));
-
+                
                 $res->update(['isLoggedIn' => 1]);
-
+                
                 $InTime = $res->updated_at;
-                $message = sprintf("Welcome %s!<br>You are in!<br>Your system number is %d", $request->input('rollno'), $data['systemNumber']);
+                $message = sprintf("Your system number is SK-AK-%d", $data['systemNumber']);
+                $data_box = [
+                    "datas" => $data,
+                    "message" => $message
+                ];
 
-                return redirect()->action([AdminController::class, 'index'])->with('message', $message);
+                return redirect()->action([AdminController::class, 'index'])->with('data_box', $data_box);
             }
         }
 
@@ -129,10 +145,13 @@ class AdminController extends Controller
 
         $timeDifference = $startTimestamp->diff($endTimestamp)->format('%H:%I:%S');
 
-        // gmdate('H:i:s', $workedTime)
-        $message = sprintf("%s has successfully Logged out !     worked time %d minutes", $request->input('rollno'), $timeDifference);
+        $message = sprintf("%s has successfully Logged out ! worked time %d minutes", $main->name, $timeDifference);
+        $data_box = [
+            "datas" => $data,
+            "message" => $message
+        ];
 
-        return redirect()->action([AdminController::class, 'index'])->with('message', $message);
+        return redirect()->action([AdminController::class, 'index'])->with('data_box' , $data_box);
 
     }
 
@@ -172,12 +191,12 @@ class AdminController extends Controller
         $lab_name=Auth::user()->labname;
         $searchTerm = $request->input('search_term');
         $results=Lab::where('serial_number','LIKE','%'.$searchTerm.'%')
-                    //   ->where('lab_name',$lab_name)
         ->get();
-        // dd($results);
+        
         return view('admin.simplesearch', ['results' => $results]);
 
     }
+
     public function searchByDevice(Request $request)
     {
         $searchTerm = $request->input('search_termd');

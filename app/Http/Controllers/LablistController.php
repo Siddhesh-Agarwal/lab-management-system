@@ -41,6 +41,7 @@ class LablistController extends Controller
             $spec = $request->spec;
             $system_number = $request->system_number;
             $desc = $request->desc;
+
             $lab_name = urldecode($request->lab_name);
 
             $lab = Lab_Table::where('lab_name', $lab_name)->first();

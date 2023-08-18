@@ -18,6 +18,7 @@
         </style>
 
         <body>
+        
             @if (Session::has('success'))
                 <div id="success-alert" class="alert alert-success" role=alert>
                     {{ Session::get('success') }}
@@ -47,7 +48,7 @@
             <form method="post" action="{{ url('admin/savelistdevice') }}" class="row g-3">
                 @csrf
 
-                <label for="device_name">Device Name:</label>
+                <label for="device_name">Device name:</label>
                 <input type="text" class="form-control" id="device_name" name="device_name" placeholder="Enter Device Name"
                     required>
                 <label for="serial_number">Serial Number:</label>
@@ -62,11 +63,11 @@
                 <label for="desc">Service Description:</label><br>
                 <textarea type="text" class="form-control" id="desc" name="desc" placeholder="Enter desc" rows="4"
                     cols="50"></textarea><br>
-            
-                <input type="text" hidden value={{ Auth::user()->labname }} id="lab_name" name="lab_name">
+
+                <input type="text" hidden value={{ urlencode(Auth::user()->labname) }} id="lab_name" name="lab_name">
                 <div style="display:flex; justify-content:space-between; width:100%; margin-top:2%">
                     <button type="submit" class="btn btn-primary">Add</button>
-                    <a href='{{ route('admin.listdevice', ['lab_name' => Auth::user()->labname]) }}'
+                    <a href='{{ route('admin.listdevice', ['lab_name' => urlencode(Auth::user()->labname)]) }}'
                         class="btn btn-danger">Back</a>
                 </div>
             </form>
