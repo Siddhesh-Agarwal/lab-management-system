@@ -36,7 +36,7 @@ class AdminController extends Controller
     public function logout()
     {
         Auth::logout();
-        return redirect()->route('login');
+        return redirect()->route('login')->with('logout', 'Successfully logged out !');
     }
     /**
      * Show the form for creating a new resource.

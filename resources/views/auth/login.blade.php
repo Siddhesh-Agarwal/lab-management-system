@@ -11,6 +11,11 @@
                             {{ Session::get('error') }}
                         </div>
                     @endif
+                    @if (Session::has('logout'))
+                        <div id="success-alert" class="alert alert-success" role=success style="text-align: center">
+                            {{ Session::get('logout') }}
+                        </div>
+                    @endif
                     <div class="card-body login">
                         <form method="POST" action="{{ route('login') }}" id="form-login">
                             @csrf
