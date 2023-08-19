@@ -20,15 +20,12 @@
                                                 <span class="description-text">{{ $data_box['datas']['degree'] }}</span>
                                                 <span class="description-text">{{ $data_box['datas']['branch'] }}</span>
                                             @else
-                                                <img src={{ URL::asset('dist/img/Logo.jpg') }} alt="User Avatar"
+                                                <img src={{ URL::asset('dist/img/placeholder.png') }} alt="User Avatar"
                                                     class="img-size-100 img-circle" style="margin-bottom: 20px"
                                                     width="170px">
-                                                <h4 class="description-percentage" style="color: rgb(83, 167, 92)"><i
-                                                        class="fas fa-street-view"></i>
-                                                    <span>Username</span>
-                                                    <br />
-                                                    <span class="description-text">Degree</span>
-                                                    <span class="description-text">Branch</span>
+                                                <h4 class="description-percentage" style="color: rgb(253, 159, 19)"><i
+                                                        class="fas fa-smile-o"></i>
+                                                    <span>Welcome to {{ Auth::user()->labname }}</span>   
                                         @endif
 
 
