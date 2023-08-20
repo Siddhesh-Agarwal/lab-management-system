@@ -44,10 +44,10 @@
         @endif
 
 
-        <form method="post" action="{{ url('superadmin/saveotherdevice') }}" class="row g-3">
+        <form method="post" action="{{ url('superadmin/saveotherdevice') }}" class="row g-3" style="margin-top: 100px">
             @csrf
 
-            <label for="network_switches">Netwok Switches</label>
+            <label for="network_switches">Network Switches</label>
             <input type="number" class="form-control" name="network_switches" id="network_switches"
                 placeholder="Enter Network Switches" required>
             <label for="ups_load">Ups Load</label>

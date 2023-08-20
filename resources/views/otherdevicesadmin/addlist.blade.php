@@ -48,7 +48,7 @@
             </div>
         @endif
 
-        <form method="post" action="{{ url('admin/saveotherdevice') }}" class="row g-3">
+        <form method="post" action="{{ url('admin/saveotherdevice') }}" class="row g-3" style="margin-top: 100px">
             @csrf
 
             <label for="network_switches">Netwok Switches</label>

@@ -44,7 +44,7 @@
 
     <h2>Update Devices</h2>
 
-    <form method="post" action="{{ url('superadmin/updateotherdevice') }}" class="row g-3">
+    <form method="post" action="{{ url('superadmin/updateotherdevice') }}" class="row g-3" style="margin-top: 100px">
         @csrf
 
         <label for="network_switches">Network Switches</label>

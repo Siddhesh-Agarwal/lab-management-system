@@ -44,7 +44,7 @@
 
     
 
-    <form id="exchangeForm" method="post" action="{{ url('admin/save-labmove') }}" class="row g-3">
+    <form id="exchangeForm" method="post" action="{{ url('admin/save-labmove') }}" class="row g-3" style="margin-top: 100px">
         @csrf
 
         <label for="device_name">Device Name</label>

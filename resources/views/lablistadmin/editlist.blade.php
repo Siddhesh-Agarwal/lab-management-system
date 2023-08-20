@@ -43,7 +43,7 @@
 
     <h2>Update Devices</h2>
 
-    <form method="post" action="{{ url('admin/updatelablistdevice') }}" class="row g-3">
+    <form method="post" action="{{ url('admin/updatelablistdevice') }}" class="row g-3" style="margin-top: 100px">
         @csrf
         <label for="device_name">Device name</label>
         <input type="text" class="form-control" name="device_name" value="{{ $data->device_name }}">

@@ -20,44 +20,44 @@
 
     <div class="container" style='magin-top:20px'>
 
-       
-            <p>Total Devices: {{ $data->sum('count') }}</p>
-            <section class="content">
-                @if (Session::has('success'))
-                    <div id="success-alert" class="alert alert-success" role=alert>
-                        {{ Session::get('success') }}
-                    </div>
-                    <script>
-                        // Auto-close the success alert after 5 seconds
-                        setTimeout(function() {
-                            $('#success-alert').fadeOut('slow');
-                        }, 5000);
 
-                        // Auto-close the error alert after 5 seconds
-                    </script>
-                @endif
+        <p>Total Devices: {{ $data->sum('count') }}</p>
+        <section class="content">
+            @if (Session::has('success'))
+                <div id="success-alert" class="alert alert-success" role=alert>
+                    {{ Session::get('success') }}
+                </div>
+                <script>
+                    // Auto-close the success alert after 5 seconds
+                    setTimeout(function() {
+                        $('#success-alert').fadeOut('slow');
+                    }, 5000);
 
-                @if (Session::has('error'))
-                    <div id="error-alert" class="alert alert-danger" role=alert>
-                        {{ Session::get('error') }}
-                    </div>
-                    <script>
-                        setTimeout(function() {
-                            $('#error-alert').fadeOut('slow');
-                        }, 5000);
-                    </script>
-                @endif
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card">
+                    // Auto-close the error alert after 5 seconds
+                </script>
+            @endif
+
+            @if (Session::has('error'))
+                <div id="error-alert" class="alert alert-danger" role=alert>
+                    {{ Session::get('error') }}
+                </div>
+                <script>
+                    setTimeout(function() {
+                        $('#error-alert').fadeOut('slow');
+                    }, 5000);
+                </script>
+            @endif
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+
+                            @if ($data->count() == 0)
                                 <div class="card-header">
-
+                                    <h1 style="text-align: center;">
+                                        No Requests Found
+                                    </h1>
                                 </div>
-                                @if ($data->count() == 0)
-                                <h1  style="text-align: center;">
-                                    No Requests Found
-                                </h1>
                             @else
                                 <!-- /.card-header -->
                                 <div class="card-body">
@@ -107,18 +107,18 @@
                                     </table>
                                 </div>
                                 <!-- /.card-body -->
-                            </div>
-                            <!-- /.card -->
                         </div>
-                        <!-- /.col -->
+                        <!-- /.card -->
                     </div>
-                    <!-- /.row -->
+                    <!-- /.col -->
                 </div>
-        @endif
-    @endsection
+                <!-- /.row -->
+            </div>
+            @endif
+        @endsection
 
 
-    {{-- 
+        {{-- 
     @extends('superadmin.dashboard')
 
     @section('content')
