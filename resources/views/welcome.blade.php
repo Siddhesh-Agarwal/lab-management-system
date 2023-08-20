@@ -7,6 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>SKCET</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href={{ url('plugins/fontawesome-free/css/all.min.css') }}>
@@ -203,11 +206,11 @@
             </div>
             <div class="col-md-8 offset-md-2 info">
                 <h1 class="text-center animated-text">SKCET LAB</h1>
-                <p class="text-center" style="color: #e9e9e9">
+                <p class="text-center" style="color: #e9e9e9; font-family: 'Varela Round', sans-serif;">
                     Think Placement... Think SKCET !!
                 </p>
                 <a href="{{ route('login') }}">
-                <button onclick={{ route('login') }}" class="button-home">GET STARTED</button>
+                    <button onclick={{ route('login') }}" class="button-home">GET STARTED</button>
                 </a>
 
             </div>
