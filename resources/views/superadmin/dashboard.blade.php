@@ -38,7 +38,7 @@
         @include('superadmin.sidebar')
 
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
+        <div class="content-wrapper" style="margin-top: 100px">
             <!-- Main content -->
             @yield('content')
             <!-- /.content -->

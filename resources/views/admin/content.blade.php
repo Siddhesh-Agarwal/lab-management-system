@@ -4,7 +4,7 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-12" style="margin-top: 50px">
+                <div class="col-md-12">
                     <div class="card">
                         <div class="card-footer">
                             <div class="row">
