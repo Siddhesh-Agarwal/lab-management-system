@@ -54,7 +54,7 @@
                         src="http://results.skcet.ac.in:610/assets/StudentImage/727721EUCS134.jpg" alt="" width="100"
                         class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
                     <h5 class="mb-0">Sanjeevi CS</h5>
-                    <span class="small text-uppercase text-muted"> Backend Developer </span>
+                    <span class="small text-uppercase text-muted"> Fullstack Developer </span>
                     <ul class="social mb-0 list-inline mt-3">
                         <li class="list-inline-item">
                             <a href="mailto:sanjeevisakthivel2004@gmail.com" class="social-link">
