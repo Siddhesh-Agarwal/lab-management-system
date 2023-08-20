@@ -31,9 +31,9 @@ Route::get('/', function () {
 Route::post('/forget_password', [AdminController::class, 'password']);
 
 Route::prefix('admin')->middleware('admin.auth')->group(function () {
-    Route::post('/search', [AdminController::class, 'searchBySerial'])->name('admin.searchSerial');
-    Route::post('/searchSystem', [AdminController::class, 'searchBySystem'])->name('admin.searchSystem');
-    Route::post('/searchDevice', [AdminController::class, 'searchByDevice'])->name('admin.searchDevice');
+    Route::post('/search', [AdminController::class, 'searchByLabSerial'])->name('admin.searchSerial');
+    Route::post('/searchSystem', [AdminController::class, 'searchByLabSystem'])->name('admin.searchSystem');
+    Route::post('/searchDevice', [AdminController::class, 'searchByLabDevice'])->name('admin.searchDevice');
 
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/forcelogout', [AdminController::class, 'forceLogout'])->name('admin.force');
@@ -54,7 +54,7 @@ Route::prefix('admin')->middleware('admin.auth')->group(function () {
     Route::get('editlistdevice/{id}', [LabController::class, 'edit']);
     Route::post('savelistdevice', [LabController::class, 'save']);
     Route::post('updatelistdevice', [LabController::class, 'update']);
-    Route::post('/labs/{id}/move', [LabController::class, 'moveToScraps'])->name('temps.moveData');
+    // Route::post('/labs/{id}/move', [LabController::class, 'moveToScraps'])->name('temps.moveDatas');
     Route::get('lablist/{lab_name}', [LablistController::class, 'indexa'])->name('admin.lablist');
     Route::get('addlablistdevice', [LablistController::class, 'adda']);
     Route::get('editlablistdevice/{id}', [LablistController::class, 'edita']);
@@ -65,9 +65,15 @@ Route::prefix('admin')->middleware('admin.auth')->group(function () {
     Route::get('editotherdevice/{id}', [OtherDeviceController::class, 'edita']);
     Route::post('saveotherdevice', [OtherDeviceController::class, 'savea']);
     Route::post('updateotherdevice', [OtherDeviceController::class, 'updatea']);
+    Route::post('/labs/movetotemp', [LabController::class, 'moveToScraps'])->name('temps.moveData');
+    Route::post('/movetotemp/{id}', [LabController::class, 'movetotemp'])->name('temps.movecount');
 });
 
 Route::prefix('superadmin')->middleware('superadmin.auth')->group(function () {
+    Route::get('/addlab',[SuperAdminController::class,'addlab'])->name('superadmin.addlabs');
+    Route::post('/savelabs',[SuperAdminController::class,'savelab'])->name('superadmin.savelabs');
+    Route::get('/labdetails', [SuperAdminController::class, 'getLabDetails'])->name('superadmin.labdetails');
+    Route::get('/searchlabs', [SuperAdminController::class,'searchlab'])->name('superadmin.searchlabs');
     Route::post('/search', [SuperAdminController::class, 'searchBySerial'])->name('superadmin.searchSerial');
     Route::post('/searchSystem', [SuperAdminController::class, 'searchBySystem'])->name('superadmin.searchSystem');
     Route::post('/searchDevice', [SuperAdminController::class, 'searchByDevice'])->name('superadmin.searchDevice'); 
@@ -84,6 +90,7 @@ Route::prefix('superadmin')->middleware('superadmin.auth')->group(function () {
     Route::get('/admin-details', [SuperAdminController::class, 'details'])->name('superadmin.details');
     Route::get('/', [SuperAdminController::class, 'logout'])->name('superadmin.logout');
     Route::get('deletelablist/{id}', [LabController::class, 'delete']);
+    Route::post('updatelistdevice', [LabController::class, 'updates']);
     Route::get('searchlabdevices', [LabController::class,'searchlab'])->name('superadmin.searchlabdevices');
     Route::post('savelistdevice', [LabController::class, 'saves']);
     Route::get('savelablistdevices', [LabController::class, 'adds'])->name('superadmin.savelablistdevices');

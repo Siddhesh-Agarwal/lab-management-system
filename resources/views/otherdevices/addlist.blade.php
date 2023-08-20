@@ -58,23 +58,12 @@
             <input name="wifi_access_points" class="form-control" id="wifi_access_poitns" type="number"
                 placeholder="Enter Wifi access point"></input>
             {{-- <input type="text" hidden value={{ Auth::user()->labname }} id="lab_name" name="lab_name"> --}}
-            <label for="lab_name">Lab Name:</label>
-            <select name="lab_name" id="lab_name" class="form-control">
-                <option value="Alan Kay" {{ Auth::user()->labname === 'Alan Kay' ? 'selected' : '' }}>Alan Kay Lab</option>
-                <option value="Nicklaus Writh" {{ Auth::user()->labname === 'Nicklaus Writh' ? 'selected' : '' }}>Nicklaus
-                    Writh
-                    Lab</option>
-                <option value="John Backus" {{ Auth::user()->labname === 'John Backus' ? 'selected' : '' }}>John Backus Lab
-                </option>
-                <option value="Djikstra" {{ Auth::user()->labname === 'Djikstra' ? 'selected' : '' }}>Djikstra Lab
-                </option>
-                <option value="Donald Knuth" {{ Auth::user()->labname === 'Donald Knuth' ? 'selected' : '' }}>Donald Knuth
-                    Lab
-                </option>
-                <option value="EF Codd" {{ Auth::user()->labname === 'EF Codd' ? 'selected' : '' }}>EF Codd Lab</option>
-                <option value="Jimgray" {{ Auth::user()->labname === 'Jimgray' ? 'selected' : '' }}>Jimgray Lab</option>
-                <option value="DSP VLSI" {{ Auth::user()->labname === 'DSP VLSI' ? 'selected' : '' }}>DSP VLSI Lab</option>
-            </select>
+            <label for="lab_name">Lab Name</label>
+                <select name="lab_name" id="lab_name" class="form-control">
+                    @foreach ($labs as $dev)
+                    <option value="{{ $dev->lab_name }}">{{ $dev->lab_name }}</option>
+                    @endforeach
+                </select>
             <div style="margin-top: 20px; display:flex; justify-content:space-between; align-items:center; width:100%">
                 <div>
                     <button type="submit" class="btn btn-primary">Add</button>

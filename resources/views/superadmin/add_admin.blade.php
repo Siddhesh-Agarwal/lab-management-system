@@ -51,17 +51,12 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputLabName">Lab Name</label>
-                    <select name="labname" id="labname" class="form-control">
-                        <option value="Alan Kay">Alan Kay Lab</option>
-                        <option value="Nicklaus Writh">Nicklaus Writh Lab</option>
-                        <option value="John Backus">John Backus Lab</option>
-                        <option value="Djikstra">Djikstra Lab</option>
-                        <option value="Donald Knuth">Donald Knuth Lab</option>
-                        <option value="EF Codd">EF Codd Lab</option>
-                        <option value="Jimgray">Jimgray Lab</option>
-                        <option value="DSP/VLSI">DSP/VLSI Lab</option>
-                    </select>
+                    <label for="labname">Lab Name:</label>
+                <select name="labname" id="labname" class="form-control">
+                    @foreach ($labs as $dev)
+                    <option value="{{ $dev->lab_name }}">{{ $dev->lab_name }}</option>
+                    @endforeach
+                </select>
                 </div>
             </div>
             <!-- /.card-body -->

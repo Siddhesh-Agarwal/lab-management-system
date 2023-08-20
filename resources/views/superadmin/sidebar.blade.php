@@ -56,7 +56,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a  href={{ url('/superadmin/lablist') }} class="nav-link active">
+                            <a  href={{ url('/superadmin/lablist') }} class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>System Details</p>
                             </a>
@@ -117,7 +117,7 @@
                         <i class="nav-icon fas fa-inbox"></i>
                         <p>
                             Lab Request
-                            {{-- <span class="badge badge-success">{{ $totalDeviceCount }}</span> --}}
+                            <span class="badge badge-success">{{ $totalDeviceCount }}</span>
                         </p>
                     </a>
                 </li>
@@ -130,6 +130,12 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('superadmin.addlabs') }}" class="nav-link">
+                                <i class="fas fa-user-plus nav-icon"></i>
+                                <p>Add Labs</p>
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a href={{ route('superadmin.add') }} class="nav-link">
                                 <i class="fas fa-user-plus nav-icon"></i>
@@ -148,25 +154,28 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-trash"></i>
                         <p>
-                            Scrap
+                            Scrap Controls
                             <i class="fas fa-angle-left right"></i>
+                            <span class="badge badge-success">{{ $totalTempCount }}</span>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href={{ route('temp.list') }} class="nav-link">
                                 <i class="fas fa-recycle nav-icon"></i>
-                                <p>General</p>
+                                <p>Temp</p>
+                                <span class="badge badge-success">{{ $totalTempCount }}</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href={{ route('scrap.list') }} class="nav-link">
                                 <i class="fas fa-edit nav-icon"></i>
-                                <p>Sample</p>
+                                <p>Scrap</p>
                             </a>
                         </li>
                     </ul>
                 </li>
+                
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-search"></i>
@@ -182,7 +191,7 @@
                                 <p>Simple Search</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href={{ route('superadmin.advance.search') }} class="nav-link">
                                 <i class="fas fa-star nav-icon"></i>
                                 <p>Enhanced</p>
@@ -193,7 +202,7 @@
                                 <i class="fas fa-tasks nav-icon"></i>
                                 <p>Data Tables</p>
                             </a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </li>
             </ul>

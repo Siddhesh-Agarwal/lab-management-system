@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Lablist;
 use App\Models\Labmove_table;
 use App\Models\Lab_Table;
+use App\Models\Temp;
 use Illuminate\Http\Request;
 
 class LablistController extends Controller
@@ -14,24 +15,29 @@ class LablistController extends Controller
     {
         $data = Lablist::get();
         $totalDeviceCount = Labmove_table::count();
-        return view('lablist.list', ['data' => $data, 'totalDeviceCount' => $totalDeviceCount]);
+        $totalTempCount=Temp::count();
+        return view('lablist.list', ['data' => $data, 'totalDeviceCount' => $totalDeviceCount,'totalTempCount'=>$totalTempCount]);
     }
 
     public function indexa($lab_name)
     {
+        $labNames=Lab_Table::get();
         $data = Lablist::where('lab_name', '=', $lab_name)->get();
-        return view('lablistadmin.list', ['data' => $data, 'lab_name' => $lab_name]);
+        return view('lablistadmin.list', ['data' => $data, 'lab_name' => $lab_name,'labNames'=>$labNames]);
     }
 
     public function add()
     {
         $totalDeviceCount = Labmove_table::count();
-        return view('lablist.addlist', ['totalDeviceCount' => $totalDeviceCount]);
+        $totalTempCount=Temp::count();
+        $labs=Lab_Table::get();
+        return view('lablist.addlist', ['totalDeviceCount' => $totalDeviceCount,'totalTempCount'=>$totalTempCount,'labs'=>$labs]);
     }
 
     public function adda()
     {
-        return view('lablistadmin.addlist');
+        $labNames=Lab_Table::get();
+        return view('lablistadmin.addlist',['labNames'=>$labNames]);
     }
 
     public function save(Request $request)
@@ -57,9 +63,9 @@ class LablistController extends Controller
             $dev->lab_id = $lab_id;
             $dev->save();
 
-            return redirect()->back()->with(['success' => 'Device Added successfully!']);
+            return redirect()->route('superadmin.lablists')->with(['success' => 'Device Added successfully!']);
         } catch (\Exception $e) {
-            return redirect()->back()->with(['error' => 'Something went wrong']);
+            return redirect()->route('superadmin.lablists')->with(['error' => 'Something went wrong']);
         }
     }
 
@@ -94,21 +100,25 @@ class LablistController extends Controller
     public function edit($id)
     {
         $data = Lablist::where('id', '=', $id)->first();
+        $totalTempCount=Temp::count();
         $totalDeviceCount = Labmove_table::count();
-        return view('lablist.editlist', ['data' => $data, 'totalDeviceCount' => $totalDeviceCount]);
+        $labs=Lab_Table::get();
+        return view('lablist.editlist', ['data' => $data, 'totalDeviceCount' => $totalDeviceCount,'totalTempCount'=>$totalTempCount,'labs'=>$labs]);
     }
     public function searchlab(Request $request)
     {
         $labName = urldecode($request->input('lab_name'));
         $totalDeviceCount = Labmove_table::count();
+        $totalTempCount=Temp::count();
         $data = Lablist::where('lab_name', 'like', "%$labName%")->get();
         session(['search_flag' => true]);
-        return view('lablist.list', ['lab_name' => $labName, 'data' => $data, 'totalDeviceCount' => $totalDeviceCount]);
+        return view('lablist.list', ['lab_name' => $labName, 'data' => $data, 'totalDeviceCount' => $totalDeviceCount,'totalTempCount' => $totalTempCount]);
     }
     public function edita($id)
     {
+        $labNames=Lab_Table::get();
         $data = Lablist::where('id', '=', $id)->first();
-        return view('lablistadmin.editlist', compact('data'));
+        return view('lablistadmin.editlist', ['data'=>$data,'labNames'=>$labNames]);
     }
 
     public function update(Request $request)
@@ -134,9 +144,9 @@ class LablistController extends Controller
                 'lab_id' => $lab_id,
             ]);
 
-            return redirect()->back()->with('success', 'Device Updated successfully!');
+            return redirect()->route('superadmin.lablists')->with('success', 'Device Updated successfully!');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Something went wrong');
+            return redirect()->route('superadmin.lablists')->with('error', 'Something went wrong');
         }
     }
 

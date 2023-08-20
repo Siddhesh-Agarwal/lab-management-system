@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Lab;
 use App\Models\Lablist;
 use App\Models\Lab_Table;
 use App\Http\Controllers\Auth;
+use App\Models\Temp;
 use Illuminate\Http\Request;
 use App\Models\Labmove_table;
 use Brian2694\Toastr\Facades\Toastr;
@@ -15,25 +17,34 @@ class LabMoveController extends Controller
     //
     public function index()
     {
+        // dd($sample);
         $data = Labmove_table::get();
         $totalDeviceCount = Labmove_table::count();
-        return view('lablist.movelist', ['data' => $data, 'totalDeviceCount' => $totalDeviceCount]);
+        $totalTempCount=Temp::count();
+        // dd($totalDeviceCount);
+        // $sample = Lab_Table::select('lab_name')->where('lab_name', 'like', 'Nicklaus Writh')->pluck();  
+        // return view('lablist.list', ["datas" => $data, "labname" => $sample]);
+        // return view('lablist.movelist', compact(('data')));
+        return view('lablist.movelist', ['data' => $data, 'totalDeviceCount' => $totalDeviceCount,'totalTempCount'=>$totalTempCount]);
     }
     public function adda($id)
     {
+        $labNames=Lab_Table::get();
         $data = Lablist::where('id', '=', $id)->first();
-        return view('lablistadmin.movelist', compact('data'));
+
+        return view('lablistadmin.movelist', ['data'=>$data,'labNames'=>$labNames]);
     }
     public function save(Request $request)
     {
 
+        $id=$request->id;
         $device_name = $request->device_name;
         $spec = $request->spec;
         $system_number = $request->system_number;
         $desc = $request->desc;
-        $source = urldecode($request->source);
-        $destination = urldecode($request->destination);
-
+        $source = $request->source;
+        $destiantion =  $request->destination;
+        
 
         $lab = Lab_Table::where('lab_name', $source)->first();
 
@@ -46,11 +57,10 @@ class LabMoveController extends Controller
         $dev->system_number = $system_number;
         $dev->desc = $desc;
         $dev->source = $source;
-        $dev->destination = $destination;
+        $dev->destination = $destiantion;
         $dev->lab_id = $lab_id;
         $dev->save();
-
-        Lablist::where('system_number', $system_number)->delete();
+        Lablist::where('system_number', $system_number  )->delete();
         Toastr::success('Device Added successfully!', 'Success');
         // return redirect()->back()->with('notification', 'Device Added successfully!');
         // return redirect()->to('admin/lablist')->with('notification', 'Device Added successfully!');
@@ -62,9 +72,7 @@ class LabMoveController extends Controller
     }
     public function moveToSource($id)
     {
-        
         $lab = Labmove_table::findOrFail($id);
-
         $scrap = new Lablist([
             'device_name' => $lab->device_name,
             'spec' => $lab->spec,
@@ -73,6 +81,8 @@ class LabMoveController extends Controller
             'lab_name' => $lab->source,
             'lab_id' => $lab->lab_id
         ]);
+      
+         
         $scrap->save();
         $lab->delete();
         Toastr::error('Request Denied successfully!', 'Error');
@@ -91,6 +101,8 @@ class LabMoveController extends Controller
             'lab_name' => $lab->destination,
             'lab_id' => $labId
         ]);
+        Lab::where('system_model_number', $lab->system_number)
+        ->update(['lab_name' => $lab->destination]);
         $scrap->save();
         $lab->delete();
         Toastr::success('Request Accepted successfully!', 'Success');

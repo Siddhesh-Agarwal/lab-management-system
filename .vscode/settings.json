@@ -6,5 +6,6 @@
             "name": "SKCET_LABS",
             "database": "${workspaceFolder:laravel}/database/database.sqlite"
         }
-    ]
+    ],
+     "sqltools.useNodeRuntime": true
 }

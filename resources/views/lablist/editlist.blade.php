@@ -41,7 +41,7 @@
         </script>
     @endif
 
-    <h2>Update Devices</h2>
+    {{-- <h2>Update Devices</h2> --}}
 
     <form method="post" action="{{ url('superadmin/updatelablistdevice') }}" class="row g-3">
         @csrf
@@ -55,23 +55,12 @@
         <label for="desc">System Description</label>
         <textarea type="text" class="form-control" name="desc">{{ $data->desc }}</textarea>
         <input type="hidden" name="id" value="{{ $data->id }}">
-        <label for="desc" style="margin-top: 10px">Lab name</label>
-        <select name="lab_name" id="lab_name" class="form-control">
-            <option value="Alan Kay" {{ Auth::user()->labname === 'Alan Kay' ? 'selected' : '' }}>Alan Kay Lab</option>
-            <option value="Nicklaus Writh" {{ Auth::user()->labname === 'Nicklaus Writh' ? 'selected' : '' }}>Nicklaus
-                Writh
-                Lab</option>
-            <option value="John Backus" {{ Auth::user()->labname === 'John Backus' ? 'selected' : '' }}>John Backus Lab
-            </option>
-            <option value="Djikstra" {{ Auth::user()->labname === 'Djikstra' ? 'selected' : '' }}>Djikstra Lab
-            </option>
-            <option value="Donald Knuth" {{ Auth::user()->labname === 'Donald Knuth' ? 'selected' : '' }}>Donald Knuth
-                Lab
-            </option>
-            <option value="EF Codd" {{ Auth::user()->labname === 'EF Codd' ? 'selected' : '' }}>EF Codd Lab</option>
-            <option value="Jimgray" {{ Auth::user()->labname === 'Jimgray' ? 'selected' : '' }}>Jimgray Lab</option>
-            <option value="DSP VLSI" {{ Auth::user()->labname === 'DSP VLSI' ? 'selected' : '' }}>DSP VLSI Lab</option>
-        </select>
+        <label for="lab_name" style="margin-top: 10px">Lab Name</label>
+                <select name="lab_name" id="lab_name" class="form-control">
+                    @foreach ($labs as $dev)
+                    <option value="{{ $dev->lab_name }}">{{ $dev->lab_name }}</option>
+                    @endforeach
+                </select>
         <div style="display:flex; justify-content:space-between; width:100%; margin-top:2%">
             <button type="submit" class="btn btn-primary">Update</button>
             <a href='{{ url('superadmin/lablist') }}' class="btn btn-danger">Back</a>

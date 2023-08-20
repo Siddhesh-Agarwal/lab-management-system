@@ -1,27 +1,28 @@
 @extends('superadmin.dashboard')
 
 @section('content')
-    <style>
-        table tr,
-        table th,
-        table td {
-            border: 1px solid #ccc;
-            padding: 10px;
-        }
+<style>
+    table tr,
+    table th,
+    table td {
+        border: 1px solid #ccc;
+        padding: 10px;
+    }
 
-        table th {
-            color: rgba(255, 152, 55, 0.785)
-        }
+    table th {
+        color: #ffffff;
+    }
 
-        body {
-            margin-top: 75px;
-        }
+    body {
+        margin-top: 75px;
+    }
 
-        .button-actions {
-            display: flex;
-            flex-direction: row;
-        }
-    </style>
+    .button-actions {
+        display: flex;
+        flex-direction: row;
+    }
+</style>
+
     <section class="content" style="margin: 20px">
         @if (Session::has('success'))
             <div id="success-alert" class="alert alert-success" role=alert>
@@ -57,7 +58,7 @@
                                 <div class="card-header">
                                 </div>
                                 <!-- /.card-header -->
-
+                                @if (count($data) > 0)
                                 <div class="card-body">
                                     @if (!session('search_flag'))
                                         <form id="search-form" action="{{ route('superadmin.searchlabdevices') }}"
@@ -81,7 +82,7 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th>S.No</th>
+                                                <th >S.no</th>
                                                 <th>Device</th>
                                                 <th>Serial</th>
                                                 <th>System</th>
@@ -103,7 +104,7 @@
                                                     <td>{{ $dev->lab_name }}</td>
                                                     <td>
                                                         <div class="button-actions">
-                                                            <a href="{{ url('superadmin/editlablistdevice/' . $dev->id) }}"
+                                                            <a href="{{ url('superadmin/editlablistdevices/' . $dev->id) }}"
                                                                 class="btn btn-primary"><i
                                                                     class="fas fa-edit fa-1x"></i></a>
 
@@ -119,6 +120,9 @@
 
                                     <!-- /.card-body -->
                                 </div>
+                                @else
+                                <h1 style="text-align: center;">No devices Found</h1>
+                            @endif
                                 <!-- /.card -->
                             </div>
                             <!-- /.col -->

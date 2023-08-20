@@ -80,7 +80,7 @@
                                 <td>{{ $dev->serial_number }}</td>
                                 <td>{{ $dev->system_model_number }}</td>
                                 <td>{{ $dev->count }}</td>
-                                <td>{{ $dec->desc }}</td>
+                                <td>{{ $dev->desc }}</td>
                                 <td>{{ $dev->lab_name }}</td>
                                 <td><a href="{{ url('superadmin/deletelist/' . $dev->id) }}"
                                         class="btn btn-danger">Delete</a></td>
