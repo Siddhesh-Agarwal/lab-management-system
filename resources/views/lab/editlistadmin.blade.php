@@ -63,6 +63,7 @@
             <textarea type="text" class="form-control" id="desc" name="desc" rows="4" cols="50">{{ $data->desc }}</textarea>
             <label for="lab_name" style="margin-top: 15px;">Lab Name</label>
                 <select name="lab_name" id="lab_name" class="form-control">
+                    <option value="{{ $data->lab_name }}">{{ $data->lab_name }}</option>
                     @foreach ($labs as $dev)
                     <option value="{{ $dev->lab_name }}">{{ $dev->lab_name }}</option>
                     @endforeach

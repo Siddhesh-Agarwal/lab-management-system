@@ -74,7 +74,7 @@
                                 @endif
                                 @if (session('search_flag'))
                                     <div id="back-button-section">
-                                        <a href="{{ route('superadmin.lablist') }}" class="btn btn-secondary">Back</a>
+                                        <a href="{{ url('superadmin/lablist') }}" class="btn btn-secondary">Back</a>
                                     </div>
                                 @endif
 

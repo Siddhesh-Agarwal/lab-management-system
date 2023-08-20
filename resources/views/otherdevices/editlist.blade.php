@@ -58,6 +58,7 @@
         <input type="hidden" name="id" value="{{ $data->id }}">
         <label for="lab_name">Lab Name</label>
                 <select name="lab_name" id="lab_name" class="form-control">
+                    <option value="{{ $data->lab_name }}" selected>{{ $data->lab_name }}</option>
                     @foreach ($labs as $dev)
                     <option value="{{ $dev->lab_name }}">{{ $dev->lab_name }}</option>
                     @endforeach

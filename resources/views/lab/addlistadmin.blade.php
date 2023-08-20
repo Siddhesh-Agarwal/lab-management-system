@@ -71,7 +71,7 @@
                     </select>
                 <div style="display:flex; justify-content:space-between; width:100%; margin-top:2%">
                     <button type="submit" class="btn btn-primary">Add</button>
-                    <a href='{{ route('admin.listdevice', ['lab_name' => Auth::user()->labname]) }}'
+                    <a href='{{ route('superadmin.lablistdevices', ['lab_name' => Auth::user()->labname]) }}'
                         class="btn btn-danger">Back</a>
                 </div>
             </form>

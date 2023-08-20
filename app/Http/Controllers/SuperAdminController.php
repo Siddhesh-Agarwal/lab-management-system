@@ -80,7 +80,7 @@ class SuperAdminController extends Controller
         $totalDeviceCount = Labmove_table::count();
         $totalTempCount=Temp::count();
         $labs=Lab_Table::get();
-        return view('superadmin.add_admin',['totalDeviceCount'=>$totalDeviceCount,'totlaTempCount'=>$totalTempCount,'labs'=>$labs]);
+        return view('superadmin.add_admin',['totalDeviceCount'=>$totalDeviceCount,'totalTempCount'=>$totalTempCount,'labs'=>$labs]);
     }
     public function delete_admin(Request $request)
     {
