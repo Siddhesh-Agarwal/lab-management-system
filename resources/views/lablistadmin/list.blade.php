@@ -104,7 +104,7 @@
                                                                     class="btn btn-primary"><i
                                                                         class="fas fa-edit fa-1x"></i></a>
                                                                 <a class="btn btn-danger"
-                                                                    href="{{ url('admin/addlabmovelist/' . $dev->id) }}">
+                                                                    href="{{ url('admin/addlabmovelist/' . $dev->id) }}" style="margin-left: 15px;">
                                                                     <i class="fas fa-exchange-alt fa-1x"></i>
                                                                 </a>
 
@@ -122,7 +122,7 @@
                                     <!-- /.card-body -->
                                 </div>
                             @else
-                                <h1>No devices Found</h1>
+                                <h1  style="text-align: center;">No devices Found</h1>
                             @endif
 
                             <!-- /.card -->

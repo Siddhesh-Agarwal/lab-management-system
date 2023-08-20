@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Labmove_table;
 use App\Models\Lab_Table;
 use App\Models\OtherDevice;
+use App\Models\Temp;
 use Illuminate\Http\Request;
 
 class OtherDeviceController extends Controller
@@ -14,26 +15,31 @@ class OtherDeviceController extends Controller
     {
         $data = OtherDevice::get();
         $totalDeviceCount = Labmove_table::count();
-        return view('otherdevices.list', ['data' => $data, 'totalDeviceCount' => $totalDeviceCount]);
+        $totalTempCount=Temp::count();
+        return view('otherdevices.list', ['data' => $data, 'totalDeviceCount' => $totalDeviceCount,'totalTempCount'=>$totalTempCount]);
     }
 
     public function indexa($lab_name)
     {
         // $data = OtherDevice::get();
+        $labNames=Lab_Table::get();
         $data = OtherDevice::where('lab_name', '=', $lab_name)->get();
-        return view('otherdevicesadmin.list', compact(('data')));
+        return view('otherdevicesadmin.list',  ['data'=>$data,'labNames'=>$labNames]);
     }
 
     public function add()
     {
         $data = OtherDevice::get();
+        $totalTempCount=Temp::count();
+        $labs=Lab_Table::get();
         $totalDeviceCount = Labmove_table::count();
-        return view('otherdevices.addlist', ['data' => $data, 'totalDeviceCount' => $totalDeviceCount]);
+        return view('otherdevices.addlist', ['data' => $data, 'totalDeviceCount' => $totalDeviceCount,'totalTempCount'=>$totalTempCount,'labs'=>$labs]);
     }
 
     public function adda()
     {
-        return view('otherdevicesadmin.addlist');
+        $labNames=Lab_Table::get();
+        return view('otherdevicesadmin.addlist',['labNames'=>$labNames]);
     }
 
     public function save(Request $request)
@@ -58,9 +64,9 @@ class OtherDeviceController extends Controller
             $dev->lab_id = $lab_id;
             $dev->save();
 
-            return redirect()->back()->with('success', 'Device Added successfully!');
+            return redirect()->route('superadmin.otherdevice')->with('success', 'Device Added successfully!');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Something went wrong !');
+            return redirect()->route('superadmin.otherdevice')->with('error', 'Something went wrong !');
         }
 
     }
@@ -95,14 +101,17 @@ class OtherDeviceController extends Controller
     {
         $datas = OtherDevice::get();
         $totalDeviceCount = Labmove_table::count();
+        $totalTempCount=Temp::count();
+        $labs=Lab_Table::get();
         $data = OtherDevice::where('id', '=', $id)->first();
-        return view('otherdevices.editlist', ['data' => $data, 'datas' => $datas, 'totalDeviceCount' => $totalDeviceCount]);
+        return view('otherdevices.editlist', ['data' => $data, 'datas' => $datas, 'totalDeviceCount' => $totalDeviceCount,'totalTempCount'=>$totalTempCount,'labs'=>$labs]);
     }
 
     public function edita($id)
     {
+        $labNames=Lab_table::get();
         $data = OtherDevice::where('id', '=', $id)->first();
-        return view('otherdevicesadmin.editlist', compact('data'));
+        return view('otherdevicesadmin.editlist', ['data'=>$data,'labNames'=>$labNames]);
     }
 
     public function update(Request $request)
@@ -127,10 +136,10 @@ class OtherDeviceController extends Controller
                 'lab_id' => $lab_id,
             ]);
 
-            return redirect()->back()->with('success', 'Device updated successfully');
+            return redirect()->route('superadmin.otherdevice')->with('success', 'Device updated successfully');
         }
         catch(\Exception $e){
-            return redirect()->back()->with('notification', 'Something went wrong !');
+            return redirect()->route('superadmin.otherdevice')->with('notification', 'Something went wrong !');
         }
     }
 
@@ -166,10 +175,11 @@ class OtherDeviceController extends Controller
     {
         $labName = urldecode($request->input('lab_name'));
         $totalDeviceCount = Labmove_table::count();
+        $totalTempCount=Temp::count();
         $data = OtherDevice::where('lab_name', 'like', "%$labName%")->get();
         session(['search_flag' => true]);
 
-        return view('otherdevices.list', ['lab_name' => $labName, 'data' => $data, 'totalDeviceCount' => $totalDeviceCount]);
+        return view('otherdevices.list', ['lab_name' => $labName, 'data' => $data, 'totalDeviceCount' => $totalDeviceCount,'totalTempCount' => $totalTempCount]);
     }
     public function delete($id)
     {

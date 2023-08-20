@@ -96,13 +96,11 @@
                                                                     class="btn btn-primary">Edit</a>
                                                             </td>
                                                             <td>
-                                                                <form method="POST"
-                                                                    action="{{ route('temps.moveData', $dev->id) }}"onsubmit="return confirm('Are you sure you want to move this data to scraps?');">
-                                                                    @csrf <button type="submit"
-                                                                        class="btn btn-secondary">Move
-                                                                        to
-                                                                        Temp</button>
-                                                                </form>
+                                                                 <form method="POST"
+                                                        action="{{ route('temps.movecount', $dev->id) }}">
+                                                        @csrf <button type="submit" class="btn btn-secondary">Move to
+                                                            Temp</button>
+                                                    </form>
                                                             </td>
                                                         @endif
                                                     </tr>

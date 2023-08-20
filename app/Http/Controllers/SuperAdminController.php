@@ -2,20 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lab;
+use App\Models\Lablist;
+use App\Models\Labmove_table;
+use App\Models\Lab_Table;
+use App\Models\Temp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class SuperAdminController extends Controller
 {
     public function index()
     {
-        return view('superadmin.content');
+        $totalDeviceCount = Labmove_table::count();
+        $totalTempCount=Temp::count();
+        return view('superadmin.content',['totalDeviceCount' => $totalDeviceCount,'totalTempCount'=>$totalTempCount]);
     }
 
     public function simple_search()
     {
-        return view('superadmin.simplesearch');
+         $totalDeviceCount = Labmove_table::count();
+        $totalTempCount=Temp::count();
+        return view('superadmin.simplesearch',['totalDeviceCount' => $totalDeviceCount,'totalTempCount'=>$totalTempCount]);
     }
 
     public function advance_search()
@@ -25,7 +35,9 @@ class SuperAdminController extends Controller
 
     public function contact()
     {
-        return view('superadmin.contact');
+        $totalDeviceCount = Labmove_table::count();
+        $totalTempCount=Temp::count();
+        return view('superadmin.contact',['totalDeviceCount' => $totalDeviceCount,'totalTempCount'=>$totalTempCount]);
     }
 
     public function create(Request $request)
@@ -57,14 +69,18 @@ class SuperAdminController extends Controller
 
     public function details()
     {
-
+        $totalDeviceCount = Labmove_table::count();
+        $totalTempCount=Temp::count();
         $details = User::where('role', 'admin')->get();
-        return view('superadmin.admin_details', compact(('details')));
+        return view('superadmin.admin_details', ['details'=>$details,'totalDeviceCount'=>$totalDeviceCount,'totalTempCount'=>$totalTempCount]);
     }
 
     public function add_admin()
     {
-        return view('superadmin.add_admin');
+        $totalDeviceCount = Labmove_table::count();
+        $totalTempCount=Temp::count();
+        $labs=Lab_Table::get();
+        return view('superadmin.add_admin',['totalDeviceCount'=>$totalDeviceCount,'totlaTempCount'=>$totalTempCount,'labs'=>$labs]);
     }
     public function delete_admin(Request $request)
     {
@@ -86,7 +102,10 @@ class SuperAdminController extends Controller
     public function edit_admin(int $id)
     {
         $user = User::find($id);
-        return view('superadmin.edit_admin', compact(urlencode('user')));
+        $totalDeviceCount = Labmove_table::count();
+        $totalTempCount=Temp::count();
+        $labs=Lab_Table::get();
+        return view('superadmin.edit_admin', [urlencode('user')=>$user,'totalDeviceCount'=>$totalDeviceCount,'totalTempCount'=>$totalTempCount,'labs'=>$labs]);
     }
     public function update_admin(Request $request, $id)
     {
@@ -113,4 +132,85 @@ class SuperAdminController extends Controller
             return redirect()->route('superadmin.details')->with('error', 'Something went wrong !');
         }
     }
+    public function searchBySerial(Request $request)
+    {
+        $totalDeviceCount = Labmove_table::count();
+        $totalTempCount=Temp::count();
+        $searchTerm = $request->input('search_term');
+        $results=Lab::where('serial_number','LIKE','%'.$searchTerm.'%')->get();
+        // dd($results);
+
+        return view('superadmin.simplesearch', ['results' => $results,'totalDeviceCount' => $totalDeviceCount,'totalTempCount'=>$totalTempCount]);
+
+    }
+    public function searchByDevice(Request $request)
+    {
+        $totalDeviceCount = Labmove_table::count();
+        $totalTempCount=Temp::count();
+        $searchTerm = $request->input('search_termd');
+        $resultd=Lab::where('device_name','LIKE','%'.$searchTerm.'%')->get();
+        // dd($resultd);
+        return view('superadmin.simplesearch', ['resultd' => $resultd,'totalDeviceCount' => $totalDeviceCount,'totalTempCount'=>$totalTempCount]);
+
+    }
+    public function searchBySystem(Request $request)
+    {
+        $totalDeviceCount = Labmove_table::count();
+        $totalTempCount=Temp::count();
+        $searchTerm = $request->input('search_terms');
+        $result=Lablist::where('system_number','LIKE','%'.$searchTerm.'%')->get();
+        // dd($result);
+        return view('superadmin.simplesearch', ['result' => $result,'totalDeviceCount' => $totalDeviceCount,'totalTempCount'=>$totalTempCount]);
+
+    }
+
+    public function getLabDetails(){
+        $totalDeviceCount = Labmove_table::count();
+        $totalTempCount=Temp::count();
+        // $data = Lab_Table::get();
+        $data = DB::table('lab__tables')
+        ->join('users', 'lab__tables.lab_name', '=', 'users.labname')
+        ->select('lab__tables.lab_name', 'users.name as admin_name','lab__tables.id')
+        ->get();
+        // dd($data);
+        return view('superadmin.labdetails',['data' => $data,'totalDeviceCount' => $totalDeviceCount,'totalTempCount'=>$totalTempCount]);
+    }
+    public function searchlab(Request $request)
+    {
+        $labName = $request->input('lab_name');
+        $totalDeviceCount = Labmove_table::count();
+        $totalTempCount=Temp::count();
+        $data = DB::table('lab__tables')
+        ->join('users', 'lab__tables.lab_name', '=', 'users.labname')
+        ->select('lab__tables.lab_name', 'users.name as admin_name')
+        ->where('lab__tables.lab_name', 'like', "%$labName%")
+        ->get();
+        session(['search_flag' => true]);
+        return view('superadmin.labdetails', ['lab_name' => $labName, 'data' => $data,'totalDeviceCount'=>$totalDeviceCount,'totalTempCount'=>$totalTempCount]);
+        // return view('lablist.list', compact('data', 'labName', 'totalDeviceCount'));
+    }
+
+    public function addlab(){
+        $totalDeviceCount = Labmove_table::count();
+        $totalTempCount=Temp::count();
+        return view('superadmin.addlablist',['totalDeviceCount'=>$totalDeviceCount,'totalTempCount'=>$totalTempCount]);
+    }
+
+    public function savelab(Request $request)
+    {
+
+       
+        $lab_name = $request->lab_name;
+        $dev = new Lab_Table();
+        $dev->lab_name = $lab_name;
+       
+        $dev->save();
+        // Toastr::success('Device Added successfully!', 'Success');
+        return redirect()->route('superadmin.labdetails')->with('notification', 'success');
+
+
+        // $data=array('device_name'=>$name,'serial_number'=>$serial_number,'system_model_number'=>$system_model_number,'count'=>$count,'lab_name'=>$lab_name);
+
+    }
+
 }

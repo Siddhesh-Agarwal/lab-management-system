@@ -54,9 +54,16 @@
                 <label for="serial_number">Serial Number:</label>
                 <input type="text" class="form-control" id="serial_number" name="serial_number"
                     placeholder="Enter Serial Number">
-                <label for="system_model_number">System Model Number:</label>
+                {{-- <label for="system_model_number">System Model Number:</label>
                 <input type="text" class="form-control" id="system_model_number" name="system_model_number"
-                    placeholder="Enter System Model No" required>
+                    placeholder="Enter System Model No" required> --}}
+                    <label for="system_model_number">System Number:</label>
+                    <select class="form-control" name="system_model_number" id="system_model_number" required>
+                        <option value="" selected disabled>Select System Number</option>
+                        @foreach ($systemNumbers as $systemNumber)
+                            <option value="{{ $systemNumber }}">{{ $systemNumber }}</option>
+                        @endforeach
+                    </select>
                 <label for="count">Count:</label>
                 <input type="number" min="1" value="1" class="form-control" id="count" name="count"
                     placeholder="Enter Count" required>

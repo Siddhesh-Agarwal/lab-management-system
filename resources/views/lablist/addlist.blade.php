@@ -57,8 +57,14 @@
             <label for='desc'>System Description</label>
             <textarea name="desc" class="form-control" id="desc" cols="30" rows="10"
                 placeholder="Enter Description"></textarea>
-
             <label for="lab_name">Lab Name:</label>
+            <select name="lab_name" id="lab_name" class="form-control">
+                @foreach ($labs as $dev)
+                    <option value="{{ $dev->lab_name }}">{{ $dev->lab_name }}</option>
+                @endforeach
+            </select>
+
+            {{-- <label for="lab_name">Lab Name:</label>
             <select name="lab_name" id="lab_name" class="form-control">
                 <option value="Alan Kay">Alan Kay Lab</option>
                 <option value="Nicklaus Writh">Nicklaus
@@ -74,7 +80,7 @@
                 <option value="EF Codd">EF Codd Lab</option>
                 <option value="Jimgray">Jimgray Lab</option>
                 <option value="DSP VLSI">DSP VLSI Lab</option>
-            </select>
+            </select> --}}
             <div style="display:flex; justify-content:space-between; width:100%; margin-top:2%">
                 <button type="submit" class="btn btn-primary">Add</button>
                 <a href='{{ url('superadmin/lablist') }}' class="btn btn-danger">Back</a>

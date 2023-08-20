@@ -109,7 +109,7 @@
                                 </div>
                                 <!-- /.card -->
                             @else 
-                                <h1 style="text-align: center">No Data Found</h1>
+                                <h1 style="text-align: center">No Requests Found</h1>
                             @endif
                         </div>
                         <!-- /.col -->

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lab_Table;
 use App\Models\Logs;
 use App\Models\Student;
 use Carbon\Carbon;
@@ -19,18 +20,20 @@ class AdminController extends Controller
     public function index()
     {
         $data_box = session('data_box');
-
-        return view('admin.content', compact('data_box'));
+        $labNames=Lab_Table::get();
+        return view('admin.content', ['data_box'=>$data_box,'labNames'=>$labNames]);
     }
 
     public function tables()
     {
-        return view('admin.tables');
+        $labNames=Lab_Table::get();
+        return view('admin.tables',['labNames'=>$labNames]);
     }
 
     public function device_details()
     {
-        return view('admin.devicedetails');
+        $labNames=Lab_Table::get();
+        return view('admin.devicedetails',['labNames'=>$labNames]);
     }
 
     public function logout()
@@ -167,82 +170,91 @@ class AdminController extends Controller
     public function show()
     {
         $data = Student::all();
-
-        return view('admin.tables', compact('data'));
+        $labNames=Lab_Table::get();
+        return view('admin.tables', ['data'=>$data,'labNames'=>$labNames]);
     }
 
     public function simple_search()
     {
-        return view('admin.simplesearch');
+        $labNames=Lab_Table::get();
+        return view('admin.simplesearch',['labNames'=>$labNames]);
     }
 
     public function advance_search()
     {
-        return view('admin.advancesearch');
+        $labNames=Lab_Table::get();
+        return view('admin.advancesearch',['labNames'=>$labNames]);
     }
 
     public function contact()
     {
-        return view('admin.contact');
+        $labNames=Lab_Table::get();
+        return view('admin.contact',['labNames'=>$labNames]);
     }
 
     public function searchBySerial(Request $request)
     {
+        $labNames=Lab_Table::get();
         $lab_name=Auth::user()->labname;
         $searchTerm = $request->input('search_term');
         $results=Lab::where('serial_number','LIKE','%'.$searchTerm.'%')
         ->get();
         
-        return view('admin.simplesearch', ['results' => $results]);
+        return view('admin.simplesearch', ['results' => $results,'labNames'=>$labNames]);
 
     }
 
     public function searchByDevice(Request $request)
     {
+        $labNames=Lab_Table::get();
         $searchTerm = $request->input('search_termd');
         $resultd=Lab::where('device_name','LIKE','%'.$searchTerm.'%')->get();
         // dd($resultd);
-        return view('admin.simplesearch', ['resultd' => $resultd]);
+        return view('admin.simplesearch', ['resultd' => $resultd,'labNames'=>$labNames]);
 
     }
     public function searchBySystem(Request $request)
     {
+        $labNames=Lab_Table::get();
         $searchTerm = $request->input('search_terms');
         $result=Lablist::where('system_number','LIKE','%'.$searchTerm.'%')->get();
         // dd($result);
-        return view('admin.simplesearch', ['result' => $result]);
+        return view('admin.simplesearch', ['result' => $result,'labNames'=>$labNames]);
 
     }
     public function searchByLabSerial(Request $request)
     {
+        $labNames=Lab_Table::get();
         $lab_name=Auth::user()->labname;
         $searchTerm = $request->input('search_term');
         $results=Lab::where('serial_number','LIKE','%'.$searchTerm.'%')
                      ->where('lab_name',$lab_name)->get();
         // dd($results);
-        return view('admin.labsearch', ['results' => $results]);
+        return view('admin.simplesearch', ['results' => $results,'labNames'=>$labNames]);
 
     }
     public function searchByLabDevice(Request $request)
     {
+        $labNames=Lab_Table::get();
         $lab_name = Auth::user()->labname;
         $searchTerm = $request->input('search_termd');
         $resultd=Lab::where('device_name','LIKE','%'.$searchTerm.'%')
                       ->where('lab_name',$lab_name)
         ->get();
         // dd($resultd);
-        return view('admin.labsearch', ['resultd' => $resultd]);
+        return view('admin.simplesearch', ['resultd' => $resultd,'labNames'=>$labNames]);
 
     }
     public function searchByLabSystem(Request $request)
     {
+        $labNames=Lab_Table::get();
         $lab_name=Auth::user()->labname;
         $searchTerm = $request->input('search_terms');
         $result=Lablist::where('system_number','LIKE','%'.$searchTerm.'%')
                         ->where('lab_name',$lab_name)
         ->get();
         // dd($result);
-        return view('admin.labsearch', ['result' => $result]);
+        return view('admin.simplesearch', ['result' => $result,'labNames'=>$labNames]);
 
     }
 

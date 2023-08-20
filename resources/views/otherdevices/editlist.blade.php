@@ -53,22 +53,15 @@
         <input type="number" class="form-control" name="ups_load" value="{{ $data->ups_load }}">
         <label for="ac_load">Ac Load</label>
         <input type="number" class="form-control" name="ac_load" value="{{ $data->ac_load }}">
-        <label for="wifi_access_points">Wifi Access Point:</label>
+        <label for="wifi_access_points">Wifi Access Point</label>
         <input type="number" class="form-control" name="wifi_access_points" value="{{ $data->wifi_access_points }}">
         <input type="hidden" name="id" value="{{ $data->id }}">
-        <label for="lab_name">Lab Name:</label>
-        <select name="lab_name" id="lab_name" class="form-control">
-            <option value="Alan Kay" {{ $data->lab_name === 'Alan Kay' ? 'selected' : '' }}>Alan Kay Lab</option>
-            <option value="Nicklaus Writh" {{ $data->lab_name === 'Nicklaus Writh' ? 'selected' : '' }}>Nicklaus Writh Lab
-            </option>
-            <option value="John Backus" {{ $data->lab_name === 'John Backus' ? 'selected' : '' }}>John Backus Lab</option>
-            <option value="Djikstra" {{ $data->lab_name === 'Djikstra' ? 'selected' : '' }}>Djikstra Lab</option>
-            <option value="Donald Knuth" {{ $data->lab_name === 'Donald Knuth' ? 'selected' : '' }}>Donald Knuth Lab
-            </option>
-            <option value="EF Codd" {{ $data->lab_name === 'EF Codd' ? 'selected' : '' }}>EF Codd Lab</option>
-            <option value="Jimgray" {{ $data->lab_name === 'Jimgray' ? 'selected' : '' }}>Jimgray Lab</option>
-            <option value="DSP VLSI" {{ $data->lab_name === 'DSP VLSI' ? 'selected' : '' }}>DSP VLSI Lab</option>
-        </select>
+        <label for="lab_name">Lab Name</label>
+                <select name="lab_name" id="lab_name" class="form-control">
+                    @foreach ($labs as $dev)
+                    <option value="{{ $dev->lab_name }}">{{ $dev->lab_name }}</option>
+                    @endforeach
+                </select>
         <div style="display:flex; justify-content:space-between; width:100%; margin-top:2%">
             <button type="submit" class="btn btn-primary">Update</button>
             <a href='{{ url('superadmin/otherdevice') }}' class="btn btn-danger">Back</a>

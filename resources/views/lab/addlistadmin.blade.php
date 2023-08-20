@@ -63,23 +63,12 @@
                 <label for="desc">Service Description:</label><br>
                 <textarea type="text" class="form-control" id="desc" name="desc" placeholder="Enter desc" rows="4"
                     cols="50"></textarea><br>
-                <label for="lab_name">Lab Name:</label>
-                <select name="lab_name" id="lab_name" class="form-control">
-                    <option value="Alan Kay">Alan Kay Lab</option>
-                    <option value="Nicklaus Writh">Nicklaus
-                        Writh
-                        Lab</option>
-                    <option value="John Backus">John Backus Lab
-                    </option>
-                    <option value="Djikstra">Djikstra Lab
-                    </option>
-                    <option value="Donald Knuth">Donald Knuth
-                        Lab
-                    </option>
-                    <option value="EF Codd">EF Codd Lab</option>
-                    <option value="Jimgray">Jimgray Lab</option>
-                    <option value="DSP VLSI">DSP VLSI Lab</option>
-                </select>
+                    <label for="lab_name" style="margin-top: 10px;">Lab Name</label>
+                    <select name="lab_name" id="lab_name" class="form-control">
+                        @foreach ($labs as $dev)
+                        <option value="{{ $dev->lab_name }}">{{ $dev->lab_name }}</option>
+                        @endforeach
+                    </select>
                 <div style="display:flex; justify-content:space-between; width:100%; margin-top:2%">
                     <button type="submit" class="btn btn-primary">Add</button>
                     <a href='{{ route('admin.listdevice', ['lab_name' => Auth::user()->labname]) }}'

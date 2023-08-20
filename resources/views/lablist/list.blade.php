@@ -58,7 +58,7 @@
                                 {{-- <h3 class="card-title">DataTable with minimal features & hover style</h3> --}}
                             </div>
                             <!-- /.card-header -->
-
+                            @if (count($data) > 0)
                             <div class="card-body">
                                 @if (!session('search_flag'))
                                     <form id="search-form" action="{{ route('superadmin.searchlablistdevices') }}"
@@ -117,6 +117,9 @@
 
                                 <!-- /.card-body -->
                             </div>
+                            @else
+                                <h1  style="text-align: center;">No devices Found</h1>
+                            @endif
                             <!-- /.card -->
                         </div>
                         <!-- /.col -->

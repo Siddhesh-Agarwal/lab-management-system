@@ -20,12 +20,8 @@
 
     <div class="container" style='magin-top:20px'>
 
-        @if ($data->count() == 0)
-            <h1>
-                <td colspan="3" class="text-center">No Devices Found</td>
-            </h1>
-        @else
-            <p>Total items: {{ $data->sum('count') }}</p>
+       
+            <p>Total Devices: {{ $data->sum('count') }}</p>
             <section class="content">
                 @if (Session::has('success'))
                     <div id="success-alert" class="alert alert-success" role=alert>
@@ -58,6 +54,11 @@
                                 <div class="card-header">
 
                                 </div>
+                                @if ($data->count() == 0)
+                                <h1  style="text-align: center;">
+                                    No Requests Found
+                                </h1>
+                            @else
                                 <!-- /.card-header -->
                                 <div class="card-body">
                                     <table class="table">

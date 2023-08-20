@@ -54,28 +54,19 @@
         <label for="system_number">System Number:</label>
         <input type="text" class="form-control" name="system_number" value="{{ $data->system_number }}" readonly>
         <label for="desc">System Description:</label>
-        <textarea type="text" class="form-control" name="desc" readonly>{{ $data->desc }} </textarea>
+        <textarea type="text" class="form-control" name="desc" >{{ $data->desc }} </textarea>
         <input type="hidden" name="id" value="{{ $data->id }}">
         <label for="source">Lab Name:</label>
         <input type="text" class="form-control" id="source" name="source" placeholder="Enter Lab Name"
             value="{{ $data->lab_name }}" readonly>
-        <label for="destination">Exchange Name:</label>
-        <select name="destination" id="destination" class="form-control">
-            <option value="Alan Kay">Alan Kay Lab</option>
-            <option value="Nicklaus Writh">Nicklaus
-                Writh
-                Lab</option>
-            <option value="John Backus">John Backus Lab
-            </option>
-            <option value="Djikstra Lab">Djikstra Lab
-            </option>
-            <option value="Donald Knuth">Donald Knuth
-                Lab
-            </option>
-            <option value="EF Codd">EF Codd Lab</option>
-            <option value="Jimgray">Jimgray Lab</option>
-            <option value="DSP VLSI">DSP VLSI Lab</option>
-        </select>
+            <label for="destination">Exchange Lab:</label>
+            <select name="destination" id="destination" class="form-control">
+                @foreach ($labNames as $dev)
+                @if ($dev->lab_name !== $data->lab_name)
+                        <option value="{{ $dev->lab_name }}">{{ $dev->lab_name }}</option>
+                    @endif
+                @endforeach
+            </select>
         <button type="submit" class="btn btn-primary">Exchange</button>
         <hr>
         <a href='{{ route('admin.lablist', ['lab_name' => urlencode(Auth::user()->labname)]) }}'
