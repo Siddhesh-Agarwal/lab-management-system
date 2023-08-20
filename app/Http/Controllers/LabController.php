@@ -96,7 +96,7 @@ class LabController extends Controller
 
             $dev->save();
 
-            return redirect()->route('superadmin.lablistdevices')->with('notification', 'Device Added successfully!');
+            return redirect()->route('superadmin.lablistdevices')->with('success', 'Device Added successfully!');
         } catch (\Exception $e) {
             return redirect()->route('superadmin.lablistdevices')->with('error', 'Something went wrong!');
         }

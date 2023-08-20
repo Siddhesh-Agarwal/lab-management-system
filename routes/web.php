@@ -70,6 +70,8 @@ Route::prefix('admin')->middleware('admin.auth')->group(function () {
 });
 
 Route::prefix('superadmin')->middleware('superadmin.auth')->group(function () {
+    Route::get('/getSystemNumbers/{lab}', [SuperAdminController::class,'getSystemNumbers']);
+
     Route::get('/addlab',[SuperAdminController::class,'addlab'])->name('superadmin.addlabs');
     Route::post('/savelabs',[SuperAdminController::class,'savelab'])->name('superadmin.savelabs');
     Route::get('/labdetails', [SuperAdminController::class, 'getLabDetails'])->name('superadmin.labdetails');

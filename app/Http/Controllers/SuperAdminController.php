@@ -213,4 +213,11 @@ class SuperAdminController extends Controller
 
     }
 
+    public function getSystemNumbers($lab)
+    {
+        $systemNumbers = Lablist::where('lab_name', $lab)->pluck('system_number');
+        // dd($systemNumbers);
+        return response()->json($systemNumbers);
+    }
+
 }
