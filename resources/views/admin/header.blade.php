@@ -14,6 +14,18 @@
          <li class="nav-item d-none d-sm-inline-block">
              <a href={{ route('admin.logout') }} class="nav-link">Logout</a>
          </li>
-     </ul>
+
+         
+         
+         <!-- /.content-header -->
+        </ul>
+        <div style="display: flex; justify-content:flex-end; width:100%; align-items:baseline">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="#">{{ Auth::user()->labname }}</a>
+                </li>
+                <li class="breadcrumb-item" style="color:black">Admin</li>
+            </ol>
+        </div>
  </nav>
  <!-- /.navbar -->

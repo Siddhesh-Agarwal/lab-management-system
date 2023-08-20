@@ -15,5 +15,13 @@
              <a href={{ route('superadmin.logout') }} class="nav-link">Logout</a>
          </li>
      </ul>
+     <div style="display: flex; justify-content:flex-end; width:100%; align-items:baseline">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#">{{ Auth::user()->labname }}</a>
+            </li>
+            <li class="breadcrumb-item" style="color:black">Super Admin</li>
+        </ol>
+    </div>
  </nav>
  <!-- /.navbar -->
