@@ -56,9 +56,13 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputLabName">Lab Name</label>
-                    <input type="text" name="labname" class="form-control" id="exampleInputLabName"
-                        value={{ urldecode($user->labname) }}>
+                    <label for="labname">Lab Name:</label>
+                    <select name="labname" id="labname" class="form-control">
+                        <option value="{{ $user->labname }}" selected>{{ $user->labname }}</option>
+                        @foreach ($labs as $dev)
+                        <option value="{{ $dev->lab_name }}">{{ $dev->lab_name }}</option>
+                        @endforeach
+                    </select>
                     @error('labname')
                         <div class="alert alert-danger" role="alert" style="margin-top: 5px">
                             <i class="fas fa-exclamation-triangle"></i>

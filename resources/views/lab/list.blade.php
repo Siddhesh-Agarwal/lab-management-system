@@ -10,7 +10,7 @@
         }
 
         table th {
-            color: black;
+            color: #ffffff;
         }
 
         body {

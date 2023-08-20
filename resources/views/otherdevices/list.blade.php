@@ -70,7 +70,7 @@
                                                 <button class="btn btn-primary" type="submit">Search</button>
 
                                             </div>
-                                        </div>
+                                        </div>  
                                     </form>
                                 @endif
                                 @if (session('search_flag'))
