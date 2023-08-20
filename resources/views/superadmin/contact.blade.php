@@ -1,40 +1,123 @@
 @extends('superadmin.dashboard')
 
+<style>
+    body {
+        background: #e8cbc0;
+        background: -webkit-linear-gradient(to right, #e8cbc0, #636fa4);
+        background: linear-gradient(to right, #e8cbc0, #636fa4);
+        min-height: 100vh;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        body {
+            background: #17343F;
+            background: -webkit-linear-gradient(to right, #17343F, #9C90D0);
+            background: linear-gradient(to right, #17343F, #9C90D0);
+        }
+    }
+
+    .social-link {
+        width: 30px;
+        height: 30px;
+        border: 1px solid #ddd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #666;
+        border-radius: 50%;
+        transition: all 0.3s;
+        font-size: 0.9rem;
+    }
+
+    .social-link:hover,
+    .social-link:focus {
+        background: #ddd;
+        text-decoration: none;
+        color: #555;
+    }
+</style>
+
 @section('content')
-    <section class="content">
-        <!-- Default box -->
-        <div class="card">
-            <div class="card-body row">
-                <div class="col-5 text-center d-flex align-items-center justify-content-center">
-                    <div class="">
-                        <h2>Admin<strong>LTE</strong></h2>
-                        <p class="lead mb-5">123 Testing Ave, Testtown, 9876 NA<br>
-                            Phone: +1 234 56789012
-                        </p>
-                    </div>
-                </div>
-                <div class="col-7">
-                    <div class="form-group">
-                        <label for="inputName">Name</label>
-                        <input type="text" id="inputName" class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <label for="inputEmail">E-Mail</label>
-                        <input type="email" id="inputEmail" class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <label for="inputSubject">Subject</label>
-                        <input type="text" id="inputSubject" class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <label for="inputMessage">Message</label>
-                        <textarea id="inputMessage" class="form-control" rows="4"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" class="btn btn-primary" value="Send message">
-                    </div>
-                </div>
+    <div class="container py-5" style="margin-top: 0px">
+        <div class="row text-center text-white">
+            <div class="col-lg-8 mx-auto">
+                <h1 class="display-4">Contact Us</h1>
             </div>
         </div>
-    </section>
+    </div>
+
+    <div class="container">
+        <div class="row text-center">
+            <!-- Team item -->
+            <div class="col-xl-3 col-sm-6 mb-5">
+                <div class="bg-white rounded shadow-sm py-5 px-4"><img
+                        src="http://results.skcet.ac.in:610/assets/StudentImage/727721EUCS134.jpg" alt="" width="100"
+                        class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                    <h5 class="mb-0">Sanjeevi CS</h5>
+                    <span class="small text-uppercase text-muted"> Backend Developer </span>
+                    <ul class="social mb-0 list-inline mt-3">
+                        <li class="list-inline-item">
+                            <a href="mailto:sanjeevisakthivel2004@gmail.com" class="social-link">
+                                <i class="fa fa-envelope"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- End -->
+
+            <!-- Team item -->
+            <div class="col-xl-3 col-sm-6 mb-5">
+                <div class="bg-white rounded shadow-sm py-5 px-4">
+                    <img src="http://results.skcet.ac.in:610/assets/StudentImage/727721EUCS140.jpg" alt="" width="100"
+                        class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                    <h5 class="mb-0">Shree Varshan G</h5><span class="small text-uppercase text-muted"> Fullstack Developer </span>
+                    <ul class="social mb-0 list-inline mt-3">
+                        <li class="list-inline-item">
+                            <a href="mailto:shreevarshang2003@gmail.com" class="social-link">
+                                <i class="fa fa-envelope"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- End -->
+
+            <!-- Team item -->
+            <div class="col-xl-3 col-sm-6 mb-5">
+                <div class="bg-white rounded shadow-sm py-5 px-4"><img
+                    src="http://results.skcet.ac.in:610/assets/StudentImage/727721EUCS144.jpg" alt="" width="100"
+                    class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                    <h5 class="mb-0">Siddhesh Agarwal</h5>
+                    <span class="small text-uppercase text-muted"> Fullstack Developer </span>
+                    <ul class="social mb-0 list-inline mt-3">
+                        <li class="list-inline-item">
+                            <a href="mailto:siddhesh.agarwal@gmail.com" class="social-link">
+                                <i class="fa fa-envelope"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- End -->
+
+            <!-- Team item -->
+            <div class="col-xl-3 col-sm-6 mb-5">
+                <div class="bg-white rounded shadow-sm py-5 px-4"><img
+                    src="http://results.skcet.ac.in:610/assets/StudentImage/727721EUCS159.jpg" alt="" width="100"
+                    class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                    <h5 class="mb-0">Sundarakrishnan R M</h5>
+                    <span class="small text-uppercase text-muted"> Testing and Research </span>
+                    <ul class="social mb-0 list-inline mt-3">
+                        <li class="list-inline-item">
+                            <a href="mailto:sunkrish2004@gmail.com" class="social-link">
+                                <i class="fa fa-envelope"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- End -->
+        </div>
+    </div>
 @endsection
