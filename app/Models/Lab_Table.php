@@ -12,6 +12,7 @@ class Lab_Table extends Model
     protected $fillable = [
         'id',
         'lab_name',
+        'lab_code'
     ];
 
     public function id()

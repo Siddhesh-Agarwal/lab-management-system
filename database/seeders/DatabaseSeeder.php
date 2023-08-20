@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             // UserTableSeeder::class,
             // StudentTableSeeder::class,
-            // LabSeeder::class,
+            LabSeeder::class,
         ]);
     }
 }

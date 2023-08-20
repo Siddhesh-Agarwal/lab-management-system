@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin Dashboard</title>
 
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href={{ url('https://fonts.googleapis.com/css2?family=Alkatra&display=swap') }}>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href={{ url('plugins/fontawesome-free/css/all.min.css') }}>
     <!-- overlayScrollbars -->
@@ -15,12 +16,9 @@
     <!-- Theme style -->
     <link rel="stylesheet" href={{ url('dist/css/adminlte.min.css') }}>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
-    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
-
     <style>
         * {
-            font-family: 'Alkatra', cursive;
+            font-family: 'Inter', sans-serif;
         }
 
         .blinking {
