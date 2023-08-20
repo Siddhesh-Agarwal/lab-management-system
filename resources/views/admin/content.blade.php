@@ -25,7 +25,7 @@
                                                     width="170px">
                                                 <h4 class="description-percentage" style="color: rgb(253, 159, 19)"><i
                                                         class="fas fa-smile-o"></i>
-                                                    <span>Welcome to {{ Auth::user()->labname }}</span>   
+                                                    <span>Welcome to {{ Auth::user()->labname }}</span>
                                         @endif
 
 
@@ -43,22 +43,25 @@
                                                 value={{ urlencode(Auth::user()->labname) }} id="labname" hidden>
                                             <input type="submit" hidden>
                                             <a href={{ route('admin.force') }} class="btn btn-danger" ">
-                                                                                        <i class="fas fa-minus"></i> Logout all</a>
-                                            </form>
+                                                                                                    <i class="fas fa-minus">
+                                                                                                        </i> Logout all
+                                                                                                    </a>
+                                                        </form>
+                                                                                        </div>
+                                                                                        <!-- /.description-block -->
+                                                                                    </div>
+                                                                                </div>
+                                                                                <!-- /.row -->
                                                                             </div>
-                                                                            <!-- /.description-block -->
-                                                                        </div>
-                                                                    </div>
-                                                                    <!-- /.row -->
-                                                                </div>
 
-                                     @if (Session::has('data_box'))
+                                                    @if (Session::has('data_box'))
                                                 <div class="card-footer" style="background-color: rgb(83, 167, 92)">
                                                     <div class="row">
                                                         <div class="col-sm-12 col-12">
                                                             <div class="description-block ">
                                                                 <h1 class="blinking" style="margin:5%">
-                                                                    {{ $data_box['message'] }}</h1>
+                                                                    {{ $data_box['message'] }}
+                                                                </h1>
                                                             </div>
                                                             <!-- /.description-block -->
                                                         </div>
@@ -70,6 +73,27 @@
                                                         document.querySelector('.blinking').classList.remove('blinking');
                                                     }, 5000); // Remove blinking class after 5 seconds
                                                 </script>
+                                                @endif
+                                                <!-- /.row -->
+                                                @if (Session::has('message'))
+                                                    <div class="card-footer" style="background-color: rgb(83, 167, 92)">
+                                                        <div class="row">
+                                                            <div class="col-sm-12 col-12">
+                                                                <div class="description-block ">
+                                                                    <h1 class="blinking" style="margin:5%">
+                                                                        {{ Session::get('message') }}
+                                                                    </h1>
+                                                                </div>
+                                                                <!-- /.description-block -->
+                                                            </div>
+                                                            <!-- /.description-block -->
+                                                        </div>
+                                                    </div>
+                                                    <script>
+                                                        setTimeout(function() {
+                                                            document.querySelector('.blinking').classList.remove('blinking');
+                                                        }, 5000); // Remove blinking class after 5 seconds
+                                                    </script>
                                                 @endif
                                                 <!-- /.row -->
                                     </div>

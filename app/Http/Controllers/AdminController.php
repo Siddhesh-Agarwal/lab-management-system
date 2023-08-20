@@ -2,13 +2,9 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< HEAD
 use App\Models\Lab;
 use App\Models\Lab_Table;
 use App\Models\Lablist;
-=======
-use App\Models\Lab_Table;
->>>>>>> 7107fbc7ccd5e120430e6f8eb4fd3ab36f98a3d4
 use App\Models\Logs;
 use App\Models\Student;
 use App\Models\StudentRecord;
@@ -63,8 +59,8 @@ class AdminController extends Controller
             $stud->update(['systemNumber' => 0]);
         }
 
-        $message = sprintf("Total force logout %s", $count);
-
+        $message = sprintf("Total force logout %d", $count);
+        
         return redirect()->action([AdminController::class, 'index'])->with('message', $message);
     }
     public function save_student(Request $request)
@@ -200,14 +196,6 @@ class AdminController extends Controller
 
     public function searchBySerial(Request $request)
     {
-<<<<<<< HEAD
-        $lab_name = Auth::user()->labname;
-        $searchTerm = $request->input('search_term');
-        $results = Lab::where('serial_number', 'LIKE', '%' . $searchTerm . '%')
-            ->get();
-
-        return view('admin.simplesearch', ['results' => $results]);
-=======
         $labNames=Lab_Table::get();
         $lab_name=Auth::user()->labname;
         $searchTerm = $request->input('search_term');
@@ -215,7 +203,6 @@ class AdminController extends Controller
         ->get();
         
         return view('admin.simplesearch', ['results' => $results,'labNames'=>$labNames]);
->>>>>>> 7107fbc7ccd5e120430e6f8eb4fd3ab36f98a3d4
 
     }
 
@@ -239,12 +226,8 @@ class AdminController extends Controller
     }
     public function searchByLabSerial(Request $request)
     {
-<<<<<<< HEAD
-        $lab_name = Auth::user()->labname;
-=======
         $labNames=Lab_Table::get();
         $lab_name=Auth::user()->labname;
->>>>>>> 7107fbc7ccd5e120430e6f8eb4fd3ab36f98a3d4
         $searchTerm = $request->input('search_term');
         $results = Lab::where('serial_number', 'LIKE', '%' . $searchTerm . '%')
             ->where('lab_name', $lab_name)->get();
@@ -266,12 +249,8 @@ class AdminController extends Controller
     }
     public function searchByLabSystem(Request $request)
     {
-<<<<<<< HEAD
-        $lab_name = Auth::user()->labname;
-=======
         $labNames=Lab_Table::get();
         $lab_name=Auth::user()->labname;
->>>>>>> 7107fbc7ccd5e120430e6f8eb4fd3ab36f98a3d4
         $searchTerm = $request->input('search_terms');
         $result = Lablist::where('system_number', 'LIKE', '%' . $searchTerm . '%')
             ->where('lab_name', $lab_name)
