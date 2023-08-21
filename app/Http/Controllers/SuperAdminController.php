@@ -98,7 +98,7 @@ class SuperAdminController extends Controller
     public function logout()
     {
         Auth::logout();
-        return redirect()->route('login');
+        return redirect()->route('login')->with('logout', 'Successfully logged out !');
     }
 
     public function edit_admin(int $id)
