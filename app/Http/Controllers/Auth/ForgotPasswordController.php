@@ -37,7 +37,7 @@ class ForgotPasswordController extends Controller
     }
 
     function sample(Request $request){
-        dd($request);
+        // dd($request);
     }
 
     public function password(Request $request){
