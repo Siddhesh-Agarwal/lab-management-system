@@ -33,7 +33,7 @@
                 </script>
             @endif
             <!-- Default box -->
-            <div class="card">
+            <div class="card" style="margin-top:130px; ">
                 <div class="card-header">
                     <h3 class="card-title">Admin Details</h3>
 

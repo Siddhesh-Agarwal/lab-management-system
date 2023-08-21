@@ -18,10 +18,10 @@
         }
     </style>
 
-    <div class="container" style='magin-top:50px'>
+    <div class="container" style='magin-top:130px'>
 
         
-        <p>Total Devices: {{ $data->sum('count') }}</p>
+        <p style="margin-top:130px; ">Total Devices: {{ $data->sum('count') }}</p>
         <section class="content">
             @if (Session::has('success'))
                 <div id="success-alert" class="alert alert-success" role=alert>

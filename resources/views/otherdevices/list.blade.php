@@ -52,7 +52,7 @@
     <div class="container" style="margin-top: 100px">
         <section class="content">
             <div class="container-fluid">
-                <div class="row">
+                <div class="row" style="margin-top:130px; ">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">

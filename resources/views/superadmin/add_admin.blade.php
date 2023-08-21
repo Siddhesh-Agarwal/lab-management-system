@@ -1,7 +1,7 @@
 @extends('superadmin.dashboard')
 
 @section('content')
-    <div class="card card-primary" style="margin:20px">
+    <div class="card card-primary" style="margin:100px">
         <div class="card-header">
             <h3 class="card-title">Add Admin</h3>
         </div>
@@ -52,11 +52,11 @@
                 </div>
                 <div class="form-group">
                     <label for="labname">Lab Name:</label>
-                <select name="labname" id="labname" class="form-control">
-                    @foreach ($labs as $dev)
-                    <option value="{{ $dev->lab_name }}">{{ $dev->lab_name }}</option>
-                    @endforeach
-                </select>
+                    <select name="labname" id="labname" class="form-control">
+                        @foreach ($labs as $dev)
+                            <option value="{{ $dev->lab_name }}">{{ $dev->lab_name }}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <!-- /.card-body -->
