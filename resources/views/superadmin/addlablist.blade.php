@@ -30,7 +30,7 @@
             </div>
         @endif
 
-        <form method="post" action="{{ route('superadmin.savelabs') }}" class="row g-3">
+        <form method="post" action="{{ route('superadmin.savelabs') }}" class="row g-3" style="margin:130px; ">
             @csrf
 
                 <label for="lab_name">Lab Name:</label>

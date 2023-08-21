@@ -26,7 +26,7 @@
     <div class="container" style='magin-top:20px'>
 
        
-            <p>Total scraps: {{ $data->sum('count') }}</p>
+            <p style="margin-top:130px; ">Total scraps: {{ $data->sum('count') }}</p>
             <section class="content">
                 <div class="container-fluid">
                     <div class="row">

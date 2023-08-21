@@ -43,7 +43,7 @@
             </script>
         @endif
 
-        <form method="post" action="{{ url('superadmin/savelablistdevice') }}" class="row g-3" style="margin-top: 100px">
+        <form method="post" action="{{ url('superadmin/savelablistdevice') }}" class="row g-3" style="margin-top: 110px">
             @csrf
 
             <label for="device_name">Device name</label>
