@@ -1,17 +1,16 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\SuperAdminController;
-use App\Http\Controllers\Auth\ForgotPasswordController;
-use App\Http\Controllers\ScrapController;
-use App\Http\Controllers\TempController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LabController;
 use App\Http\Controllers\LablistController;
-use App\Http\Controllers\OtherDeviceController;
 use App\Http\Controllers\LabMoveController;
+use App\Http\Controllers\OtherDeviceController;
+use App\Http\Controllers\ScrapController;
+use App\Http\Controllers\SuperAdminController;
+use App\Http\Controllers\TempController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +21,7 @@ use App\Http\Controllers\LabMoveController;
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
 |
-*/
+ */
 
 Route::get('/', function () {
     return view('welcome');
@@ -70,15 +69,15 @@ Route::prefix('admin')->middleware('admin.auth')->group(function () {
 });
 
 Route::prefix('superadmin')->middleware('superadmin.auth')->group(function () {
-    Route::get('/getSystemNumbers/{lab}', [SuperAdminController::class,'getSystemNumbers']);
+    Route::get('/getSystemNumbers/{lab}', [SuperAdminController::class, 'getSystemNumbers']);
 
-    Route::get('/addlab',[SuperAdminController::class,'addlab'])->name('superadmin.addlabs');
-    Route::post('/savelabs',[SuperAdminController::class,'savelab'])->name('superadmin.savelabs');
+    Route::get('/addlab', [SuperAdminController::class, 'addlab'])->name('superadmin.addlabs');
+    Route::post('/savelabs', [SuperAdminController::class, 'savelab'])->name('superadmin.savelabs');
     Route::get('/labdetails', [SuperAdminController::class, 'getLabDetails'])->name('superadmin.labdetails');
-    Route::get('/searchlabs', [SuperAdminController::class,'searchlab'])->name('superadmin.searchlabs');
+    Route::get('/searchlabs', [SuperAdminController::class, 'searchlab'])->name('superadmin.searchlabs');
     Route::post('/search', [SuperAdminController::class, 'searchBySerial'])->name('superadmin.searchSerial');
     Route::post('/searchSystem', [SuperAdminController::class, 'searchBySystem'])->name('superadmin.searchSystem');
-    Route::post('/searchDevice', [SuperAdminController::class, 'searchByDevice'])->name('superadmin.searchDevice'); 
+    Route::post('/searchDevice', [SuperAdminController::class, 'searchByDevice'])->name('superadmin.searchDevice');
     Route::get('/dashboard', [SuperAdminController::class, 'index'])->name('superadmin.dashboard');
     Route::get('/contact', [SuperAdminController::class, 'contact'])->name('superadmin.contact');
     Route::get('/simple-search', [SuperAdminController::class, 'simple_search'])->name('superadmin.search');
@@ -93,13 +92,13 @@ Route::prefix('superadmin')->middleware('superadmin.auth')->group(function () {
     Route::get('/', [SuperAdminController::class, 'logout'])->name('superadmin.logout');
     Route::get('deletelablist/{id}', [LabController::class, 'delete']);
     Route::post('updatelistdevice', [LabController::class, 'updates']);
-    Route::get('searchlabdevices', [LabController::class,'searchlab'])->name('superadmin.searchlabdevices');
+    Route::get('searchlabdevices', [LabController::class, 'searchlab'])->name('superadmin.searchlabdevices');
     Route::post('savelistdevice', [LabController::class, 'saves']);
     Route::get('savelablistdevices', [LabController::class, 'adds'])->name('superadmin.savelablistdevices');
     Route::get('addlablistdevices', [LabController::class, 'indexs'])->name('superadmin.lablistdevices');
     Route::get('editlablistdevices/{id}', [LabController::class, 'edits'])->name('superadmin.editlablistdevices');
-    Route::get('searchlablistdevices', [LablistController::class,'searchlab'])->name('superadmin.searchlablistdevices');
-    Route::get('searchotherdevices', [OtherDeviceController::class,'searchlab'])->name('superadmin.searchotherdevices');
+    Route::get('searchlablistdevices', [LablistController::class, 'searchlab'])->name('superadmin.searchlablistdevices');
+    Route::get('searchotherdevices', [OtherDeviceController::class, 'searchlab'])->name('superadmin.searchotherdevices');
     Route::get('labmovelist', [LabMoveController::class, 'index'])->name('superadmin.lablist');
     Route::get('list', [ScrapController::class, 'index'])->name('scrap.list');
     Route::get('addlist', [ScrapController::class, 'add']);
@@ -129,7 +128,6 @@ Route::prefix('superadmin')->group(function () {
     Route::post('/lab/{id}/destination', [LabMoveController::class, 'moveToDestination'])->name('labs.moveDestination');
     Route::post('/temp/{id}/moveback', [TempController::class, 'moveToBack'])->name('labs.moveBack');
 });
-
 
 Auth::routes();
 
