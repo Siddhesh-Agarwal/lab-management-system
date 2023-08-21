@@ -1,18 +1,13 @@
 @extends('admin.dashboard')
 
 <style>
-    body {
-        background: #e8cbc0;
-        background: -webkit-linear-gradient(to right, #e8cbc0, #636fa4);
-        background: linear-gradient(to right, #e8cbc0, #636fa4);
-        min-height: 100vh;
-    }
 
     @media (prefers-color-scheme: dark) {
-        body {
+        #contact-div {
             background: #17343F;
             background: -webkit-linear-gradient(to right, #17343F, #9C90D0);
             background: linear-gradient(to right, #17343F, #9C90D0);
+            min-height: 100vh;
         }
     }
 
@@ -38,7 +33,8 @@
 </style>
 
 @section('content')
-    <div class="container py-5">
+<div id="contact-div">
+    <div class="container py-5" style="margin-top: 0px">
         <div class="row text-center text-white">
             <div class="col-lg-8 mx-auto">
                 <h1 class="display-4">Contact Us</h1>
@@ -46,7 +42,7 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container" style="min-height: 100vh">
         <div class="row text-center">
             <!-- Team item -->
             <div class="col-xl-3 col-sm-6 mb-5">
@@ -120,4 +116,5 @@
             <!-- End -->
         </div>
     </div>
+</div>
 @endsection

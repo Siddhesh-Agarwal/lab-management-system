@@ -22,7 +22,7 @@
         </script>
     @endif
 
-    <form method="POST" action="{{ url('admin/labs/movetotemp') }}" class="row g-3">
+    <form method="POST" action="{{ url('admin/labs/movetotemp') }}" class="row g-3" style="margin-top:130px; ">
         @csrf
 
         <input class="input" type="hidden" name="id" value="{{ $data->id }}">

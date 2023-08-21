@@ -51,8 +51,8 @@
         @if ($data[0]->lab_name === Auth::user()->labname)
             {{-- <a href="{{ url('admin/addotherdevice') }}" class="btn btn-primary">Add</a><br><br> --}}
         @endif
-        <div class="container-fluid">
-            <div class="row">
+        <div class="container-fluid" >
+            <div class="row" style="margin-top:130px; ">
                 @foreach ($data as $key => $dev)
                     <div class="col-12 col-sm-6 col-md-6">
                         <div class="info-box">

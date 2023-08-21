@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin Dashboard</title>
-    
+
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href={{ url('plugins/fontawesome-free/css/all.min.css') }}>
     <!-- overlayScrollbars -->
@@ -15,6 +15,7 @@
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
         * {
             font-family: 'Varela Round', sans-serif;
         }
@@ -52,7 +53,7 @@
         @include('admin.sidebar')
 
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper" style="margin-top: 100px">
+        <div class="content-wrapper" style="margin-top: 80px">
             <!-- Main content -->
             @yield('content')
             <!-- /.content -->

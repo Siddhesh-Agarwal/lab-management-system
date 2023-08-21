@@ -49,10 +49,10 @@
     @endif
 
 
-    <div class="container" style="margin-top: 100px">
+    <div class="container" style="margin-top: 70px">
         <section class="content">
             <div class="container-fluid">
-                <div class="row">
+                <div class="row" style="margin-top:70px; ">
                     <div class="col-12">
                         <div class="card" style="margin-top: 100px">
                             <div class="card-header">
