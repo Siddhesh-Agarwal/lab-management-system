@@ -130,7 +130,7 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route('superadmin.addlabs') }}" class="nav-link">
-                                <i class="fas fa-user-plus nav-icon"></i>
+                                <i class="fas fa-plus-circle nav-icon"></i>
                                 <p>Add Labs</p>
                             </a>
                         </li>
