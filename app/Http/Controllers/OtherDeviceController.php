@@ -21,7 +21,7 @@ class OtherDeviceController extends Controller
 
     public function indexa($lab_name)
     {
-        // $data = OtherDevice::get();
+      
         $labNames = Lab_Table::get();
         $data = OtherDevice::where('lab_name', '=', $lab_name)->get();
         return view('otherdevicesadmin.list', ['data' => $data, 'labNames' => $labNames]);

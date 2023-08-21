@@ -24,35 +24,32 @@
     </style>
 
     <section class="content">
-        @if (Session::has('success'))
-            <div id="success-alert" class="alert alert-success" role=alert>
-                {{ Session::get('success') }}
-            </div>
-            <script>
-                // Auto-close the success alert after 5 seconds
-                setTimeout(function() {
-                    $('#success-alert').fadeOut('slow');
-                }, 5000);
+        <div class="container-fluid" style="margin-top: 100px">
+            @if (Session::has('success'))
+                    <div id="success-alert" class="alert alert-success" role=alert>
+                        {{ Session::get('success') }}
+                    </div>
+                    <script>
+                        // Auto-close the success alert after 5 seconds
+                        setTimeout(function() {
+                            $('#success-alert').fadeOut('slow');
+                        }, 5000);
 
-                // Auto-close the error alert after 5 seconds
-            </script>
-        @endif
+                        // Auto-close the error alert after 5 seconds
+                    </script>
+                @endif
 
-        @if (Session::has('error'))
-            <div id="error-alert" class="alert alert-danger" role=alert>
-                {{ Session::get('error') }}
-            </div>
-            <script>
-                setTimeout(function() {
-                    $('#error-alert').fadeOut('slow');
-                }, 5000);
-            </script>
-        @endif
-        @if ($data[0]->lab_name === Auth::user()->labname)
-            {{-- <a href="{{ url('admin/addotherdevice') }}" class="btn btn-primary">Add</a><br><br> --}}
-        @endif
-        <div class="container-fluid" >
-            <div class="row" style="margin-top:130px; ">
+                @if (Session::has('error'))
+                    <div id="error-alert" class="alert alert-danger" role=alert>
+                        {{ Session::get('error') }}
+                    </div>
+                    <script>
+                        setTimeout(function() {
+                            $('#error-alert').fadeOut('slow');
+                        }, 5000);
+                    </script>
+                @endif
+            <div class="row">
                 @foreach ($data as $key => $dev)
                     <div class="col-12 col-sm-6 col-md-6">
                         <div class="info-box">
