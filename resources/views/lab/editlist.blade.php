@@ -59,7 +59,9 @@
                     <select class="form-control" name="system_model_number" id="system_model_number" required>
                         <option value="{{ $data->system_model_number }}">{{ $data->system_model_number }}</option>
                         @foreach ($systemNumbers as $systemNumber)
+                        @if ($systemNumber !== $data->system_model_number)
                             <option value="{{ $systemNumber }}">{{ $systemNumber }}</option>
+                        @endif
                         @endforeach
                     </select>
             <label for="count" style="margin-top: 15px;">Count</label>

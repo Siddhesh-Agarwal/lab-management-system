@@ -21,7 +21,16 @@
         }
     </style>
 
-    @if (Session::has('success'))
+    
+
+    <div class="container" style='magin-top:20px'>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row" style="margin-top:130px; ">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                @if (Session::has('success'))
         <div id="success-alert" class="alert alert-success" role=alert>
             {{ Session::get('success') }}
         </div>
@@ -45,14 +54,6 @@
             }, 5000);
         </script>
     @endif
-
-    <div class="container" style='magin-top:20px'>
-        <section class="content">
-            <div class="container-fluid">
-                <div class="row" style="margin-top:130px; ">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-header">
                             </div>
                             <!-- /.card-header -->
                             @if (count($data) > 0)

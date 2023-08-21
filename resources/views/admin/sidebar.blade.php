@@ -18,7 +18,7 @@
             </div>
             <div class="info" style="margin-left: 20px">
                 {{-- <a href="#" class="d-block">{{ Auth::user()->name }}</a> --}}
-                <h3>{{ Auth::user()->name }}</h3>
+                <h3 style="color:rgba(80, 167, 255, 0.804)">{{ Auth::user()->name }}</h3>
             </div>
         </div>
 

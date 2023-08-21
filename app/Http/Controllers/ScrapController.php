@@ -20,9 +20,14 @@ class ScrapController extends Controller
     }
     public function delete($id)
     {
+        try{
         Scrap::where('id', '=', $id)->delete();
-        +Toastr::success('Scrap data deleted successfully!', 'Success');
-        return redirect()->back()->with('notification', 'Scrap data deleted successfully!');
+        Toastr::success('Scrap data deleted successfully!', 'Success');
+        return redirect()->back()->with('success', 'Scrap data deleted successfully!');
+        }
+        catch(\Exception $e){
+            return redirect()->back()->with('error', 'Something went wrong !');
+        }
     }
 
     public function moveData($id)

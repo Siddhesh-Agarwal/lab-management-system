@@ -14,6 +14,7 @@ class TempController extends Controller
 {
     public function moveToScraps($id)
     {
+        try{
         $lab = Temp::findOrFail($id);
         $existingLab = Scrap::where('serial_number', $lab->serial_number)->first();
         if ($existingLab) {
@@ -32,11 +33,16 @@ class TempController extends Controller
             $scrap->save();
         }
         $lab->delete();
-        Toastr::success('Data Moved successfully!', 'Success');
-        return redirect()->back()->with('notification', ' Data Moved successfully!');
+        Toastr::success('Data Moved to scrap successfully!', 'Success');
+        return redirect()->back()->with('success', ' Data moved to scrap successfully !');
+    }
+    catch(\Exception $e){
+        return redirect()->back()->with('error', 'Something went wrong !');
+    }
     }
     public function moveToBack($id)
     {
+        try{
         $lab = Temp::findOrFail($id);
         $existingLab = Lab::where('serial_number', $lab->serial_number)->first();
 
@@ -60,7 +66,11 @@ class TempController extends Controller
         $lab->delete();
 
         Toastr::success('Data returned successfully!', 'Success');
-        return redirect()->back()->with('notification', 'Data returned successfully!');
+        return redirect()->back()->with('success', 'Data returned successfully !');
+    }
+    catch(\Exception $e){
+        return redirect()->back()->with('error', 'Something went wrong !');
+    }
     }
 
     public function index()

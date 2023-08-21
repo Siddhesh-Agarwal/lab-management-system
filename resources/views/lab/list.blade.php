@@ -20,7 +20,15 @@
             flex-direction: row;
         }
     </style>
-    @if (Session::has('success'))
+    
+
+    <div class="container">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12" style="margin-top: 20px">
+                    <div class="card">
+                        <div class="card-header">
+                            @if (Session::has('success'))
         <div id="success-alert" class="alert alert-success" role=alert>
             {{ Session::get('success') }}
         </div>
@@ -44,13 +52,6 @@
             }, 5000);
         </script>
     @endif
-
-    <div class="container">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12" style="margin-top: 20px">
-                    <div class="card">
-                        <div class="card-header">
                             <div class="card-body">
                                 @if ($lab_name === Auth::user()->labname)
                                     <a href="{{ url('admin/addlistdevice') }}" class="btn btn-primary">Add</a>
