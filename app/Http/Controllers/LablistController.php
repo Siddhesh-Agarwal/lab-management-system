@@ -21,9 +21,11 @@ class LablistController extends Controller
 
     public function indexa($lab_name)
     {
+        $message = session('success');
+       
         $labNames = Lab_Table::get();
         $data = Lablist::where('lab_name', '=', $lab_name)->get();
-        return view('lablistadmin.list', ['data' => $data, 'lab_name' => $lab_name, 'labNames' => $labNames]);
+        return view('lablistadmin.list', ['data' => $data, 'lab_name' => $lab_name, 'labNames' => $labNames])->with('success', $message);
     }
 
     public function add()
@@ -90,8 +92,8 @@ class LablistController extends Controller
             $dev->lab_name = $lab_name;
             $dev->lab_id = $lab_id;
             $dev->save();
-
-            return redirect()->route('admin.lablist', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with(['success', 'Device Added successfully !']);
+            
+            return redirect()->route('admin.lablist', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with(['success', 'Device added successfully !']);
         } catch (\Exception $e) {
             return redirect()->route('admin.lablist', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with(['error', 'Something went wrong !']);
         }

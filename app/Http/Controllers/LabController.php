@@ -15,6 +15,7 @@ class LabController extends Controller
     public function index($lab_name)
     {
         $LabNames = Lab_Table::get();
+        
         $data = Lab::where('lab_name', '=', $lab_name)->get();
         return view('lab.list', ['data' => $data, 'lab_name' => $lab_name, 'labNames' => $LabNames]);
     }
@@ -214,7 +215,6 @@ class LabController extends Controller
                 $existingScrap->desc = $descNew;
                 $existingScrap->save();
             } else {
-
                 $scrap = new Temp([
                     'device_name' => $lab->device_name,
                     'serial_number' => $lab->serial_number,
@@ -235,7 +235,6 @@ class LabController extends Controller
                 $lab->save();
             }
 
-            // Toastr::success('Device Moved successfully!', 'Success');
             return redirect()->route('admin.listdevice', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with('success', 'Device moved successfully !');
         } catch (\Exception $e) {
             return redirect()->route('admin.listdevice', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with('error', 'Something went wrong !');

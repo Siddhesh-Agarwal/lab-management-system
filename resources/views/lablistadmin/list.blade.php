@@ -38,11 +38,9 @@
                                     setTimeout(function() {
                                         $('#success-alert').fadeOut('slow');
                                     }, 5000);
-
                                     // Auto-close the error alert after 5 seconds
                                 </script>
                             @endif
-
                             @if (Session::has('error'))
                                 <div id="error-alert" class="alert alert-danger" role=alert>
                                     {{ Session::get('error') }}
@@ -61,15 +59,8 @@
                             </div>
                             @if (count($data) > 0)
                                 <div class="card-body">
-                                    {{-- <h1>Devices for {{ $lab_name }}</h1> --}}
-
                                     <table class="table">
                                         <thead>
-                                            {{-- @foreach ($data as $key => $dev)  --}}
-                                            {{-- <tr>
-                                            <td colspan="7">
-                                                <h1>Devices for {{ $lab_name }}</h1>
-                                            </td> --}}
                                             <tr>
                                                 <td>S.no</td>
                                                 <td>Device</td>
@@ -83,7 +74,6 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-
                                             @foreach ($data as $key => $dev)
                                                 <tr>
                                                     <td>{{ $key + 1 }}</td>
@@ -103,50 +93,25 @@
                                                                     style="margin-left: 15px;">
                                                                     <i class="fas fa-exchange-alt fa-1x"></i>
                                                                 </a>
-
                                                             </div>
                                                         </td>
                                                     @endif
-
-
                                                 <tr>
                                             @endforeach
-
                                         </tbody>
                                     </table>
-
                                     <!-- /.card-body -->
                                 </div>
                             @else
                                 <h1 style="text-align: center;">No devices Found</h1>
                             @endif
-
                             <!-- /.card -->
                         </div>
                         <!-- /.col -->
                     </div>
                     <!-- /.row -->
                 </div>
-                <!-- Modal -->
-                {{-- <div class="modal fade" id="exchangeModal" tabindex="-1" role="dialog"
-                    aria-labelledby="exchangeModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exchangeModalLabel">Enter Lab Name for Exchange</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <input type="text" id="labNameInput" class="form-control" placeholder="Enter Lab Name">
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                <button type="button" class="btn btn-primary" id="exchangeBtn{{ $key }}"
-                                    onclick="showExchangeModal({{ $key }})">Exchange</button>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
-            @endsection
+            </div>
+        </section>
+    </div>
+@endsection
