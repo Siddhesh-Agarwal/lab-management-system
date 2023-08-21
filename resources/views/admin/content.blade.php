@@ -38,128 +38,124 @@
                                         <form action={{ route('admin.student.add') }} method="POST">
                                             @csrf
                                             <h2>Roll Number</h2>
-                                            <input style="width:50%" type="text" name="rollno" id="rollno">
+                                            {{-- Roll number should be converted to uppercase --}}
+                                            <input style="width:50%" type="text" name="rollno" id="rollno" required />
                                             <input type="text" name="labname"
-                                                value={{ urlencode(Auth::user()->labname) }} id="labname" hidden>
-                                            <input type="submit" hidden>
+                                                value={{ urlencode(Auth::user()->labname) }} id="labname" hidden />
+                                            <input type="submit" hidden />
                                             <a href={{ route('admin.force') }} class="btn btn-danger" ">
-                                                                                                    <i class="fas fa-minus">
-                                                                                                        </i> Logout all
-                                                                                                    </a>
-                                                        </form>
-                                                                                        </div>
-                                                                                        <!-- /.description-block -->
-                                                                                    </div>
-                                                                                </div>
-                                                                                <!-- /.row -->
-                                                                            </div>
-
-                                                    @if (Session::has('data_box'))
-                                                <div class="card-footer" style="background-color: rgb(83, 167, 92)">
-                                                    <div class="row">
-                                                        <div class="col-sm-12 col-12">
-                                                            <div class="description-block ">
-                                                                <h1 class="blinking" style="margin:5%">
-                                                                    {{ $data_box['message'] }}
-                                                                </h1>
-                                                            </div>
-                                                            <!-- /.description-block -->
-                                                        </div>
-                                                        <!-- /.description-block -->
-                                                    </div>
-                                                </div>
-                                                <script>
-                                                    setTimeout(function() {
-                                                        document.querySelector('.blinking').classList.remove('blinking');
-                                                    }, 5000); // Remove blinking class after 5 seconds
-                                                </script>
-                                                @endif
-                                                <!-- /.row -->
-                                                @if (Session::has('message'))
-                                                    <div class="card-footer" style="background-color: rgb(83, 167, 92)">
-                                                        <div class="row">
-                                                            <div class="col-sm-12 col-12">
-                                                                <div class="description-block ">
-                                                                    <h1 class="blinking" style="margin:5%">
-                                                                        {{ Session::get('message') }}
-                                                                    </h1>
-                                                                </div>
-                                                                <!-- /.description-block -->
-                                                            </div>
-                                                            <!-- /.description-block -->
-                                                        </div>
-                                                    </div>
-                                                    <script>
-                                                        setTimeout(function() {
-                                                            document.querySelector('.blinking').classList.remove('blinking');
-                                                        }, 5000); // Remove blinking class after 5 seconds
-                                                    </script>
-                                                @endif
-                                                <!-- /.row -->
+                                                <i class="fas fa-minus"></i>
+                                                Logout all
+                                            </a>
+                                        </form>
                                     </div>
-                                    <!-- /.card-footer -->
+                                    <!-- /.description-block -->
+                                    </div>
                                 </div>
-                                <!-- /.card -->
+                                <!-- /.row -->
                             </div>
-                            <!-- /.col -->
-                        </div>
-                        <!-- /.row -->
 
-                        <!-- Main row -->
-                        <div class="row"> 
-                            <!-- /.col -->
                             @if (Session::has('data_box'))
-                                <div class="col-md-12">
-                                    <div style="display: flex">
-                                    <!-- Info Boxes Style 2 -->
-                                    <div class="info-box mb-3 mr-3 bg-warning">
-                                        <span class="info-box-icon"><i class="fas fa-tag"></i></span>
-
-                                        <div class="info-box-content">
-                                            <span class="info-box-text">Student Logins</span>
-                                            <span class="info-box-number">{{ $data_box['logins'] }}</span>
+                                <div class="card-footer" style="background-color: rgb(83, 167, 92)">
+                                    <div class="row">
+                                        <div class="col-sm-12 col-12">
+                                            <div class="description-block ">
+                                                <h1 class="blinking" style="margin:5%">
+                                                    {{ $data_box['message'] }}
+                                                </h1>
+                                            </div>
+                                            <!-- /.description-block -->
                                         </div>
-                                        <!-- /.info-box-content -->
-                                    </div>
-                                    <!-- /.info-box -->
-                                    <div class="info-box mb-3 bg-success">
-                                        <span class="info-box-icon"><i class="far fa-heart"></i></span>
-
-                                        <div class="info-box-content">
-                                            <span class="info-box-text">Systems</span>
-                                            <span class="info-box-number">92,050</span>
-                                        </div>
-                                        <!-- /.info-box-content -->
+                                        <!-- /.description-block -->
                                     </div>
                                 </div>
-                                <div style="display: flex">
-                                    <!-- /.info-box -->
-                                    <div class="info-box mb-3 mr-3 bg-danger">
-                                        <span class="info-box-icon"><i class="fas fa-cloud-download-alt"></i></span>
-
-                                        <div class="info-box-content">
-                                            <span class="info-box-text">Devices</span>
-                                            <span class="info-box-number">114,381</span>
-                                        </div>
-                                        <!-- /.info-box-content -->
-                                    </div>
-                                    <!-- /.info-box -->
-                                    <div class="info-box mb-3 bg-info">
-                                        <span class="info-box-icon"><i class="far fa-comment"></i></span>
-
-                                        <div class="info-box-content">
-                                            <span class="info-box-text">Random</span>
-                                            <span class="info-box-number">163,921</span>
-                                        </div>
-                                        <!-- /.info-box-content -->
-                                    </div>
-                                </div>
-                                </div>
+                                <script>
+                                    setTimeout(function() {
+                                        document.querySelector('.blinking').classList.remove('blinking');
+                                    }, 5000); // Remove blinking class after 5 seconds
+                                </script>
                             @endif
-                            <!-- /.col -->
+                            <!-- /.row -->
+                            @if (Session::has('message'))
+                                <div class="card-footer" style="background-color: rgb(83, 167, 92)">
+                                    <div class="row">
+                                        <div class="col-sm-12 col-12">
+                                            <div class="description-block ">
+                                                <h1 class="blinking" style="margin:5%">
+                                                    {{ Session::get('message') }}
+                                                </h1>
+                                            </div>
+                                            <!-- /.description-block -->
+                                        </div>
+                                        <!-- /.description-block -->
+                                    </div>
+                                </div>
+                                <script>
+                                    setTimeout(function() {
+                                        document.querySelector('.blinking').classList.remove('blinking');
+                                    }, 5000); // Remove blinking class after 5 seconds
+                                </script>
+                            @endif
+                            <!-- /.row -->
                         </div>
-                        <!-- /.row -->
+                        <!-- /.card-footer -->
                     </div>
-                    <!--/. container-fluid -->
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+            <!-- Main row -->
+            <div class="row">
+                <!-- /.col -->
+                @if (Session::has('data_box'))
+                    <div class="col-md-12">
+                        <div style="display: flex">
+                            <!-- Info Boxes Style 2 -->
+                            <div class="info-box mb-3 mr-3 bg-warning">
+                                <span class="info-box-icon"><i class="fas fa-tag"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Student Logins</span>
+                                    <span class="info-box-number">{{ $data_box['logins'] }}</span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                            <div class="info-box mb-3 bg-success">
+                                <span class="info-box-icon"><i class="far fa-heart"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Systems</span>
+                                    <span class="info-box-number">92,050</span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                        </div>
+                        <div style="display: flex">
+                            <!-- /.info-box -->
+                            <div class="info-box mb-3 mr-3 bg-danger">
+                                <span class="info-box-icon"><i class="fas fa-cloud-download-alt"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Devices</span>
+                                    <span class="info-box-number">114,381</span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                            <div class="info-box mb-3 bg-info">
+                                <span class="info-box-icon"><i class="far fa-comment"></i></span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Random</span>
+                                    <span class="info-box-number">163,921</span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                        </div>
+                    </div>
+                @endif
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!--/. container-fluid -->
     </section>
 @endsection
