@@ -9,9 +9,7 @@
             padding: 10px;
         }
 
-        table th {
-            color: black;
-        }
+        
 
         body {
             margin-top: 75px;
@@ -26,7 +24,7 @@
     <div class="container" style='magin-top:20px'>
 
        
-            <p style="margin-top:130px; ">Total scraps: {{ $data->sum('count') }}</p>
+            <p style="margin-top:100px; ">Total scraps: {{ $data->sum('count') }}</p>
             <section class="content">
                 <div class="container-fluid">
                     <div class="row">
@@ -45,14 +43,14 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th style="color: white">S.No</th>
-                                                <th style="color: white">Device</th>
-                                                <th style="color: white">Serial No</th>
-                                                <th style="color: white">System</th>
-                                                <th style="color: white">Count</th>
-                                                <th style="color: white">Service Description</th>
-                                                <th style="color: white">Lab name</th>
-                                                <th style="color: white">Action</th>
+                                                <th>S.No</th>
+                                                <th>Device</th>
+                                                <th>Serial No</th>
+                                                <th>System</th>
+                                                <th>Count</th>
+                                                <th>Service Description</th>
+                                                <th>Lab name</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>

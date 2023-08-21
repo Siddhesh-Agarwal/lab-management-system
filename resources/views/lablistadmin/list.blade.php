@@ -9,13 +9,6 @@
             padding: 10px;
         }
 
-        table th {
-            color: black;
-        }
-
-        body {
-            margin-top: 75px;
-        }
 
         .button-actions {
             display: flex;

@@ -4,7 +4,6 @@
     <section class="content">
         <div class="container-fluid">
             <h2 class="text-center display-4">Search</h2>
-            
             <!-- Search Bars Row -->
             <div class="row">
                 <div class="col-md-4">
@@ -22,7 +21,6 @@
                     </form>
                     <br><br>
                 </div>
-                
                 <div class="col-md-4">
                     <form action="{{ route('superadmin.searchDevice') }}" method="POST">
                         @csrf
@@ -38,7 +36,6 @@
                     </form>
                     <br><br>
                 </div>
-                
                 <div class="col-md-4">
                     <form action="{{ route('superadmin.searchSystem') }}" method="POST">
                         @csrf
@@ -55,7 +52,6 @@
                     <br><br>
                 </div>
             </div>
-            
             <div class="row">
                 @if (request()->has('search_term'))
                     <div class="col-md-8 offset-md-2">
@@ -70,9 +66,7 @@
                                         <th>System</th>
                                         <th>Count</th>
                                         <th>Service Description</th>
-    
                                         <th>Lab name</th>
-    
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -94,10 +88,9 @@
                         @endif
                     </div>
                 @endif
-            
             </div>
             <div class="row">
-                @if (request()->has('search_termd'))    
+                @if (request()->has('search_termd'))
                     <div class="col-md-8 offset-md-2">
                         @if (isset($resultd) && count($resultd) > 0)
                             <h3>Search Results: {{ $resultd->sum('count') }}</h3>
@@ -110,9 +103,7 @@
                                         <th>System</th>
                                         <th>Count</th>
                                         <th>Service Description</th>
-    
                                         <th>Lab name</th>
-    
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -134,7 +125,6 @@
                         @endif
                     </div>
                 @endif
-            
             </div>
             <div class="row">
                 @if (request()->has('search_terms'))
@@ -148,9 +138,7 @@
                                         <th>Device</th>
                                         <th>System</th>
                                         <th>Service Description</th>
-    
                                         <th>Lab name</th>
-    
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -158,9 +146,7 @@
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
                                             <td>{{ $dev->device_name }}</td>
-    
                                             <td>{{ $dev->system_number }}</td>
-    
                                             <td>{{ $dev->desc }}</td>
                                             <td>{{ $dev->lab_name }}</td>
                                         </tr>
@@ -172,7 +158,6 @@
                         @endif
                     </div>
                 @endif
-            
             </div>
         </div>
     </section>

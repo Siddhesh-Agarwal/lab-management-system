@@ -19,6 +19,10 @@
             font-family: 'Varela Round', sans-serif;
         }
 
+        th{
+            color: rgba(80, 167, 255, 0.804);
+        }
+
     </style>
 
 </head>

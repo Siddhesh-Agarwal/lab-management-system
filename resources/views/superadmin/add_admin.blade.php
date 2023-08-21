@@ -1,7 +1,7 @@
 @extends('superadmin.dashboard')
 
 @section('content')
-    <div class="card card-primary" style="margin:100px">
+    <div class="card card-primary" style="margin:20px; margin-top:100px">
         <div class="card-header">
             <h3 class="card-title">Add Admin</h3>
         </div>
@@ -60,7 +60,6 @@
                 </div>
             </div>
             <!-- /.card-body -->
-
             <div class="card-footer">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>

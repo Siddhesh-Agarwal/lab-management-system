@@ -13,7 +13,6 @@
 </head>
 <style>
     table tr,
-    table th,
     table td {
         border: 1px solid #ccc;
         padding: 10px;
@@ -23,9 +22,7 @@
         background-color: #e7e5de;
     }
 
-    table th {
-        color: black;
-    }
+    
 </style>
 
 <body>
@@ -64,7 +61,7 @@
                             <th>S.No</th>
                             <th>Device</th>
                             <th>Serial No</th>
-                            <th>System</th>
+                            <th>Systems</th>
                             <th>Count</th>
                             <th>Service Details</th>
                             <th>Lab name</th>

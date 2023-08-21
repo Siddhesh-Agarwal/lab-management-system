@@ -202,24 +202,25 @@ class SuperAdminController extends Controller
     public function savelab(Request $request)
     {
 
-       
-        $lab_name = $request->lab_name;
-        $dev = new Lab_Table();
-        $dev->lab_name = $lab_name;
-       
-        $dev->save();
-        // Toastr::success('Device Added successfully!', 'Success');
-        return redirect()->route('superadmin.labdetails')->with('notification', 'success');
-
-
-        // $data=array('device_name'=>$name,'serial_number'=>$serial_number,'system_model_number'=>$system_model_number,'count'=>$count,'lab_name'=>$lab_name);
+        try{
+            $lab_name = $request->lab_name;
+            $code = $request->code;
+            $dev = new Lab_Table();
+            $dev->lab_name = $lab_name;
+            $dev->lab_code = $code;
+            $dev->save();
+    
+            return redirect()->route('superadmin.labdetails')->with('success', 'Successfully lab added !');
+        }
+        catch(\Exception $e){
+            return redirect()->route('superadmin.labdetails')->with('error', 'Something went wrong !');
+        }
 
     }
 
     public function getSystemNumbers($lab)
     {
         $systemNumbers = Lablist::where('lab_name', $lab)->pluck('system_number');
-        // dd($systemNumbers);
         return response()->json($systemNumbers);
     }
 

@@ -45,10 +45,6 @@
             value="{{ $data->lab_name }}" hidden>
         <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Move To Temp</button>
         <hr>
-        {{-- <a href='{{ url('admin/listdevice') }}' class="btn btn-danger">Back</a>
-         --}}
          <a href='{{ route('admin.listdevice', ['lab_name'=>Auth::user()->labname]) }}' class="btn btn-danger" style="margin-top: 20px;">Back</a>
-
-
     </form>
 @endsection

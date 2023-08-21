@@ -9,9 +9,7 @@
             padding: 10px;
         }
 
-        table th {
-            color: #ffffff;
-        }
+       
 
         body {
             margin-top: 75px;

@@ -71,6 +71,5 @@
         <hr>
         <a href='{{ route('admin.lablist', ['lab_name' => Auth::user()->labname]) }}' class="btn btn-danger"
             style="margin-top: 15px;">Back</a>
-
     </form>
 @endsection

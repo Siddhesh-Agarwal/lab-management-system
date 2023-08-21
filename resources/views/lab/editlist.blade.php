@@ -42,7 +42,7 @@
             </script>
         @endif
 
-        <form method="post" action="{{ url('admin/updatelistdevice') }}" class="row g-3" style="margin-top:130px; ">
+        <form method="post" action="{{ url('admin/updatelistdevice') }}" class="row g-3" style="margin-top:100px; ">
             @csrf
 
             <input class="input" type="hidden" name="id" value="{{ $data->id }}">

@@ -1,64 +1,63 @@
 @extends('superadmin.dashboard')
 
 @section('content')
-<style>
-    table tr,
-    table th,
-    table td {
-        border: 1px solid #ccc;
-        padding: 10px;
-    }
+    <style>
+        table tr,
+        table th,
+        table td {
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
 
-    table th {
-        color: #ffffff;
-    }
 
-    body {
-        margin-top: 75px;
-    }
 
-    .button-actions {
-        display: flex;
-        flex-direction: row;
-    }
-</style>
+        body {
+            margin-top: 75px;
+        }
+
+        .button-actions {
+            display: flex;
+            flex-direction: row;
+        }
+    </style>
 
     <section class="content" style="margin: 20px">
-        @if (Session::has('success'))
-            <div id="success-alert" class="alert alert-success" role=alert>
-                {{ Session::get('success') }}
-            </div>
-            <script>
-                // Auto-close the success alert after 5 seconds
-                setTimeout(function() {
-                    $('#success-alert').fadeOut('slow');
-                }, 5000);
 
-                // Auto-close the error alert after 5 seconds
-            </script>
-        @endif
-
-        @if (Session::has('error'))
-            <div id="error-alert" class="alert alert-danger" role=alert>
-                {{ Session::get('error') }}
-            </div>
-            <script>
-                setTimeout(function() {
-                    $('#error-alert').fadeOut('slow');
-                }, 5000);
-            </script>
-        @endif
 
         <div class="container" style='magin-top:20px'>
-            <section class="content">
-                <div class="container-fluid">
-                    <div class="row" style="margin-top:130px; ">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-header">
-                                </div>
-                                <!-- /.card-header -->
-                                @if (count($data) > 0)
+
+            <div class="container-fluid">
+                <div class="row" style="margin-top:130px; ">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                @if (Session::has('success'))
+                                    <div id="success-alert" class="alert alert-success" role=alert>
+                                        {{ Session::get('success') }}
+                                    </div>
+                                    <script>
+                                        // Auto-close the success alert after 5 seconds
+                                        setTimeout(function() {
+                                            $('#success-alert').fadeOut('slow');
+                                        }, 5000);
+
+                                        // Auto-close the error alert after 5 seconds
+                                    </script>
+                                @endif
+
+                                @if (Session::has('error'))
+                                    <div id="error-alert" class="alert alert-danger" role=alert>
+                                        {{ Session::get('error') }}
+                                    </div>
+                                    <script>
+                                        setTimeout(function() {
+                                            $('#error-alert').fadeOut('slow');
+                                        }, 5000);
+                                    </script>
+                                @endif
+                            </div>
+                            <!-- /.card-header -->
+                            @if (count($data) > 0)
                                 <div class="card-body">
                                     @if (!session('search_flag'))
                                         <form id="search-form" action="{{ route('superadmin.searchlabdevices') }}"
@@ -82,7 +81,7 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th >S.no</th>
+                                                <th>S.no</th>
                                                 <th>Device</th>
                                                 <th>Serial</th>
                                                 <th>System</th>
@@ -120,18 +119,20 @@
 
                                     <!-- /.card-body -->
                                 </div>
-                                @else
+                            @else
                                 <h1 style="text-align: center;">No devices Found</h1>
                             @endif
-                                <!-- /.card -->
-                            </div>
-                            <!-- /.col -->
+                            <!-- /.card -->
                         </div>
-                        <!-- /.row -->
+                        <!-- /.col -->
                     </div>
-                    <!-- /.container-fluid -->
-                    @php
-                        session()->forget('search_flag');
-                    @endphp
-            </section>
-        @endsection
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+                @php
+                    session()->forget('search_flag');
+                @endphp
+            </div>
+        </div>
+    </section>
+@endsection
