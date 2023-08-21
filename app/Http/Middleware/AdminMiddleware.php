@@ -4,8 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\Response;
 
 class AdminMiddleware
 {
@@ -18,15 +18,13 @@ class AdminMiddleware
     {
         // dd(Auth::user()->email);
 
-        if(Auth::check()){
-            if(Auth::user()->role == 'admin'){
+        if (Auth::check()) {
+            if (Auth::user()->role == 'admin') {
                 return $next($request);
-            }
-            else{
+            } else {
                 return redirect(route('error'));
             }
-        }
-        else{
+        } else {
             return redirect(route('login'));
         }
 
