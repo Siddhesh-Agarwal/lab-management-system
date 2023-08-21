@@ -181,11 +181,6 @@
             box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
             transform: translateY(-2px);
         }
-
-        .button-home:active {
-            box-shadow: none;
-            transform: translateY(0);
-        }
     </style>
 </head>
 
