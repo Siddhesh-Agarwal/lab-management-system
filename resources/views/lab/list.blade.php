@@ -22,7 +22,6 @@
             flex-direction: row;
         }
     </style>
-    <section class="content" style="margin: 20px">
         @if (Session::has('success'))
             <div id="success-alert" class="alert alert-success" role=alert>
                 {{ Session::get('success') }}
@@ -48,11 +47,10 @@
             </script>
         @endif
 
-        <div class="container" style='magin-top:20px'>
-            <section class="content">
+        <div class="container">
                 <div class="container-fluid">
-                    <div class="row" style="margin-top:130px; ">
-                        <div class="col-12">
+                    <div class="row">
+                        <div class="col-12" style="margin-top: 20px">
                             <div class="card">
                                 <div class="card-header">
                                     <div class="card-body">
@@ -96,11 +94,12 @@
                                                                     class="btn btn-primary">Edit</a>
                                                             </td>
                                                             <td>
-                                                                 <form method="POST"
-                                                        action="{{ route('temps.movecount', $dev->id) }}">
-                                                        @csrf <button type="submit" class="btn btn-secondary">Move to
-                                                            Temp</button>
-                                                    </form>
+                                                                <form method="POST"
+                                                                    action="{{ route('temps.movecount', $dev->id) }}">
+                                                                    @csrf <button type="submit"
+                                                                        class="btn btn-secondary">Move to
+                                                                        Temp</button>
+                                                                </form>
                                                             </td>
                                                         @endif
                                                     </tr>
@@ -119,5 +118,6 @@
                         </div>
                         <!-- /.row -->
                     </div>
-                    <section class="content" style="margin: 20px">
-                    @endsection
+                </div>
+         
+        @endsection

@@ -65,7 +65,7 @@ class LablistController extends Controller
 
             return redirect()->route('superadmin.lablists')->with(['success' => 'Device Added successfully!']);
         } catch (\Exception $e) {
-            return redirect()->route('superadmin.lablists')->with(['error' => $e->getMessage()]);
+            return redirect()->route('superadmin.lablists')->with(['error' => 'Something went wrong !']);
         }
     }
 
@@ -91,9 +91,9 @@ class LablistController extends Controller
             $dev->lab_id = $lab_id;
             $dev->save();
 
-            return redirect()->route('admin.lablist', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with(['success', 'Device Added successfully!']);
+            return redirect()->route('admin.lablist', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with(['success', 'Device Added successfully !']);
         } catch (\Exception $e) {
-            return redirect()->route('admin.lablist', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with(['error', 'Something went wrong']);
+            return redirect()->route('admin.lablist', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with(['error', 'Something went wrong !']);
         }
     }
 
@@ -144,9 +144,9 @@ class LablistController extends Controller
                 'lab_id' => $lab_id,
             ]);
 
-            return redirect()->route('superadmin.lablists')->with('success', 'Device Updated successfully!');
+            return redirect()->route('superadmin.lablists')->with('success', 'Device Updated successfully !');
         } catch (\Exception $e) {
-            return redirect()->route('superadmin.lablists')->with('error', 'Something went wrong');
+            return redirect()->route('superadmin.lablists')->with('error', 'Something went wrong !');
         }
     }
 
@@ -173,9 +173,9 @@ class LablistController extends Controller
                 'lab_id' => $lab_id,
             ]);
 
-            return redirect()->route('admin.lablist', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with('success', 'Device Updated successfully!');
+            return redirect()->route('admin.lablist', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with('success', 'Device Updated successfully !');
         } catch (\Exception $e) {
-            return redirect()->route('admin.lablist', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with('error', 'Something went wrong');
+            return redirect()->route('admin.lablist', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with('error', 'Something went wrong !');
         }
     }
     public function getLabDetails($labname)
@@ -204,9 +204,9 @@ class LablistController extends Controller
         try {
             $data = Lablist::find($id);
             $data->delete();
-            return redirect()->back()->with('success', 'Device Deleted successfully!');
+            return redirect()->back()->with('success', 'Device Deleted successfully !');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Something went wrong');
+            return redirect()->back()->with('error', 'Something went wrong !');
         }
     }
 }
