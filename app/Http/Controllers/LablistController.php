@@ -196,7 +196,6 @@ class LablistController extends Controller
         // Use the relationship to get the devices for the specific lab
         $devices = $lab->labTable;
         // dd($lab);
-        dd($lab);
         return view('lablistadmin.list', compact('lab_name', 'devices'));
     }
     public function delete($id)
