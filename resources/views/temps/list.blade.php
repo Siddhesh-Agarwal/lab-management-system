@@ -18,9 +18,9 @@
         }
     </style>
 
-    <div class="container" style='magin-top:20px'>
+    <div class="container" style='magin-top:50px'>
 
-
+        
         <p>Total Devices: {{ $data->sum('count') }}</p>
         <section class="content">
             @if (Session::has('success'))

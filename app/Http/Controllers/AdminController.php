@@ -97,7 +97,7 @@ class AdminController extends Controller
             Logs::create(array(
                 'rollno' => $request->rollno,
                 'systemNumber' => $data['systemNumber'],
-                'labname' => $request->labname,
+                'labname' => urldecode($request->labname),
                 'random' => 0,
             ));
 
@@ -122,7 +122,7 @@ class AdminController extends Controller
                 Logs::create(array(
                     'rollno' => $res->rollno,
                     'systemNumber' => $res->systemNumber,
-                    'labname' => $request->labname,
+                    'labname' => urldecode($request->labname),
                     'random' => 0,
                 ));
 
@@ -145,6 +145,7 @@ class AdminController extends Controller
         $res->update(['isLoggedIn' => 0, 'systemNumber' => 0]);
 
         $leaving = Logs::where('rollno', '=', $request->input('rollno'))->latest()->get()->first();
+
         $val = $leaving->random + 1;
         $leaving->update(['random' => $val]);
 
@@ -156,7 +157,9 @@ class AdminController extends Controller
 
         sprintf("%s has successfully", $startTimestamp);
 
-        $timeDifference = $startTimestamp->diff($endTimestamp)->format('%H:%I:%S');
+        $timeDifference = $endTimestamp->diffInMinutes($startTimestamp);
+
+        Student::where('rollno', '=', $request->input('rollno'))->delete();
 
         $message = sprintf("%s has successfully Logged out ! worked time %d minutes", $main->name, $timeDifference);
 
