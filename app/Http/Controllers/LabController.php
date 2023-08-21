@@ -65,9 +65,9 @@ class LabController extends Controller
 
             $dev->save();
 
-            return redirect()->route('admin.listdevice', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with(['success' => 'Device Added successfully!']);
+            return redirect()->route('admin.listdevice', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with(['success' => 'Device added successfully !']);
         } catch (\Exception $e) {
-            return redirect()->route('admin.listdevice', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with(['error' => $e->getMessage()]);
+            return redirect()->route('admin.listdevice', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with(['error' => 'Something went wrong !']);
         }
     }
     public function saves(Request $request)
@@ -96,9 +96,9 @@ class LabController extends Controller
 
             $dev->save();
 
-            return redirect()->route('superadmin.lablistdevices')->with('success', 'Device Added successfully!');
+            return redirect()->route('superadmin.lablistdevices')->with('success', 'Device Added successfully !');
         } catch (\Exception $e) {
-            return redirect()->route('superadmin.lablistdevices')->with('error', 'Something went wrong!');
+            return redirect()->route('superadmin.lablistdevices')->with('error', 'Something went wrong !');
         }
 
     }
@@ -153,9 +153,9 @@ class LabController extends Controller
                 'lab_name' => $lab_name,
                 'lab_id' => $lab_id,
             ]);
-            return redirect()->route('admin.listdevice', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with('success', 'Device Updated successfully!');
+            return redirect()->route('admin.listdevice', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with('success', 'Device Updated successfully !');
         } catch (\Exception $e) {
-            return redirect()->route('admin.listdevice', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with('error', 'Something went wrong!');
+            return redirect()->route('admin.listdevice', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with('error', 'Something went wrong !');
         }
     }
     public function updates(Request $request)
@@ -182,9 +182,9 @@ class LabController extends Controller
                 'lab_name' => $lab_name,
                 'lab_id' => $lab_id,
             ]);
-            return redirect()->route('superadmin.lablistdevices')->with('success', 'Device Updated successfully!');
+            return redirect()->route('superadmin.lablistdevices')->with('success', 'Device updated successfully !');
         } catch (\Exception $e) {
-            return redirect()->route('superadmin.lablistdevices')->with('error', 'Something went wrong!');
+            return redirect()->route('superadmin.lablistdevices')->with('error', 'Something went wrong !');
         }
     }
     public function movetotemp($id)
@@ -236,9 +236,9 @@ class LabController extends Controller
             }
 
             // Toastr::success('Device Moved successfully!', 'Success');
-            return redirect()->route('admin.listdevice', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with('success', 'Device Moved successfully!');
+            return redirect()->route('admin.listdevice', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with('success', 'Device moved successfully !');
         } catch (\Exception $e) {
-            return redirect()->route('admin.listdevice', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with('error', 'Something went wrong!');
+            return redirect()->route('admin.listdevice', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with('error', 'Something went wrong !');
         }
     }
 
@@ -247,9 +247,9 @@ class LabController extends Controller
         try {
             $data = Lab::find($id);
             $data->delete();
-            return redirect()->back()->with('success', 'Device deleted successfully!');
+            return redirect()->back()->with('success', 'Device deleted successfully !');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Something went wrong!');
+            return redirect()->back()->with('error', 'Something went wrong !');
         }
     }
 }

@@ -23,41 +23,36 @@
         }
     </style>
 
-    @if (Session::has('success'))
-        <div id="success-alert" class="alert alert-success" role=alert>
-            {{ Session::get('success') }}
-        </div>
-        <script>
-            // Auto-close the success alert after 5 seconds
-            setTimeout(function() {
-                $('#success-alert').fadeOut('slow');
-            }, 5000);
-
-            // Auto-close the error alert after 5 seconds
-        </script>
-    @endif
-
-    @if (Session::has('error'))
-        <div id="error-alert" class="alert alert-danger" role=alert>
-            {{ Session::get('error') }}
-        </div>
-        <script>
-            setTimeout(function() {
-                $('#error-alert').fadeOut('slow');
-            }, 5000);
-        </script>
-    @endif
-
-
     <div class="container" style="margin-top: 70px">
         <section class="content">
             <div class="container-fluid">
-                <div class="row" style="margin-top:70px; ">
+                <div class="row">
                     <div class="col-12">
-                        <div class="card" style="margin-top: 100px">
-                            <div class="card-header">
-                                {{-- <h3 class="card-title">DataTable with minimal features & hover style</h3> --}}
-                            </div>
+                        <div class="card" style="margin-top: 20px">
+                            @if (Session::has('success'))
+                                <div id="success-alert" class="alert alert-success" role=alert>
+                                    {{ Session::get('success') }}
+                                </div>
+                                <script>
+                                    // Auto-close the success alert after 5 seconds
+                                    setTimeout(function() {
+                                        $('#success-alert').fadeOut('slow');
+                                    }, 5000);
+
+                                    // Auto-close the error alert after 5 seconds
+                                </script>
+                            @endif
+
+                            @if (Session::has('error'))
+                                <div id="error-alert" class="alert alert-danger" role=alert>
+                                    {{ Session::get('error') }}
+                                </div>
+                                <script>
+                                    setTimeout(function() {
+                                        $('#error-alert').fadeOut('slow');
+                                    }, 5000);
+                                </script>
+                            @endif
                             <!-- /.card-header -->
                             <div class="card-body">
                                 @if ($lab_name === Auth::user()->labname)
@@ -104,7 +99,8 @@
                                                                     class="btn btn-primary"><i
                                                                         class="fas fa-edit fa-1x"></i></a>
                                                                 <a class="btn btn-danger"
-                                                                    href="{{ url('admin/addlabmovelist/' . $dev->id) }}" style="margin-left: 15px;">
+                                                                    href="{{ url('admin/addlabmovelist/' . $dev->id) }}"
+                                                                    style="margin-left: 15px;">
                                                                     <i class="fas fa-exchange-alt fa-1x"></i>
                                                                 </a>
 
@@ -122,7 +118,7 @@
                                     <!-- /.card-body -->
                                 </div>
                             @else
-                                <h1  style="text-align: center;">No devices Found</h1>
+                                <h1 style="text-align: center;">No devices Found</h1>
                             @endif
 
                             <!-- /.card -->
