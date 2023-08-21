@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Labmove_table;
-use App\Models\Scrap;
 use App\Http\Controllers\Controller;
 use App\Models\Lab;
+use App\Models\Labmove_table;
+use App\Models\Scrap;
 use App\Models\Temp;
 use Brian2694\Toastr\Facades\Toastr;
 
@@ -14,9 +14,9 @@ class ScrapController extends Controller
     public function index()
     {
         $data = Scrap::all();
-        $totalDeviceCount=Labmove_table::count();
-        $totalTempCount=Temp::count();
-        return view('superadmin.list', ['data' => $data, 'totalDeviceCount' => $totalDeviceCount,'totalTempCount' => $totalTempCount]);
+        $totalDeviceCount = Labmove_table::count();
+        $totalTempCount = Temp::count();
+        return view('superadmin.list', ['data' => $data, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount]);
     }
     public function delete($id)
     {

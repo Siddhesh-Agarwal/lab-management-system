@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -27,11 +26,13 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function error(){
+    public function error()
+    {
         return view("errors.unauthorized");
     }
 
-    public function sample(){
+    public function sample()
+    {
         return view('layouts.contact');
     }
 

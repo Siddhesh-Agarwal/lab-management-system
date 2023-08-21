@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
+use App\Models\Lab;
 use App\Models\Labmove_table;
 use App\Models\Scrap;
 use App\Models\Temp;
-use App\Http\Controllers\Controller;
-use App\Models\Lab;
-use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Http\Request;
 
 class TempController extends Controller
 {
@@ -20,17 +20,17 @@ class TempController extends Controller
             $existingLab->count += $lab->count;
             $existingLab->save();
         } else {
-        $scrap = new Scrap([
-            'device_name' => $lab->device_name,
-            'serial_number' => $lab->serial_number,
-            'system_model_number' => $lab->system_model_number,
-            'count' => $lab->count,
-            'desc' => $lab->desc,
-            'lab_name' => $lab->lab_name,
-            'lab_id'=>$lab->lab_id
-        ]);
-        $scrap->save();
-    }
+            $scrap = new Scrap([
+                'device_name' => $lab->device_name,
+                'serial_number' => $lab->serial_number,
+                'system_model_number' => $lab->system_model_number,
+                'count' => $lab->count,
+                'desc' => $lab->desc,
+                'lab_name' => $lab->lab_name,
+                'lab_id' => $lab->lab_id,
+            ]);
+            $scrap->save();
+        }
         $lab->delete();
         Toastr::success('Data Moved successfully!', 'Success');
         return redirect()->back()->with('notification', ' Data Moved successfully!');
@@ -39,9 +39,9 @@ class TempController extends Controller
     {
         $lab = Temp::findOrFail($id);
         $existingLab = Lab::where('serial_number', $lab->serial_number)->first();
-    
+
         if ($existingLab) {
-          
+
             $existingLab->count += $lab->count;
             $existingLab->save();
         } else {
@@ -52,13 +52,13 @@ class TempController extends Controller
                 'count' => $lab->count,
                 'desc' => $lab->desc,
                 'lab_name' => $lab->lab_name,
-                'lab_id' => $lab->lab_id
+                'lab_id' => $lab->lab_id,
             ]);
             $newLab->save();
         }
-    
+
         $lab->delete();
-    
+
         Toastr::success('Data returned successfully!', 'Success');
         return redirect()->back()->with('notification', 'Data returned successfully!');
     }
@@ -66,19 +66,17 @@ class TempController extends Controller
     public function index()
     {
         $data = Temp::get();
-        $scrapCount=Scrap::count();
-        $totalTempCount=Temp::count();
+        $scrapCount = Scrap::count();
+        $totalTempCount = Temp::count();
         $totalDeviceCount = Labmove_table::count();
-        return view('temps.list', ['data' => $data, 'totalDeviceCount' => $totalDeviceCount,'scarpCount'=>$scrapCount,'totalTempCount'=>$totalTempCount]);
+        return view('temps.list', ['data' => $data, 'totalDeviceCount' => $totalDeviceCount, 'scarpCount' => $scrapCount, 'totalTempCount' => $totalTempCount]);
     }
 
-    
     public function create()
     {
         //
     }
 
-    
     public function store(Request $request)
     {
         //

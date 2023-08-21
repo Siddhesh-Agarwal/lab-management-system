@@ -15,29 +15,29 @@ class LablistController extends Controller
     {
         $data = Lablist::get();
         $totalDeviceCount = Labmove_table::count();
-        $totalTempCount=Temp::count();
-        return view('lablist.list', ['data' => $data, 'totalDeviceCount' => $totalDeviceCount,'totalTempCount'=>$totalTempCount]);
+        $totalTempCount = Temp::count();
+        return view('lablist.list', ['data' => $data, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount]);
     }
 
     public function indexa($lab_name)
     {
-        $labNames=Lab_Table::get();
+        $labNames = Lab_Table::get();
         $data = Lablist::where('lab_name', '=', $lab_name)->get();
-        return view('lablistadmin.list', ['data' => $data, 'lab_name' => $lab_name,'labNames'=>$labNames]);
+        return view('lablistadmin.list', ['data' => $data, 'lab_name' => $lab_name, 'labNames' => $labNames]);
     }
 
     public function add()
     {
         $totalDeviceCount = Labmove_table::count();
-        $totalTempCount=Temp::count();
-        $labs=Lab_Table::get();
-        return view('lablist.addlist', ['totalDeviceCount' => $totalDeviceCount,'totalTempCount'=>$totalTempCount,'labs'=>$labs]);
+        $totalTempCount = Temp::count();
+        $labs = Lab_Table::get();
+        return view('lablist.addlist', ['totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount, 'labs' => $labs]);
     }
 
     public function adda()
     {
-        $labNames=Lab_Table::get();
-        return view('lablistadmin.addlist',['labNames'=>$labNames]);
+        $labNames = Lab_Table::get();
+        return view('lablistadmin.addlist', ['labNames' => $labNames]);
     }
 
     public function save(Request $request)
@@ -100,25 +100,25 @@ class LablistController extends Controller
     public function edit($id)
     {
         $data = Lablist::where('id', '=', $id)->first();
-        $totalTempCount=Temp::count();
+        $totalTempCount = Temp::count();
         $totalDeviceCount = Labmove_table::count();
-        $labs=Lab_Table::get();
-        return view('lablist.editlist', ['data' => $data, 'totalDeviceCount' => $totalDeviceCount,'totalTempCount'=>$totalTempCount,'labs'=>$labs]);
+        $labs = Lab_Table::get();
+        return view('lablist.editlist', ['data' => $data, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount, 'labs' => $labs]);
     }
     public function searchlab(Request $request)
     {
         $labName = urldecode($request->input('lab_name'));
         $totalDeviceCount = Labmove_table::count();
-        $totalTempCount=Temp::count();
+        $totalTempCount = Temp::count();
         $data = Lablist::where('lab_name', 'like', "%$labName%")->get();
         session(['search_flag' => true]);
-        return view('lablist.list', ['lab_name' => $labName, 'data' => $data, 'totalDeviceCount' => $totalDeviceCount,'totalTempCount' => $totalTempCount]);
+        return view('lablist.list', ['lab_name' => $labName, 'data' => $data, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount]);
     }
     public function edita($id)
     {
-        $labNames=Lab_Table::get();
+        $labNames = Lab_Table::get();
         $data = Lablist::where('id', '=', $id)->first();
-        return view('lablistadmin.editlist', ['data'=>$data,'labNames'=>$labNames]);
+        return view('lablistadmin.editlist', ['data' => $data, 'labNames' => $labNames]);
     }
 
     public function update(Request $request)
