@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Models\Lab_Table;
+use Illuminate\Database\Seeder;
+
 class LabSeeder extends Seeder
 {
     /**
@@ -32,7 +32,7 @@ class LabSeeder extends Seeder
             [
                 'lab_name' => "Donald Knuth",
                 'lab_code' => "DK",
-                
+
             ],
             [
                 'lab_name' => "EF Codd",
@@ -47,7 +47,7 @@ class LabSeeder extends Seeder
                 'lab_code' => "DSP/VLSI",
             ],
         ];
-        
+
         Lab_Table::insert($labs);
     }
 }
