@@ -48,7 +48,7 @@
         </script>
     @endif
 
-    <div class="container" style="margin-top: 100px">
+    <div class="container" style="margin-top: 20px">
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
