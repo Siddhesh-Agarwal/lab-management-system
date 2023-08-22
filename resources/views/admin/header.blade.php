@@ -12,7 +12,7 @@
              <a href={{ route('admin.contact') }} class="nav-link">Contact</a>
          </li>
          <li class="nav-item d-none d-sm-inline-block">
-             <a href={{ route('admin.logout') }} class="nav-link">Logout</a>
+             <a href={{ route('admin.logout') }} class="nav-link" onclick="return confirm('Are you sure want to log out ?');">Logout</a>
          </li>
 
          

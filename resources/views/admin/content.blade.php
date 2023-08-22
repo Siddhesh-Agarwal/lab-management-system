@@ -23,7 +23,7 @@
                                         @else
                                             <img src={{ URL::asset('dist/img/placeholder.png') }} alt="User Avatar"
                                                 class="img-size-100 img-circle" style="margin-bottom: 20px" width="170px">
-                                            <h4 class="description-percentage" style="color: rgb(253, 159, 19)"><i
+                                            <h4 class="description-percentage" style="color: rgba(80, 167, 255, 0.804);"><i
                                                     class="fas fa-smile-o"></i>
                                                 <span>Welcome to {{ Auth::user()->labname }}</span>
                                         @endif
@@ -114,7 +114,7 @@
                         <span class="info-box-icon"><i class="fas fa-hand-peace" style="color: white"></i></span>
                         <div class="info-box-content">
                             <span class="info-box-text" style="color: white">Student Logins</span>
-                                <span class="info-box-number">{{ $login_count }}</span>
+                            <span class="info-box-number">{{ $login_count }}</span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
@@ -142,8 +142,8 @@
                     <div class="info-box mb-3 bg-info">
                         <span class="info-box-icon"><i class="far fa-comment"></i></span>
                         <div class="info-box-content">
-                            <span class="info-box-text">Random</span>
-                            <span class="info-box-number">163,921</span>
+                            <span class="info-box-text">Labs</span>
+                            <span class="info-box-number">{{ $labcount }}</span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>

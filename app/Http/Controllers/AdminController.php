@@ -21,11 +21,12 @@ class AdminController extends Controller
     {
         $data_box = session('data_box');
         $labNames = Lab_Table::get();
+        $labcount=Lab_Table::count();
         $student = Student::where('isLoggedIn', 1)->count();
         $systemcount=Lablist::where('lab_name',Auth::user()->labname)->count();
         $devicecount=Lab::where('lab_name',Auth::user()->labname)->sum('count');
         
-        return view('admin.content', ['data_box' => $data_box, 'labNames' => $labNames, 'login_count' => $student,'systemcount'=>$systemcount,'devicecount'=>$devicecount]);
+        return view('admin.content', ['data_box' => $data_box, 'labNames' => $labNames, 'login_count' => $student,'systemcount'=>$systemcount,'devicecount'=>$devicecount,'labcount'=>$labcount]);
     }
 
     public function tables()

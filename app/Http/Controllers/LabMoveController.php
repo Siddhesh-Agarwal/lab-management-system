@@ -52,7 +52,7 @@ class LabMoveController extends Controller
             $dev->save();
     
             Lablist::where('system_number', $system_number)->delete();
-            return redirect()->route('admin.lablist', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with('success', 'Request sended successfully !');
+            return redirect()->route('admin.lablist', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with('success', 'Exchange request sended successfully !');
         }
         catch(\Exception $e){
             return redirect()->route('admin.lablist', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with('error', 'Something went wrong !');
