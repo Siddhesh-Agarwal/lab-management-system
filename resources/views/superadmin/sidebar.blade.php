@@ -15,7 +15,7 @@
                 <i class="fas fa-user-secret fa-2x"></i>
             </div>
             <div class="info" style="margin-left: 20px">
-                <h3>{{ Auth::user()->name }}</h3>
+                <h3 style="color:rgba(80, 167, 255, 0.804)">{{ Auth::user()->name }}</h3>
             </div>
         </div>
 
@@ -115,7 +115,7 @@
                         <i class="nav-icon fas fa-inbox"></i>
                         <p>
                             Lab Request
-                            <span class="badge badge-success">{{ $totalDeviceCount }}</span>
+                            <span class="badge badge-primary">{{ $totalDeviceCount }}</span>
                         </p>
                     </a>
                 </li>
@@ -154,7 +154,7 @@
                         <p>
                             Scrap Controls
                             <i class="fas fa-angle-left right"></i>
-                            <span class="badge badge-success">{{ $totalTempCount }}</span>
+                            <span class="badge badge-primary">{{ $totalTempCount }}</span>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
@@ -162,7 +162,7 @@
                             <a href={{ route('temp.list') }} class="nav-link">
                                 <i class="fas fa-recycle nav-icon"></i>
                                 <p>Temp</p>
-                                <span class="badge badge-success">{{ $totalTempCount }}</span>
+                                <span class="badge badge-primary">{{ $totalTempCount }}</span>
                             </a>
                         </li>
                         <li class="nav-item">

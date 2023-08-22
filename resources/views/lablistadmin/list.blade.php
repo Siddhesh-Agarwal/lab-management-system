@@ -55,14 +55,14 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <td>S.no</td>
-                                                <td>Device</td>
-                                                <td>Spec</td>
-                                                <td>System Number</td>
-                                                <td>System Description</td>
-                                                <td>Lab Name</td>
+                                                <th>S.no</th>
+                                                <th>Device</th>
+                                                <th>Spec</td>
+                                                <th>System Number</th>
+                                                <th>System Description</th>
+                                                <th>Lab Name</th>
                                                 @if ($data[0]->lab_name === Auth::user()->labname)
-                                                    <td>Action</td>
+                                                    <th>Action</th>
                                                 @endif
                                             </tr>
                                         </thead>

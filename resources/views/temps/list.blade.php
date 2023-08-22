@@ -77,15 +77,15 @@
                                                     <td>{{ $dev->lab_name }}</td>
                                                     <td>
                                                         <form method="POST"
-                                                            action="{{ route('labs.moveBack', $dev->id) }}"onsubmit="return confirm('Are you sure you want to move this data to return?');">
-                                                            @csrf <button type="submit" class="btn btn-secondary"><i
+                                                            action="{{ route('labs.moveBack', $dev->id) }}"onsubmit="return confirm('Are you sure you want to return this device?');">
+                                                            @csrf <button type="submit" class="btn btn-success"><i
                                                                     class="fas  fa-undo fa-1x"></i></button>
                                                         </form>
                                                     </td>
                                                     <td>
                                                         <form method="POST"
-                                                            action="{{ route('labs.moveData', $dev->id) }}"onsubmit="return confirm('Are you sure you want to move this data to scraps?');">
-                                                            @csrf <button type="submit" class="btn btn-secondary"><i
+                                                            action="{{ route('labs.moveData', $dev->id) }}"onsubmit="return confirm('Are you sure you want to move this device to scraps?');">
+                                                            @csrf <button type="submit" class="btn btn-danger"><i
                                                                     class="fas  fa-save fa-1x"></i></button>
                                                         </form>
                                                     </td>
