@@ -33,7 +33,7 @@ class TempController extends Controller
             $scrap->save();
         }
         $lab->delete();
-        Toastr::success('Data Moved to scrap successfully!', 'Success');
+      
         return redirect()->back()->with('success', ' Data moved to scrap successfully !');
     }
     catch(\Exception $e){
@@ -65,7 +65,7 @@ class TempController extends Controller
 
         $lab->delete();
 
-        Toastr::success('Data returned successfully!', 'Success');
+      
         return redirect()->back()->with('success', 'Data returned successfully !');
     }
     catch(\Exception $e){
@@ -82,45 +82,4 @@ class TempController extends Controller
         return view('temps.list', ['data' => $data, 'totalDeviceCount' => $totalDeviceCount, 'scarpCount' => $scrapCount, 'totalTempCount' => $totalTempCount]);
     }
 
-    public function create()
-    {
-        //
-    }
-
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Temp $temp)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Temp $temp)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Temp $temp)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Temp $temp)
-    {
-        //
-    }
 }

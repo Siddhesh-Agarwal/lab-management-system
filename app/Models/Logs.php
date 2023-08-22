@@ -9,12 +9,18 @@ class Logs extends Model
 {
     use HasFactory;
 
-    protected $table = "logs";
+    protected $table = "log_details";
 
     protected $fillable = [
         'rollno',
         'labname',
-        'random'
+        'random',
+        'login_time',
+        'logout_time',
+        'system_number',
     ];
+    
+    const CREATED_AT = 'login_time';
+    const UPDATED_AT = 'logout_time';
 
 }

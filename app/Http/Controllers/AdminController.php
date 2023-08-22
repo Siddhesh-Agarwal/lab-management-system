@@ -21,7 +21,11 @@ class AdminController extends Controller
     {
         $data_box = session('data_box');
         $labNames = Lab_Table::get();
-        return view('admin.content', ['data_box' => $data_box, 'labNames' => $labNames]);
+        $student = Student::where('isLoggedIn', 1)->count();
+        $systemcount=Lablist::where('lab_name',Auth::user()->labname)->count();
+        $devicecount=Lab::where('lab_name',Auth::user()->labname)->sum('count');
+        
+        return view('admin.content', ['data_box' => $data_box, 'labNames' => $labNames, 'login_count' => $student,'systemcount'=>$systemcount,'devicecount'=>$devicecount]);
     }
 
     public function tables()
@@ -86,25 +90,27 @@ class AdminController extends Controller
             'labname' => urldecode($request->labname),
         ];
 
-        $workedTime = 0;
         $InTime = 0;
         $OutTime = 0;
 
         if (is_null($res)) {
 
-            Student::create($data);
+            $master = Student::create($data);
+
+            $system_number = sprintf("SK-%s-%d", $lab->lab_code, $data['systemNumber']);
 
             Logs::create(array(
                 'rollno' => $request->rollno,
-                'systemNumber' => $data['systemNumber'],
+                'system_number' => "SK-".$lab->lab_code."-".$data['systemNumber'],
                 'labname' => urldecode($request->labname),
+                'login_time' => $master->created_at,
                 'random' => 0,
             ));
 
             $stud = Student::where('rollno', '=', $request->input('rollno'))->latest()->get()->first();
             $stud->update(['isLoggedIn' => 1]);
-            $InTime = $stud->updated_at;
             $message = sprintf("Your system number is SK-%s-%d", $lab->lab_code, $data['systemNumber']);
+            $InTime = $stud->updated_at;
 
             $count = Student::where('isLoggedIn', 1)->count();
 
@@ -119,9 +125,12 @@ class AdminController extends Controller
         } else {
 
             if ($res->isLoggedIn === 0) {
+
+                $already_log = Student::where('rollno', '=', $request->input('rollno'))->latest()->get()->first();;
+
                 Logs::create(array(
                     'rollno' => $res->rollno,
-                    'systemNumber' => $res->systemNumber,
+                    'system_number' => "SK-".$lab->lab_code."-".$already_log->system_number,
                     'labname' => urldecode($request->labname),
                     'random' => 0,
                 ));
@@ -142,11 +151,12 @@ class AdminController extends Controller
             }
         }
 
-        $res->update(['isLoggedIn' => 0, 'systemNumber' => 0]);
+        $res->update(['isLoggedIn' => 0, 'system_number' => 0]);
 
         $leaving = Logs::where('rollno', '=', $request->input('rollno'))->latest()->get()->first();
 
         $val = $leaving->random + 1;
+
         $leaving->update(['random' => $val]);
 
         $InTime = $res->updated_at;
@@ -164,6 +174,7 @@ class AdminController extends Controller
         $message = sprintf("%s has successfully Logged out ! worked time %d minutes", $main->name, $timeDifference);
 
         $count = Student::where('isLoggedIn', 1)->count();
+
         $data_box = [
             "datas" => $data,
             "message" => $message,
