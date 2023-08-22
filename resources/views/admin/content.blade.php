@@ -11,21 +11,21 @@
                                 <div class="col-sm-6 col-6">
                                     <div class="description-block border-right">
                                         @if (Session::has('data_box'))
-                                            <img src="{{ $data_box['datas']['pic'] }}" alt="User Avatar"
-                                                class="img-size-100 img-circle" style="margin-bottom: 20px" width="170px">
-                                            <h4 class="description-percentage" style="color: rgb(83, 167, 92)"><i
-                                                    class="fas fa-street-view"></i>
+                                            <img src="http://results.skcet.ac.in:610/assets/StudentImage/{{ $data_box['datas']['rollno'] }}.jpg"
+                                                alt="User Avatar" class="img-size-100 img-circle" width="170px"
+                                                style="margin-bottom: 20px">
+                                            <h4 class="description-percentage" style="color: rgb(83, 167, 92)">
+                                                <i class="fas fa-street-view"></i>
                                                 <span>{{ $data_box['datas']['name'] }} </span>
-                                                <br />
-                                                <span class="description-text">{{ $data_box['datas']['degree'] }}</span>
-                                                <span class="description-text">{{ $data_box['datas']['branch'] }}</span>
-                                            @else
-                                                <img src={{ URL::asset('dist/img/placeholder.png') }} alt="User Avatar"
-                                                    class="img-size-100 img-circle" style="margin-bottom: 20px"
-                                                    width="170px">
-                                                <h4 class="description-percentage" style="color:rgba(80, 167, 255, 0.804)"><i
-                                                        class="fas fa-smile-o"></i>
-                                                    <span>Welcome to {{ Auth::user()->labname }}</span>
+                                            </h4>
+                                            <span class="description-text">{{ $data_box['datas']['degree'] }}</span>
+                                            <span class="description-text">{{ $data_box['datas']['branch'] }}</span>
+                                        @else
+                                            <img src={{ URL::asset('dist/img/placeholder.png') }} alt="User Avatar"
+                                                class="img-size-100 img-circle" style="margin-bottom: 20px" width="170px">
+                                            <h4 class="description-percentage" style="color: rgb(253, 159, 19)"><i
+                                                    class="fas fa-smile-o"></i>
+                                                <span>Welcome to {{ Auth::user()->labname }}</span>
                                         @endif
                                     </div>
                                     <!-- /.description-block -->
@@ -64,7 +64,6 @@
                                                 {{ $data_box['message'] }}
                                             </h1>
                                         </div>
-                                        <!-- /.description-block -->
                                     </div>
                                     <!-- /.description-block -->
                                 </div>
