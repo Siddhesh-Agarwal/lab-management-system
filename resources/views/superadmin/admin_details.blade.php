@@ -17,11 +17,9 @@
                     setTimeout(function() {
                         $('#success-alert').fadeOut('slow');
                     }, 5000);
-
                     // Auto-close the error alert after 5 seconds
                 </script>
             @endif
-
             @if (Session::has('error'))
                 <div id="error-alert" class="alert alert-danger" role=alert>
                     {{ Session::get('error') }}
@@ -36,7 +34,6 @@
             <div class="card" style="margin-top:130px; ">
                 <div class="card-header">
                     <h3 class="card-title">Admin Details</h3>
-
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                             <i class="fas fa-minus"></i>

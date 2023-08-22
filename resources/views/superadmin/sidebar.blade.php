@@ -12,11 +12,9 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image" style="margin-top:6px">
-                {{-- <img src={{ URL('dist/img/user2-160x160.jpg') }} class="img-circle elevation-2" alt="User Image"> --}}
                 <i class="fas fa-user-secret fa-2x"></i>
             </div>
             <div class="info" style="margin-left: 20px">
-                {{-- <a href="#" class="d-block">{{ Auth::user()->name }}</a> --}}
                 <h3>{{ Auth::user()->name }}</h3>
             </div>
         </div>
@@ -132,7 +130,7 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route('superadmin.addlabs') }}" class="nav-link">
-                                <i class="fas fa-user-plus nav-icon"></i>
+                                <i class="fas fa-plus-circle nav-icon"></i>
                                 <p>Add Labs</p>
                             </a>
                         </li>
@@ -191,18 +189,6 @@
                                 <p>Simple Search</p>
                             </a>
                         </li>
-                        {{-- <li class="nav-item">
-                            <a href={{ route('superadmin.advance.search') }} class="nav-link">
-                                <i class="fas fa-star nav-icon"></i>
-                                <p>Enhanced</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href={{ route('superadmin.tables') }} class="nav-link">
-                                <i class="fas fa-tasks nav-icon"></i>
-                                <p>Data Tables</p>
-                            </a>
-                        </li> --}}
                     </ul>
                 </li>
             </ul>

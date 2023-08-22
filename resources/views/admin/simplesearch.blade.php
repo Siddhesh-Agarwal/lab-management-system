@@ -2,7 +2,7 @@
 
 @section('content')
     <section class="content">
-        <div class="container-fluid" style="margin-top:130px; ">
+        <div class="container-fluid" style="margin-top:100px; ">
             <h2 class="text-center display-4">Search</h2>
             
             <!-- Search Bars Row -->

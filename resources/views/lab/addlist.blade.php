@@ -45,7 +45,7 @@
             @endif
 
 
-            <form method="post" action="{{ url('admin/savelistdevice') }}" class="row g-3" style="margin-top:130px; ">
+            <form method="post" action="{{ url('admin/savelistdevice') }}" class="row g-3" style="margin-top:100px; ">
                 @csrf
 
                 <label for="device_name">Device name</label>

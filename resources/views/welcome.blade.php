@@ -207,7 +207,6 @@
                 <a href="{{ route('login') }}">
                     <button onclick={{ route('login') }}" class="button-home">GET STARTED</button>
                 </a>
-
             </div>
         </div>
     </div>

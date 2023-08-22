@@ -41,7 +41,6 @@
         </script>
     @endif
 
-    
     <form method="post" action="{{ url('admin/updateotherdevice') }}" class="row g-3" style="margin-top: 160px">
         @csrf
 

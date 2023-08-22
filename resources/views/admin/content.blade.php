@@ -1,7 +1,7 @@
 @extends('admin.dashboard')
 
 @section('content')
-    <section class="content">
+    <section class="content" style="margin-top: 100px">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
@@ -27,8 +27,6 @@
                                                     class="fas fa-smile-o"></i>
                                                 <span>Welcome to {{ Auth::user()->labname }}</span>
                                         @endif
-
-
                                     </div>
                                     <!-- /.description-block -->
                                 </div>
@@ -44,14 +42,11 @@
                                             <input type="text" name="labname"
                                                 value={{ urlencode(Auth::user()->labname) }} id="labname" hidden />
                                             <input type="submit" hidden />
-                                            <a href={{ route('admin.force') }} class="btn btn-danger" ">
-                                                    <i class="fas fa-minus"></i>
-                                                    Logout all
-                                                </a>
-                                            </form>
-                                        </div>
-                                        <!-- /.description-block -->
-                                        </div>
+                                            <a href={{ route('admin.force') }} class="btn btn-danger" style="margin-left: 20px">
+                                                <i class="fas fa-minus"></i>
+                                                Logout all
+                                            </a>
+                                        </form>
                                     </div>
                                     <!-- /.row -->
                                 </div>
