@@ -52,10 +52,20 @@
             }, 5000);
         </script>
     @endif
-                            <div class="card-body">
-                                @if ($lab_name === Auth::user()->labname)
-                                    <a href="{{ url('admin/addlistdevice') }}" class="btn btn-primary">Add</a>
-                                @endif
+                           <div class="card-body" style="width: 100%; display:flex">
+                                <div style="width: 50%">
+                                    @if ($lab_name === Auth::user()->labname)
+                                        <a href="{{ url('admin/addlistdevice') }}" class="btn btn-primary">Add</a>
+                                    @endif
+                                </div>
+                                <div style="width:100%; display:flex; flex-direction:row-reverse">
+                                    <ol class="breadcrumb" style="margin-top:0.5px;">
+                                        <li class="breadcrumb-item">
+                                            <a href="#">{{ $lab_name }}</a>
+                                        </li>
+
+                                    </ol>
+                                </div>
                             </div>
                         </div>
                         @if (count($data) > 0)
