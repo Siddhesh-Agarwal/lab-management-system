@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string('system_number')->unique();
             $table->string('desc')->nullable();
             $table->unsignedBigInteger('lab_id');
-            $table->foreign('lab_id')->references('id')->on('lab__tables');
             $table->string('source');
             $table->string('destination');
+            $table->foreign('lab_id')->references('id')->on('lab__tables');
             $table->timestamps();
         });
     }

@@ -67,7 +67,7 @@ class LablistController extends Controller
 
             return redirect()->route('superadmin.lablists')->with(['success' => 'Device Added successfully!']);
         } catch (\Exception $e) {
-            return redirect()->route('superadmin.lablists')->with(['error' => 'Something went wrong !']);
+            return redirect()->route('superadmin.lablists')->with(['error' => $e->getMessage()]);
         }
     }
 
