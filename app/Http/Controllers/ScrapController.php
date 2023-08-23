@@ -23,7 +23,7 @@ class ScrapController extends Controller
         try{
         Scrap::where('id', '=', $id)->delete();
         Toastr::success('Scrap data deleted successfully!', 'Success');
-        return redirect()->back()->with('success', 'Scrap data deleted successfully !');
+        return redirect()->back()->with('success', 'Scrap data was deleted successfully !');
         }
         catch(\Exception $e){
             return redirect()->back()->with('error', 'Something went wrong !');
@@ -34,7 +34,7 @@ class ScrapController extends Controller
         try{
             Scrap::truncate(); 
         
-        return redirect()->back()->with('success', 'Scrap datas deleted successfully !');
+        return redirect()->back()->with('success', 'Scrap data was deleted successfully !');
         }
         catch(\Exception $e){
             return redirect()->back()->with('error', 'Something went wrong !');
@@ -46,7 +46,6 @@ class ScrapController extends Controller
         // Find the row in the scraps table by its ID
         $data = Scrap::findOrFail($id);
 
-      
         $labData = new Lab;
         $labData->device_name = $data->device_name;
         $labData->serial_number = $data->serial_number;

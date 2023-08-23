@@ -34,7 +34,7 @@ class TempController extends Controller
         }
         $lab->delete();
       
-        return redirect()->back()->with('success', ' Data moved to scrap successfully !');
+        return redirect()->back()->with('success', ' Data was moved to scrap successfully !');
     }
     catch(\Exception $e){
         return redirect()->back()->with('error', 'Something went wrong !');
@@ -66,7 +66,7 @@ class TempController extends Controller
         $lab->delete();
 
       
-        return redirect()->back()->with('success', 'Data returned successfully !');
+        return redirect()->back()->with('success', 'Data was returned successfully !');
     }
     catch(\Exception $e){
         return redirect()->back()->with('error', 'Something went wrong !');

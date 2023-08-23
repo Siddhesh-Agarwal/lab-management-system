@@ -60,10 +60,8 @@ class SuperAdminController extends Controller
                 'role' => $request->role,
                 'labname' => urldecode($request->labname),
             ];
-    
             User::create($data);
-            
-            return redirect(route('superadmin.details'))->with('success', 'Success admin was added !');
+            return redirect(route('superadmin.details'))->with('success', 'Successfully admin was added !');
         }
         catch(\Exception $e){
             return redirect(route('superadmin.details'))->with('error', 'Something went wrong !');
@@ -88,7 +86,7 @@ class SuperAdminController extends Controller
     public function delete_admin(Request $request)
     {
         User::destroy($request->id);
-        return redirect()->route('superadmin.details')->with('success', 'Success admin was deleted !');
+        return redirect()->route('superadmin.details')->with('success', 'Successfully admin was deleted !');
     }
 
     public function tables()
@@ -129,7 +127,7 @@ class SuperAdminController extends Controller
                 'labname' => urldecode($request->labname)
             ]);
     
-            return redirect()->route('superadmin.details')->with('success', 'Success admin was updated !');
+            return redirect()->route('superadmin.details')->with('success', 'Successfully admin was updated !');
         }
         catch(\Exception $e){
             return redirect()->route('superadmin.details')->with('error', 'Something went wrong !');
@@ -190,7 +188,6 @@ class SuperAdminController extends Controller
         ->get();
         session(['search_flag' => true]);
         return view('superadmin.labdetails', ['lab_name' => $labName, 'data' => $data,'totalDeviceCount'=>$totalDeviceCount,'totalTempCount'=>$totalTempCount]);
-        // return view('lablist.list', compact('data', 'labName', 'totalDeviceCount'));
     }
 
     public function addlab(){
