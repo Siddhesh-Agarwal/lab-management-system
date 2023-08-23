@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('system_number')->unique();
             $table->string('desc')->nullable();
             $table->unsignedBigInteger('lab_id');
+            $table->string('lab_name');
             $table->foreign('lab_id')->references('id')->on('lab__tables');
             $table->timestamps();
         });

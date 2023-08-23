@@ -206,13 +206,11 @@ class SuperAdminController extends Controller
             $dev->lab_name = $lab_name;
             $dev->lab_code = $code;
             $dev->save();
-    
             return redirect()->route('superadmin.labdetails')->with('success', 'Successfully lab added !');
         }
         catch(\Exception $e){
             return redirect()->route('superadmin.labdetails')->with('error', 'Something went wrong !');
         }
-
     }
 
     public function getSystemNumbers($lab)
@@ -220,5 +218,4 @@ class SuperAdminController extends Controller
         $systemNumbers = Lablist::where('lab_name', $lab)->pluck('system_number');
         return response()->json($systemNumbers);
     }
-
 }

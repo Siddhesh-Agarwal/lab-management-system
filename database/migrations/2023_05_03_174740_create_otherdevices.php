@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer("ac_load");
             $table->integer("wifi_access_points");
             $table->unsignedBigInteger('lab_id');
+            $table->string('lab_name');
             $table->timestamps();
             $table->foreign('lab_id')->references('id')->on('lab__tables');
         });

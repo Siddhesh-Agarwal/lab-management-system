@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
@@ -30,10 +31,13 @@ return new class extends Migration
      */
     public function down(): void
     {
+        DB::statement('PRAGMA foreign_keys = OFF;');
         // Schema::dropIfExists('scraps');
-        Schema::table('scraps', function (Blueprint $table) {
-            $table->dropForeign(['lab_id']);
-            $table->dropColumn('lab_id');
-        });
+        // Schema::table('scraps', function (Blueprint $table) {
+        //     $table->dropForeign(['lab_id']);
+        //     $table->dropColumn('lab_id');
+        // });
+        Schema::dropIfExists('scraps');
+        DB::statement('PRAGMA foreign_keys = ON;');
     }
 };

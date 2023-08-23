@@ -8,11 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Lab_Table extends Model
 {
     use HasFactory;
+    public $timestamps = true;
     protected $table = 'lab__tables';
     protected $fillable = [
         'id',
         'lab_name',
-        'lab_code'
+        'lab_code',
+        'block',
+        'room_number',
+        'department'
     ];
 
     public function id()
