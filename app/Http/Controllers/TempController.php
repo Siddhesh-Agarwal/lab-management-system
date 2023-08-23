@@ -7,8 +7,6 @@ use App\Models\Lab;
 use App\Models\Labmove_table;
 use App\Models\Scrap;
 use App\Models\Temp;
-use Brian2694\Toastr\Facades\Toastr;
-use Illuminate\Http\Request;
 
 class TempController extends Controller
 {

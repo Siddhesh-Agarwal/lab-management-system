@@ -15,7 +15,6 @@ class LabController extends Controller
     public function index($lab_name)
     {
         $LabNames = Lab_Table::get();
-        
         $data = Lab::where('lab_name', '=', $lab_name)->get();
         return view('lab.list', ['data' => $data, 'lab_name' => $lab_name, 'labNames' => $LabNames]);
     }
