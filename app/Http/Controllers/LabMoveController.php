@@ -52,7 +52,7 @@ class LabMoveController extends Controller
             $dev->save();
     
             Lablist::where('system_number', $system_number)->delete();
-            return redirect()->route('admin.lablist', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with('success', 'Exchange request sended successfully !');
+            return redirect()->route('admin.lablist', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with('success', 'Exchange request was sent Successfully !');
         }
         catch(\Exception $e){
             return redirect()->route('admin.lablist', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with('error', 'Something went wrong !');
@@ -70,11 +70,9 @@ class LabMoveController extends Controller
                 'lab_name' => $lab->source,
                 'lab_id' => $lab->lab_id,
             ]);
-    
             $scrap->save();
             $lab->delete();
-
-            return redirect()->back()->with('success', ' Request Denied successfully !');
+            return redirect()->back()->with('success', ' Request was Denied successfully !');
         }
         catch(\Exception $e){
             return redirect()->back()->with('error', 'Something went wrong !');
@@ -98,7 +96,7 @@ class LabMoveController extends Controller
                 ->update(['lab_name' => $lab->destination]);
             $scrap->save();
             $lab->delete();
-            return redirect()->back()->with('success', ' Request Accepted successfully !');
+            return redirect()->back()->with('success', ' Request was Accepted successfully !');
         }
         catch(\Exception $e){
             return redirect()->back()->with('error', 'Something went wrong !');
