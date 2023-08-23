@@ -48,11 +48,12 @@
                                 @endif
                                 <br><br>
                                 <table class="table">
-                                    <thead>
+                                    <thead style="color: rgba(80, 167, 255, 0.804)">
                                         <tr>
                                             <td>S.no</td>
                                             <td>Lab Name</td>
-                                            <td>Admin</td>
+                                            <td>Block</td>
+                                            <td>Room Number</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -60,7 +61,8 @@
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
                                                 <td>{{ $dev->lab_name }}</td>
-                                                <td>{{ $dev->admin_name }}</td>
+                                                <td>C4</td>
+                                                <td>07</td>
                                             <tr>
                                         @endforeach
                                     </tbody>

@@ -164,15 +164,15 @@ class SuperAdminController extends Controller
         return view('superadmin.simplesearch', ['result' => $result,'totalDeviceCount' => $totalDeviceCount,'totalTempCount'=>$totalTempCount]);
 
     }
-
     public function getLabDetails(){
         $totalDeviceCount = Labmove_table::count();
         $totalTempCount=Temp::count();
         // $data = Lab_Table::get();
-        $data = DB::table('lab__tables')
-        ->join('users', 'lab__tables.lab_name', '=', 'users.labname')
-        ->select('lab__tables.lab_name', 'users.name as admin_name','lab__tables.id')
-        ->get();
+        // $data = DB::table('lab__tables')
+        // ->join('users', 'lab__tables.lab_name', '=', 'users.labname')
+        // ->select('lab__tables.lab_name', 'users.name as admin_name','lab__tables.id')
+        // ->get();
+        $data = Lab_Table::all();
         // dd($data);
         return view('superadmin.labdetails',['data' => $data,'totalDeviceCount' => $totalDeviceCount,'totalTempCount'=>$totalTempCount]);
     }
