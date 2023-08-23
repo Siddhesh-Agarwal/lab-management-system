@@ -20,13 +20,17 @@ class AdminController extends Controller
     public function index()
     {
         $data_box = session('data_box');
+
+        $wow = Auth::user()->labname;
+
         $labNames = Lab_Table::get();
-        $labcount=Lab_Table::count();
-        $student = Student::where('isLoggedIn', 1)->count();
-        $systemcount=Lablist::where('lab_name',Auth::user()->labname)->count();
-        $devicecount=Lab::where('lab_name',Auth::user()->labname)->sum('count');
-        
-        return view('admin.content', ['data_box' => $data_box, 'labNames' => $labNames, 'login_count' => $student,'systemcount'=>$systemcount,'devicecount'=>$devicecount,'labcount'=>$labcount]);
+        $labcount = Lab_Table::count();
+ 
+        $student = Student::where('isLoggedIn', 1)->where('labname', $wow)->count();
+        $systemcount = Lablist::where('lab_name', Auth::user()->labname)->count();
+        $devicecount = Lab::where('lab_name', Auth::user()->labname)->sum('count');
+
+        return view('admin.content', ['data_box' => $data_box, 'labNames' => $labNames, 'login_count' => $student, 'systemcount' => $systemcount, 'devicecount' => $devicecount, 'labcount' => $labcount]);
     }
 
     public function tables()
@@ -51,15 +55,16 @@ class AdminController extends Controller
      */
     public function forceLogout()
     {
-        $logs = Student::where('isLoggedIn', 1)->get();
+        $logs = Student::where('isLoggedIn', 1)->where('labname', Auth::user()->labname)->get();
         $count = Student::where('isLoggedIn', 1)->count();
 
         $student = Student::all();
 
         foreach ($logs as $log) {
             $log->update(['isLoggedIn' => 0]);
+            $log->delete();
         }
-
+        
         foreach ($student as $stud) {
             $stud->update(['systemNumber' => 0]);
         }
@@ -102,7 +107,7 @@ class AdminController extends Controller
 
             Logs::create(array(
                 'rollno' => $request->rollno,
-                'system_number' => "SK-".$lab->lab_code."-".$data['systemNumber'],
+                'system_number' => "SK-" . $lab->lab_code . "-" . $data['systemNumber'],
                 'labname' => urldecode($request->labname),
                 'login_time' => $master->created_at,
                 'random' => 0,
@@ -127,11 +132,11 @@ class AdminController extends Controller
 
             if ($res->isLoggedIn === 0) {
 
-                $already_log = Student::where('rollno', '=', $request->input('rollno'))->latest()->get()->first();;
+                $already_log = Student::where('rollno', '=', $request->input('rollno'))->latest()->get()->first();
 
                 Logs::create(array(
                     'rollno' => $res->rollno,
-                    'system_number' => "SK-".$lab->lab_code."-".$already_log->system_number,
+                    'system_number' => "SK-" . $lab->lab_code . "-" . $already_log->system_number,
                     'labname' => urldecode($request->labname),
                     'random' => 0,
                 ));

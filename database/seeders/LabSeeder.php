@@ -71,7 +71,6 @@ class LabSeeder extends Seeder
                 'department' => "IT",
             ],
         ];
-        
         Lab_Table::insert($labs);
     }
 }
