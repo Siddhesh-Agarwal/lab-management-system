@@ -36,8 +36,6 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
-                <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
                 <li class="nav-item">
                     <a href="#" class="nav-link active">
                         <i class="nav-icon fas fa-sitemap"></i>
@@ -54,12 +52,12 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a  href={{ url('/superadmin/lablist') }} class="nav-link">
+                            <a href={{ url('/superadmin/lablist') }} class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>System Details</p>
                             </a>
                         </li>
-                        
+
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -99,7 +97,7 @@
                             <a href={{ url('superadmin/savelablistdevices') }} class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Add Devices</p>
-                            </a>    
+                            </a>
                         </li>
                         <li class="nav-item">
                             <a href={{ route('superadmin.lablistdevices') }} class="nav-link ">
@@ -115,7 +113,15 @@
                         <i class="nav-icon fas fa-inbox"></i>
                         <p>
                             Lab Request
-                            <span class="badge badge-primary">{{ $totalDeviceCount }}</span>
+                            {{-- <span class="badge badge-primary">{{ $totalDeviceCount }}</span> --}}
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href={{ route('superadmin.listinglabs') }} class="nav-link">
+                        <i class="nav-icon fas fa-tachometer"></i>
+                        <p>
+                            Labs
                         </p>
                     </a>
                 </li>
@@ -154,7 +160,7 @@
                         <p>
                             Scrap Controls
                             <i class="fas fa-angle-left right"></i>
-                            <span class="badge badge-primary">{{ $totalTempCount }}</span>
+                            {{-- <span class="badge badge-primary">{{ $totalTempCount }}</span> --}}
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
@@ -162,7 +168,7 @@
                             <a href={{ route('temp.list') }} class="nav-link">
                                 <i class="fas fa-recycle nav-icon"></i>
                                 <p>Temp</p>
-                                <span class="badge badge-primary">{{ $totalTempCount }}</span>
+                                {{-- <span class="badge badge-primary">{{ $totalTempCount }}</span> --}}
                             </a>
                         </li>
                         <li class="nav-item">
@@ -173,7 +179,6 @@
                         </li>
                     </ul>
                 </li>
-                
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-search"></i>

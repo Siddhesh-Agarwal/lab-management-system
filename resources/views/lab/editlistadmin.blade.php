@@ -4,11 +4,6 @@
     <style>
         input {
             margin-bottom: 15px;
-
-        }
-
-        body {
-            margin: 45px;
         }
 
         .alert {
@@ -26,11 +21,9 @@
                 setTimeout(function() {
                     $('#success-alert').fadeOut('slow');
                 }, 5000);
-
                 // Auto-close the error alert after 5 seconds
             </script>
         @endif
-
         @if (Session::has('error'))
             <div id="error-alert" class="alert alert-danger" role=alert>
                 {{ Session::get('error') }}
@@ -41,11 +34,8 @@
                 }, 5000);
             </script>
         @endif
-
-
         <form method="post" action="{{ url('superadmin/updatelistdevice') }}" class="row g-3" style="margin-top:110px; ">
             @csrf
-
             <input class="input" type="hidden" name="id" value="{{ $data->id }}">
             <label for="device_name">Device Name</label>
             <input type="text" class="form-control" id="device_name" name="device_name" placeholder="Enter Device Name"
@@ -62,16 +52,15 @@
             <label for="desc">Service Description</label>
             <textarea type="text" class="form-control" id="desc" name="desc" rows="4" cols="50">{{ $data->desc }}</textarea>
             <label for="lab_name" style="margin-top: 15px;">Lab Name</label>
-                <select name="lab_name" id="lab_name" class="form-control">
-                    <option value="{{ $data->lab_name }}">{{ $data->lab_name }}</option>
-                    @foreach ($labs as $dev)
+            <select name="lab_name" id="lab_name" class="form-control">
+                <option value="{{ $data->lab_name }}">{{ $data->lab_name }}</option>
+                @foreach ($labs as $dev)
                     <option value="{{ $dev->lab_name }}">{{ $dev->lab_name }}</option>
-                    @endforeach
-                </select>
+                @endforeach
+            </select>
             <div style="display:flex; justify-content:space-between; width:100%; margin-top:2%">
                 <button type="submit" class="btn btn-primary">Update</button>
-                <a href='{{ route('superadmin.lablistdevices') }}'
-                    class="btn btn-danger">Back</a>
+                <a href='{{ route('superadmin.lablistdevices') }}' class="btn btn-danger">Back</a>
             </div>
         </form>
     </section>

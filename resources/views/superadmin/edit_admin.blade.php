@@ -36,7 +36,7 @@
                 <div class="form-group">
                     <label for="exampleInputPassword">Password</label>
                     <input type="password" name="password" class="form-control" id="exampleInputPassword"
-                        value="">
+                        value="{{ $password }}">
                     @error('password')
                         <div class="alert alert-danger" role="alert" style="margin-top: 5px">
                             <i class="fas fa-exclamation-triangle"></i>

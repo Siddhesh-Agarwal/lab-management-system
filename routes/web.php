@@ -119,6 +119,9 @@ Route::prefix('superadmin')->middleware('superadmin.auth')->group(function () {
     Route::post('saveotherdevice', [OtherDeviceController::class, 'save']);
     Route::post('updateotherdevice', [OtherDeviceController::class, 'update']);
     Route::get('deleteotherdevice/{id}', [OtherDeviceController::class, 'delete']);
+    Route::get('listinglabs', [LablistController::class, 'listing_labs'])->name('superadmin.listinglabs');
+    Route::get('editlistinglabs/{id}', [LablistController::class, 'edit_listing_labs']);
+    Route::post('updatelistinglabs', [LablistController::class, 'update_listing_labs']);
 });
 
 Route::prefix('superadmin')->group(function () {

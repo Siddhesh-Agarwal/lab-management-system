@@ -8,21 +8,11 @@
             border: 1px solid #ccc;
             padding: 10px;
         }
-
-
-
-        body {
-            margin-top: 75px;
-        }
-
         .button-actions {
             display: flex;
             flex-direction: row;
         }
     </style>
-
-
-
 
     <div class="container" style="margin-top: 100px">
         <section class="content">
@@ -40,11 +30,9 @@
                                         setTimeout(function() {
                                             $('#success-alert').fadeOut('slow');
                                         }, 5000);
-
                                         // Auto-close the error alert after 5 seconds
                                     </script>
                                 @endif
-
                                 @if (Session::has('error'))
                                     <div id="error-alert" class="alert alert-danger" role=alert>
                                         {{ Session::get('error') }}
@@ -55,7 +43,6 @@
                                         }, 5000);
                                     </script>
                                 @endif
-                                {{-- <h3 class="card-title">DataTable with minimal features & hover style</h3> --}}
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
@@ -76,7 +63,6 @@
                                         <a href="{{ route('superadmin.otherdevice') }}" class="btn btn-secondary">Back</a>
                                     </div>
                                 @endif
-                                {{-- <a href="{{ url('superadmin/addotherdevice') }}" class="btn btn-primary">Add</a> --}}
                                 <br><br>
                                 <table class="table">
                                     <thead>

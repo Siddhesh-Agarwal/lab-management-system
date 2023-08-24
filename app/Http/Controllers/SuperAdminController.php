@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Crypt;
 class SuperAdminController extends Controller
 {
     public function index()
@@ -103,10 +103,12 @@ class SuperAdminController extends Controller
     public function edit_admin(int $id)
     {
         $user = User::find($id);
+        // $decryptedPassword = decrypt($user->password);
+
         $totalDeviceCount = Labmove_table::count();
         $totalTempCount=Temp::count();
         $labs=Lab_Table::get();
-        return view('superadmin.edit_admin', [urlencode('user')=>$user,'totalDeviceCount'=>$totalDeviceCount,'totalTempCount'=>$totalTempCount,'labs'=>$labs]);
+        return view('superadmin.edit_admin', [urlencode('user')=>$user,'totalDeviceCount'=>$totalDeviceCount,'totalTempCount'=>$totalTempCount,'labs'=>$labs, 'password' => "bla"]);
     }
     public function update_admin(Request $request, $id)
     {
@@ -114,7 +116,7 @@ class SuperAdminController extends Controller
             $request->validate([
                 'name' => 'required',
                 'email' => 'required',
-                // 'password' => 'required|min:8|max:15',
+                'password' => 'required|min:8|max:15',
                 'role' => 'required',
                 'labname' => 'required',
             ]);
@@ -122,11 +124,10 @@ class SuperAdminController extends Controller
             User::find($id)->update([
                 'name' => $request->name,
                 'email' => $request->email,
-                // 'password' => bcrypt($request->password),
+                'password' => bcrypt($request->password),
                 'role'  => $request->role,
                 'labname' => urldecode($request->labname)
             ]);
-    
             return redirect()->route('superadmin.details')->with('success', 'Successfully admin was updated !');
         }
         catch(\Exception $e){

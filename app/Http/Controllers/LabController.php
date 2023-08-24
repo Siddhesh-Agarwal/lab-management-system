@@ -100,7 +100,6 @@ class LabController extends Controller
         } catch (\Exception $e) {
             return redirect()->route('superadmin.lablistdevices')->with('error', 'Something went wrong !');
         }
-
     }
 
     public function edit($id)
@@ -239,7 +238,6 @@ class LabController extends Controller
             return redirect()->route('admin.listdevice', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with('error', 'Something went wrong !');
         }
     }
-
     public function delete($id)
     {
         try {

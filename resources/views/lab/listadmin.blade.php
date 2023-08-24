@@ -8,13 +8,6 @@
             border: 1px solid #ccc;
             padding: 10px;
         }
-
-
-
-        body {
-            margin-top: 75px;
-        }
-
         .button-actions {
             display: flex;
             flex-direction: row;
@@ -22,10 +15,7 @@
     </style>
 
     <section class="content" style="margin: 20px">
-
-
         <div class="container" style='magin-top:20px'>
-
             <div class="container-fluid">
                 <div class="row" style="margin-top:130px; ">
                     <div class="col-12">
@@ -40,11 +30,9 @@
                                         setTimeout(function() {
                                             $('#success-alert').fadeOut('slow');
                                         }, 5000);
-
                                         // Auto-close the error alert after 5 seconds
                                     </script>
                                 @endif
-
                                 @if (Session::has('error'))
                                     <div id="error-alert" class="alert alert-danger" role=alert>
                                         {{ Session::get('error') }}
@@ -77,7 +65,6 @@
                                                 class="btn btn-secondary">Back</a>
                                         </div>
                                     @endif
-
                                     <table class="table">
                                         <thead>
                                             <tr>
@@ -106,7 +93,6 @@
                                                             <a href="{{ url('superadmin/editlablistdevices/' . $dev->id) }}"
                                                                 class="btn btn-primary"><i
                                                                     class="fas fa-edit fa-1x"></i></a>
-
                                                             <a href="{{ url('superadmin/deletelablist/' . $dev->id) }}"
                                                                 class="btn btn-danger" style="margin-left: 15px;"><i
                                                                     class="fas fa-trash fa-1x"></i></a>
@@ -116,7 +102,6 @@
                                             @endforeach
                                         </tbody>
                                     </table>
-
                                     <!-- /.card-body -->
                                 </div>
                             @else
