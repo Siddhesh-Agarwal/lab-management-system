@@ -53,7 +53,7 @@
                                     <ol class="breadcrumb" style="margin-top:0.5px;">
                                         <li class="breadcrumb-item">
                                             <a href="#">{{ $lab_name }}</a>
-                                        </li>
+                                        </li> 
                                     </ol>
                                 </div>
                             </div>
