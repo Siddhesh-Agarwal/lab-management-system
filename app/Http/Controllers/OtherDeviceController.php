@@ -24,7 +24,7 @@ class OtherDeviceController extends Controller
       
         $labNames = Lab_Table::get();
         $data = OtherDevice::where('lab_name', '=', $lab_name)->get();
-        return view('otherdevicesadmin.list', ['data' => $data, 'labNames' => $labNames]);
+        return view('otherdevicesadmin.list', ['data' => $data, 'labNames' => $labNames, 'lab_name' => $lab_name]);
     }
 
     public function add()

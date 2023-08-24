@@ -9,7 +9,6 @@
             padding: 10px;
         }
     </style>
-
     <div class="container" style='magin-top:130px'>
         <p style="margin-top:100px; ">Total Devices: {{ $data->sum('count') }}</p>
         <section class="content">
@@ -22,11 +21,9 @@
                     setTimeout(function() {
                         $('#success-alert').fadeOut('slow');
                     }, 5000);
-
                     // Auto-close the error alert after 5 seconds
                 </script>
             @endif
-
             @if (Session::has('error'))
                 <div id="error-alert" class="alert alert-danger" role=alert>
                     {{ Session::get('error') }}
@@ -41,7 +38,6 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-
                             @if ($data->count() == 0)
                                 <div class="card-header">
                                     <h1 style="text-align: center;">
@@ -91,7 +87,6 @@
                                                     </td>
                                                 </tr>
                                             @endforeach
-
                                         </tbody>
                                     </table>
                                 </div>

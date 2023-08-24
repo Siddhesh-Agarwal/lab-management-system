@@ -6,7 +6,6 @@
             style="opacity: .9">
         <span class="brand-text font-weight-light">Super Admin</span>
     </p>
-
     <!-- Sidebar -->
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
@@ -18,7 +17,6 @@
                 <h3 style="color:rgba(80, 167, 255, 0.804)">{{ Auth::user()->name }}</h3>
             </div>
         </div>
-
         <!-- SidebarSearch Form -->
         <div class="form-inline">
             <div class="input-group" data-widget="sidebar-search">
@@ -31,7 +29,6 @@
                 </div>
             </div>
         </div>
-
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
@@ -57,7 +54,6 @@
                                 <p>System Details</p>
                             </a>
                         </li>
-
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -81,7 +77,6 @@
                                 <p>Devices Details</p>
                             </a>
                         </li>
-
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -105,7 +100,6 @@
                                 <p>Device Details</p>
                             </a>
                         </li>
-
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -205,7 +199,6 @@
                     </a>
                 </li>
             </ul>
-
         </nav>
         <!-- /.sidebar-menu -->
     </div>

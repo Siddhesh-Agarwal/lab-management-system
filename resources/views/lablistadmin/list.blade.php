@@ -8,8 +8,6 @@
             border: 1px solid #ccc;
             padding: 10px;
         }
-
-
         .button-actions {
             display: flex;
             flex-direction: row;
@@ -21,7 +19,6 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
-
                         <div class="card" style="margin-top: 20px">
                             @if (Session::has('success'))
                                 <div id="success-alert" class="alert alert-success" role=alert>
@@ -46,7 +43,6 @@
                                 </script>
                             @endif
                             <!-- /.card-header -->
-
                             <div class="card-body" style="width: 100%; display:flex">
                                 <div style="width: 50%">
                                     @if ($lab_name === Auth::user()->labname)
@@ -58,13 +54,11 @@
                                         <li class="breadcrumb-item">
                                             <a href="#">{{ $lab_name }}</a>
                                         </li>
-
                                     </ol>
                                 </div>
                             </div>
                             @if (count($data) > 0)
                                 <div class="card-body">
-
                                     <table class="table">
                                         <thead>
                                             <tr>

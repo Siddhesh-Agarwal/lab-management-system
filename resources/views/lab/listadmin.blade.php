@@ -8,19 +8,25 @@
             border: 1px solid #ccc;
             padding: 10px;
         }
+
         .button-actions {
             display: flex;
             flex-direction: row;
         }
     </style>
 
-    <section class="content" style="margin: 20px">
-        <div class="container" style='magin-top:20px'>
+    <section class="content">
+        <div class="container"s>
             <div class="container-fluid">
-                <div class="row" style="margin-top:130px; ">
+                <div class="row" style="margin-top:100px;">
                     <div class="col-12">
-                        <div class="card">
+                        <div class="card" style="margin: 1%">
                             <div class="card-header">
+                                <div style="width: max-content">
+                                    <ol class="breadcrumb" style="background-color:#FC9E4F">
+                                        <li class="breadcrumb-item" style="color:black">Additional Device Details</li>
+                                    </ol>
+                                </div>
                                 @if (Session::has('success'))
                                     <div id="success-alert" class="alert alert-success" role=alert>
                                         {{ Session::get('success') }}

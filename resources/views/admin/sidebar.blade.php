@@ -7,7 +7,6 @@
             style="opacity: .9">
         <span class="brand-text font-weight-light">Admin</span>
     </p>
-
     <!-- Sidebar -->
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
@@ -21,7 +20,6 @@
                 <h3 style="color:rgba(80, 167, 255, 0.804)">{{ Auth::user()->name }}</h3>
             </div>
         </div>
-
         <!-- SidebarSearch Form -->
         <div class="form-inline">
             <div class="input-group" data-widget="sidebar-search">
@@ -34,13 +32,9 @@
                 </div>
             </div>
         </div>
-
-
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
-
-
                 <li class="nav-item menu-close">
                     <a href="#" class="nav-link ">
                         <i class="nav-icon fas fa-sitemap"></i>
@@ -61,15 +55,6 @@
                         @endforeach
                     </ul>
                 </li>
-
-
-
-
-
-
-
-
-
                 <li class="nav-item menu-close">
                     <a href="#" class="nav-link ">
                         <i class="nav-icon fas fa-plug"></i>
@@ -90,8 +75,6 @@
                         @endforeach
                     </ul>
                 </li>
-
-
                 </li>
                 <li class="nav-item menu-close">
                     <a href="#" class="nav-link ">
@@ -113,7 +96,6 @@
                         @endforeach
                     </ul>
                 </li>
-
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-search"></i>
@@ -129,25 +111,6 @@
                                 <p>Lab Search</p>
                             </a>
                         </li>
-                        {{-- <li class="nav-item">
-                            <a href={{ route('admin.searchlabs') }} class="nav-link">
-                                <i class="fas fa-search-plus nav-icon"></i>
-                                <p>Enhanced Search</p>
-                            </a>
-                        </li> --}}
-                        {{-- <li class="nav-item">
-                            <a href={{ route('admin.advance.search') }} class="nav-link">
-                                <i class="fas fa-star nav-icon"></i>
-                                <p>Enhanced</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href={{ route('admin.tables') }} class="nav-link">
-                                <i class="fas fa-tasks nav-icon"></i>
-                                <p>Data Tables</p>
-                            </a>
-                        </li> --}}
-
                     </ul>
                 </li>
             </ul>
@@ -155,5 +118,4 @@
         <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
-
 </aside>

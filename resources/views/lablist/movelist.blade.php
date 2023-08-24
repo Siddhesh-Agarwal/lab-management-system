@@ -9,19 +9,11 @@
             padding: 10px;
         }
 
-        
-
-        body {
-            margin-top: 75px;
-        }
-
         .button-actions {
             display: flex;
             flex-direction: row;
         }
     </style>
-
-    
 
     <div class="container" style='magin-top:20px'>
         <section class="content">
@@ -31,29 +23,27 @@
                         <div class="card">
                             <div class="card-header">
                                 @if (Session::has('success'))
-        <div id="success-alert" class="alert alert-success" role=alert>
-            {{ Session::get('success') }}
-        </div>
-        <script>
-            // Auto-close the success alert after 5 seconds
-            setTimeout(function() {
-                $('#success-alert').fadeOut('slow');
-            }, 5000);
-
-            // Auto-close the error alert after 5 seconds
-        </script>
-    @endif
-
-    @if (Session::has('error'))
-        <div id="error-alert" class="alert alert-danger" role=alert>
-            {{ Session::get('error') }}
-        </div>
-        <script>
-            setTimeout(function() {
-                $('#error-alert').fadeOut('slow');
-            }, 5000);
-        </script>
-    @endif
+                                    <div id="success-alert" class="alert alert-success" role=alert>
+                                        {{ Session::get('success') }}
+                                    </div>
+                                    <script>
+                                        // Auto-close the success alert after 5 seconds
+                                        setTimeout(function() {
+                                            $('#success-alert').fadeOut('slow');
+                                        }, 5000);
+                                        // Auto-close the error alert after 5 seconds
+                                    </script>
+                                @endif
+                                @if (Session::has('error'))
+                                    <div id="error-alert" class="alert alert-danger" role=alert>
+                                        {{ Session::get('error') }}
+                                    </div>
+                                    <script>
+                                        setTimeout(function() {
+                                            $('#error-alert').fadeOut('slow');
+                                        }, 5000);
+                                    </script>
+                                @endif
                             </div>
                             <!-- /.card-header -->
                             @if (count($data) > 0)
@@ -107,7 +97,7 @@
                                     <!-- /.card-body -->
                                 </div>
                                 <!-- /.card -->
-                            @else 
+                            @else
                                 <h1 style="text-align: center">No Requests Found</h1>
                             @endif
                         </div>
@@ -115,4 +105,7 @@
                     </div>
                     <!-- /.row -->
                 </div>
-            @endsection
+            </div>
+        </section>
+    </div>
+@endsection
