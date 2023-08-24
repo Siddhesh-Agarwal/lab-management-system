@@ -118,14 +118,6 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href={{ route('superadmin.listinglabs') }} class="nav-link">
-                        <i class="nav-icon fas fa-tachometer"></i>
-                        <p>
-                            Labs
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-cog"></i>
                         <p>
@@ -196,7 +188,24 @@
                         </li>
                     </ul>
                 </li>
+                <li class="nav-item">
+                    <a href={{ route('superadmin.listinglabs') }} class="nav-link">
+                        <i class="nav-icon fas fa-tachometer"></i>
+                        <p>
+                            Labs
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href={{ route('superadmin.list.consumables') }} class="nav-link">
+                        <i class="nav-icon fas fa-database"></i>
+                        <p>
+                            Consumables
+                        </p>
+                    </a>
+                </li>
             </ul>
+
         </nav>
         <!-- /.sidebar-menu -->
     </div>

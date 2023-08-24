@@ -11,6 +11,7 @@ use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\TempController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ConsumableController;
 
 /*
 |--------------------------------------------------------------------------
@@ -106,6 +107,7 @@ Route::prefix('admin')->group(function () {
     Route::post('updateotherdevice', [OtherDeviceController::class, 'updatea']);
 });
 Route::prefix('superadmin')->group(function () {
+    Route::get('/consumables', [ConsumableController::class, 'index'])->name('list.consumables');
     Route::get('listtemps', [TempController::class, 'index'])->name('temp.list');
     Route::post('/temp/{id}/move', [TempController::class, 'moveToScraps'])->name('labs.moveData');
     Route::post('/lab/{id}/move', [LabMoveController::class, 'moveToSource'])->name('labs.moveSource');

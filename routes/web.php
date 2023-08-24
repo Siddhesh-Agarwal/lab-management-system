@@ -8,6 +8,7 @@ use App\Http\Controllers\LabMoveController;
 use App\Http\Controllers\OtherDeviceController;
 use App\Http\Controllers\ScrapController;
 use App\Http\Controllers\SuperAdminController;
+use App\Http\Controllers\ConsumableController;
 use App\Http\Controllers\TempController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -122,6 +123,7 @@ Route::prefix('superadmin')->middleware('superadmin.auth')->group(function () {
     Route::get('listinglabs', [LablistController::class, 'listing_labs'])->name('superadmin.listinglabs');
     Route::get('editlistinglabs/{id}', [LablistController::class, 'edit_listing_labs']);
     Route::post('updatelistinglabs', [LablistController::class, 'update_listing_labs']);
+    Route::get('consumables', [ConsumableController::class, 'index'])->name('superadmin.list.consumables');
 });
 
 Route::prefix('superadmin')->group(function () {
