@@ -8,7 +8,6 @@
             border: 1px solid #ccc;
             padding: 10px;
         }
-
         .button-actions {
             display: flex;
             flex-direction: row;
