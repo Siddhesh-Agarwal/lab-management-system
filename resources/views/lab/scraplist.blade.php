@@ -19,7 +19,7 @@
                             <div class="card-header">
                                 <div style="width: max-content">
                                     <ol class="breadcrumb" style="background-color:#FC9E4F">
-                                        <li class="breadcrumb-item" style="color:black">Update System</li>
+                                        <li class="breadcrumb-item" style="color:black">Request to Temp</li>
                                     </ol>
                                 </div>
                                 <form method="POST" action="{{ url('admin/labs/movetotemp') }}" class="row g-3">

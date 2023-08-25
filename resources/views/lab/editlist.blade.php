@@ -10,7 +10,7 @@
             background-color: rgb(177, 237, 150);
             width: 30%;
         }
-    </style>x
+    </style>
     @if (Session::has('success'))
         <div id="success-alert" class="alert alert-success" role=alert>
             {{ Session::get('success') }}
@@ -48,7 +48,7 @@
                                     </ol>
                                 </div>
                                 <form method="post" action="{{ url('admin/updatelistdevice') }}" class="row g-3"
-                                    style="margin-top:100px; ">
+                                    style="margin-top:40px; ">
                                     @csrf
                                     <input class="input" type="hidden" name="id" value="{{ $data->id }}">
                                     <label for="device_name">Device name</label>

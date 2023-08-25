@@ -49,7 +49,7 @@
                                     </ol>
                                 </div>
                                 <form method="post" action="{{ url('admin/updateotherdevice') }}" class="row g-3"
-                                    style="margin-top: 160px">
+                                    style="margin-top: 40px">
                                     @csrf
                                     <label for="network_switches">Network Switches</label>
                                     <input type="number" class="form-control" name="network_switches"

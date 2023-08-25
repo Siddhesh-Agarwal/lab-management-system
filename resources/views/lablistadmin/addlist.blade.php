@@ -51,7 +51,7 @@
                                     </ol>
                                 </div>
                                 <form method="post" action="{{ url('admin/savelablistdevice') }}" class="row g-3"
-                                    style="margin-top:100px; ">
+                                    style="margin-top:40px; ">
                                     @csrf
                                     <label for="device_name">Device name</label>
                                     <input type="text" class="form-control" name="device_name" id="device_name"
