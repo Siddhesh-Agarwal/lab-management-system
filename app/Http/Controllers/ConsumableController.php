@@ -20,4 +20,11 @@ class ConsumableController extends Controller
         return view('consumables.list', ['consumables' => $data,'totalDeviceCount'=>$totalDeviceCount,'totalTempCount'=>$totalTempCount]);
     }
 
+    public function edit($id){
+        $totalDeviceCount = Labmove_table::count();
+        $totalTempCount=Temp::count();
+        $data = Consumable::where('id', '=', $id)->first();
+        return view('consumables.editlist',['totalDeviceCount'=>$totalDeviceCount,'totalTempCount'=>$totalTempCount,'data'=>$data]);
+    }
+
 }
