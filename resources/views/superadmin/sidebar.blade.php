@@ -107,7 +107,7 @@
                         <i class="nav-icon fas fa-inbox"></i>
                         <p>
                             Lab Request
-                            {{-- <span class="badge badge-primary">{{ $totalDeviceCount }}</span> --}}
+                            <span class="badge badge-primary">{{ $totalDeviceCount }}</span>
                         </p>
                     </a>
                 </li>
@@ -146,7 +146,7 @@
                         <p>
                             Scrap Controls
                             <i class="fas fa-angle-left right"></i>
-                            {{-- <span class="badge badge-primary">{{ $totalTempCount }}</span> --}}
+                            <span class="badge badge-primary">{{ $totalTempCount }}</span>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
@@ -154,7 +154,7 @@
                             <a href={{ route('temp.list') }} class="nav-link">
                                 <i class="fas fa-recycle nav-icon"></i>
                                 <p>Temp</p>
-                                {{-- <span class="badge badge-primary">{{ $totalTempCount }}</span> --}}
+                                <span class="badge badge-primary">{{ $totalTempCount }}</span>
                             </a>
                         </li>
                         <li class="nav-item">

@@ -213,15 +213,19 @@ class LablistController extends Controller
     public function listing_labs()
     {
         $labs = Lab_Table::all();
+        $totalDeviceCount = Labmove_table::count();
+        $totalTempCount=Temp::count();
         // dd($labs);
-        return view('lab.listingLabs', ['labs' => $labs]);
+        return view('lab.listingLabs', ['labs' => $labs,'totalDeviceCount'=>$totalDeviceCount,'totalTempCount'=>$totalTempCount]);
     }
 
     public function edit_listing_labs($id)
     {
         $labs = Lab_Table::get();
+        $totalDeviceCount = Labmove_table::count();
+        $totalTempCount=Temp::count();
         $data = Lab_Table::where('id', '=', $id)->first();
-        return view('lab.listinglabedit', ['data' => $data, 'labs' => $labs]);
+        return view('lab.listinglabedit', ['data' => $data, 'labs' => $labs,'totalDeviceCount'=>$totalDeviceCount,'totalTempCount'=>$totalTempCount]);
     }
 
     public function update_listing_labs(Request $request)
