@@ -97,4 +97,11 @@ class ConsumableController extends Controller
         }
     }
 
+    public function indexadmin($lab_name)
+    {
+        $LabNames = Lab_Table::get();
+        $data = Consumable::where('labname', '=', $lab_name)->get();
+        return view('consumables.listadmin', ['data' => $data, 'labname' => $lab_name, 'labNames' => $LabNames]);
+    }
+
 }

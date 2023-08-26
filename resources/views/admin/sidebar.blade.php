@@ -96,6 +96,26 @@
                         @endforeach
                     </ul>
                 </li>
+                <li class="nav-item menu-close">
+                    <a href="#" class="nav-link ">
+                        <i class="nav-icon fas fa-database"></i>
+                        <p>
+                            Consumables
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        @foreach ($labNames as $labName)
+                            <li class="nav-item">
+                                <a href="<?= route('admin.consumables', ['lab_name' => $labName->lab_name]) ?>"
+                                    class="nav-link lab-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p><?= htmlspecialchars($labName->lab_name) ?></p>
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-search"></i>

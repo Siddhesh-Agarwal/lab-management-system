@@ -67,6 +67,7 @@ Route::prefix('admin')->middleware('admin.auth')->group(function () {
     Route::post('updateotherdevice', [OtherDeviceController::class, 'updatea']);
     Route::post('/labs/movetotemp', [LabController::class, 'moveToScraps'])->name('temps.moveData');
     Route::post('/movetotemp/{id}', [LabController::class, 'movetotemp'])->name('temps.movecount');
+    Route::get('consumables/{lab_name}', [ConsumableController::class, 'indexadmin'])->name('admin.consumables');
 });
 
 Route::prefix('superadmin')->middleware('superadmin.auth')->group(function () {

@@ -63,10 +63,11 @@
                                    
                                     <label for="lab_name" style="margin-top: 15px;">Lab Name</label>
                                     <select name="lab_name" id="lab_name" class="form-control">
-                                        <option value="{{ $data->lab_name }}">{{ $data->lab_name }}</option>
+                                        <option value="{{ $data->labname }}">{{ $data->labname }}</option>
                                         @foreach ($labs as $dev)
                                             <option value="{{ $dev->lab_name }}">{{ $dev->lab_name }}</option>
                                         @endforeach
+                                        <option value="None">None</option>
                                     </select>
                                     <div style="display:flex; justify-content:space-between; width:100%; margin-top:2%">
                                         <button type="submit" class="btn btn-primary">Update</button>
