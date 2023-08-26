@@ -43,22 +43,27 @@
 
     {{-- <h2>Update Devices</h2> --}}
 
-    <form method="post" action="{{ url('admin/updatelablistdevice') }}" class="row g-3" style="margin-top: 130px">
+    <form method="post" action="{{ url('superadmin/consumables/update') }}" class="row g-3" style="margin-top: 130px">
         @csrf
         <label for="device_name">Device name</label>
         <input type="text" class="form-control" name="device_name" value="{{ $data->device_name }}">
         <label for="system_number">Serial Number</label>
         <input type="text" class="form-control" name="serial_number" value="{{ $data->serial_number }}">
         <label for="device_name">Count</label>
-        <input type="number" min="1" class="form-control" id="count" name="count"
-        placeholder="Enter Count" required value="{{ $data->count }}">
-        <label for="lab_name">Lab name</label>
-        <input type="text" class="form-control" id="labname" name="labname" value="{{ $data->labname }}">
+        <input type="number" min="1" class="form-control" id="count" name="count" placeholder="Enter Count"
+            required value="{{ $data->count }}">
+        <label for="lab_name" style="margin-top: 15px;">Lab Name</label>
+        <select name="lab_name" id="lab_name" class="form-control">
+            <option value="{{ $data->labname }}">{{ $data->labname }}</option>
+            @foreach ($labs as $dev)
+                <option value="{{ $dev->lab_name }}">{{ $dev->lab_name }}</option>
+            @endforeach
+            
+        </select>
         <input type="hidden" name="id" value="{{ $data->id }}">
         <div style="display:flex; justify-content:space-between; width:100%; margin-top:2%">
-        <button type="submit" class="btn btn-primary">Update</button>
-        <a href='{{ route('superadmin.list.consumables') }}'
-            class="btn btn-danger">Back</a>
+            <button type="submit" class="btn btn-primary">Update</button>
+            <a href='{{ route('superadmin.list.consumables') }}' class="btn btn-danger">Back</a>
         </div>
     </form>
 @endsection
