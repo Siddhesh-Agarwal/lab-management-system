@@ -40,31 +40,32 @@
     <section class="content">
         <div class="container">
             <div class="container-fluid">
+                
                 <div class="row" style="margin-top:120px; ">
                     <div class="col-12">
                         <div class="card" style="padding: 30px; width:100%;">
                             <div style="width: max-content">
                                 <ol class="breadcrumb" style="background-color:#FC9E4F">
-                                    <li class="breadcrumb-item" style="color:black">Add System</li>
+                                    <li class="breadcrumb-item" style="color:black">Add Consumables</li>
                                 </ol>
                             </div>
-                            <form method="post" action="{{ url('superadmin/savelablistdevice') }}" class="row g-3"
+                            <form method="post" action="{{ url('superadmin/consumables/save') }}" class="row g-3"
                                 style="width:100%">
                                 @csrf
                                 <label for="device_name">Device Name</label>
                                 <input type="text" class="form-control" name="device_name" id="device_name"
                                     placeholder="Enter Device Name" required>
-                                <label for="spec">Spec</label>
-                                <input type="text" class="form-control" name="spec" id="spec"
-                                    placeholder="Enter Spec" required>
-                                <label for="system_number">System Number</label>
-                                <input type="text" class="form-control" name="system_number" id="system_number"
-                                    placeholder="Enter System Number" required>
-                                <label for='desc'>System Description</label>
-                                <textarea name="desc" class="form-control" id="desc" cols="30" rows="5"
-                                    placeholder="Enter Description"></textarea>
+                               
+                                <label for="serial_number">Serial Number</label>
+                                <input type="text" class="form-control" name="serial_number" id="serial_number"
+                                    placeholder="Enter Serial Number" required>
+                                    
+                                    <label for="count" style="margin-top: 10px;">Count</label>
+                                    <input type="number" min="1" value="1" class="form-control" id="count"
+                                        name="count" placeholder="Enter Count" required>
                                 <label for="lab_name" style="margin-top: 15px;">Lab Name</label>
                                 <select name="lab_name" id="lab_name" class="form-control">
+                                    <option value=""></option>
                                     @foreach ($labs as $dev)
                                         <option value="{{ $dev->lab_name }}">{{ $dev->lab_name }}</option>
                                     @endforeach
@@ -72,7 +73,7 @@
                               
                                 <div style="display:flex; justify-content:space-between; width:100%; margin-top:2%">
                                     <button type="submit" class="btn btn-primary">Add</button>
-                                    <a href='{{ url('superadmin/lablist') }}' class="btn btn-danger">Back</a>
+                                    <a href='{{ route('superadmin.list.consumables') }}' class="btn btn-danger">Back</a>
                                 </div>
                             </form>
                         </div>

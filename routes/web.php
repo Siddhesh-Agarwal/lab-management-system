@@ -126,6 +126,9 @@ Route::prefix('superadmin')->middleware('superadmin.auth')->group(function () {
     Route::get('consumables', [ConsumableController::class, 'index'])->name('superadmin.list.consumables');
     Route::get('consumables/edit/{id}', [ConsumableController::class, 'edit'])->name('superadmin.list.consumablesedit');
     Route::post('consumables/update', [ConsumableController::class, 'update'])->name('superadmin.list.consumablesupdate');
+    Route::get('consumables/add', [ConsumableController::class, 'add'])->name('superadmin.list.consumablesadd');
+    Route::post('consumables/save', [ConsumableController::class, 'save'])->name('superadmin.list.consumablessave');
+    Route::get('deletecosumables/{id}', [ConsumableController::class, 'delete']);
 });
 
 Route::prefix('superadmin')->group(function () {

@@ -190,13 +190,36 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a href={{ route('superadmin.list.consumables') }} class="nav-link">
                         <i class="nav-icon fas fa-database"></i>
                         <p>
                             Consumables
                         </p>
                     </a>
+                </li> --}}
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-database"></i>
+                        <p>
+                            Consumables
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href={{ route('superadmin.list.consumablesadd') }} class="nav-link">
+                                <i class="far fa-circle  nav-icon"></i>
+                                <p>Add consumables</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href={{ route('superadmin.list.consumables') }} class="nav-link">
+                                <i class="far fa-circle  nav-icon"></i>
+                                <p>Consumables Details</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </nav>
