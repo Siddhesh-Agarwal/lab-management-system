@@ -49,7 +49,7 @@
         
         <div class="row">
             <div class="column">
-                <table class="table">
+                <table class="table table-bordered table-hover">
                     <thead>
                         <tr>
                             <th>S.No</th>

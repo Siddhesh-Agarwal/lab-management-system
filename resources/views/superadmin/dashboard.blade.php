@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Super Admin Dashboard</title>
 
+    <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href={{ url('plugins/fontawesome-free/css/all.min.css') }}>
     <!-- overlayScrollbars -->

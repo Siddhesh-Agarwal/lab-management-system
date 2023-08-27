@@ -49,7 +49,7 @@
                                                 </li>
                                             </ol>
                                         </div>
-                            <table class="table">
+                            <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
                                         <th>S.no</th>
@@ -57,7 +57,6 @@
                                         <th>Device Name</th>
                                         <th>Count</th>
                                         <th>Lab Name</th>
-                                       
                                     </tr>
                                 </thead>
                                 <tbody>

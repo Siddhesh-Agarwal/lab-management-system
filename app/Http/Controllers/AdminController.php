@@ -124,6 +124,7 @@ class AdminController extends Controller
                 "datas" => $data,
                 "message" => $message,
                 "logins" => $count,
+                "type" => "login"
             ];
             // dd($data_box);
             return redirect()->action([AdminController::class, 'index'])->with('data_box', $data_box);
@@ -151,6 +152,7 @@ class AdminController extends Controller
                     "datas" => $data,
                     "message" => $message,
                     "logins" => $count,
+                    "type" => "login"
                 ];
 
                 return redirect()->action([AdminController::class, 'index'])->with('data_box', $data_box);
@@ -177,7 +179,7 @@ class AdminController extends Controller
 
         Student::where('rollno', '=', $request->input('rollno'))->delete();
 
-        $message = sprintf("%s has successfully Logged out ! worked time %d minutes", $main->name, $timeDifference);
+        $message = sprintf("Successfully Logged out ! worked time %d minutes", $timeDifference);
 
         $count = Student::where('isLoggedIn', 1)->count();
 
@@ -185,6 +187,7 @@ class AdminController extends Controller
             "datas" => $data,
             "message" => $message,
             "logins" => $count,
+            "type" => "logout"
         ];
 
         return redirect()->action([AdminController::class, 'index'])->with('data_box', $data_box);

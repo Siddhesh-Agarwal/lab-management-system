@@ -60,7 +60,7 @@
                             <div class="card-body">
                                 @if (count($data) > 0)
                                     <!-- /.card-header -->
-                                    <table class="table">
+                                    <table class="table table-bordered table-hover">
                                         <thead>
                                             <tr>
                                                 <th>S.No</th>

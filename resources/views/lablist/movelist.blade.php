@@ -8,7 +8,6 @@
             border: 1px solid #ccc;
             padding: 10px;
         }
-
         .button-actions {
             display: flex;
             flex-direction: row;
@@ -49,7 +48,7 @@
                             @if (count($data) > 0)
                                 <div class="card-body">
                                     <br><br>
-                                    <table class="table">
+                                    <table class="table table-bordered table-hover">
                                         <thead>
                                             <tr>
                                                 <td>S.no</td>

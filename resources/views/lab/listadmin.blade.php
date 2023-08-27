@@ -71,7 +71,7 @@
                                                 class="btn btn-secondary">Back</a>
                                         </div>
                                     @endif
-                                    <table class="table">
+                                    <table class="table table-bordered table-hover" >
                                         <thead>
                                             <tr>
                                                 <th>S.no</th>

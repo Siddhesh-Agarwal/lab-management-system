@@ -5,11 +5,6 @@
         input {
             margin-bottom: 15px;
         }
-
-        .alert {
-            background-color: rgb(177, 237, 150);
-            width: 30%;
-        }
     </style>
 
     @if (Session::has('success'))
@@ -60,7 +55,6 @@
                                     <label for="count">Count</label>
                                     <input type="number" min="0" class="form-control" id="count" name="count"
                                         placeholder="Enter Count" required value="{{ $data->count }}">
-                                   
                                     <label for="lab_name" style="margin-top: 15px;">Lab Name</label>
                                     <select name="lab_name" id="lab_name" class="form-control">
                                         <option value="{{ $data->labname }}">{{ $data->labname }}</option>

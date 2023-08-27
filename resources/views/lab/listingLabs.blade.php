@@ -20,7 +20,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <table class="table">
+                            <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
                                         <th>S.no</th>

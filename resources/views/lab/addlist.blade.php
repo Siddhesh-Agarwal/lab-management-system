@@ -6,11 +6,6 @@
             margin-bottom: 15px;
 
         }
-
-        .alert {
-            background-color: rgb(177, 237, 150);
-            width: 30%;
-        }
     </style>
 
     @if (Session::has('success'))
@@ -55,9 +50,6 @@
                                     <label for="serial_number">Serial Number</label>
                                     <input type="text" class="form-control" id="serial_number" name="serial_number"
                                         placeholder="Enter Serial Number">
-                                    {{-- <label for="system_model_number">System Model Number:</label>
-                <input type="text" class="form-control" id="system_model_number" name="system_model_number"
-                    placeholder="Enter System Model No" required> --}}
                                     <label for="system_model_number">System Number</label>
                                     <select class="form-control" name="system_model_number" id="system_model_number"
                                         required>
@@ -72,7 +64,6 @@
                                     <label for="desc">Service Description</label><br>
                                     <textarea type="text" class="form-control" id="desc" name="desc" placeholder="Enter desc" rows="4"
                                         cols="50"></textarea><br>
-
                                     <input type="text" hidden value={{ urlencode(Auth::user()->labname) }} id="lab_name"
                                         name="lab_name">
                                     <div style="display:flex; justify-content:space-between; width:100%; margin-top:2%">

@@ -4,16 +4,6 @@
     <style>
         input {
             margin-bottom: 15px;
-
-        }
-
-        body {
-            margin: 45px;
-        }
-
-        .alert {
-            background-color: rgb(177, 237, 150);
-            width: 30%;
         }
     </style>
     @if (Session::has('success'))

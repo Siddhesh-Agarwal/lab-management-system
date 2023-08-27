@@ -59,8 +59,7 @@
 
                                     labSelect.addEventListener('change', function() {
                                         const selectedLab = labSelect.value;
-
-
+                                        
                                         fetch(`/superadmin/getSystemNumbers/${selectedLab}`)
                                             .then(response => response.json())
                                             .then(data => {

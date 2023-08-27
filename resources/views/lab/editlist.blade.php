@@ -5,11 +5,6 @@
         input {
             margin-bottom: 15px;
         }
-
-        .alert {
-            background-color: rgb(177, 237, 150);
-            width: 30%;
-        }
     </style>
     @if (Session::has('success'))
         <div id="success-alert" class="alert alert-success" role=alert>

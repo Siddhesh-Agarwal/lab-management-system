@@ -21,8 +21,10 @@
                                             <span class="description-text">{{ $data_box['datas']['degree'] }}</span>
                                             <span class="description-text">{{ $data_box['datas']['branch'] }}</span>
                                         @else
-                                            <img src={{ URL::asset('dist/img/placeholder.png') }} alt="User Avatar"
-                                                class="img-size-100 img-circle" style="margin-bottom: 20px" width="170px">
+                                            <lord-icon src="https://cdn.lordicon.com/ljvjsnvh.json" trigger="loop"
+                                                delay="1000" colors="primary:#4be1ec,secondary:#cb5eee" state="hover-1"
+                                                style="width:250px;height:250px">
+                                            </lord-icon>
                                             <h4 class="description-percentage" style="color: rgba(80, 167, 255, 0.804);"><i
                                                     class="fas fa-smile-o"></i>
                                                 <span>Welcome to {{ Auth::user()->labname }}</span>
@@ -31,11 +33,28 @@
                                     <!-- /.description-block -->
                                 </div>
                                 <!-- /.col -->
+
                                 <div class="col-sm-6 col-6">
-                                    <div class="description-block" style="margin-top: 80px">
+                                    <div class="description-block">
+                                        @if (Session::has('data_box'))
+                                            @if ($data_box['type'] === 'login')
+                                                <lord-icon src="https://cdn.lordicon.com/efdhjqgx.json" trigger="loop"
+                                                    colors="primary:#4be1ec,secondary:#cb5eee"
+                                                    style="width:220px;height:220px">
+                                                </lord-icon>
+                                            @else
+                                                <lord-icon src="https://cdn.lordicon.com/alnsmmtf.json" trigger="loop"
+                                                    colors="primary:#4be1ec,secondary:#cb5eee"
+                                                    style="width:220px;height:220px">
+                                                </lord-icon>
+                                            @endif
+                                        @else
+                                            <lord-icon src="https://cdn.lordicon.com/efdhjqgx.json" trigger="loop"
+                                                colors="primary:#4be1ec,secondary:#cb5eee" style="width:220px;height:220px">
+                                            </lord-icon>
+                                        @endif
                                         <form action={{ route('admin.student.add') }} method="POST">
                                             @csrf
-                                            <h2>Roll Number</h2>
                                             {{-- Roll number should be converted to uppercase --}}
                                             <input style="width:50%" type="text" name="rollno" id="rollno"
                                                 required />

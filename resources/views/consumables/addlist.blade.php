@@ -5,11 +5,6 @@
         input {
             margin-bottom: 15px;
         }
-
-        .alert {
-            background-color: rgb(177, 237, 150);
-            width: 30%;
-        }
     </style>
 
     @if (Session::has('success'))
@@ -40,7 +35,6 @@
     <section class="content">
         <div class="container">
             <div class="container-fluid">
-                
                 <div class="row" style="margin-top:120px; ">
                     <div class="col-12">
                         <div class="card" style="padding: 30px; width:100%;">

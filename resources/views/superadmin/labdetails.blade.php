@@ -46,8 +46,8 @@
                                     </div>
                                 @endif
                                 <br><br>
-                                <table class="table">
-                                    <thead style="color: rgba(80, 167, 255, 0.804)">
+                                <table id="example2" class="table table-bordered table-hover" style="text-align: center">
+                                    <thead>
                                         <tr>
                                             <td>S.no</td>
                                             <td>Lab Name</td>
@@ -62,7 +62,7 @@
                                                 <td>{{ $dev->lab_name }}</td>
                                                 <td>C4</td>
                                                 <td>07</td>
-                                            <tr>
+                                            </tr>
                                         @endforeach
                                     </tbody>
                                 </table>

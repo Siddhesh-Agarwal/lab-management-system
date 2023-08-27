@@ -47,12 +47,10 @@
                                 <label for="room_number">Room Number:</label>
                                 <input type="text" class="form-control" id="room_number" name="room_number"
                                     placeholder="Enter Room Number" required>
-                                <label for="department">Room Number:</label>
+                                <label for="department">Department:</label>
                                 <input type="text" class="form-control" id="department" name="department"
                                     placeholder="Enter Department" required>
                                 <button type="submit" class="btn btn-primary">Add</button>
-                                <hr>
-                                <a href='{{ route('superadmin.labdetails') }}' class="btn btn-danger">Back</a>
                             </form>
                         </div>
                     </div>
