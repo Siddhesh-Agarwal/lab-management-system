@@ -23,7 +23,8 @@ class LabController extends Controller
         $data = Lab::get();
         $totalTempCount = Temp::count();
         $totalDeviceCount = Labmove_table::count();
-        return view('lab.listadmin', ['data' => $data, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount]);
+        $LabNames = Lab_Table::get();
+        return view('lab.listadmin', ['data' => $data, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount,'labs'=>$LabNames]);
     }
     public function add()
     {

@@ -16,7 +16,8 @@ class LablistController extends Controller
         $data = Lablist::get();
         $totalDeviceCount = Labmove_table::count();
         $totalTempCount = Temp::count();
-        return view('lablist.list', ['data' => $data, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount]);
+        $labNames = Lab_Table::get();
+        return view('lablist.list', ['data' => $data, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount,'labs'=>$labNames]);
     }
 
     public function indexa($lab_name)

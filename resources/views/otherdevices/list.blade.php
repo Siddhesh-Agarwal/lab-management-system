@@ -50,8 +50,11 @@
                                     <form id="search-form" action="{{ route('superadmin.searchotherdevices') }}"
                                         method="GET">
                                         <div class="input-group">
-                                            <input type="text" name="lab_name" class="form-control"
-                                                placeholder="Search by Lab Name">
+                                            <select name="lab_name" id="lab_name" class="form-control">
+                                                @foreach ($labs as $dev)
+                                                    <option value="{{ $dev->lab_name }}">{{ $dev->lab_name }}</option>
+                                                @endforeach
+                                            </select>
                                             <div class="input-group-append">
                                                 <button class="btn btn-primary" type="submit">Search</button>
                                             </div>

@@ -16,7 +16,8 @@ class OtherDeviceController extends Controller
         $data = OtherDevice::get();
         $totalDeviceCount = Labmove_table::count();
         $totalTempCount = Temp::count();
-        return view('otherdevices.list', ['data' => $data, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount]);
+        $LabNames = Lab_Table::get();
+        return view('otherdevices.list', ['data' => $data, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount,'labs'=>$LabNames]);
     }
 
     public function indexa($lab_name)
