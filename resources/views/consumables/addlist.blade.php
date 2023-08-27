@@ -54,8 +54,7 @@
                                 @csrf
                                 <label for="device_name">Device Name</label>
                                 <input type="text" class="form-control" name="device_name" id="device_name"
-                                    placeholder="Enter Device Name" required>
-                               
+                                    placeholder="Enter Device Name" required>        
                                 <label for="serial_number">Serial Number</label>
                                 <input type="text" class="form-control" name="serial_number" id="serial_number"
                                     placeholder="Enter Serial Number" required>
@@ -70,7 +69,6 @@
                                         <option value="{{ $dev->lab_name }}">{{ $dev->lab_name }}</option>
                                     @endforeach
                                 </select>
-                              
                                 <div style="display:flex; justify-content:space-between; width:100%; margin-top:2%">
                                     <button type="submit" class="btn btn-primary">Add</button>
                                     <a href='{{ route('superadmin.list.consumables') }}' class="btn btn-danger">Back</a>

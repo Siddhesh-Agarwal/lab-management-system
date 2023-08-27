@@ -23,7 +23,13 @@
         <label for="lab_name">Lab Name:</label>
         <input type="text" class="form-control" id="lab_name" name="lab_name" placeholder="Enter Lab Name" required>
         <label for="lab_code">Lab Code:</label>
-        <input type="text" class="form-control" id="code" name="code" placeholder="Enter Lab code" required>
+        <input type="text" class="form-control" id="code" name="code" placeholder="Enter Lab Code" required>
+        <label for="block">Block:</label>
+        <input type="text" class="form-control" id="block" name="block" placeholder="Enter Block" required>
+        <label for="room_number">Room Number:</label>
+        <input type="text" class="form-control" id="room_number" name="room_number" placeholder="Enter Room Number" required>
+        <label for="department">Room Number:</label>
+        <input type="text" class="form-control" id="department" name="department" placeholder="Enter Department" required>
         <button type="submit" class="btn btn-primary">Add</button>
         <hr>
         <a href='{{ route('superadmin.labdetails') }}' class="btn btn-danger">Back</a>

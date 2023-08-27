@@ -8,31 +8,31 @@
     @else
         <!-- Main content -->
         <section class="content" style="margin: 20px">
-            @if (Session::has('success'))
-                <div id="success-alert" class="alert alert-success" role=alert>
-                    {{ Session::get('success') }}
-                </div>
-                <script>
-                    // Auto-close the success alert after 5 seconds
-                    setTimeout(function() {
-                        $('#success-alert').fadeOut('slow');
-                    }, 5000);
-                    // Auto-close the error alert after 5 seconds
-                </script>
-            @endif
-            @if (Session::has('error'))
-                <div id="error-alert" class="alert alert-danger" role=alert>
-                    {{ Session::get('error') }}
-                </div>
-                <script>
-                    setTimeout(function() {
-                        $('#error-alert').fadeOut('slow');
-                    }, 5000);
-                </script>
-            @endif
             <!-- Default box -->
-            <div class="card" style="margin-top:130px; ">
+            <div class="card" style="margin-top:100px;">
                 <div class="card-header">
+                    @if (Session::has('success'))
+                        <div id="success-alert" class="alert alert-success" role=alert>
+                            {{ Session::get('success') }}
+                        </div>
+                        <script>
+                            // Auto-close the success alert after 5 seconds
+                            setTimeout(function() {
+                                $('#success-alert').fadeOut('slow');
+                            }, 5000);
+                            // Auto-close the error alert after 5 seconds
+                        </script>
+                    @endif
+                    @if (Session::has('error'))
+                        <div id="error-alert" class="alert alert-danger" role=alert>
+                            {{ Session::get('error') }}
+                        </div>
+                        <script>
+                            setTimeout(function() {
+                                $('#error-alert').fadeOut('slow');
+                            }, 5000);
+                        </script>
+                    @endif
                     <h3 class="card-title">Admin Details</h3>
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">

@@ -18,7 +18,6 @@
             flex-direction: row;
         }
     </style>
-
     <div class="container" style='magin-top:20px'>
         <section class="content">
             <div class="container-fluid">

@@ -69,7 +69,6 @@
                                         <option value="{{ $dev->lab_name }}">{{ $dev->lab_name }}</option>
                                     @endforeach
                                 </select>
-                              
                                 <div style="display:flex; justify-content:space-between; width:100%; margin-top:2%">
                                     <button type="submit" class="btn btn-primary">Add</button>
                                     <a href='{{ url('superadmin/lablist') }}' class="btn btn-danger">Back</a>

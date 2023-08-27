@@ -63,8 +63,6 @@
                                     @enderror
                                 </div>
                             </div>
-
-
                             {{-- Lab. if role is admin, lab is "ALL" else choose from options --}}
                             <div class="row mb-3">
                                 <label for="lab"

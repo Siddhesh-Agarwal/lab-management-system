@@ -26,7 +26,7 @@ class SuperAdminController extends Controller
 
     public function simple_search()
     {
-         $totalDeviceCount = Labmove_table::count();
+        $totalDeviceCount = Labmove_table::count();
         $totalTempCount=Temp::count();
         return view('superadmin.simplesearch',['totalDeviceCount' => $totalDeviceCount,'totalTempCount'=>$totalTempCount]);
     }
@@ -52,7 +52,6 @@ class SuperAdminController extends Controller
                 'password' => 'required|min:8|max:15',
                 'labname' => 'required',
             ]);
-    
             $data = [
                 'name' => $request->name,
                 'email' => $request->email,
@@ -104,7 +103,6 @@ class SuperAdminController extends Controller
     {
         $user = User::find($id);
         // $decryptedPassword = decrypt($user->password);
-
         $totalDeviceCount = Labmove_table::count();
         $totalTempCount=Temp::count();
         $labs=Lab_Table::get();
@@ -120,7 +118,6 @@ class SuperAdminController extends Controller
                 'role' => 'required',
                 'labname' => 'required',
             ]);
-    
             User::find($id)->update([
                 'name' => $request->name,
                 'email' => $request->email,
@@ -131,7 +128,7 @@ class SuperAdminController extends Controller
             return redirect()->route('superadmin.details')->with('success', 'Successfully admin was updated !');
         }
         catch(\Exception $e){
-            return redirect()->route('superadmin.details')->with('error', 'Something went wrong !');
+            return redirect()->route('superadmin.edit.admin', ['id' => $id])->with('error', 'Password should be minimum 8 - 15 characters long !');
         }
     }
     public function searchBySerial(Request $request)
@@ -141,7 +138,6 @@ class SuperAdminController extends Controller
         $searchTerm = $request->input('search_term');
         $results=Lab::where('serial_number','LIKE','%'.$searchTerm.'%')->get();
         // dd($results);
-
         return view('superadmin.simplesearch', ['results' => $results,'totalDeviceCount' => $totalDeviceCount,'totalTempCount'=>$totalTempCount]);
 
     }
@@ -199,14 +195,20 @@ class SuperAdminController extends Controller
 
     public function savelab(Request $request)
     {
-
         try{
             $lab_name = $request->lab_name;
             $code = $request->code;
+            $block = $request->block;
+            $room = $request->room_number;
+            $dep = $request->department;
             $dev = new Lab_Table();
             $dev->lab_name = $lab_name;
             $dev->lab_code = $code;
+            $dev->block = $block;
+            $dev->room_number = $room;
+            $dev->department = $dep;
             $dev->save();
+            dd($dev);
             return redirect()->route('superadmin.labdetails')->with('success', 'Successfully lab added !');
         }
         catch(\Exception $e){

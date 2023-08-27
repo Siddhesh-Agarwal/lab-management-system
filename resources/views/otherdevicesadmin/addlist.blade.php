@@ -41,6 +41,11 @@
         <div class="alert alert-success" role=alert>
             {{ Session::get('success') }}
         </div>
+        <script>
+            setTimeout(function() {
+                $('#error-success').fadeOut('slow');
+            }, 5000);
+        </script>
     @endif
 
     <section class="content">
