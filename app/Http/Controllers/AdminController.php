@@ -25,7 +25,7 @@ class AdminController extends Controller
 
         $labNames = Lab_Table::get();
         $labcount = Lab_Table::count();
- 
+
         $student = Student::where('isLoggedIn', 1)->where('labname', $wow)->count();
         $systemcount = Lablist::where('lab_name', Auth::user()->labname)->count();
         $devicecount = Lab::where('lab_name', Auth::user()->labname)->sum('count');
@@ -64,7 +64,7 @@ class AdminController extends Controller
             $log->update(['isLoggedIn' => 0]);
             $log->delete();
         }
-        
+
         foreach ($student as $stud) {
             $stud->update(['systemNumber' => 0]);
         }
@@ -86,16 +86,40 @@ class AdminController extends Controller
 
         $lab = Lab_Table::where('lab_name', '=', urldecode($request->labname))->first();
 
+        // Get the last allocated system number
+        $lastAllocatedSystem = Student::where('labname', '=', urldecode($request->labname))
+            ->orderBy('id', 'desc')
+            ->limit(1)
+            ->pluck('systemNumber')
+            ->first();
+
+// Calculate the next system number based on the last allocated system
+        if ($lastAllocatedSystem) {
+            $systemParts = explode('-', $lastAllocatedSystem);
+            $systemNumber = intval($systemParts[2]); // Convert to integer
+            $nextSystemNumber = $systemNumber + 1;
+        } else {
+            $nextSystemNumber = 1;
+        }
+
+// Allocate 66 systems to the student
+        $allocatedSystems = [];
+        for ($i = 0; $i < 66; $i++) {
+            $systemNumber = sprintf("SK-%s-%d", $lab->lab_code, $nextSystemNumber);
+            $allocatedSystems[] = $systemNumber;
+            $nextSystemNumber++;
+        }
+
         $data = [
             'name' => $main->name,
             'rollno' => $request->input('rollno'),
             'degree' => $main->degree,
             'branch' => $main->branch,
             'pic' => $main->pic,
-            'systemNumber' => $this->generateSystemNumber(),
+            'systemNumber' => $allocatedSystems[0],
             'labname' => urldecode($request->labname),
         ];
-
+        
         $InTime = 0;
         $OutTime = 0;
 
@@ -124,7 +148,7 @@ class AdminController extends Controller
                 "datas" => $data,
                 "message" => $message,
                 "logins" => $count,
-                "type" => "login"
+                "type" => "login",
             ];
             // dd($data_box);
             return redirect()->action([AdminController::class, 'index'])->with('data_box', $data_box);
@@ -152,7 +176,7 @@ class AdminController extends Controller
                     "datas" => $data,
                     "message" => $message,
                     "logins" => $count,
-                    "type" => "login"
+                    "type" => "login",
                 ];
 
                 return redirect()->action([AdminController::class, 'index'])->with('data_box', $data_box);
@@ -187,9 +211,8 @@ class AdminController extends Controller
             "datas" => $data,
             "message" => $message,
             "logins" => $count,
-            "type" => "logout"
+            "type" => "logout",
         ];
-
         return redirect()->action([AdminController::class, 'index'])->with('data_box', $data_box);
 
     }
@@ -231,7 +254,6 @@ class AdminController extends Controller
         $searchTerm = $request->input('search_term');
         $results = Lab::where('serial_number', 'LIKE', '%' . $searchTerm . '%')
             ->get();
-
         return view('admin.simplesearch', ['results' => $results, 'labNames' => $labNames]);
 
     }
