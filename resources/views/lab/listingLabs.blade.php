@@ -39,11 +39,16 @@
                 }, 5000);
             </script>
         @endif
-        <section class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div style="width: max-content">
+                                <ol class="breadcrumb" style="background-color:#FC9E4F">
+                                    <li class="breadcrumb-item" style="color:black">All Labs</li>
+                                </ol>
+                            </div>
                             <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
@@ -69,8 +74,9 @@
                                                 <div class="button-actions">
                                                     <a href="{{ url('superadmin/editlistinglabs/' . $dev->id) }}"
                                                         class="btn btn-primary"><i class="fas fa-edit fa-1x"></i></a>
-                                                    {{-- <a href="{{ url('superadmin/deletelab/' . $dev->id) }}" class="btn btn-danger"
-                                style="margin-left: 15px;"><i class="fas fa-trash fa-1x"></i></a> --}}
+                                                    <a href="{{ url('superadmin/deletelab/' . $dev->id) }}"
+                                                        class="btn btn-danger" style="margin-left: 15px;"><i
+                                                            class="fas fa-trash fa-1x"></i></a>
                                                 </div>
                                             </td>
                                         <tr>
@@ -81,6 +87,24 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
     </div>
+
+    <script>
+        var deleteButtons = document.querySelectorAll('.deleteButton');
+
+        deleteButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                var confirmed = window.confirm('Are you sure you want to delete this item?');
+
+                if (confirmed) {
+                    // Code to perform the delete action
+                    alert('Item deleted!');
+                } else {
+                    // Code to cancel the delete action
+                    alert('Delete action canceled.');
+                }
+            });
+        });
+    </script>
 @endsection

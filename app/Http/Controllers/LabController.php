@@ -28,7 +28,6 @@ class LabController extends Controller
     }
     public function add()
     {
-
         $labName = \Illuminate\Support\Facades\Auth::user()->labname;
         $labNames = Lab_Table::get();
         $systemNumbers = Lablist::where('lab_name', $labName)->pluck('system_number');
@@ -110,6 +109,17 @@ class LabController extends Controller
         $systemNumbers = Lablist::where('lab_name', $labName)->pluck('system_number');
         $data = Lab::where('id', '=', $id)->first();
         return view('lab.editlist', ['data' => $data, 'labName' => $labName, 'labNames' => $labNames, 'systemNumbers' => $systemNumbers]);
+    }
+
+    public function delete_lab($id){
+        dd($id);
+        try{
+            Lab_Table::where('id',$id)->get()->delete();
+            return redirect()->route('superadmin.listinglabs')->with('error', 'Successfully lab was deleted !');
+        }
+        catch(\Exception $e){
+            return redirect()->route('superadmin.listinglabs')->with('error', $e->getMessage());
+        }
     }
     public function edits($id)
     {
