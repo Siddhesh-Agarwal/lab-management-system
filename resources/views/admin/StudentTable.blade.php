@@ -24,13 +24,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($data as $index => $stud)
+                                    @foreach ($students as $index => $stud)
                                         <tr>
                                             <td>{{ $index + 1 }}</td>
                                             <td>{{ $stud->name }}</td>
                                             <td>{{ $stud->rollno }}</td>
-                                            <td>{{ $stud->labname }}</td>
-                                            <td>{{ $stud->labname }}</td>
+                                            <td>{{ $stud->department }}</td>
+                                            <td>{{ $stud->systemNumber }}</td>
                                             <td>{{ $stud->year }}</td>
                                             <td>
                                                 @if ($stud->isLoggedIn)

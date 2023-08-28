@@ -133,6 +133,14 @@
                         </li>
                     </ul>
                 </li>
+                <li class="nav-item">
+                    <a href={{ route('admin.tables') }} class="nav-link">
+                        <i class="nav-icon fas fa-search"></i>
+                        <p>
+                            Student's Info
+                        </p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

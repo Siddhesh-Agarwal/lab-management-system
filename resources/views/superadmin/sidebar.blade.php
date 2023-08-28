@@ -167,7 +167,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link ">
-                        <i class="nav-icon fas fa-plus-square"></i>
+                        <i class="nav-icon fas fa-shield"></i>
                         <p>
                             Warranty Devices
                             <i class="right fas fa-angle-left"></i>

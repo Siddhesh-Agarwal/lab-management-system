@@ -35,11 +35,12 @@ class AdminController extends Controller
 
     public function tables()
     {
+        $student = Student::where('labname', Auth::user()->labname)->get();
         $labNames = Lab_Table::get();
-        return view('admin.tables', ['labNames' => $labNames]);
+        return view('admin.studentTable', ['students' => $student, 'labNames' => $labNames]);
     }
 
-    public function device_details()
+    public function device_detasils()
     {
         $labNames = Lab_Table::get();
         return view('admin.devicedetails', ['labNames' => $labNames]);
@@ -104,17 +105,16 @@ class AdminController extends Controller
 
         $count = Lablist::where('lab_name', Auth::user()->labname)->get()->count();
         $limit = 0;
-        if($limit < $count){
+        if ($limit < $count) {
             // Allocate systems to the student
-                    $allocatedSystems = [];
-                    for ($i = 0; $i < $count; $i++) {
-                        $limit++;
-                        $systemNumber = sprintf("SK-%s-%d", $lab->lab_code, $nextSystemNumber);
-                        $allocatedSystems[] = $systemNumber;
-                        $nextSystemNumber++;
-                    }
-        }
-        else{
+            $allocatedSystems = [];
+            for ($i = 0; $i < $count; $i++) {
+                $limit++;
+                $systemNumber = sprintf("SK-%s-%d", $lab->lab_code, $nextSystemNumber);
+                $allocatedSystems[] = $systemNumber;
+                $nextSystemNumber++;
+            }
+        } else {
             dd("alert");
         }
 
@@ -127,7 +127,7 @@ class AdminController extends Controller
             'systemNumber' => $allocatedSystems[0],
             'labname' => urldecode($request->labname),
         ];
-        
+
         $InTime = 0;
         $OutTime = 0;
 
@@ -139,7 +139,7 @@ class AdminController extends Controller
 
             Logs::create(array(
                 'rollno' => $request->rollno,
-                'system_number' => "SK-" . $lab->lab_code . "-" . $data['systemNumber'],
+                'system_number' => $data['systemNumber'],
                 'labname' => urldecode($request->labname),
                 'login_time' => $master->created_at,
                 'random' => 0,
@@ -147,7 +147,7 @@ class AdminController extends Controller
 
             $stud = Student::where('rollno', '=', $request->input('rollno'))->latest()->get()->first();
             $stud->update(['isLoggedIn' => 1]);
-            $message = sprintf("Your system number is SK-%s-%d", $lab->lab_code, $data['systemNumber']);
+            $message = sprintf("Your system number is %s", $data['system_number']);
             $InTime = $stud->updated_at;
 
             $count = Student::where('isLoggedIn', 1)->count();
@@ -162,14 +162,13 @@ class AdminController extends Controller
             return redirect()->action([AdminController::class, 'index'])->with('data_box', $data_box);
 
         } else {
-
             if ($res->isLoggedIn === 0) {
 
                 $already_log = Student::where('rollno', '=', $request->input('rollno'))->latest()->get()->first();
 
                 Logs::create(array(
                     'rollno' => $res->rollno,
-                    'system_number' => "SK-" . $lab->lab_code . "-" . $already_log->system_number,
+                    'system_number' => $already_log->system_number,
                     'labname' => urldecode($request->labname),
                     'random' => 0,
                 ));
@@ -177,7 +176,7 @@ class AdminController extends Controller
                 $res->update(['isLoggedIn' => 1]);
 
                 $InTime = $res->updated_at;
-                $message = sprintf("Your system number is SK-%s-%d", $lab->lab_code, $data['systemNumber']);
+                $message = sprintf("Your system number is %s", $data['systemNumber']);
                 $count = Student::where('isLoggedIn', 1)->count();
 
                 $data_box = [
