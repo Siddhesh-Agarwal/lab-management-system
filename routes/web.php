@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LabController;
 use App\Http\Controllers\LablistController;
 use App\Http\Controllers\LabMoveController;
+use App\Http\Controllers\WarrantyController;
 use App\Http\Controllers\OtherDeviceController;
 use App\Http\Controllers\ScrapController;
 use App\Http\Controllers\SuperAdminController;
@@ -131,6 +132,13 @@ Route::prefix('superadmin')->middleware('superadmin.auth')->group(function () {
     Route::post('consumables/save', [ConsumableController::class, 'save'])->name('superadmin.list.consumablessave');
     Route::get('deletecosumables/{id}', [ConsumableController::class, 'delete']);
     Route::delete('deletelab/{id}', [LabController::class, 'delete_lab']);
+    Route::get('warranty', [WarrantyController::class, 'index'])->name('superadmin.warranty');
+    Route::get('warranty/add', [WarrantyController::class, 'add'])->name('superadmin.warrantyadd');
+    Route::post('savewarranty', [WarrantyController::class, 'save'])->name('superadmin.warrantysave');
+    Route::get('editwarranty/{id}', [WarrantyController::class, 'edit'])->name('superadmin.warrantyedit');
+    Route::post('updatewarranty', [WarrantyController::class, 'update'])->name('superadmin.warrantyupdate');
+    Route::get('deletewarranty/{id}', [WarrantyController::class, 'delete'])->name('superadmin.warrantydelete');
+
 });
 
 Route::prefix('superadmin')->group(function () {

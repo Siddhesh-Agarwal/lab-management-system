@@ -37,7 +37,7 @@
         <section class="content">
             <div class="row" style="margin-top:120px; ">
                 <div class="col-12">
-                    <div class="card" style="padding: 30px; width:100%;"">
+                    <div class="card" style="padding: 30px; width:100%;">
                         <div style="width: max-content">
                             <ol class="breadcrumb" style="background-color:#FC9E4F">
                                 <li class="breadcrumb-item" style="color:black">Add Other Device</li>

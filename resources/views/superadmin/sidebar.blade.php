@@ -115,7 +115,7 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-cog"></i>
                         <p>
-                            Admin Controls
+                            Controls
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -165,6 +165,7 @@
                         </li>
                     </ul>
                 </li>
+                
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-search"></i>
