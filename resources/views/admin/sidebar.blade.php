@@ -9,15 +9,12 @@
     </p>
     <!-- Sidebar -->
     <div class="sidebar">
-        <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image" style="margin-top:6px">
-                {{-- <img src={{ URL('dist/img/user2-160x160.jpg') }} class="img-circle elevation-2" alt="User Image"> --}}
                 <i class="fas fa-user fa-2x"></i>
             </div>
-            <div class="info" style="margin-left: 20px">
-                {{-- <a href="#" class="d-block">{{ Auth::user()->name }}</a> --}}
-                <h3 style="color:rgba(80, 167, 255, 0.804)">{{ Auth::user()->name }}</h3>
+            <div class="info">
+                <h3 class="stylish-text">{{ Auth::user()->name }}</h3>
             </div>
         </div>
         <!-- SidebarSearch Form -->
@@ -135,7 +132,7 @@
                 </li>
                 <li class="nav-item">
                     <a href={{ route('admin.tables') }} class="nav-link">
-                        <i class="nav-icon fas fa-search"></i>
+                        <i class="nav-icon fas fa-street-view"></i>
                         <p>
                             Student's Info
                         </p>

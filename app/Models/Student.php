@@ -14,6 +14,7 @@ class Student extends Model
     protected $fillable = [
         'name',
         'degree',
+        'email',
         'branch',
         'rollno',
         'isLoggedIn',

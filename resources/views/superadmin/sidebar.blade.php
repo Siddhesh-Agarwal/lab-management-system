@@ -13,8 +13,8 @@
             <div class="image" style="margin-top:6px">
                 <i class="fas fa-user-secret fa-2x"></i>
             </div>
-            <div class="info" style="margin-left: 20px">
-                <h3 style="color:rgba(80, 167, 255, 0.804)">{{ Auth::user()->name }}</h3>
+            <div class="info" style="margin-left:10px;">
+                <h3 class="stylish-text">{{ Auth::user()->name }}</h3>
             </div>
         </div>
         <!-- SidebarSearch Form -->
@@ -34,7 +34,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
                 <li class="nav-item">
-                    <a href="#" class="nav-link active">
+                    <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-sitemap"></i>
                         <p>
                             Manage Location
@@ -213,14 +213,6 @@
                         </p>
                     </a>
                 </li>
-                {{-- <li class="nav-item">
-                    <a href={{ route('superadmin.list.consumables') }} class="nav-link">
-                        <i class="nav-icon fas fa-database"></i>
-                        <p>
-                            Consumables
-                        </p>
-                    </a>
-                </li> --}}
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-database"></i>

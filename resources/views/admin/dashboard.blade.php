@@ -20,11 +20,23 @@
         * {
             font-family: 'Varela Round', sans-serif;
         }
-        th{
-            color: rgba(80, 167, 255, 0.804);
+
+        th {
+            font-weight: 900;
+            background: -webkit-linear-gradient( #c69cf4, #9cc2f4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
+
         .blinking {
             animation: blink 2s infinite;
+        }
+
+        .stylish-text {
+            font-weight: 900;
+            background: -webkit-linear-gradient( #c69cf4, #9cc2f4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         @keyframes blink {
@@ -39,7 +51,6 @@
             }
         }
     </style>
-
 </head>
 
 <body class="hold-transition dark-mode sidebar-collapse layout-fixed layout-navbar-fixed layout-footer-fixed">

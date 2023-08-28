@@ -21,7 +21,17 @@
         }
 
         th{
-            color: rgba(80, 167, 255, 0.804);
+            font-weight: 900;
+            background: -webkit-linear-gradient( #c69cf4, #9cc2f4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stylish-text {
+            font-weight: 900;
+            background: -webkit-linear-gradient( #c69cf4, #9cc2f4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
     </style>

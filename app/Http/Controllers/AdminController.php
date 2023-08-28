@@ -82,9 +82,8 @@ class AdminController extends Controller
         ]);
 
         $main = StudentRecord::where('regNo', '=', $request->input('rollno'))->first();
-
         $res = Student::where('rollno', '=', $request->input('rollno'))->latest()->get()->first();
-
+        
         $lab = Lab_Table::where('lab_name', '=', urldecode($request->labname))->first();
 
         // Get the last allocated system number
@@ -121,6 +120,7 @@ class AdminController extends Controller
         $data = [
             'name' => $main->name,
             'rollno' => $request->input('rollno'),
+            'email' => $main->email,
             'degree' => $main->degree,
             'branch' => $main->branch,
             'pic' => $main->pic,
@@ -134,7 +134,7 @@ class AdminController extends Controller
         if (is_null($res)) {
 
             $master = Student::create($data);
-
+        
             $system_number = sprintf("SK-%s-%d", $lab->lab_code, $data['systemNumber']);
 
             Logs::create(array(
@@ -147,7 +147,7 @@ class AdminController extends Controller
 
             $stud = Student::where('rollno', '=', $request->input('rollno'))->latest()->get()->first();
             $stud->update(['isLoggedIn' => 1]);
-            $message = sprintf("Your system number is %s", $data['system_number']);
+            $message = sprintf("Your system number is %s", $data['systemNumber']);
             $InTime = $stud->updated_at;
 
             $count = Student::where('isLoggedIn', 1)->count();

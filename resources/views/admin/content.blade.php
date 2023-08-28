@@ -27,7 +27,7 @@
                                             </lord-icon>
                                             <h4 class="description-percentage" style="color: rgba(80, 167, 255, 0.804);"><i
                                                     class="fas fa-smile-o"></i>
-                                                <span>Welcome to {{ Auth::user()->labname }}</span>
+                                                <span class="stylish-text">Welcome to {{ Auth::user()->labname }}</span>
                                         @endif
                                     </div>
                                     <!-- /.description-block -->
