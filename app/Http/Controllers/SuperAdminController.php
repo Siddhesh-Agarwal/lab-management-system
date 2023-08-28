@@ -19,9 +19,11 @@ class SuperAdminController extends Controller
         $totalDeviceCount = Labmove_table::count();
         $totalTempCount=Temp::count();
         $deviceCount=LabList::count();
+        $labCount = Lab_Table::count();
+        $overall_devices = Lablist::count();
         // $admins=User::count();
         $admins=User::where('role','admin')->count();
-        return view('superadmin.content',['totalDeviceCount' => $totalDeviceCount,'totalTempCount'=>$totalTempCount,'deviceCount'=>$deviceCount,'admins'=>$admins]);
+        return view('superadmin.content',['totalDeviceCount' => $totalDeviceCount,'totalTempCount'=>$totalTempCount,'deviceCount'=>$deviceCount,'admins'=>$admins, 'labs' => $labCount, 'alldevices' => $overall_devices]);
     }
 
     public function simple_search()
@@ -139,7 +141,6 @@ class SuperAdminController extends Controller
         $results=Lab::where('serial_number','LIKE','%'.$searchTerm.'%')->get();
         // dd($results);
         return view('superadmin.simplesearch', ['results' => $results,'totalDeviceCount' => $totalDeviceCount,'totalTempCount'=>$totalTempCount]);
-
     }
     public function searchByDevice(Request $request)
     {
