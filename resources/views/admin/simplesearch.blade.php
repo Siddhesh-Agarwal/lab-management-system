@@ -2,10 +2,10 @@
 
 @section('content')
     <section class="content">
-        <div class="container-fluid" style="margin-top:100px; ">
+        <div class="container-fluid" style="margin-top:100px;">
             <h2 class="text-center display-4">Search</h2>
-            
             <!-- Search Bars Row -->
+
             <div class="row">
                 <div class="col-md-4">
                     <form action="{{ route('admin.searchSerial') }}" method="POST">
@@ -22,7 +22,6 @@
                     </form>
                     <br><br>
                 </div>
-                
                 <div class="col-md-4">
                     <form action="{{ route('admin.searchDevice') }}" method="POST">
                         @csrf
@@ -38,7 +37,6 @@
                     </form>
                     <br><br>
                 </div>
-                
                 <div class="col-md-4">
                     <form action="{{ route('admin.searchSystem') }}" method="POST">
                         @csrf
@@ -55,13 +53,12 @@
                     <br><br>
                 </div>
             </div>
-            
             <div class="row">
                 @if (request()->has('search_term'))
-                    <div class="col-md-8 offset-md-2">
+                    <div class="col-md-12 offset-md-2">
                         @if (isset($results) && count($results) > 0)
                             <h3>Search Results: {{ $results->sum('count') }}</h3>
-                            <table class="table">
+                            <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
                                         <th>S.No</th>
@@ -70,9 +67,7 @@
                                         <th>System</th>
                                         <th>Count</th>
                                         <th>Service Description</th>
-    
                                         <th>Lab name</th>
-    
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -94,14 +89,14 @@
                         @endif
                     </div>
                 @endif
-            
+
             </div>
             <div class="row">
-                @if (request()->has('search_termd'))    
-                    <div class="col-md-8 offset-md-2">
+                @if (request()->has('search_termd'))
+                    <div class="col-md-12">
                         @if (isset($resultd) && count($resultd) > 0)
                             <h3>Total {{ $resultd[0]->device_name }} : {{ $resultd->sum('count') }}</h3>
-                            <table class="table">
+                            <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
                                         <th>S.No</th>
@@ -110,9 +105,7 @@
                                         <th>System</th>
                                         <th>Count</th>
                                         <th>Service Description</th>
-    
                                         <th>Lab name</th>
-    
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -134,23 +127,20 @@
                         @endif
                     </div>
                 @endif
-            
             </div>
             <div class="row">
                 @if (request()->has('search_terms'))
-                    <div class="col-md-8 offset-md-2">
+                    <div class="col-md-12 offset-md-2">
                         @if (isset($result) && count($result) > 0)
                             <h3>Search Results:</h3>
-                            <table class="table">
+                            <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
                                         <th>S.No</th>
                                         <th>Device</th>
                                         <th>System</th>
                                         <th>Service Description</th>
-    
                                         <th>Lab name</th>
-    
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -158,9 +148,7 @@
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
                                             <td>{{ $dev->device_name }}</td>
-    
                                             <td>{{ $dev->system_number }}</td>
-    
                                             <td>{{ $dev->desc }}</td>
                                             <td>{{ $dev->lab_name }}</td>
                                         </tr>
@@ -172,7 +160,6 @@
                         @endif
                     </div>
                 @endif
-            
             </div>
         </div>
     </section>

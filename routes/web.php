@@ -130,6 +130,7 @@ Route::prefix('superadmin')->middleware('superadmin.auth')->group(function () {
     Route::get('consumables/add', [ConsumableController::class, 'add'])->name('superadmin.list.consumablesadd');
     Route::post('consumables/save', [ConsumableController::class, 'save'])->name('superadmin.list.consumablessave');
     Route::get('deletecosumables/{id}', [ConsumableController::class, 'delete']);
+    Route::delete('deletelab/{id}', [LablistController::class, 'delete']);
 });
 
 Route::prefix('superadmin')->group(function () {

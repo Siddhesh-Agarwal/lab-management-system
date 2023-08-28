@@ -69,7 +69,7 @@
                                                 <div class="button-actions">
                                                     <a href="{{ url('superadmin/editlistinglabs/' . $dev->id) }}"
                                                         class="btn btn-primary"><i class="fas fa-edit fa-1x"></i></a>
-                                                    {{-- <a href="{{ url('superadmin/deleteotherdevice/' . $dev->id) }}" class="btn btn-danger"
+                                                    {{-- <a href="{{ url('superadmin/deletelab/' . $dev->id) }}" class="btn btn-danger"
                                 style="margin-left: 15px;"><i class="fas fa-trash fa-1x"></i></a> --}}
                                                 </div>
                                             </td>

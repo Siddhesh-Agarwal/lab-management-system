@@ -9,10 +9,6 @@ use Illuminate\Http\Request;
 use App\Models\Lab_Table;
 class ConsumableController extends Controller
 {
-    public function add_consumable(){
-
-    }
-
     public function index(){
         $totalDeviceCount = Labmove_table::count();
         $totalTempCount=Temp::count();
@@ -44,8 +40,6 @@ class ConsumableController extends Controller
             $count = $request->count;
             $lab_name = $request->lab_name;
 
-            
-
             Consumable::where('id', '=', $id)->update([
                 'device_name' => $device_name,
                 'serial_number' => $serial_number,
@@ -53,31 +47,28 @@ class ConsumableController extends Controller
                 'labname' => $lab_name,
                 
             ]);
+
             return redirect()->route('superadmin.list.consumables')->with('success', 'Consumables Updated successfully !');
         } catch (\Exception $e) {
             return redirect()->route('superadmin.list.consumables')->with('error', 'Something went wrong !');
         }
     }
-
-
     public function save(Request $request)
     {
         try {
             $device_name = $request->device_name;
             $serial_number = $request->serial_number;
-           
+    
             $count = $request->count;
-           
-            $lab_name = $request->lab_name;
 
-           
+            $lab_name = $request->lab_name;
 
             $dev = new Consumable();
             $dev->device_name = $device_name;
             $dev->serial_number = $serial_number;
             $dev->count = $count;
             $dev->labname = $lab_name;
-           
+
             $dev->save();
 
             return redirect()->route('superadmin.list.consumables')->with(['success' => 'Consumables added successfully !']);
