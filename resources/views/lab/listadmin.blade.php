@@ -69,7 +69,7 @@
                                         </form>
                                     @endif
                                     @if (session('search_flag'))
-                                        <div id="back-button-section">
+                                        <div id="back-button-section" style="margin-bottom: 20px">
                                             <a href="{{ route('superadmin.lablistdevices') }}"
                                                 class="btn btn-secondary">Back</a>
                                         </div>

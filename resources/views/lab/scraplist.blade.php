@@ -6,6 +6,7 @@
             margin-bottom: 15px;
         }
     </style>
+
     <section class="content">
         <div class="container">
             <div class="container-fluid">
@@ -36,8 +37,7 @@
                                         id="count" name="count" placeholder="Enter Count" required
                                         value="{{ $data->count }}">
                                     <label for="desc">Service Description</label>
-                                    <textarea type="text" class="form-control" id="desc" name="desc" rows="4" cols="50">{{ $data->desc }}</textarea>
-                                    {{-- <label for="lab_name">Lab Name:</label> --}}
+                                    <textarea type="text" class="form-control" id="desc" name="desc" rows="4" cols="50">{{ $data->desc }}</textarea>    
                                     <input type="text" class="form-control" id="lab_name" name="lab_name"
                                         placeholder="Enter Lab Name" required value="{{ $data->lab_name }}" hidden>
                                     <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Move To
