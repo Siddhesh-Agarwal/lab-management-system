@@ -43,7 +43,7 @@
                     <div class="col-12">
                         <div class="card" style="padding: 30px; width:100%;">
                             <div style="width: max-content">
-                                <ol class="breadcrumb" style="background-color:#FC9E4F">
+                                <ol class="breadcrumb" >
                                     <li class="breadcrumb-item" style="color:black">Edit System</li>
                                 </ol>
                             </div>

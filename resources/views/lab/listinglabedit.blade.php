@@ -14,7 +14,7 @@
                         <div class="card">
                             <div class="card-header" style="height: 70px">
                                 <div style="width: max-content">
-                                    <ol class="breadcrumb" style="background-color:#FC9E4F">
+                                    <ol class="breadcrumb" >
                                         <li class="breadcrumb-item" style="color:black">Edit Lab</li>
                                     </ol>
                                 </div>

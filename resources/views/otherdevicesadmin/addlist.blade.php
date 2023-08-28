@@ -51,7 +51,7 @@
                         <div class="card" style="margin: 1%">
                             <div class="card-header">
                                 <div style="width: max-content">
-                                    <ol class="breadcrumb" style="background-color:#FC9E4F">
+                                    <ol class="breadcrumb" >
                                         <li class="breadcrumb-item" style="color:black">Add Other Device</li>
                                     </ol>
                                 </div>

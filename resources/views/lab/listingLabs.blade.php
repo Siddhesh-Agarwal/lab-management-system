@@ -47,7 +47,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <div style="width: max-content">
-                                    <ol class="breadcrumb" style="background-color:#FC9E4F">
+                                    <ol class="breadcrumb" >
                                         <li class="breadcrumb-item" style="color:black">All Labs</li>
                                     </ol>
                                 </div>

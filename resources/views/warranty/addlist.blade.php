@@ -19,7 +19,7 @@
                     <div class="col-12">
                         <div class="card" style="margin: 2%; padding:30px">
                             <div style="width: max-content">
-                                <ol class="breadcrumb" style="background-color:#FC9E4F">
+                                <ol class="breadcrumb" >
                                     <li class="breadcrumb-item" style="color:black">Add Warranty</li>
                                 </ol>
                             </div>

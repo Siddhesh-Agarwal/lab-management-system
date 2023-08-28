@@ -20,7 +20,7 @@ class SuperAdminController extends Controller
         $totalTempCount=Temp::count();
         $deviceCount=LabList::count();
         $labCount = Lab_Table::count();
-        // $admins=User::count();
+        
         $admins=User::where('role','admin')->count();
         return view('superadmin.content',['totalDeviceCount' => $totalDeviceCount,'totalTempCount'=>$totalTempCount,'deviceCount'=>$deviceCount,'admins'=>$admins, 'labcount' => $labCount]);
     }
