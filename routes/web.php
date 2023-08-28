@@ -35,14 +35,13 @@ Route::prefix('admin')->middleware('admin.auth')->group(function () {
     Route::post('/search', [AdminController::class, 'searchByLabSerial'])->name('admin.searchSerial');
     Route::post('/searchSystem', [AdminController::class, 'searchByLabSystem'])->name('admin.searchSystem');
     Route::post('/searchDevice', [AdminController::class, 'searchByLabDevice'])->name('admin.searchDevice');
-
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/forcelogout', [AdminController::class, 'forceLogout'])->name('admin.force');
     Route::get('/contact', [AdminController::class, 'contact'])->name('admin.contact');
     Route::get('/simple-search', [AdminController::class, 'simple_search'])->name('admin.searchlabs');
     Route::get('/advance-search', [AdminController::class, 'advance_search'])->name('admin.advance.search');
     Route::get('/device-details', [AdminController::class, 'device_details'])->name('admin.device.details');
-    Route::get('/data-tables', [AdminController::class, 'tables'])->name('admin.tables');
+    Route::get('/student-table', [AdminController::class, 'tables'])->name('admin.tables');
     Route::get('/', [AdminController::class, 'logout'])->name('admin.logout');
     Route::post('/', [AdminController::class, 'save_student'])->name('admin.student.add');
     Route::get('/show-students', [AdminController::class, 'show'])->name('admin.student.details');
@@ -85,7 +84,6 @@ Route::prefix('superadmin')->middleware('superadmin.auth')->group(function () {
     Route::get('/contact', [SuperAdminController::class, 'contact'])->name('superadmin.contact');
     Route::get('/simple-search', [SuperAdminController::class, 'simple_search'])->name('superadmin.search');
     Route::get('/advance-search', [SuperAdminController::class, 'advance_search'])->name('superadmin.advance.search');
-    Route::get('/data-tables', [SuperAdminController::class, 'tables'])->name('superadmin.tables');
     Route::get('/admin-add', [SuperAdminController::class, 'add_admin'])->name('superadmin.add');
     Route::post('/', [SuperAdminController::class, 'create'])->name('superadmin.add.admin');
     Route::delete('/{id}', [SuperAdminController::class, 'delete_admin'])->name('superadmin.delete.admin');
