@@ -9,7 +9,7 @@ use App\Models\Lab_Table;
 use App\Models\Temp;
 use App\Models\Warranty;
 use Illuminate\Http\Request;
-
+use Carbon\Carbon;
 class WarrantyController extends Controller
 {
      public function index(){
@@ -17,8 +17,35 @@ class WarrantyController extends Controller
         $totalTempCount=Temp::count();
         $data=Warranty::get();
         $LabNames = Lab_Table::get();
+        foreach ($data as $warranty) {
+            $warranty->time_period_diff = $this->calculateTimePeriod($warranty);
+        }
         return view('warranty.list',['data' => $data, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount,'labs'=>$LabNames]);
      }
+
+     
+    public function filter()
+    {
+        $totalDeviceCount = Labmove_table::count();
+        $totalTempCount = Temp::count();
+        $allData = Warranty::get(); // Get all warranties
+
+        $LabNames = Lab_Table::get();
+
+        // Filter warranties with time period less than 6 months
+        $filteredData = $allData->filter(function ($warranty) {
+            $created_at = Carbon::parse($warranty->created_at);
+            $time_period = Carbon::parse($warranty->time_period);
+            return $created_at->diffInMonths($time_period) < 6;
+        });
+
+        return view('superadmin.content', [
+            'data' => $filteredData,
+            'totalDeviceCount' => $totalDeviceCount,
+            'totalTempCount' => $totalTempCount,
+            'labs' => $LabNames
+        ]);
+    }
 
      public function add()
      {
@@ -87,6 +114,13 @@ class WarrantyController extends Controller
         }
     }
 
+    public function calculateTimePeriod($warranty)
+    {
+        $created_at = Carbon::parse($warranty->created_at);
+        $time_period = Carbon::parse($warranty->time_period);
+
+        return $created_at->diffInDays($time_period);
+    }
     public function delete($id)
     {
         try {

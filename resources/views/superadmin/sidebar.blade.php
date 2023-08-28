@@ -151,10 +151,12 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
+                            
                             <a href={{ route('temp.list') }} class="nav-link">
                                 <i class="fas fa-recycle nav-icon"></i>
-                                <p>Temp</p>
+                                <p>Temp
                                 <span class="badge badge-primary">{{ $totalTempCount }}</span>
+                                </p>
                             </a>
                         </li>
                         <li class="nav-item">

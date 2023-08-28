@@ -90,6 +90,7 @@
                                                     <td>{{ $dev->system_number }}</td>
                                                     <td>{{ $dev->time_period }}</td>
                                                     <td>{{ $dev->labname }}</td>
+                                                    {{-- <td>{{ $dev->time_period_diff }} days</td>  --}}
                                                     <td>
                                                         <div class="button-actions">
                                                             <a href="{{ url('superadmin/editwarranty/' . $dev->id) }}"

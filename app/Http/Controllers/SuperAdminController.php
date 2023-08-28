@@ -7,11 +7,13 @@ use App\Models\Lablist;
 use App\Models\Labmove_table;
 use App\Models\Lab_Table;
 use App\Models\Temp;
+use App\Models\Warranty;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Crypt;
+use Carbon\Carbon;
 class SuperAdminController extends Controller
 {
     public function index()
@@ -20,9 +22,15 @@ class SuperAdminController extends Controller
         $totalTempCount=Temp::count();
         $deviceCount=LabList::count();
         $labCount = Lab_Table::count();
-        
+        $allData = Warranty::get(); 
+        $LabNames = Lab_Table::get();
+        $filteredData = $allData->filter(function ($warranty) {
+            $created_at = Carbon::parse($warranty->created_at);
+            $time_period = Carbon::parse($warranty->time_period);
+            return $created_at->diffInMonths($time_period) < 6;
+        });
         $admins=User::where('role','admin')->count();
-        return view('superadmin.content',['totalDeviceCount' => $totalDeviceCount,'totalTempCount'=>$totalTempCount,'deviceCount'=>$deviceCount,'admins'=>$admins, 'labcount' => $labCount]);
+        return view('superadmin.content',['totalDeviceCount' => $totalDeviceCount,'totalTempCount'=>$totalTempCount,'deviceCount'=>$deviceCount,'admins'=>$admins, 'labcount' => $labCount,'data' => $filteredData]);
     }
 
     public function simple_search()
