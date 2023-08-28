@@ -198,8 +198,8 @@ class AdminController extends Controller
 
         $leaving->update(['random' => $val]);
 
-        $InTime = $res->updated_at;
-        $OutTime = $leaving->created_at;
+        $InTime = $res->logout_time;
+        $OutTime = $leaving->login_time;
 
         $startTimestamp = Carbon::parse($InTime);
         $endTimestamp = Carbon::parse($OutTime);
