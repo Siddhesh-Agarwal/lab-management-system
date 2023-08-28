@@ -25,7 +25,7 @@
                         <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-map"></i></span>
                         <div class="info-box-content">
                             <span class="info-box-text">Labs</span>
-                            <span class="info-box-number">41,410</span>
+                            <span class="info-box-number">{{ $labcount }}</span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
@@ -38,8 +38,8 @@
                     <div class="info-box mb-3">
                         <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
                         <div class="info-box-content">
-                            <span class="info-box-text">Sales</span>
-                            <span class="info-box-number">760</span>
+                            <span class="info-box-text">Printer</span>
+                            <span class="info-box-number">90</span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>

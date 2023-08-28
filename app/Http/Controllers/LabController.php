@@ -112,10 +112,11 @@ class LabController extends Controller
     }
 
     public function delete_lab($id){
-        dd($id);
+        // dd($id);
         try{
-            Lab_Table::where('id',$id)->get()->delete();
-            return redirect()->route('superadmin.listinglabs')->with('error', 'Successfully lab was deleted !');
+             $data = Lab_Table::find($id);
+            $data->delete();
+            return redirect()->route('superadmin.listinglabs')->with('success', 'Successfully lab was deleted !');
         }
         catch(\Exception $e){
             return redirect()->route('superadmin.listinglabs')->with('error', $e->getMessage());
