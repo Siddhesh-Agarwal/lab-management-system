@@ -129,7 +129,7 @@ Route::prefix('superadmin')->middleware('superadmin.auth')->group(function () {
     Route::get('consumables/add', [ConsumableController::class, 'add'])->name('superadmin.list.consumablesadd');
     Route::post('consumables/save', [ConsumableController::class, 'save'])->name('superadmin.list.consumablessave');
     Route::get('deletecosumables/{id}', [ConsumableController::class, 'delete']);
-    Route::delete('deletelab/{id}', [LabController::class, 'delete_lab']);
+    Route::get('deletelab/{id}', [LabController::class, 'delete_lab']);
     Route::get('warranty', [WarrantyController::class, 'index'])->name('superadmin.warranty');
     Route::get('warranty/add', [WarrantyController::class, 'add'])->name('superadmin.warrantyadd');
     Route::post('savewarranty', [WarrantyController::class, 'save'])->name('superadmin.warrantysave');

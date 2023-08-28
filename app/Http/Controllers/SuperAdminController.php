@@ -19,8 +19,6 @@ class SuperAdminController extends Controller
         $totalDeviceCount = Labmove_table::count();
         $totalTempCount=Temp::count();
         $deviceCount=LabList::count();
-        $labCount = Lab_Table::count();
-        $overall_devices = Lablist::count();
         // $admins=User::count();
         $admins=User::where('role','admin')->count();
         return view('superadmin.content',['totalDeviceCount' => $totalDeviceCount,'totalTempCount'=>$totalTempCount,'deviceCount'=>$deviceCount,'admins'=>$admins, 'labs' => $labCount, 'alldevices' => $overall_devices]);
@@ -209,11 +207,11 @@ class SuperAdminController extends Controller
             $dev->room_number = $room;
             $dev->department = $dep;
             $dev->save();
-            dd($dev);
-            return redirect()->route('superadmin.labdetails')->with('success', 'Successfully lab added !');
+            // dd($dev);
+            return redirect()->route('superadmin.listinglabs')->with('success', 'Successfully lab added !');
         }
         catch(\Exception $e){
-            return redirect()->route('superadmin.labdetails')->with('error', 'Something went wrong !');
+            return redirect()->route('superadmin.listinglabs')->with('error', 'Something went wrong !');
         }
     }
 
