@@ -19,7 +19,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Alkatra&display=swap');
-
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
         .banner {
             height: 100vh;
             width: 100%;
@@ -38,6 +38,10 @@
                 background-image: linear-gradient(to bottom right, #002f4b, #424040);
                 opacity: .7;
             }
+        }
+
+        .text-center{
+            user-select: none;
         }
 
         .banner .navbar {
@@ -130,7 +134,6 @@
                 background-position: 0 50px;
             }
         }
-
         .about-banner {
             height: 160vh;
             width: 100%;
@@ -201,8 +204,8 @@
             </div>
             <div class="col-md-8 offset-md-2 info">
                 <h1 class="text-center animated-text">SKCET LAB</h1>
-                <p class="text-center" style="color: #e9e9e9; font-family: 'Varela Round', sans-serif;">
-                    Think Placement... Think SKCET !!
+                <p class="text-center" style="color: #e9e9e9; font-family: 'Merriweather', sans-serif;">
+                    Think Placement Think SKCET !
                 </p>
                 <a href="{{ route('login') }}">
                     <button onclick={{ route('login') }}" class="button-home">GET STARTED</button>

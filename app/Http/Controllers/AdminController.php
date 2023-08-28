@@ -294,7 +294,6 @@ class AdminController extends Controller
             ->where('lab_name', $lab_name)
             ->get();
         return view('admin.simplesearch', ['resultd' => $resultd, 'labNames' => $labNames]);
-
     }
     public function searchByLabSystem(Request $request)
     {
@@ -305,7 +304,5 @@ class AdminController extends Controller
             ->where('lab_name', $lab_name)
             ->get();
         return view('admin.simplesearch', ['result' => $result, 'labNames' => $labNames]);
-
     }
-
 }
