@@ -6,8 +6,8 @@
             margin-bottom: 15px;
         }
     </style>
-    <div class="container" style="margin-top: 100px">
-        <section class="content">
+    <section class="content" style="margin-top: 100px;">
+        <div class="container">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
@@ -70,6 +70,6 @@
                     </div>
                 </div>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
 @endsection
