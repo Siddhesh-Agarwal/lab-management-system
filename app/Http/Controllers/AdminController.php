@@ -102,12 +102,20 @@ class AdminController extends Controller
             $nextSystemNumber = 1;
         }
 
-// Allocate 66 systems to the student
-        $allocatedSystems = [];
-        for ($i = 0; $i < 66; $i++) {
-            $systemNumber = sprintf("SK-%s-%d", $lab->lab_code, $nextSystemNumber);
-            $allocatedSystems[] = $systemNumber;
-            $nextSystemNumber++;
+        $count = Lablist::where('lab_name', Auth::user()->labname)->get()->count();
+        $limit = 0;
+        if($limit < $count){
+            // Allocate systems to the student
+                    $allocatedSystems = [];
+                    for ($i = 0; $i < $count; $i++) {
+                        $limit++;
+                        $systemNumber = sprintf("SK-%s-%d", $lab->lab_code, $nextSystemNumber);
+                        $allocatedSystems[] = $systemNumber;
+                        $nextSystemNumber++;
+                    }
+        }
+        else{
+            dd("alert");
         }
 
         $data = [
@@ -219,7 +227,8 @@ class AdminController extends Controller
 
     public function generateSystemNumber()
     {
-        return rand(1, 66); // Assuming system numbers are within 1 to 60 range
+        $count = Lablist::where('lab_name', Auth::user()->labname)->get()->count();
+        return rand(1, $count); // Assuming system numbers are within 1 to 60 range
     }
 
     public function show()

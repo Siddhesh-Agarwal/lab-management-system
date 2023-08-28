@@ -44,6 +44,9 @@
             <label for="block">Block</label>
             <input type="text" class="form-control" id="block" name="block" placeholder="Enter the Block" required
                 value="{{ $data->block }}">
+            <label for="room_number">Room Number</label>
+            <input type="text" class="form-control" id="room_number" name="room_number" placeholder="Enter the Room Number" required
+                value="{{ $data->room_number     }}">
             <div style="display:flex; justify-content:space-between; width:100%; margin-top:2%">
                 <button type="submit" class="btn btn-primary">Update</button>
                 <a href='{{ route('superadmin.listinglabs') }}' class="btn btn-danger">Back</a>

@@ -240,15 +240,16 @@ class LablistController extends Controller
             $block = $request->block;
             $room_number = $request->room_number;
 
-            $lab_found = Lab_Table::where('id', '=', $id)->get();
+            // $lab_found = Lab_Table::where('id', '=', $id)->get();
 
-            $lab_found->lab_name = $lab_name;
-            $lab_found->lab_code = $lab_code;
-            $lab_found->department = $department;
-            $lab_found->block = $block;
-            $lab_found->room_number = $room_number;
-            $lab_found->update();
-
+            Lab_Table::where('id', '=', $id)->update([
+                'lab_name' => $lab_name,
+                'lab_code' => $lab_code,
+                'department' => $department,
+                'block' => $block,
+                'room_number' => $room_number,
+                // 'id' => $id,
+            ]);
             return redirect()->route('superadmin.listinglabs')->with('success', 'Lab Updated successfully !');
         } catch (\Exception $e) {
             return redirect()->route('superadmin.listinglabs')->with('error', 'Something went wrong !');
