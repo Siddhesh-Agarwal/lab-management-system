@@ -1,7 +1,7 @@
 @extends('admin.dashboard')
 
 @section('content')
-    <section class="content" style="margin-top: 100px">
+    <section class="content" style="margin-top: 90px">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">

@@ -60,6 +60,14 @@
     <!-- ./wrapper -->
 
     <!-- REQUIRED SCRIPTS -->
+    <script>
+        $(document).ready(function () {
+            $(".sidebar-toggle").on("click", function () {
+                $("body").toggleClass("sidebar-collapse");
+            });
+        });
+    </script>
+    
     <!-- jQuery -->
     <script src={{ url('plugins/jquery/jquery.min.js') }}>
         < /> <!--Bootstrap-- > <
