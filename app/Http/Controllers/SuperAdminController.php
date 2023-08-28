@@ -19,9 +19,10 @@ class SuperAdminController extends Controller
         $totalDeviceCount = Labmove_table::count();
         $totalTempCount=Temp::count();
         $deviceCount=LabList::count();
+        $labCount = Lab_Table::count();
         // $admins=User::count();
         $admins=User::where('role','admin')->count();
-        return view('superadmin.content',['totalDeviceCount' => $totalDeviceCount,'totalTempCount'=>$totalTempCount,'deviceCount'=>$deviceCount,'admins'=>$admins, 'labs' => $labCount, 'alldevices' => $overall_devices]);
+        return view('superadmin.content',['totalDeviceCount' => $totalDeviceCount,'totalTempCount'=>$totalTempCount,'deviceCount'=>$deviceCount,'admins'=>$admins, 'labcount' => $labCount]);
     }
 
     public function simple_search()

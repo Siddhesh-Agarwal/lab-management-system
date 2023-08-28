@@ -25,11 +25,7 @@
                         <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-map"></i></span>
                         <div class="info-box-content">
                             <span class="info-box-text">Labs</span>
-<<<<<<< HEAD
-                            <span class="info-box-number">{{ $labs }}</span>
-=======
                             <span class="info-box-number">{{ $labcount }}</span>
->>>>>>> 2739c56dd0a68cff8279f816fd71b90b43bcccfc
                         </div>
                         <!-- /.info-box-content -->
                     </div>
@@ -42,13 +38,8 @@
                     <div class="info-box mb-3">
                         <span class="info-box-icon bg-success elevation-1"><i class="fas fa-plug"></i></span>
                         <div class="info-box-content">
-<<<<<<< HEAD
-                            <span class="info-box-text">Devices</span>
-                            <span class="info-box-number">{{ $alldevices }} mathuda</span>
-=======
                             <span class="info-box-text">Printer</span>
                             <span class="info-box-number">90</span>
->>>>>>> 2739c56dd0a68cff8279f816fd71b90b43bcccfc
                         </div>
                         <!-- /.info-box-content -->
                     </div>
