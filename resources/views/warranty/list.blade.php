@@ -49,7 +49,7 @@
                             @if (count($data) > 0)
                                 <div class="card-body">
                                     @if (!session('search_flag'))
-                                        <form id="search-form" action="{{ route('superadmin.searchlablistdevices') }}"
+                                        <form id="search-form" action="{{ route('superadmin.searchwarranty') }}"
                                             method="GET">
                                             <div class="input-group" style="margin-bottom: 30px">
                                                 {{-- <input type="text" name="lab_name" class="form-control"
@@ -67,7 +67,7 @@
                                     @endif
                                     @if (session('search_flag'))
                                         <div id="back-button-section">
-                                            <a href="{{ url('superadmin/lablist') }}" class="btn btn-secondary">Back</a>
+                                            <a href="{{ url('superadmin/warranty') }}" class="btn btn-secondary">Back</a>
                                         </div>
                                     @endif
                                     <table class="table table-bordered table-hover">
