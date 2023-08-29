@@ -15,6 +15,7 @@ class Lablist extends Model
         'spec',
         'system_number',
         'desc',
+        'type',
         'lab_name',
         'lab_id'
     ];

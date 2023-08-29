@@ -79,6 +79,7 @@
                                                 <th>System Number</th>
                                                 <th>System Description</th>
                                                 <th>Lab Name</th>
+                                                <th>Type</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -91,6 +92,7 @@
                                                     <td>{{ $dev->system_number }}</td>
                                                     <td>{{ $dev->desc }}</td>
                                                     <td>{{ $dev->lab_name }}</td>
+                                                    <td>{{ $dev->type }}</td>
                                                     <td>
                                                         <div class="button-actions">
                                                             <a href="{{ url('superadmin/editlablistdevice/' . $dev->id) }}"

@@ -20,7 +20,8 @@ class SuperAdminController extends Controller
     {
         $totalDeviceCount = Labmove_table::count();
         $totalTempCount=Temp::count();
-        $deviceCount=LabList::count();
+        $deviceCount=LabList::where('type','Desktop')->count();
+        $laptopCount=LabList::where('type','Laptop')->count();
         $labCount = Lab_Table::count();
         $allData = Warranty::get(); 
         $LabNames = Lab_Table::get();
@@ -31,7 +32,7 @@ class SuperAdminController extends Controller
             return $created_at->diffInMonths($time_period) < 6;
         });
         $admins=User::where('role','admin')->count();
-        return view('superadmin.content',['totalDeviceCount' => $totalDeviceCount,'totalTempCount'=>$totalTempCount,'deviceCount'=>$deviceCount,'admins'=>$admins, 'labcount' => $labCount,'data' => $filteredData,'warranty'=>$warranty]);
+        return view('superadmin.content',['totalDeviceCount' => $totalDeviceCount,'totalTempCount'=>$totalTempCount,'deviceCount'=>$deviceCount,'admins'=>$admins, 'labcount' => $labCount,'data' => $filteredData,'warranty'=>$warranty,'laptop'=>$laptopCount]);
     }
 
     public function simple_search()

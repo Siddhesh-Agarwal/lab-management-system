@@ -25,7 +25,7 @@
                         <span class="info-box-icon bg-danger elevation-4" style="width:100px; height:100px;"><i class="fa-solid fa-laptop fa-beat fa-lg" style="color: #252525;--fa-beat-scale: 1.5;"></i></span>
                         <div class="info-box-content">
                             <span class="info-box-text">Total Laptops</span>
-                            <span class="info-box-number">9</span>
+                            <span class="info-box-number">{{ $laptop }}</span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>

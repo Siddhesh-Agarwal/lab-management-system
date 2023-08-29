@@ -69,6 +69,7 @@
                                                 <th>System Number</th>
                                                 <th>System Description</th>
                                                 <th>Lab Name</th>
+                                                <th>Type</th>
                                                 @if ($data[0]->lab_name === Auth::user()->labname)
                                                     <th>Action</th>
                                                 @endif
@@ -83,6 +84,7 @@
                                                     <td>{{ $dev->system_number }}</td>
                                                     <td>{{ $dev->desc }}</td>
                                                     <td>{{ $dev->lab_name }}</td>
+                                                    <td>{{ $dev->type }}</td>
                                                     @if (Auth::user()->labname == $dev->lab_name)
                                                         <td>
                                                             <div class="button-actions">

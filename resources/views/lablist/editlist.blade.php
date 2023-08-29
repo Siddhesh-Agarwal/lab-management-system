@@ -43,7 +43,7 @@
                     <div class="col-12">
                         <div class="card" style="padding: 30px; width:100%;">
                             <div style="width: max-content">
-                                <ol class="breadcrumb" >
+                                <ol class="breadcrumb">
                                     <li class="breadcrumb-item" style="color:black">Edit System</li>
                                 </ol>
                             </div>
@@ -57,7 +57,17 @@
                                 <label for="system_number">System Number</label>
                                 <input type="text" class="form-control" name="system_number"
                                     value="{{ $data->system_number }}">
-                                <label for="desc">System Description</label>
+                                <label for="type">Type</label>
+                                <select name="type" id="name" class="form-control">
+                                    <option value={{ $data->type }}>{{ $data->type }}</option>
+                                    @if ($data->type=="Laptop")
+                                    <option value="Desktop">Desktop</option>
+                                    @endif
+                                    @if ($data->type=="Desktop")
+                                    <option value="Laptop">Laptop</option>
+                                    @endif
+                                </select>
+                                <label for="desc"  style="margin-top: 10px">System Description</label>
                                 <textarea type="text" class="form-control" name="desc">{{ $data->desc }}</textarea>
                                 <input type="hidden" name="id" value="{{ $data->id }}">
                                 <label for="lab_name" style="margin-top: 10px">Lab Name</label>

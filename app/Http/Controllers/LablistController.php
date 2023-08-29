@@ -50,7 +50,7 @@ class LablistController extends Controller
             $spec = $request->spec;
             $system_number = $request->system_number;
             $desc = $request->desc;
-
+            $type=$request->type;
             $lab_name = urldecode($request->lab_name);
 
             $lab = Lab_Table::where('lab_name', $lab_name)->first();
@@ -64,6 +64,7 @@ class LablistController extends Controller
             $dev->desc = $desc;
             $dev->lab_name = $lab_name;
             $dev->lab_id = $lab_id;
+            $dev->type=$type;
             $dev->save();
 
             return redirect()->route('superadmin.lablists')->with(['success' => 'Device Added successfully!']);
@@ -80,7 +81,7 @@ class LablistController extends Controller
             $system_number = $request->system_number;
             $desc = $request->desc;
             $lab_name = urldecode($request->lab_name);
-
+            $type=$request->type;
             $lab = Lab_Table::where('lab_name', $lab_name)->first();
 
             $lab_id = $lab ? $lab->id : null;
@@ -92,6 +93,7 @@ class LablistController extends Controller
             $dev->desc = $desc;
             $dev->lab_name = $lab_name;
             $dev->lab_id = $lab_id;
+            $dev->type=$type;
             $dev->save();
 
             return redirect()->route('admin.lablist', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with(['success', 'Device added successfully !']);
@@ -133,7 +135,7 @@ class LablistController extends Controller
             $system_number = $request->system_number;
             $desc = $request->desc;
             $lab_name = urldecode($request->lab_name);
-
+            $type=$request->type;
             $lab = Lab_Table::where('lab_name', $lab_name)->first();
 
             $lab_id = $lab ? $lab->id : null;
@@ -144,6 +146,7 @@ class LablistController extends Controller
                 'system_number' => $system_number,
                 'desc' => $desc,
                 'lab_name' => $lab_name,
+                'type'=>$type,
                 'lab_id' => $lab_id,
             ]);
             return redirect()->route('superadmin.lablists')->with('success', 'Device Updated successfully !');
@@ -161,7 +164,7 @@ class LablistController extends Controller
             $system_number = $request->system_number;
             $desc = $request->desc;
             $lab_name = urldecode($request->lab_name);
-
+            $type=$request->type;
             $lab = Lab_Table::where('lab_name', $lab_name)->first();
 
             $lab_id = $lab ? $lab->id : null;
@@ -172,6 +175,7 @@ class LablistController extends Controller
                 'system_number' => $system_number,
                 'desc' => $desc,
                 'lab_name' => $lab_name,
+                'type'=>$type,
                 'lab_id' => $lab_id,
             ]);
 
