@@ -23,7 +23,7 @@
 
         th {
             font-weight: 900;
-            background: -webkit-linear-gradient( #c69cf4, #9cc2f4);
+            background: -webkit-linear-gradient(#c69cf4, #9cc2f4);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -34,7 +34,7 @@
 
         .stylish-text {
             font-weight: 900;
-            background: -webkit-linear-gradient( #c69cf4, #9cc2f4);
+            background: -webkit-linear-gradient(#c69cf4, #9cc2f4);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -50,10 +50,58 @@
                 opacity: 0;
             }
         }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0 0
+            }
+
+            100% {
+                background-position: 100% 0
+            }
+        }
+
+        #webflow-style-input {
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            width: 50%;
+            border-radius: 2px;
+            background: rgba(57, 63, 84, 0.8);
+
+            &:after {
+                content: "";
+                position: absolute;
+                left: 0px;
+                right: 0px;
+                bottom: 0px;
+                z-index: 999;
+                height: 2px;
+                border-bottom-left-radius: 2px;
+                border-bottom-right-radius: 2px;
+                background-position: 0% 0%;
+                background: linear-gradient(to right, #B294FF, #57E6E6, #FEFFB8, #57E6E6, #B294FF, #57E6E6);
+                background-size: 500% auto;
+                animation: gradient 3s linear infinite;
+            }
+        }
+
+        #rollno {
+            flex-grow: .5;
+            color: #BFD2FF;
+            font-size: 1.8rem;
+            line-height: 2.4rem;
+            vertical-align: middle;
+
+            &::-webkit-input-placeholder {
+                color: #7881A1;
+            }
+        }
     </style>
 </head>
 
-<body class="hold-transition dark-mode sidebar-mini sidebar-collapse layout-fixed layout-navbar-fixed layout-footer-fixed">
+<body
+    class="hold-transition dark-mode sidebar-mini sidebar-collapse layout-fixed layout-navbar-fixed layout-footer-fixed">
     <div class="wrapper">
 
         <!-- Preloader -->

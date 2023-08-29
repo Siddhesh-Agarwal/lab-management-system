@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="info-box">
-                        <span class="info-box-icon bg-info elevation-1"><i class="fas fa-desktop"></i></span>
+                        <span class="info-box-icon bg-info elevation-4" style="width:100px; height:100px;"><i class="fa-solid fa-desktop fa-beat fa-lg" style="color: #252525;--fa-beat-scale: 1.5;"></i></span>
                         <div class="info-box-content">
                             <span class="info-box-text">Total Systems</span>
                             <span class="info-box-number">
@@ -22,10 +22,10 @@
                 <!-- /.col -->
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="info-box mb-3">
-                        <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-map"></i></span>
+                        <span class="info-box-icon bg-danger elevation-4" style="width:100px; height:100px;"><i class="fa-solid fa-laptop fa-beat fa-lg" style="color: #252525;--fa-beat-scale: 1.5;"></i></span>
                         <div class="info-box-content">
                             <span class="info-box-text">Total Laptops</span>
-                            <span class="info-box-number">8</span>
+                            <span class="info-box-number">9</span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
@@ -36,7 +36,7 @@
                 <div class="clearfix hidden-md-up"></div>
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="info-box mb-3">
-                        <span class="info-box-icon bg-success elevation-1"><i class="fas fa-plug"></i></span>
+                        <span class="info-box-icon bg-success elevation-4" style="width:100px; height:100px;"><i class="fa-solid fa-print fa-beat fa-lg" style="color: #252525;--fa-beat-scale: 1.5;"></i></span>
                         <div class="info-box-content">
                             <span class="info-box-text">Printers</span>
                             <span class="info-box-number">90</span>
@@ -48,7 +48,7 @@
 
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="info-box mb-3">
-                        <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+                        <span class="info-box-icon bg-warning elevation-4" style="width:100px; height:100px;"><i class="fa-solid fa-users fa-beat fa-lg" style="color: #252525;--fa-beat-scale: 1.5;"></i></span>
                         <div class="info-box-content">
                             <span class="info-box-text">Network Switches</span>
                             <span class="info-box-number">{{ $admins }}</span>

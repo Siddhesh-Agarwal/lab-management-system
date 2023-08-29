@@ -7,6 +7,8 @@
     <title>Super Admin Dashboard</title>
 
     <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href={{ url('plugins/fontawesome-free/css/all.min.css') }}>
     <!-- overlayScrollbars -->
