@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('device_name');
             $table->string('spec');
             $table->string('system_number')->unique();
+            $table->string('type');
             $table->string('desc')->nullable();
             $table->unsignedBigInteger('lab_id');
             $table->string('lab_name');
