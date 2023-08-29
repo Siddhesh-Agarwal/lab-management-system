@@ -60,8 +60,11 @@ class AdminController extends Controller
         $count = Student::where('isLoggedIn', 1)->count();
 
         $student = Student::all();
-
+        
         foreach ($logs as $log) {
+            $leaving = Logs::where('rollno', $log->rollno)->latest()->get()->first();
+            $val = $leaving->random + 1;
+            $leaving->update(['random' => $val]);
             $log->update(['isLoggedIn' => 0]);
             $log->delete();
         }
