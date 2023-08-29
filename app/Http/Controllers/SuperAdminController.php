@@ -24,13 +24,14 @@ class SuperAdminController extends Controller
         $labCount = Lab_Table::count();
         $allData = Warranty::get(); 
         $LabNames = Lab_Table::get();
+        $warranty=Warranty::count();
         $filteredData = $allData->filter(function ($warranty) {
             $created_at = Carbon::parse($warranty->created_at);
             $time_period = Carbon::parse($warranty->time_period);
             return $created_at->diffInMonths($time_period) < 6;
         });
         $admins=User::where('role','admin')->count();
-        return view('superadmin.content',['totalDeviceCount' => $totalDeviceCount,'totalTempCount'=>$totalTempCount,'deviceCount'=>$deviceCount,'admins'=>$admins, 'labcount' => $labCount,'data' => $filteredData]);
+        return view('superadmin.content',['totalDeviceCount' => $totalDeviceCount,'totalTempCount'=>$totalTempCount,'deviceCount'=>$deviceCount,'admins'=>$admins, 'labcount' => $labCount,'data' => $filteredData,'warranty'=>$warranty]);
     }
 
     public function simple_search()
