@@ -117,7 +117,7 @@ class AdminController extends Controller
                 $nextSystemNumber++;
             }
         } else {
-            dd("alert");
+            dd($count);
         }
 
         $data = [
@@ -315,5 +315,11 @@ class AdminController extends Controller
             ->where('lab_name', $lab_name)
             ->get();
         return view('admin.simplesearch', ['result' => $result, 'labNames' => $labNames]);
+    }
+
+    public function log_details(){
+        $labNames = Lab_Table::get();
+        $details = Logs::where('labname', Auth::user()->labname)->get();
+        return view('admin.log_details', ['details' => $details, 'labNames' => $labNames]);
     }
 }

@@ -68,6 +68,7 @@ Route::prefix('admin')->middleware('admin.auth')->group(function () {
     Route::post('/labs/movetotemp', [LabController::class, 'moveToScraps'])->name('temps.moveData');
     Route::post('/movetotemp/{id}', [LabController::class, 'movetotemp'])->name('temps.movecount');
     Route::get('consumables/{lab_name}', [ConsumableController::class, 'indexadmin'])->name('admin.consumables');
+    Route::get('log-details', [AdminController::class, 'log_details'])->name('admin.log.details');
 });
 
 Route::prefix('superadmin')->middleware('superadmin.auth')->group(function () {
@@ -136,7 +137,7 @@ Route::prefix('superadmin')->middleware('superadmin.auth')->group(function () {
     Route::get('editwarranty/{id}', [WarrantyController::class, 'edit'])->name('superadmin.warrantyedit');
     Route::post('updatewarranty', [WarrantyController::class, 'update'])->name('superadmin.warrantyupdate');
     Route::get('deletewarranty/{id}', [WarrantyController::class, 'delete'])->name('superadmin.warrantydelete');
-
+    Route::get('log-details', [SuperAdminController::class, 'log_details'])->name('superadmin.log.details');
 });
 
 Route::prefix('superadmin')->group(function () {

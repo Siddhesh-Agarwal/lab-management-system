@@ -42,7 +42,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card" style="margin: 20px; padding:20px;">
-                            <div style="width:100%; display:flex; flex-direction:row-reverse">
+                            <div style="width:max-content; margin-bottom:10px;">
                                 <ol class="breadcrumb" style="margin-top:0.5px;">
                                     <li class="breadcrumb-item">
                                         <a href="#">{{ $labname }}</a>

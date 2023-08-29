@@ -41,14 +41,11 @@
                             <span class="info-box-text">Printers</span>
                             <span class="info-box-number">90</span>
                         </div>
-
                     </div>
-
                 </div>
-
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="info-box mb-3">
-                        <span class="info-box-icon bg-warning elevation-4" style="width:100px; height:100px;"><i class="fa-solid fa-users fa-beat fa-lg" style="color: #252525;--fa-beat-scale: 1.5;"></i></span>
+                        <span class="info-box-icon bg-warning elevation-4" style="width:100px; height:100px;"><i class="fa-solid fa-wifi fa-beat fa-lg" style="color: #252525;--fa-beat-scale: 1.5;"></i></span>
                         <div class="info-box-content">
                             <span class="info-box-text">Network Switches</span>
                             <span class="info-box-number">{{ $admins }}</span>

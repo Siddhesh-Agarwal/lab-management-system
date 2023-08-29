@@ -138,6 +138,14 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href={{ route('admin.log.details') }} class="nav-link">
+                        <i class="nav-icon fas fa-circle-info"></i>
+                        <p>
+                            Log Details
+                        </p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
