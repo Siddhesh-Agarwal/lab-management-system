@@ -63,6 +63,43 @@
             <!-- Main row -->
             <div class="row">
                 <!-- Left col -->
+                <div class="col-md-8">
+                    <div class="container-fluid">
+                        <div class="card">
+                            <div class="card-header">
+                                @if ($data->count() == 0)
+                                    <h1 style="text-align: center;">
+                                        No warranty due found
+                                    </h1>
+                                @else
+                                    <table class="table table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>S.no</th>
+                                                <th>Warranty Name</th>
+                                                <th>System Number</th>
+                                                <th>Time Period</th>
+                                                <th>Lab Name</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($data as $key => $dev)
+                                                <tr>
+                                                    <td>{{ $key + 1 }}</td>
+                                                    <td>{{ $dev->warranty_name }}</td>
+                                                    <td>{{ $dev->system_number }}</td>
+                                                    <td>{{ $dev->time_period }}</td>
+                                                    <td>{{ $dev->labname }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+                    <!-- /.col -->
+                </div>
                 <div class="col-md-4">
                     <!-- Info Boxes Style 2 -->
                     <div class="info-box mb-3 bg-warning">
@@ -102,44 +139,8 @@
                     <!-- /.info-box -->
                 </div>
                 <!-- /.col -->
-                <div class="col-md-8">
-                    <div class="container-fluid">
-                        <div class="card">
-                            <div class="card-header">
-                                @if ($data->count() == 0)
-                                    <h1 style="text-align: center;">
-                                        No warranty due found
-                                    </h1>
-                                @else
-                                    <table class="table table-bordered table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th>S.no</th>
-                                                <th>Warranty Name</th>
-                                                <th>System Number</th>
-                                                <th>Time Period</th>
-                                                <th>Lab Name</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($data as $key => $dev)
-                                                <tr>
-                                                    <td>{{ $key + 1 }}</td>
-                                                    <td>{{ $dev->warranty_name }}</td>
-                                                    <td>{{ $dev->system_number }}</td>
-                                                    <td>{{ $dev->time_period }}</td>
-                                                    <td>{{ $dev->labname }}</td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.col -->
-                </div>
+                
             </div>
-            @endif
             <!-- /.row -->
         </div>
         <!--/. container-fluid -->
