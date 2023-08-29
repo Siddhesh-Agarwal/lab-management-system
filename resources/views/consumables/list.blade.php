@@ -16,9 +16,8 @@
     </style>
     <div class="container" style="margin-top: 100px">
         <section class="content">
-            <div class="container-fluid">
-                @if (Session::has('success'))
-                    <div id="success-alert" class="alert alert-success" role=alert>
+            @if (Session::has('success'))
+            <div id="success-alert" class="alert alert-success" role=alert>
                         {{ Session::get('success') }}
                     </div>
                     <script>
@@ -39,9 +38,17 @@
                         }, 5000);
                     </script>
                 @endif
+                <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
                         <div class="card" style="margin: 20px; padding:20px;">
+                            <div style="width:max-content; margin-bottom:10px;">
+                                <ol class="breadcrumb" style="margin-top:0.5px;">
+                                    <li class="breadcrumb-item">
+                                        <a href="#" style="color: black;">Consumables</a>
+                                    </li>
+                                </ol>
+                            </div>
                             @if (count($consumables) > 0)
                                 <table class="table">
                                     <thead>
