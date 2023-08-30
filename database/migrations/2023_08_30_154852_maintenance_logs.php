@@ -23,6 +23,7 @@ return new class extends Migration
             $table->foreign('lab_id')->references('id')->on('lab__tables');
             $table->string('moved_time');
             $table->string('returned_time');
+            $table->timestamps();
         });
     }
 
