@@ -199,6 +199,9 @@
             transform: translateY(-2px);
         }
 
+        #carouselExampleIndicators{
+            user-select: none;
+        }
     </style>
 </head>
 
