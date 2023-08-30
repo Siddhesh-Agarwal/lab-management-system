@@ -159,7 +159,6 @@
 
 
         /* CSS */
-
         .button-home {
             appearance: none;
             background-color: transparent;
