@@ -199,38 +199,6 @@
             transform: translateY(-2px);
         }
 
-        /* styles.css */
-
-        .custom-carousel {
-            width: 300px;
-            /* Adjust the width as desired */
-            margin: 0 auto;
-        }
-
-        .carousel-inner {
-            border-radius: 0;
-            /* Make the carousel square */
-        }
-
-        .carousel-inner .carousel-item {
-            text-align: center;
-            /* Center slide content */
-            /* padding: 20px; */
-            height: 300px;
-            /* Set the slide height */
-        }
-
-        .carousel-inner .carousel-item img {
-            max-width: 100%;
-            max-height: 100%;
-            margin: 0 auto;
-            /* Center the image */
-        }
-
-        .carousel-indicators {
-            bottom: -40px;
-            /* Adjust the position of the indicators */
-        }
     </style>
 </head>
 
@@ -254,7 +222,7 @@
             </div>
 
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel"
-                style="width:500px;display:block; margin:0 auto;">
+                style="width:500px;display:block; margin:0 auto;" data-interval="5000">
                 <ol class="carousel-indicators">
                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -266,6 +234,10 @@
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <img class="d-block w-100" src="dist/img/lab-home1.jpg" alt="First slide">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Labs</h5>
+                            <p>hahahahahajshajd sadajshdkjasd kj</p>
+                          </div>
                     </div>
                     <div class="carousel-item">
                         <img class="d-block w-100" src="dist/img/lab-home1.jpg" alt="Second slide">
@@ -304,7 +276,7 @@
             </div> --}}
         </div>
         <a href="{{ route('login') }}">
-            <button class="button-home" style="margin-top: 40px;">GET STARTED</button>
+            <button class="button-home" style="margin-top: 20px;">GET STARTED</button>
         </a>
 
     </div>
