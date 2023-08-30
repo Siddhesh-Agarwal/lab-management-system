@@ -114,12 +114,12 @@ class SuperAdminController extends Controller
     public function edit_admin(int $id)
     {
         $user = User::find($id);
-        // $decryptedPassword = decrypt($user->password);
+
         $totalDeviceCount = Labmove_table::count();
         $totalTempCount = Temp::count();
         $labs = Lab_Table::get();
-        // $decrypted = Crypt::decryptString($user->password);
-        return view('superadmin.edit_admin', [urlencode('user') => $user, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount, 'labs' => $labs]);
+
+        return view('superadmin.edit_admin', [urlencode('user') => $user, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount, 'labs' => $labs, 'password' => '']);
     }
     public function update_admin(Request $request, $id)
     {
