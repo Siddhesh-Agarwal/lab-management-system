@@ -9,6 +9,7 @@ use App\Http\Controllers\WarrantyController;
 use App\Http\Controllers\OtherDeviceController;
 use App\Http\Controllers\ScrapController;
 use App\Http\Controllers\SuperAdminController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ConsumableController;
 use App\Http\Controllers\TempController;
 use Illuminate\Support\Facades\Auth;
@@ -139,6 +140,7 @@ Route::prefix('superadmin')->middleware('superadmin.auth')->group(function () {
     Route::post('updatewarranty', [WarrantyController::class, 'update'])->name('superadmin.warrantyupdate');
     Route::get('deletewarranty/{id}', [WarrantyController::class, 'delete'])->name('superadmin.warrantydelete');
     Route::get('log-details', [SuperAdminController::class, 'log_details'])->name('superadmin.log.details');
+    Route::get('service', [ServiceController::class, 'index'])->name('superadmin.index');
 });
 
 Route::prefix('superadmin')->group(function () {
