@@ -14,6 +14,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Crypt;
 
 class SuperAdminController extends Controller
 {
@@ -117,7 +118,8 @@ class SuperAdminController extends Controller
         $totalDeviceCount = Labmove_table::count();
         $totalTempCount = Temp::count();
         $labs = Lab_Table::get();
-        return view('superadmin.edit_admin', [urlencode('user') => $user, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount, 'labs' => $labs, 'password' => "bla"]);
+        // $decrypted = Crypt::decryptString($user->password);
+        return view('superadmin.edit_admin', [urlencode('user') => $user, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount, 'labs' => $labs]);
     }
     public function update_admin(Request $request, $id)
     {
@@ -132,7 +134,7 @@ class SuperAdminController extends Controller
             User::find($id)->update([
                 'name' => $request->name,
                 'email' => $request->email,
-                'password' => bcrypt($request->password),
+                'password' => Crypt::encryptString($request->password),
                 'role' => $request->role,
                 'labname' => urldecode($request->labname),
             ]);
