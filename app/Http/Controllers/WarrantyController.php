@@ -131,4 +131,14 @@ class WarrantyController extends Controller
             return redirect()->back()->with('error', 'Something went wrong !');
         }
     }
+
+    public function searchwarranty(Request $request)
+    {
+        $labName = urldecode($request->input('lab_name'));
+        $totalDeviceCount = Labmove_table::count();
+        $totalTempCount = Temp::count();
+        $data = Warranty::where('labname', 'like', "%$labName%")->get();
+        session(['search_flag' => true]);
+        return view('warranty.list', ['lab_name' => $labName, 'data' => $data, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount]);
+    }
 }

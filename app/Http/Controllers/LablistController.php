@@ -112,7 +112,7 @@ class LablistController extends Controller
     }
     public function searchlab(Request $request)
     {
-        $labName = urldecode($request->input('lab_name'));
+        $labName = $request->input('lab_name');
         $totalDeviceCount = Labmove_table::count();
         $totalTempCount = Temp::count();
         $data = Lablist::where('lab_name', 'like', "%$labName%")->get();

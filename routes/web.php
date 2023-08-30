@@ -100,6 +100,7 @@ Route::prefix('superadmin')->middleware('superadmin.auth')->group(function () {
     Route::get('addlablistdevices', [LabController::class, 'indexs'])->name('superadmin.lablistdevices');
     Route::get('editlablistdevices/{id}', [LabController::class, 'edits'])->name('superadmin.editlablistdevices');
     Route::get('searchlablistdevices', [LablistController::class, 'searchlab'])->name('superadmin.searchlablistdevices');
+    Route::get('searchwarranty', [WarrantyController::class, 'searchwarranty'])->name('superadmin.searchwarranty');
     Route::get('searchotherdevices', [OtherDeviceController::class, 'searchlab'])->name('superadmin.searchotherdevices');
     Route::get('labmovelist', [LabMoveController::class, 'index'])->name('superadmin.lablist');
     Route::get('list', [ScrapController::class, 'index'])->name('scrap.list');
