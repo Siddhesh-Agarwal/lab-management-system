@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('lab_name');
             $table->unsignedBigInteger('lab_id');
             $table->foreign('lab_id')->references('id')->on('lab__tables');
-            $table->date('moved_time');
-            $table->date('returned_time');
+            $table->string('moved_time');
+            $table->string('returned_time');
         });
     }
 

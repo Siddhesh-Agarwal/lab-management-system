@@ -18,6 +18,4 @@ class ManitenanceLogs extends Model
         'lab_name',
         'lab_id'
     ];
-    const CREATED_AT = 'moved_time';
-    const UPDATED_AT = 'returned_time';
 }
