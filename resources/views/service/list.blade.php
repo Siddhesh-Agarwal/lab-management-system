@@ -30,7 +30,7 @@
                 <script>
                     setTimeout(function() {
                         $('#error-alert').fadeOut('slow');
-                    }, 5000);
+                    }, 50000);
                 </script>
             @endif
             <div class="container-fluid">

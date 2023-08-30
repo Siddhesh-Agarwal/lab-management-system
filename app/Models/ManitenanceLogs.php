@@ -16,6 +16,9 @@ class ManitenanceLogs extends Model
         'count',
         'desc',
         'lab_name',
-        'lab_id'
+        'lab_id',
+        'moved_time',
+        'returned_time'
     ];
 }
+
