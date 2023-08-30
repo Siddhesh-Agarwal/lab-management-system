@@ -77,7 +77,7 @@
                                                     <td>{{ $dev->lab_name }}</td>
                                                     <td>
                                                         <form method="POST"
-                                                            action="{{ route('labs.moveBack', $dev->id) }}"onsubmit="return confirm('Are you sure you want to return this device?');">
+                                                            action="{{ route('labs.returnService', $dev->id) }}"onsubmit="return confirm('Are you sure you want to return this device?');">
                                                             @csrf <button type="submit" class="btn btn-success"><i
                                                                     class="fas  fa-undo fa-1x"></i></button>
                                                         </form>

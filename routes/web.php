@@ -142,10 +142,12 @@ Route::prefix('superadmin')->middleware('superadmin.auth')->group(function () {
     Route::get('log-details', [SuperAdminController::class, 'log_details'])->name('superadmin.log.details');
     Route::get('service', [ServiceController::class, 'index'])->name('superadmin.index');
 });
-
+ 
 Route::prefix('superadmin')->group(function () {
     Route::get('listtemps', [TempController::class, 'index'])->name('temp.list');
     Route::post('/temp/{id}/move', [TempController::class, 'moveToScraps'])->name('labs.moveData');
+    Route::post('/service/{id}/move', [TempController::class, 'moveToService'])->name('labs.moveService');
+    Route::post('/service/{id}/return', [TempController::class, 'returnToBack'])->name('labs.returnService');
     Route::post('/lab/{id}/move', [LabMoveController::class, 'moveToSource'])->name('labs.moveSource');
     Route::post('/lab/{id}/destination', [LabMoveController::class, 'moveToDestination'])->name('labs.moveDestination');
     Route::post('/temp/{id}/moveback', [TempController::class, 'moveToBack'])->name('labs.moveBack');

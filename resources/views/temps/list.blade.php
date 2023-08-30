@@ -63,6 +63,7 @@
                                                 <th>Lab name</th>
                                                 <th>Return</th>
                                                 <th>Scrap</th>
+                                                <th>Service</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -86,6 +87,13 @@
                                                         <form method="POST"
                                                             action="{{ route('labs.moveData', $dev->id) }}"onsubmit="return confirm('Are you sure you want to move this device to scraps?');">
                                                             @csrf <button type="submit" class="btn btn-danger"><i
+                                                                    class="fas  fa-save fa-1x"></i></button>
+                                                        </form>
+                                                    </td>
+                                                    <td>
+                                                        <form method="POST"
+                                                            action="{{ route('labs.moveService', $dev->id) }}"onsubmit="return confirm('Are you sure you want to move this device to service?');">
+                                                            @csrf <button type="submit" class="btn btn-secondary"><i
                                                                     class="fas  fa-save fa-1x"></i></button>
                                                         </form>
                                                     </td>
