@@ -11,15 +11,22 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
 
+    <!-- Required Core Stylesheet -->
+    <link rel="stylesheet" href="node_modules/@glidejs/glide/dist/css/glide.core.min.css">
+    
+    <!-- Optional Theme Stylesheet -->
+    <link rel="stylesheet" href="node_modules/@glidejs/glide/dist/css/glide.theme.min.css">
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href={{ url('plugins/fontawesome-free/css/all.min.css') }}>
     <!-- Theme style -->
-    <link rel="stylesheet" href={{ url('dist/css/adminlte.min.css') }}>
+    <link rel="stylesheet" href={{ url('dist/css/adminlte.min.css') }}> 
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Alkatra&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
+
         .banner {
             height: 100vh;
             width: 100%;
@@ -40,7 +47,7 @@
             }
         }
 
-        .text-center{
+        .text-center {
             user-select: none;
         }
 
@@ -134,6 +141,7 @@
                 background-position: 0 50px;
             }
         }
+
         .about-banner {
             height: 160vh;
             width: 100%;
@@ -212,7 +220,27 @@
                 </a>
             </div>
         </div>
+
+        <div class="glide">
+            <div class="glide__track" data-glide-el="track">
+                <ul class="glide__slides">
+                    <li class="glide__slide">0</li>
+                    <li class="glide__slide">1</li>
+                    <li class="glide__slide">2</li>
+                </ul>
+            </div>
+            <div class="glide__arrows" data-glide-el="controls">
+                <button class="glide__arrow glide__arrow--left" data-glide-dir="<">prev</button>
+                <button class="glide__arrow glide__arrow--right" data-glide-dir=">">next</button>
+            </div>
+        </div>
     </div>
+
+
+    <script>
+        new Glide('.glide').mount()
+    </script>
+
 </body>
 
 </html>
