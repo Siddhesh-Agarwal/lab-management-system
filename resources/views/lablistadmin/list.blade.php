@@ -8,6 +8,7 @@
             border: 1px solid #ccc;
             padding: 10px;
         }
+
         .button-actions {
             display: flex;
             flex-direction: row;
@@ -43,7 +44,7 @@
                                 </script>
                             @endif
                             <!-- /.card-header -->
-                            <div class="card-body" style="width: 100%; display:flex">
+                            <div class="card-body" style="width: 100%; display:flex; align-items:baseline;">
                                 <div style="width: 50%">
                                     @if ($lab_name === Auth::user()->labname)
                                         <a href="{{ url('admin/addlablistdevice') }}" class="btn btn-primary">Add</a>
@@ -53,7 +54,7 @@
                                     <ol class="breadcrumb" style="margin-top:0.5px;">
                                         <li class="breadcrumb-item">
                                             <a href="#">{{ $lab_name }}</a>
-                                        </li> 
+                                        </li>
                                     </ol>
                                 </div>
                             </div>
@@ -68,6 +69,7 @@
                                                 <th>System Number</th>
                                                 <th>System Description</th>
                                                 <th>Lab Name</th>
+                                                <th>Type</th>
                                                 @if ($data[0]->lab_name === Auth::user()->labname)
                                                     <th>Action</th>
                                                 @endif
@@ -82,6 +84,7 @@
                                                     <td>{{ $dev->system_number }}</td>
                                                     <td>{{ $dev->desc }}</td>
                                                     <td>{{ $dev->lab_name }}</td>
+                                                    <td>{{ $dev->type }}</td>
                                                     @if (Auth::user()->labname == $dev->lab_name)
                                                         <td>
                                                             <div class="button-actions">

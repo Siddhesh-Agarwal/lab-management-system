@@ -6,15 +6,15 @@
             margin-bottom: 15px;
         }
     </style>
-    <div class="container" style="margin-top: 100px">
-        <section class="content">
+    <section class="content" style="margin-top: 100px;">
+        <div class="container">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header" style="height: 70px">
                                 <div style="width: max-content">
-                                    <ol class="breadcrumb" style="background-color:#FC9E4F">
+                                    <ol class="breadcrumb" >
                                         <li class="breadcrumb-item" style="color:black">Edit Lab</li>
                                     </ol>
                                 </div>
@@ -70,6 +70,6 @@
                     </div>
                 </div>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
 @endsection

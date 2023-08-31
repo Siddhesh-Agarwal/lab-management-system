@@ -5,9 +5,11 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LabController;
 use App\Http\Controllers\LablistController;
 use App\Http\Controllers\LabMoveController;
+use App\Http\Controllers\WarrantyController;
 use App\Http\Controllers\OtherDeviceController;
 use App\Http\Controllers\ScrapController;
 use App\Http\Controllers\SuperAdminController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ConsumableController;
 use App\Http\Controllers\TempController;
 use Illuminate\Support\Facades\Auth;
@@ -34,14 +36,13 @@ Route::prefix('admin')->middleware('admin.auth')->group(function () {
     Route::post('/search', [AdminController::class, 'searchByLabSerial'])->name('admin.searchSerial');
     Route::post('/searchSystem', [AdminController::class, 'searchByLabSystem'])->name('admin.searchSystem');
     Route::post('/searchDevice', [AdminController::class, 'searchByLabDevice'])->name('admin.searchDevice');
-
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/forcelogout', [AdminController::class, 'forceLogout'])->name('admin.force');
     Route::get('/contact', [AdminController::class, 'contact'])->name('admin.contact');
     Route::get('/simple-search', [AdminController::class, 'simple_search'])->name('admin.searchlabs');
     Route::get('/advance-search', [AdminController::class, 'advance_search'])->name('admin.advance.search');
     Route::get('/device-details', [AdminController::class, 'device_details'])->name('admin.device.details');
-    Route::get('/data-tables', [AdminController::class, 'tables'])->name('admin.tables');
+    Route::get('/student-table', [AdminController::class, 'tables'])->name('admin.tables');
     Route::get('/', [AdminController::class, 'logout'])->name('admin.logout');
     Route::post('/', [AdminController::class, 'save_student'])->name('admin.student.add');
     Route::get('/show-students', [AdminController::class, 'show'])->name('admin.student.details');
@@ -68,6 +69,7 @@ Route::prefix('admin')->middleware('admin.auth')->group(function () {
     Route::post('/labs/movetotemp', [LabController::class, 'moveToScraps'])->name('temps.moveData');
     Route::post('/movetotemp/{id}', [LabController::class, 'movetotemp'])->name('temps.movecount');
     Route::get('consumables/{lab_name}', [ConsumableController::class, 'indexadmin'])->name('admin.consumables');
+    Route::get('log-details', [AdminController::class, 'log_details'])->name('admin.log.details');
 });
 
 Route::prefix('superadmin')->middleware('superadmin.auth')->group(function () {
@@ -84,7 +86,6 @@ Route::prefix('superadmin')->middleware('superadmin.auth')->group(function () {
     Route::get('/contact', [SuperAdminController::class, 'contact'])->name('superadmin.contact');
     Route::get('/simple-search', [SuperAdminController::class, 'simple_search'])->name('superadmin.search');
     Route::get('/advance-search', [SuperAdminController::class, 'advance_search'])->name('superadmin.advance.search');
-    Route::get('/data-tables', [SuperAdminController::class, 'tables'])->name('superadmin.tables');
     Route::get('/admin-add', [SuperAdminController::class, 'add_admin'])->name('superadmin.add');
     Route::post('/', [SuperAdminController::class, 'create'])->name('superadmin.add.admin');
     Route::delete('/{id}', [SuperAdminController::class, 'delete_admin'])->name('superadmin.delete.admin');
@@ -100,6 +101,7 @@ Route::prefix('superadmin')->middleware('superadmin.auth')->group(function () {
     Route::get('addlablistdevices', [LabController::class, 'indexs'])->name('superadmin.lablistdevices');
     Route::get('editlablistdevices/{id}', [LabController::class, 'edits'])->name('superadmin.editlablistdevices');
     Route::get('searchlablistdevices', [LablistController::class, 'searchlab'])->name('superadmin.searchlablistdevices');
+    Route::get('searchwarranty', [WarrantyController::class, 'searchwarranty'])->name('superadmin.searchwarranty');
     Route::get('searchotherdevices', [OtherDeviceController::class, 'searchlab'])->name('superadmin.searchotherdevices');
     Route::get('labmovelist', [LabMoveController::class, 'index'])->name('superadmin.lablist');
     Route::get('list', [ScrapController::class, 'index'])->name('scrap.list');
@@ -130,12 +132,22 @@ Route::prefix('superadmin')->middleware('superadmin.auth')->group(function () {
     Route::get('consumables/add', [ConsumableController::class, 'add'])->name('superadmin.list.consumablesadd');
     Route::post('consumables/save', [ConsumableController::class, 'save'])->name('superadmin.list.consumablessave');
     Route::get('deletecosumables/{id}', [ConsumableController::class, 'delete']);
-    Route::delete('deletelab/{id}', [LabController::class, 'delete_lab']);
+    Route::get('deletelab/{id}', [LabController::class, 'delete_lab']);
+    Route::get('warranty', [WarrantyController::class, 'index'])->name('superadmin.warranty');
+    Route::get('warranty/add', [WarrantyController::class, 'add'])->name('superadmin.warrantyadd');
+    Route::post('savewarranty', [WarrantyController::class, 'save'])->name('superadmin.warrantysave');
+    Route::get('editwarranty/{id}', [WarrantyController::class, 'edit'])->name('superadmin.warrantyedit');
+    Route::post('updatewarranty', [WarrantyController::class, 'update'])->name('superadmin.warrantyupdate');
+    Route::get('deletewarranty/{id}', [WarrantyController::class, 'delete'])->name('superadmin.warrantydelete');
+    Route::get('log-details', [SuperAdminController::class, 'log_details'])->name('superadmin.log.details');
+    Route::get('service', [ServiceController::class, 'index'])->name('superadmin.index');
 });
-
+ 
 Route::prefix('superadmin')->group(function () {
     Route::get('listtemps', [TempController::class, 'index'])->name('temp.list');
     Route::post('/temp/{id}/move', [TempController::class, 'moveToScraps'])->name('labs.moveData');
+    Route::post('/service/{id}/move', [TempController::class, 'moveToService'])->name('labs.moveService');
+    Route::post('/service/{id}/return', [TempController::class, 'returnToBack'])->name('labs.returnService');
     Route::post('/lab/{id}/move', [LabMoveController::class, 'moveToSource'])->name('labs.moveSource');
     Route::post('/lab/{id}/destination', [LabMoveController::class, 'moveToDestination'])->name('labs.moveDestination');
     Route::post('/temp/{id}/moveback', [TempController::class, 'moveToBack'])->name('labs.moveBack');

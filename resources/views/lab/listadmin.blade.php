@@ -15,15 +15,15 @@
         }
     </style>
 
-    <section class="content">
-        <div class="container"s>
+    <section class="content" style="margin-top: 100px;">
+        <div class="container">
             <div class="container-fluid">
-                <div class="row" style="margin-top:100px;">
+                <div class="row">
                     <div class="col-12">
                         <div class="card" style="margin: 1%">
                             <div class="card-header">
                                 <div style="width: max-content">
-                                    <ol class="breadcrumb" style="background-color:#FC9E4F">
+                                    <ol class="breadcrumb" >
                                         <li class="breadcrumb-item" style="color:black">Additional Device Details</li>
                                     </ol>
                                 </div>
@@ -74,7 +74,7 @@
                                                 class="btn btn-secondary">Back</a>
                                         </div>
                                     @endif
-                                    <table class="table table-bordered table-hover" >
+                                    <table class="table table-bordered table-hover">
                                         <thead>
                                             <tr>
                                                 <th>S.no</th>

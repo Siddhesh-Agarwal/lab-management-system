@@ -13,8 +13,8 @@
             <div class="image" style="margin-top:6px">
                 <i class="fas fa-user-secret fa-2x"></i>
             </div>
-            <div class="info" style="margin-left: 20px">
-                <h3 style="color:rgba(80, 167, 255, 0.804)">{{ Auth::user()->name }}</h3>
+            <div class="info" style="margin-left:10px;">
+                <h3 class="stylish-text">{{ Auth::user()->name }}</h3>
             </div>
         </div>
         <!-- SidebarSearch Form -->
@@ -34,7 +34,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false">
                 <li class="nav-item">
-                    <a href="#" class="nav-link active">
+                    <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-sitemap"></i>
                         <p>
                             Manage Location
@@ -115,7 +115,7 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-cog"></i>
                         <p>
-                            Admin Controls
+                            Controls
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
@@ -151,16 +151,41 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
+                            
                             <a href={{ route('temp.list') }} class="nav-link">
                                 <i class="fas fa-recycle nav-icon"></i>
-                                <p>Temp</p>
+                                <p>Temp
                                 <span class="badge badge-primary">{{ $totalTempCount }}</span>
+                                </p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href={{ route('scrap.list') }} class="nav-link">
                                 <i class="fas fa-edit nav-icon"></i>
                                 <p>Scrap</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link ">
+                        <i class="nav-icon fas fa-shield"></i>
+                        <p>
+                            Warranty Devices
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href={{ url('superadmin/warranty/add') }} class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Add Warranty</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href={{ route('superadmin.warranty') }} class="nav-link ">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Warranty Details</p>
                             </a>
                         </li>
                     </ul>
@@ -190,14 +215,6 @@
                         </p>
                     </a>
                 </li>
-                {{-- <li class="nav-item">
-                    <a href={{ route('superadmin.list.consumables') }} class="nav-link">
-                        <i class="nav-icon fas fa-database"></i>
-                        <p>
-                            Consumables
-                        </p>
-                    </a>
-                </li> --}}
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-database"></i>
@@ -220,6 +237,14 @@
                             </a>
                         </li>
                     </ul>
+                </li>
+                <li class="nav-item">
+                    <a href={{ route('superadmin.log.details') }} class="nav-link">
+                        <i class="nav-icon fas fa-circle-info"></i>
+                        <p>
+                            Log Details
+                        </p>
+                    </a>
                 </li>
             </ul>
         </nav>

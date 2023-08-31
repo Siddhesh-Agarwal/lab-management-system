@@ -6,7 +6,6 @@
             margin-bottom: 15px;
         }
     </style>
-
     @if (Session::has('success'))
         <div id="success-alert" class="alert alert-success" role=alert>
             {{ Session::get('success') }}
@@ -40,32 +39,36 @@
                         <div class="card" style="padding: 30px; width:100%;">
                             <div style="width: max-content">
                                 <ol class="breadcrumb" >
-                                    <li class="breadcrumb-item" style="color:black">Add Consumables</li>
+                                    <li class="breadcrumb-item" style="color:black">Edit Warranty</li>
                                 </ol>
                             </div>
-                            <form method="post" action="{{ url('superadmin/consumables/save') }}" class="row g-3"
-                                style="width:100%">
+                            <form method="post" action="{{ url('superadmin/updatewarranty') }}" class="row g-3">
                                 @csrf
-                                <label for="device_name">Device Name</label>
-                                <input type="text" class="form-control" name="device_name" id="device_name"
-                                    placeholder="Enter Device Name" required>        
-                                <label for="serial_number">Serial Number</label>
-                                <input type="text" class="form-control" name="serial_number" id="serial_number"
-                                    placeholder="Enter Serial Number" required>
-                                    
-                                    <label for="count" style="margin-top: 10px;">Count</label>
-                                    <input type="number" min="1" value="1" class="form-control" id="count"
-                                        name="count" placeholder="Enter Count" required>
-                                <label for="lab_name" style="margin-top: 15px;">Lab Name</label>
+                                <label for="warranty_name">Warranty name</label>
+                                <input type="text" class="form-control" name="warranty_name"
+                                    value="{{ $data->warranty_name }}">
+                               
+                                <label for="system_number">System Number</label>
+                                <input type="text" class="form-control" name="system_number"
+                                    value="{{ $data->system_number }}">
+                                
+                                <input type="hidden" name="id" value="{{ $data->id }}">
+                                <label for="lab_name" style="margin-top: 10px">Lab Name</label>
                                 <select name="lab_name" id="lab_name" class="form-control">
-                                    <option value=""></option>
+                                    <option value="{{ $data->labname }}" selected>{{ $data->labname }}</option>
                                     @foreach ($labs as $dev)
+                                    @if ($data->labname!=$dev->lab_name)
                                         <option value="{{ $dev->lab_name }}">{{ $dev->lab_name }}</option>
+                                        @endif
                                     @endforeach
                                 </select>
+                                <label for="time_period" style="margin-top: 10px;">Time Period</label>
+                                <input type="date"  class="form-control" id="time_period"
+                                    name="time_period" placeholder="Enter TimePeriod" value="{{ $data->time_period }}" required >
+                                
                                 <div style="display:flex; justify-content:space-between; width:100%; margin-top:2%">
-                                    <button type="submit" class="btn btn-primary">Add</button>
-                                    <a href='{{ route('superadmin.list.consumables') }}' class="btn btn-danger">Back</a>
+                                    <button type="submit" class="btn btn-primary">Update</button>
+                                    <a href='{{ url('superadmin/warranty') }}' class="btn btn-danger">Back</a>
                                 </div>
                             </form>
                         </div>

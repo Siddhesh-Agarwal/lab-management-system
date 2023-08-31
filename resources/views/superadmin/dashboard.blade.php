@@ -7,6 +7,8 @@
     <title>Super Admin Dashboard</title>
 
     <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href={{ url('plugins/fontawesome-free/css/all.min.css') }}>
     <!-- overlayScrollbars -->
@@ -21,16 +23,25 @@
         }
 
         th{
-            color: rgba(80, 167, 255, 0.804);
+            font-weight: 900;
+            background: -webkit-linear-gradient( #c69cf4, #9cc2f4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stylish-text {
+            font-weight: 900;
+            background: -webkit-linear-gradient( #c69cf4, #9cc2f4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
     </style>
 
 </head>
 
-<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<body class="hold-transition dark-mode sidebar-mini sidebar-collapse layout-fixed layout-navbar-fixed layout-footer-fixed">
     <div class="wrapper">
-
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
             <img class="animation__wobble" src={{ url('dist/img/Logo.jpg') }} alt="AdminLTELogo" height="100"
@@ -60,6 +71,14 @@
     <!-- ./wrapper -->
 
     <!-- REQUIRED SCRIPTS -->
+    <script>
+        $(document).ready(function () {
+            $(".sidebar-toggle").on("click", function () {
+                $("body").toggleClass("sidebar-collapse");
+            });
+        });
+    </script>
+    
     <!-- jQuery -->
     <script src={{ url('plugins/jquery/jquery.min.js') }}>
         < /> <!--Bootstrap-- > <

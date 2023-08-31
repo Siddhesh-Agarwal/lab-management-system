@@ -49,7 +49,7 @@
                             @if (count($data) > 0)
                                 <div class="card-body">
                                     @if (!session('search_flag'))
-                                        <form id="search-form" action="{{ route('superadmin.searchlablistdevices') }}"
+                                        <form id="search-form" action="{{ route('superadmin.searchwarranty') }}"
                                             method="GET">
                                             <div class="input-group" style="margin-bottom: 30px">
                                                 {{-- <input type="text" name="lab_name" class="form-control"
@@ -67,19 +67,17 @@
                                     @endif
                                     @if (session('search_flag'))
                                         <div id="back-button-section">
-                                            <a href="{{ url('superadmin/lablist') }}" class="btn btn-secondary">Back</a>
+                                            <a href="{{ url('superadmin/warranty') }}" class="btn btn-secondary">Back</a>
                                         </div>
                                     @endif
                                     <table class="table table-bordered table-hover">
                                         <thead>
                                             <tr>
                                                 <th>S.no</th>
-                                                <th>Device</th>
-                                                <th>Spec</th>
+                                                <th>Warranty Name</th>
                                                 <th>System Number</th>
-                                                <th>System Description</th>
+                                                <th>Time Period</th>
                                                 <th>Lab Name</th>
-                                                <th>Type</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -87,18 +85,18 @@
                                             @foreach ($data as $key => $dev)
                                                 <tr>
                                                     <td>{{ $key + 1 }}</td>
-                                                    <td>{{ $dev->device_name }}</td>
-                                                    <td>{{ $dev->spec }}</td>
+                                                    <td>{{ $dev->warranty_name }}</td>
+                                                    {{-- <td>{{ $dev->spec }}</td> --}}
                                                     <td>{{ $dev->system_number }}</td>
-                                                    <td>{{ $dev->desc }}</td>
-                                                    <td>{{ $dev->lab_name }}</td>
-                                                    <td>{{ $dev->type }}</td>
+                                                    <td>{{ $dev->time_period }}</td>
+                                                    <td>{{ $dev->labname }}</td>
+                                                    {{-- <td>{{ $dev->time_period_diff }} days</td>  --}}
                                                     <td>
                                                         <div class="button-actions">
-                                                            <a href="{{ url('superadmin/editlablistdevice/' . $dev->id) }}"
+                                                            <a href="{{ url('superadmin/editwarranty/' . $dev->id) }}"
                                                                 class="btn btn-primary"><i
                                                                     class="fas fa-edit fa-1x"></i></a>
-                                                            <a href="{{ url('superadmin/deletelablistdevice/' . $dev->id) }}"
+                                                            <a href="{{ url('superadmin/deletewarranty/' . $dev->id) }}"
                                                                 class="btn btn-danger" style="margin-left: 15px;"><i
                                                                     class="fas fa-trash fa-1x"></i></a>
                                                         </div>
@@ -110,7 +108,7 @@
                                     <!-- /.card-body -->
                                 </div>
                             @else
-                                <h1 style="text-align: center;">No devices Found</h1>
+                                <h1 style="text-align: center;">No warranties Found</h1>
                             @endif
                             <!-- /.card -->
                         </div>

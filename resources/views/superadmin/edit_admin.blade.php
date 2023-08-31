@@ -50,7 +50,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputPassword">Password</label>
-                                        <input type="password" name="password" id="password" class="form-control"
+                                        <input type="text" name="password" id="password" class="form-control"
                                             value="{{ $password }}">
                                     </div>
                                     <div class="form-group">

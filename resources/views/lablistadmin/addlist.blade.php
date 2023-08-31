@@ -41,7 +41,7 @@
                         <div class="card" style="margin: 1%">
                             <div class="card-header">
                                 <div style="width: max-content">
-                                    <ol class="breadcrumb" style="background-color:#FC9E4F">
+                                    <ol class="breadcrumb">
                                         <li class="breadcrumb-item" style="color:black">Add System</li>
                                     </ol>
                                 </div>
@@ -57,7 +57,12 @@
                                     <label for="system_number">System Number</label>
                                     <input type="text" class="form-control" name="system_number" id="system_number"
                                         placeholder="Enter System Number" required>
-                                    <label for='desc'>System Description</label>
+                                    <label for="type">Type</label>
+                                    <select name="type" id="name" class="form-control">
+                                        <option value="Desktop">Desktop</option>
+                                        <option value="Laptop">Laptop</option>
+                                    </select>
+                                    <label for='desc'  style="margin-top:10px; ">System Description</label>
                                     <textarea name="desc" class="form-control" id="desc" cols="20" rows="5"
                                         placeholder="Enter Description"></textarea>
                                     <input type="text" hidden value={{ urlencode(Auth::user()->labname) }} id="lab_name"

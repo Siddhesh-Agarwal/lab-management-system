@@ -38,7 +38,7 @@
                         <div class="card" style="margin: 1%">
                             <div class="card-header">
                                 <div style="width: max-content">
-                                    <ol class="breadcrumb" style="background-color:#FC9E4F">
+                                    <ol class="breadcrumb" >
                                         <li class="breadcrumb-item" style="color:black">Update Consumables</li>
                                     </ol>
                                 </div>
@@ -53,7 +53,7 @@
                                         placeholder="Enter Serial Number" value="{{ $data->serial_number }}">
                                     
                                     <label for="count">Count</label>
-                                    <input type="number" min="0" class="form-control" id="count" name="count"
+                                    <input type="number" min="1" class="form-control" id="count" name="count"
                                         placeholder="Enter Count" required value="{{ $data->count }}">
                                     <label for="lab_name" style="margin-top: 15px;">Lab Name</label>
                                     <select name="lab_name" id="lab_name" class="form-control">

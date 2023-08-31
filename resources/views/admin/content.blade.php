@@ -1,7 +1,7 @@
 @extends('admin.dashboard')
 
 @section('content')
-    <section class="content" style="margin-top: 100px">
+    <section class="content" style="margin-top: 90px">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
@@ -27,7 +27,7 @@
                                             </lord-icon>
                                             <h4 class="description-percentage" style="color: rgba(80, 167, 255, 0.804);"><i
                                                     class="fas fa-smile-o"></i>
-                                                <span>Welcome to {{ Auth::user()->labname }}</span>
+                                                <span class="stylish-text">Welcome to {{ Auth::user()->labname }}</span>
                                         @endif
                                     </div>
                                     <!-- /.description-block -->
@@ -56,16 +56,25 @@
                                         <form action={{ route('admin.student.add') }} method="POST">
                                             @csrf
                                             {{-- Roll number should be converted to uppercase --}}
-                                            <input style="width:50%" type="text" name="rollno" id="rollno"
-                                                required />
+                                            <div
+                                                style="display: flex;width:100%;flex-direction:row; justify-content:center; align-items:center;">
+                                                <div id="webflow-style-input">
+                                                    <input type="text" name="rollno" id="rollno"
+                                                        required
+                                                        oninput="convertToUppercase()"
+                                                        style="background:transparent;border:none; outline:none; width:100%;"></input>
+                                                </div>
+                                                <div style="width:max-content; display:flex; align-items:center;">
+                                                    <a href={{ route('admin.force') }} class="btn btn-danger"
+                                                        style="margin-left: 20px">
+                                                        <i class="fa-solid fa-power-off fa-fade fa-lg"></i>
+                                                        Logout all
+                                                    </a>
+                                                </div>
+                                            </div>
                                             <input type="text" name="labname"
                                                 value={{ urlencode(Auth::user()->labname) }} id="labname" hidden />
                                             <input type="submit" hidden />
-                                            <a href={{ route('admin.force') }} class="btn btn-danger"
-                                                style="margin-left: 20px">
-                                                <i class="fas fa-minus"></i>
-                                                Logout all
-                                            </a>
                                         </form>
                                     </div>
                                     <!-- /.description-block -->
@@ -130,7 +139,8 @@
                 <div style="display: flex">
                     <!-- Info Boxes Style 2 -->
                     <div class="info-box mb-3 mr-3" style="background-color: #94589D">
-                        <span class="info-box-icon"><i class="fas fa-hand-peace" style="color: white"></i></span>
+                        <span class="info-box-icon"><i class="fa-solid fa-arrow-right-to-bracket fa-beat-fade fa-lg"
+                                style="color: #ffffff;--fa-beat-scale: 1.5;"></i></span>
                         <div class="info-box-content">
                             <span class="info-box-text" style="color: white">Student Logins</span>
                             <span class="info-box-number">{{ $login_count }}</span>
@@ -139,7 +149,8 @@
                     </div>
                     <!-- /.info-box -->
                     <div class="info-box mb-3 bg-success">
-                        <span class="info-box-icon"><i class="fas fa-tv"></i></span>
+                        <span class="info-box-icon"><i class="fa-solid fa-computer fa-beat-fade fa-lg"
+                                style="color: #ffffff;--fa-beat-scale: 1.5;"></i></span>
                         <div class="info-box-content">
                             <span class="info-box-text">Systems</span>
                             <span class="info-box-number">{{ $systemcount }}</span>
@@ -150,7 +161,8 @@
                 <div style="display: flex">
                     <!-- /.info-box -->
                     <div class="info-box mb-3 mr-3 bg-danger">
-                        <span class="info-box-icon"><i class="fas fa-keyboard"></i></span>
+                        <span class="info-box-icon"><i class="fa-solid fa-keyboard fa-beat-fade fa-lg"
+                                style="color: #ffffff;--fa-beat-scale: 1.5;"></i></span>
                         <div class="info-box-content">
                             <span class="info-box-text">Devices</span>
                             <span class="info-box-number">{{ $devicecount }}</span>
@@ -159,7 +171,8 @@
                     </div>
                     <!-- /.info-box -->
                     <div class="info-box mb-3 bg-info">
-                        <span class="info-box-icon"><i class="far fa-comment"></i></span>
+                        <span class="info-box-icon"><i class="fa-solid fa-building-user fa-beat-fade fa-lg"
+                                style="color: #ffffff;--fa-beat-scale: 1.5;"></i></span>
                         <div class="info-box-content">
                             <span class="info-box-text">Labs</span>
                             <span class="info-box-number">{{ $labcount }}</span>
@@ -174,4 +187,10 @@
         </div>
         <!--/. container-fluid -->
     </section>
+    <script>
+        function convertToUppercase() {
+            var inputElement = document.getElementById("rollno");
+            inputElement.value = inputElement.value.toUpperCase();
+        }
+    </script>
 @endsection

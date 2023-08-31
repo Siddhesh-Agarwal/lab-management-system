@@ -30,7 +30,7 @@
                 <script>
                     setTimeout(function() {
                         $('#error-alert').fadeOut('slow');
-                    }, 5000);
+                    }, 50000);
                 </script>
             @endif
             <div class="container-fluid">
@@ -63,7 +63,6 @@
                                                 <th>Lab name</th>
                                                 <th>Return</th>
                                                 <th>Scrap</th>
-                                                <th>Service</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -78,7 +77,7 @@
                                                     <td>{{ $dev->lab_name }}</td>
                                                     <td>
                                                         <form method="POST"
-                                                            action="{{ route('labs.moveBack', $dev->id) }}"onsubmit="return confirm('Are you sure you want to return this device?');">
+                                                            action="{{ route('labs.returnService', $dev->id) }}"onsubmit="return confirm('Are you sure you want to return this device?');">
                                                             @csrf <button type="submit" class="btn btn-success"><i
                                                                     class="fas  fa-undo fa-1x"></i></button>
                                                         </form>
@@ -90,25 +89,18 @@
                                                                     class="fas  fa-save fa-1x"></i></button>
                                                         </form>
                                                     </td>
-                                                    <td>
-                                                        <form method="POST"
-                                                            action="{{ route('labs.moveService', $dev->id) }}"onsubmit="return confirm('Are you sure you want to move this device to service?');">
-                                                            @csrf <button type="submit" class="btn btn-secondary"><i
-                                                                    class="fas  fa-save fa-1x"></i></button>
-                                                        </form>
-                                                    </td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
                                     </table>
                                 </div>
-                                <!-- /.card-body -->
+                               
                         </div>
-                        <!-- /.card -->
+                       
                     </div>
-                    <!-- /.col -->
+                   
                 </div>
-                <!-- /.row -->
+                
             </div>
         </section>
     </div>
