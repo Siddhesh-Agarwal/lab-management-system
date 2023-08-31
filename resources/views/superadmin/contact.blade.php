@@ -55,7 +55,7 @@
                         <span class="small text-uppercase text-muted"> Fullstack Developer </span>
                         <ul class="social mb-0 list-inline mt-3">
                             <li class="list-inline-item">
-                                <a href="mailto:sanjeevisakthivel2004@gmail.com" class="social-link">
+                                <a href="mailto:727721eucs134@skcet.ac.in" class="social-link">
                                     <i class="fa fa-envelope"></i>
                                 </a>
                             </li>
@@ -73,7 +73,7 @@
                             Developer </span>
                         <ul class="social mb-0 list-inline mt-3">
                             <li class="list-inline-item">
-                                <a href="mailto:shreevarshang2003@gmail.com" class="social-link">
+                                <a href="mailto:727721eucs140@skcet.ac.in" class="social-link">
                                     <i class="fa fa-envelope"></i>
                                 </a>
                             </li>
@@ -91,7 +91,7 @@
                         <span class="small text-uppercase text-muted"> Fullstack Developer </span>
                         <ul class="social mb-0 list-inline mt-3">
                             <li class="list-inline-item">
-                                <a href="mailto:siddhesh.agarwal@gmail.com" class="social-link">
+                                <a href="mailto:727721eucs144@skcet.ac.in" class="social-link">
                                     <i class="fa fa-envelope"></i>
                                 </a>
                             </li>
@@ -109,7 +109,7 @@
                         <span class="small text-uppercase text-muted"> Testing and Research </span>
                         <ul class="social mb-0 list-inline mt-3">
                             <li class="list-inline-item">
-                                <a href="mailto:sunkrish2004@gmail.com" class="social-link">
+                                <a href="mailto:727721eucs159@skcet.ac.in" class="social-link">
                                     <i class="fa fa-envelope"></i>
                                 </a>
                             </li>
