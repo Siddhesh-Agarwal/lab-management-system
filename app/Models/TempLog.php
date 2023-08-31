@@ -9,7 +9,7 @@ class TempLog extends Model
 {
     use HasFactory;
 
-    protected $table = "maintenance_log";
+    protected $table = "temp_log";
     protected $fillable = [
         'device_name',
         'serial_number',
@@ -21,5 +21,5 @@ class TempLog extends Model
         'moved_time',
         'returned_time'
     ];
-    
+
 }
