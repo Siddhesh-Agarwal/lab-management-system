@@ -140,7 +140,7 @@ Route::prefix('superadmin')->middleware('superadmin.auth')->group(function () {
     Route::post('updatewarranty', [WarrantyController::class, 'update'])->name('superadmin.warrantyupdate');
     Route::get('deletewarranty/{id}', [WarrantyController::class, 'delete'])->name('superadmin.warrantydelete');
     Route::get('log-details', [SuperAdminController::class, 'log_details'])->name('superadmin.log.details');
-    Route::get('service', [ServiceController::class, 'index'])->name('superadmin.index');
+    Route::get('service', [ServiceController::class, 'index'])->name('superadmin.service');
 });
  
 Route::prefix('superadmin')->group(function () {

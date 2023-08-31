@@ -131,6 +131,7 @@ class TempController extends Controller
                 'lab_name' => $lab->lab_name,
                 'lab_id' => $lab->lab_id,
                 'moved_time'=>$lab->moved_time,
+                'returned_time'=>$newLab->created_at,
                 
             ]);
             $logs->save();

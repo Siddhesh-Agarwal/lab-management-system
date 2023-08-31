@@ -45,7 +45,7 @@
                             @if ($data->count() == 0)
                                 <div class="card-header">
                                     <h1 style="text-align: center;">
-                                        No Requests Found
+                                        No Service requests Found
                                     </h1>
                                 </div>
                             @else

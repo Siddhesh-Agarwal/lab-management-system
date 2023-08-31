@@ -154,8 +154,17 @@
                             
                             <a href={{ route('temp.list') }} class="nav-link">
                                 <i class="fas fa-recycle nav-icon"></i>
-                                <p>Temp
+                                <p>Maintanence
                                 <span class="badge badge-primary">{{ $totalTempCount }}</span>
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            
+                            <a href={{ route('superadmin.service') }} class="nav-link">
+                                <i class="fas fa-recycle nav-icon"></i>
+                                <p>Service
+                                {{-- <span class="badge badge-primary"></span> --}}
                                 </p>
                             </a>
                         </li>
