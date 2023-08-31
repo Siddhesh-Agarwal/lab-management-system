@@ -16,7 +16,7 @@
                             <div class="card-header">
                                 <div style="width: max-content">
                                     <ol class="breadcrumb" >
-                                        <li class="breadcrumb-item" style="color:black">Request to Temp</li>
+                                        <li class="breadcrumb-item" style="color:black">Request to Maintenance</li>
                                     </ol>
                                 </div>
                                 <form method="POST" action="{{ url('admin/labs/movetotemp') }}" class="row g-3">
@@ -40,8 +40,7 @@
                                     <textarea type="text" class="form-control" id="desc" name="desc" rows="4" cols="50">{{ $data->desc }}</textarea>    
                                     <input type="text" class="form-control" id="lab_name" name="lab_name"
                                         placeholder="Enter Lab Name" required value="{{ $data->lab_name }}" hidden>
-                                    <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Move To
-                                        Temp</button>
+                                    <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Add Request</button>
                                     <hr>
                                     <a href='{{ route('admin.listdevice', ['lab_name' => Auth::user()->labname]) }}'
                                         class="btn btn-danger" style="margin-top: 20px;">Back</a>

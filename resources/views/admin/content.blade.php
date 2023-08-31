@@ -174,8 +174,8 @@
                         <span class="info-box-icon"><i class="fa-solid fa-building-user fa-beat-fade fa-lg"
                                 style="color: #ffffff;--fa-beat-scale: 1.5;"></i></span>
                         <div class="info-box-content">
-                            <span class="info-box-text">Labs</span>
-                            <span class="info-box-number">{{ $labcount }}</span>
+                            <span class="info-box-text">Laptops</span>
+                            <span class="info-box-number">{{ $laptopcount }}</span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>

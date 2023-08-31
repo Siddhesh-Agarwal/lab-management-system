@@ -245,7 +245,7 @@ class LabController extends Controller
                 $lab->save();
             }
 
-            return redirect()->route('admin.listdevice', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with('success', ' Scrap request sended successfully !');
+            return redirect()->route('admin.listdevice', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with('success', ' Maintenance request sended successfully !');
         } catch (\Exception $e) {
             return redirect()->route('admin.listdevice', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with('error', 'Something went wrong !');
         }

@@ -25,12 +25,13 @@ class AdminController extends Controller
 
         $labNames = Lab_Table::get();
         $labcount = Lab_Table::count();
-
+        $systemcount = LabList::where('type', 'Desktop')->where('lab_name', Auth::user()->labname)->count();
+        $laptopCount = LabList::where('type', 'Laptop')->where('lab_name', Auth::user()->labname)->count();
         $student = Student::where('isLoggedIn', 1)->where('labname', $wow)->count();
-        $systemcount = Lablist::where('lab_name', Auth::user()->labname)->count();
+        // $systemcount = Lablist::where('lab_name', Auth::user()->labname)->count();
         $devicecount = Lab::where('lab_name', Auth::user()->labname)->sum('count');
 
-        return view('admin.content', ['data_box' => $data_box, 'labNames' => $labNames, 'login_count' => $student, 'systemcount' => $systemcount, 'devicecount' => $devicecount, 'labcount' => $labcount]);
+        return view('admin.content', ['data_box' => $data_box, 'labNames' => $labNames, 'login_count' => $student, 'systemcount' => $systemcount, 'devicecount' => $devicecount, 'labcount' => $labcount,'laptopcount'=>$laptopCount]);
     }
 
     public function tables()

@@ -144,7 +144,7 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-trash"></i>
                         <p>
-                            Scrap Controls
+                            Device Controls
                             <i class="fas fa-angle-left right"></i>
                             <span class="badge badge-primary">{{ $totalTempCount }}</span>
                         </p>

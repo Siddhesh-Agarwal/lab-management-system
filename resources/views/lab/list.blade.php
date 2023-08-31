@@ -72,7 +72,7 @@
                                                 <th>Lab name</th>
                                                 @if ($data[0]->lab_name === Auth::user()->labname)
                                                     <th>Action</th>
-                                                    <th>Scrap</th>
+                                                    <th>Maintenance</th>
                                                 @endif
                                             </tr>
                                         </thead>
@@ -94,8 +94,7 @@
                                                             <form method="POST"
                                                                 action="{{ route('temps.movecount', $dev->id) }}">
                                                                 @csrf
-                                                                <button type="submit" class="btn btn-secondary">Move to
-                                                                    Temp</button>
+                                                                <button type="submit" class="btn btn-secondary">Maintenance</button>
                                                             </form>
                                                         </td>
                                                     @endif

@@ -21,7 +21,6 @@ class ScrapController extends Controller
     {
         try{
         Scrap::where('id', '=', $id)->delete();
-        Toastr::success('Scrap data deleted successfully!', 'Success');
         return redirect()->back()->with('success', 'Scrap data was deleted successfully !');
         }
         catch(\Exception $e){

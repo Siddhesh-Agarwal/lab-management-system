@@ -9,6 +9,7 @@ use App\Models\Manitenance;
 use App\Models\ManitenanceLogs;
 use App\Models\Scrap;
 use App\Models\Temp;
+use App\Models\TempLog;
 
 class TempController extends Controller
 {
@@ -34,7 +35,7 @@ class TempController extends Controller
         }
         $lab->delete();
       
-        return redirect()->back()->with('success', ' Data was moved to scrap successfully !');
+        return redirect()->back()->with('success', ' Device was moved to scrap successfully !');
     }
     catch(\Exception $e){
         return redirect()->back()->with('error', 'Something went wrong !');
@@ -62,7 +63,7 @@ class TempController extends Controller
         }
         $lab->delete();
       
-        return redirect()->back()->with('success', ' Data was moved to scrap successfully !');
+        return redirect()->back()->with('success', ' Device was moved to scrap successfully !');
     }
     catch(\Exception $e){
         return redirect()->back()->with('error', 'Something went wrong !');
@@ -89,12 +90,25 @@ class TempController extends Controller
                 'lab_id' => $lab->lab_id,
             ]);
             $newLab->save();
+
+            $logs = new TempLog([
+                'device_name' => $lab->device_name,
+                'serial_number' => $lab->serial_number,
+                'system_model_number' => $lab->system_model_number,
+                'count' => $lab->count,
+                'desc' => $lab->desc,
+                'lab_name' => $lab->lab_name,
+                'lab_id' => $lab->lab_id,
+                'moved_time'=>$lab->created_at,
+                'returned_time'=>$newLab->created_at,
+            ]);
+            $logs->save();
         }
 
         $lab->delete();
 
       
-        return redirect()->back()->with('success', 'Data was returned successfully !');
+        return redirect()->back()->with('success', 'Device was returned successfully !');
     }
     catch(\Exception $e){
         return redirect()->back()->with('error', 'Something went wrong !');
@@ -140,7 +154,7 @@ class TempController extends Controller
         $lab->delete();
 
       
-        return redirect()->back()->with('success', 'Data was returned successfully !');
+        return redirect()->back()->with('success', 'Device was returned successfully !');
     }
     catch(\Exception $e){
         return redirect()->back()->with('error', $e->getMessage());
