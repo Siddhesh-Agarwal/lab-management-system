@@ -88,7 +88,7 @@ if st.button("Generate Device Logs"):
     if lab == "All":
         query: str = f"SELECT * FROM lablists"
     else:
-        query: str = f"SELECT * FROM lablists WHERE labname = '{lab}'"
+        query: str = f"SELECT * FROM lablists WHERE lab_name = '{lab}'"
     
     with st.spinner("Fetching data..."):
         conn: sql.Connection = sql.connect("../database/database.sqlite")
@@ -122,7 +122,7 @@ if st.button("Generate Maintenance Logs"):
     if lab == "All":
         query: str = f"SELECT * FROM maintenance_log"
     else:
-        query: str = f"SELECT * FROM maintenance_log WHERE labname = '{lab}'"
+        query: str = f"SELECT * FROM maintenance_log WHERE lab_name = '{lab}'"
     
     with st.spinner("Fetching data..."):
         conn: sql.Connection = sql.connect("../database/database.sqlite")
