@@ -218,10 +218,10 @@
                 </li>
                 <li class="nav-item">
                     <a href={{ route('superadmin.listinglabs') }} class="nav-link">
-                        <i class="nav-icon fas fa-tachometer"></i>
+                        <i class="nav-icon fas fa-building"></i>
                         <p>
                             Labs
-                        </p>
+                        </p>    
                     </a>
                 </li>
                 <li class="nav-item">
