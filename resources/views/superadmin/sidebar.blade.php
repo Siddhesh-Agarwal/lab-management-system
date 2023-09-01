@@ -142,7 +142,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-trash"></i>
+                        <i class="fa-solid fa-tachograph-digital nav-icon"></i>
                         <p>
                             Device Controls
                             <i class="fas fa-angle-left right"></i>
@@ -153,16 +153,16 @@
                         <li class="nav-item">
                             
                             <a href={{ route('temp.list') }} class="nav-link">
-                                <i class="fas fa-recycle nav-icon"></i>
+                                <i class="fa-solid fa-toolbox nav-icon"></i>
                                 <p>Maintanence
-                                <span class="badge badge-primary">{{ $totalTempCount }}</span>
+                                    <span class="badge badge-primary">{{ $totalTempCount }}</span>
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
                             
                             <a href={{ route('superadmin.service') }} class="nav-link">
-                                <i class="fas fa-recycle nav-icon"></i>
+                                <i class="fa-solid fa-screwdriver-wrench nav-icon"></i>
                                 <p>Service
                                 {{-- <span class="badge badge-primary"></span> --}}
                                 </p>
@@ -170,7 +170,7 @@
                         </li>
                         <li class="nav-item">
                             <a href={{ route('scrap.list') }} class="nav-link">
-                                <i class="fas fa-edit nav-icon"></i>
+                                <i class="fa-solid fa-trash-can nav-icon"></i>
                                 <p>Scrap</p>
                             </a>
                         </li>
