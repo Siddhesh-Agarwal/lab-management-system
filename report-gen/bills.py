@@ -31,13 +31,17 @@ MONTHS: list[str] = [
     "December",
 ]
 
+
 @st.cache_data
 def get_lab_names() -> list[str]:
     conn = sql.connect("../database/database.sqlite")
-    labs: list[str] = [i[0] for i in conn.execute("SELECT lab_name FROM lab__tables").fetchall()]
+    labs: list[str] = [
+        i[0] for i in conn.execute("SELECT lab_name FROM lab__tables").fetchall()
+    ]
     labs = ["All"] + labs
     conn.close()
     return labs
+
 
 LABS = get_lab_names()
 CURRENT_MONTH_INDEX: int = datetime.now().month - 1
@@ -100,12 +104,7 @@ with tabs[1]:
     st.subheader("View bills")
 
     cols = st.columns(2)
-    lab: str | None = st.selectbox(
-        label="Select lab",
-        options=LABS,
-        index=0,
-        key=2
-    )
+    lab: str | None = st.selectbox(label="Select lab", options=LABS, index=0, key=2)
     with cols[0]:
         from_date = st.date_input(
             label="From date",
