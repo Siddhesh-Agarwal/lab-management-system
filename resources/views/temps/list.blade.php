@@ -62,8 +62,8 @@
                                                 <th>Service Description</th>
                                                 <th>Lab name</th>
                                                 <th>Return</th>
-                                                <th>Scrap</th>
                                                 <th>Service</th>
+                                                <th>Scrap</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -85,15 +85,14 @@
                                                     </td>
                                                     <td>
                                                         <form method="POST"
-                                                            action="{{ route('labs.moveData', $dev->id) }}"onsubmit="return confirm('Are you sure you want to move this device to scraps?');">
-                                                            @csrf <button type="submit" class="btn btn-danger"><i
-                                                                    class="fas  fa-save fa-1x"></i></button>
+                                                            action="{{ route('labs.moveService', $dev->id) }}"onsubmit="return confirm('Are you sure you want to move this device to service?');">
+                                                            @csrf <button type="submit" class="btn btn-secondary"><i class="fa-solid fa-screwdriver-wrench"></i>    </button>
                                                         </form>
                                                     </td>
                                                     <td>
                                                         <form method="POST"
-                                                            action="{{ route('labs.moveService', $dev->id) }}"onsubmit="return confirm('Are you sure you want to move this device to service?');">
-                                                            @csrf <button type="submit" class="btn btn-secondary"><i
+                                                            action="{{ route('labs.moveData', $dev->id) }}"onsubmit="return confirm('Are you sure you want to move this device to scraps?');">
+                                                            @csrf <button type="submit" class="btn btn-danger"><i
                                                                     class="fas  fa-save fa-1x"></i></button>
                                                         </form>
                                                     </td>
