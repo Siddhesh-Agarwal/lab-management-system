@@ -130,7 +130,7 @@
             </div>
             <div class="row">
                 @if (request()->has('search_terms'))
-                    <div class="col-md-12 offset-md-2">
+                    <div class="col-md-12">
                         @if (isset($result) && count($result) > 0)
                             <h3>Search Results:</h3>
                             <table class="table table-bordered table-hover">
