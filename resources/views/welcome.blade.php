@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>SKCET</title>
+    <title>SKCET LABS</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +14,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href={{ url('plugins/fontawesome-free/css/all.min.css') }}>
     <!-- Theme style -->
-    <link rel="stylesheet" href={{ url('dist/css/adminlte.min.css') }}> 
+    <link rel="stylesheet" href={{ url('dist/css/adminlte.min.css') }}>
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&display=swap');
