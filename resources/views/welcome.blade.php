@@ -11,22 +11,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
-    </script>
     <!-- Font Awesome -->
     <link rel="stylesheet" href={{ url('plugins/fontawesome-free/css/all.min.css') }}>
     <!-- Theme style -->
-    <link rel="stylesheet" href={{ url('dist/css/adminlte.min.css') }}>
+    <link rel="stylesheet" href={{ url('dist/css/adminlte.min.css') }}> 
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&display=swap');
@@ -82,7 +70,7 @@
         }
 
         .banner .info {
-            margin-top: 5%;
+            margin-top: 12%;
             transform: translateY(-15%);
         }
 
@@ -92,8 +80,8 @@
             color: #fff;
             letter-spacing: 2px;
             font-family: 'Bruno Ace SC', cursive;
-            font-size: 50px;
-            /* margin-top: 250px; */
+            font-size: 100px;
+            margin-top: 250px;
         }
 
         .banner .info h1 {
@@ -129,7 +117,7 @@
             -webkit-background-clip: text;
             -webkit-animation: stripes 3s ease-in-out infinite;
             animation: stripes 3s ease-in-out infinite;
-            font-size: 40px;
+            font-size: 100px;
         }
 
         .navbar-brand a {
@@ -159,6 +147,7 @@
 
 
         /* CSS */
+
         .button-home {
             appearance: none;
             background-color: transparent;
@@ -197,17 +186,13 @@
             box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
             transform: translateY(-2px);
         }
-
-        #carouselExampleIndicators{
-            user-select: none;
-        }
     </style>
 </head>
 
 <body>
     <div class="container-fluid banner">
         <div class="row">
-            {{-- <div class="col-md-12">
+            <div class="col-md-12">
                 <nav class="navbar">
                     <div class="navbar-brand">
                         <span style="margin-right:20px">
@@ -218,56 +203,8 @@
                         </a>
                     </div>
                 </nav>
-            </div> --}}
+            </div>
             <div class="col-md-8 offset-md-2 info">
-                <h1 class="text-center animated-text">COMPUTER SCIENCE AND ENGINEERING</h1>
-            </div>
-
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel"
-                style="width:500px;display:block; margin:0 auto;" data-interval="5000">
-                <ol class="carousel-indicators">
-                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
-                </ol>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img class="d-block w-100" src="dist/img/lab-home1.jpg" alt="First slide">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>Labs</h5>
-                            <p>hahahahahajshajd sadajshdkjasd kj</p>
-                          </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block w-100" src="dist/img/lab-home1.jpg" alt="Second slide">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block w-100" src="dist/img/lab-home1.jpg" alt="Third slide">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block w-100" src="dist/img/lab-home1.jpg" alt="Third slide">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block w-100" src="dist/img/lab-home1.jpg" alt="Third slide">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="d-block w-100" src="dist/img/lab-home1.jpg" alt="Third slide">
-                    </div>
-                </div>
-                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only" style="color:black">Next</span>
-                </a>
-            </div>
-
-            {{-- <div class="col-md-8 offset-md-2 info">
                 <h1 class="text-center animated-text">SKCET LAB</h1>
                 <p class="text-center" style="color: #e9e9e9; font-family: 'Merriweather', sans-serif;">
                     Think Placement Think SKCET !
@@ -275,12 +212,8 @@
                 <a href="{{ route('login') }}">
                     <button onclick={{ route('login') }}" class="button-home">GET STARTED</button>
                 </a>
-            </div> --}}
+            </div>
         </div>
-        <a href="{{ route('login') }}">
-            <button class="button-home" style="margin-top: 20px;">GET STARTED</button>
-        </a>
-
     </div>
 
 </body>
