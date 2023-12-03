@@ -13,11 +13,11 @@ class OtherDeviceController extends Controller
 {
     public function index()
     {
-        $data = OtherDevice::get();
+        // $data = OtherDevice::get();
         $totalDeviceCount = Labmove_table::count();
         $totalTempCount = Temp::count();
         $LabNames = Lab_Table::get();
-        return view('otherdevices.list', ['data' => $data, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount,'labs'=>$LabNames]);
+        return view('otherdevices.list', [ 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount,'labs'=>$LabNames]);
     }
 
     public function indexa($lab_name)
@@ -30,11 +30,11 @@ class OtherDeviceController extends Controller
 
     public function add()
     {
-        $data = OtherDevice::get();
+        // $data = OtherDevice::get();
         $totalTempCount = Temp::count();
         $labs = Lab_Table::get();
         $totalDeviceCount = Labmove_table::count();
-        return view('otherdevices.addlist', ['data' => $data, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount, 'labs' => $labs]);
+        return view('otherdevices.addlist', [ 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount, 'labs' => $labs]);
     }
 
     public function adda()

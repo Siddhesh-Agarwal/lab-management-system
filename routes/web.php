@@ -12,6 +12,11 @@ use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ConsumableController;
 use App\Http\Controllers\TempController;
+use App\Http\Controllers\PrinterController;
+use App\Http\Controllers\AcController;
+use App\Http\Controllers\UpsController;
+use App\Http\Controllers\SwitchController;
+use App\Models\Upsload;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +38,7 @@ Route::get('/', function () {
 Route::post('/forget_password', [AdminController::class, 'password']);
 
 Route::prefix('admin')->middleware('admin.auth')->group(function () {
+    Route::post('/lablist/import', [LablistController::class,'import'])->name('lablist.import');
     Route::post('/search', [AdminController::class, 'searchByLabSerial'])->name('admin.searchSerial');
     Route::post('/searchSystem', [AdminController::class, 'searchByLabSystem'])->name('admin.searchSystem');
     Route::post('/searchDevice', [AdminController::class, 'searchByLabDevice'])->name('admin.searchDevice');
@@ -123,6 +129,19 @@ Route::prefix('superadmin')->middleware('superadmin.auth')->group(function () {
     Route::post('saveotherdevice', [OtherDeviceController::class, 'save']);
     Route::post('updateotherdevice', [OtherDeviceController::class, 'update']);
     Route::get('deleteotherdevice/{id}', [OtherDeviceController::class, 'delete']);
+    // Printer
+    Route::get('addprinters', [PrinterController::class, 'add']);
+    Route::post('saveprinter', [PrinterController::class, 'saves']);
+    //AC
+    Route::get('addac', [AcController::class, 'add']);
+    Route::post('saveac', [AcController::class, 'saves']);
+    //UPS
+    Route::get('addups', [UpsController::class, 'add']);
+    Route::post('saveups', [UpsController::class, 'saves']);
+    //Switch
+    Route::get('addswitch', [SwitchController::class, 'add']);
+    Route::post('saveswitch', [SwitchController::class, 'saves']);
+    //Lablist
     Route::get('listinglabs', [LablistController::class, 'listing_labs'])->name('superadmin.listinglabs');
     Route::get('editlistinglabs/{id}', [LablistController::class, 'edit_listing_labs']);
     Route::post('updatelistinglabs', [LablistController::class, 'update_listing_labs']);

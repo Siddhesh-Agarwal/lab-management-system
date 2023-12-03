@@ -59,11 +59,16 @@ return [
     'asset_url' => env('ASSET_URL'),
     'providers' => [
         Brian2694\Toastr\ToastrServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
     ],
     'aliases' => [
         'Toastr' => Brian2694\Toastr\Facades\Toastr::class,
+        'Excel' => 'Maatwebsite\Excel\Facades\Excel',
 
     ],
+    
+    
+    
     Brian2694\Toastr\ToastrServiceProvider::class,
     /*
     |--------------------------------------------------------------------------

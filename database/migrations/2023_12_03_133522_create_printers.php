@@ -11,16 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('otherdevices', function (Blueprint $table) {
+        Schema::create('printers', function (Blueprint $table) {
             $table->id();
-            $table->integer("network_switches");
-            $table->integer("ups_load");
-            $table->integer("ac_load");
-            $table->integer("wifi_access_points");
-            $table->unsignedBigInteger('lab_id');
+            $table->string('printer_model');
+            $table->string('serial_number')->nullable();
+            $table->string('status')->nullable();
             $table->string('lab_name');
-            $table->timestamps();
+            $table->unsignedBigInteger('lab_id');
             $table->foreign('lab_id')->references('id')->on('lab__tables');
+            $table->timestamps();
         });
     }
 
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('otherdevices');
+        Schema::dropIfExists('printers');
     }
 };
