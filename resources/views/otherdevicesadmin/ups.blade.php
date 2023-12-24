@@ -1,4 +1,4 @@
-@extends('superadmin.dashboard')
+@extends('admin.dashboard')
 
 @section('content')
     <style>
@@ -45,7 +45,7 @@
                             @if ($data->count() == 0)
                                 <div class="card-header">
                                     <h1 style="text-align: center;">
-                                        No Printers Found
+                                        No UPS Found
                                     </h1>
                                 </div>
                             @else
@@ -55,8 +55,9 @@
                                         <thead>
                                             <tr>
                                                 <th>S.No</th>
-                                                <th>Printer Name</th>
-                                                <th>Serial No</th>
+                                                <th>UPS Name</th>
+                                                <th>Capacity</th>
+                                                <th>Batteries</th>
                                                 <th>Status</th>
                                                 <th>Lab name</th>
                                                 <th>Action</th>
@@ -66,17 +67,18 @@
                                             @foreach ($data as $key => $dev)
                                                 <tr>
                                                     <td>{{ $key + 1 }}</td>
-                                                    <td>{{ $dev->printer_model }}</td>
-                                                    <td>{{ $dev->serial_number }}</td>
+                                                    <td>{{ $dev->ups_model }}</td>
+                                                    <td>{{ $dev->ups_capacity }}</td>
+                                                    <td>{{ $dev->no_batteries }}</td>
                                                     <td>{{ $dev->status }}</td>
                                                     <td>{{ $dev->lab_name }}</td>
                                                     <td>
                                                         <div class="button-actions">
-                                                            <a href="{{ url('superadmin/editprinter/' . $dev->id) }}"
+                                                            <a href="{{ url('superadmin/editups/' . $dev->id) }}"
                                                                 class="btn btn-primary"><i
                                                                     class="fas fa-edit fa-1x"></i></a>
                                                             <a class="btn btn-danger"
-                                                                href="{{ url('superadmin/deleteprinter/' . $dev->id) }}"
+                                                                href="{{ url('superadmin/deleteups/' . $dev->id) }}"
                                                                 style="margin-left: 15px;">
                                                                 <i class="fas fa-trash-alt fa-1x"></i>
                                                             </a>

@@ -18,6 +18,15 @@ class AcController extends Controller
         $LabNames = Lab_Table::get();
         return view('acload.list', ['data'=>$data, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount,'labs'=>$LabNames]);
     }
+    public function indexa(Request $request)
+    {
+        $lab_name = $request->lab_name;
+        $data = ACload::where('lab_name', '=', $lab_name)->get();
+        $totalDeviceCount = Labmove_table::count();
+        $totalTempCount = Temp::count();
+        $LabNames = Lab_Table::get();
+        return view('otherdevicesadmin.acLoad', ['data'=>$data, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount,'labNames'=>$LabNames]);
+    }
 
     public function edit($id)
     {

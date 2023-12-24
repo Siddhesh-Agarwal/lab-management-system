@@ -18,6 +18,15 @@ class SwitchController extends Controller
         $LabNames = Lab_Table::get();
         return view('networkswitch.list', ['data'=>$data, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount,'labs'=>$LabNames]);
     }
+    public function indexa(Request $request)
+    {
+        $lab_name = $request->lab_name;
+        $data = NetworkSwitch::where('lab_name', '=', $lab_name)->get();
+        $totalDeviceCount = Labmove_table::count();
+        $totalTempCount = Temp::count();
+        $LabNames = Lab_Table::get();
+        return view('otherdevicesadmin.networkSwitch', ['data'=>$data, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount,'labNames'=>$LabNames]);
+    }
 
     public function add()
     {

@@ -21,6 +21,15 @@ class PrinterController extends Controller
         $LabNames = Lab_Table::get();
         return view('printers.list', ['data'=>$data, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount,'labs'=>$LabNames]);
     }
+    public function indexa(Request $request)
+    {
+        $lab_name = $request->lab_name;
+        $data = Printer::where('lab_name', '=', $lab_name)->get();
+        $totalDeviceCount = Labmove_table::count();
+        $totalTempCount = Temp::count();
+        $LabNames = Lab_Table::get();
+        return view('otherdevicesadmin.printer', ['data'=>$data, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount,'labNames'=>$LabNames]);
+    }
     public function add()
     {
         // $data = OtherDevice::get();

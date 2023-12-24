@@ -22,10 +22,11 @@ class OtherDeviceController extends Controller
 
     public function indexa($lab_name)
     {
-      
-        $labNames = Lab_Table::get();
-        $data = OtherDevice::where('lab_name', '=', $lab_name)->get();
-        return view('otherdevicesadmin.list', ['data' => $data, 'labNames' => $labNames, 'lab_name' => $lab_name]);
+        $totalDeviceCount = Labmove_table::count();
+        $totalTempCount = Temp::count();
+        $LabNames = Lab_Table::get();
+        // dd($LabNames);
+        return view('otherdevicesadmin.listAdmin', [ 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount,'labNames'=>$LabNames, 'lab_name'=> $lab_name]);
     }
 
     public function add()

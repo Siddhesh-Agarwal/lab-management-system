@@ -76,6 +76,14 @@ Route::prefix('admin')->middleware('admin.auth')->group(function () {
     Route::post('/movetotemp/{id}', [LabController::class, 'movetotemp'])->name('temps.movecount');
     Route::get('consumables/{lab_name}', [ConsumableController::class, 'indexadmin'])->name('admin.consumables');
     Route::get('log-details', [AdminController::class, 'log_details'])->name('admin.log.details');
+    // PRINTER
+    Route::get('printers',[PrinterController::class,'indexa'])->name('admin.printer');
+    // AC
+    Route::get('acload',[AcController::class,'indexa'])->name('admin.acload');
+    // UPS
+    Route::get('upsload',[UpsController::class,'indexa'])->name('admin.upsload');
+    // SWITCH
+    Route::get('switch',[SwitchController::class,'indexa'])->name('admin.switch');
 });
 
 Route::prefix('superadmin')->middleware('superadmin.auth')->group(function () {
