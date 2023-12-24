@@ -130,17 +130,33 @@ Route::prefix('superadmin')->middleware('superadmin.auth')->group(function () {
     Route::post('updateotherdevice', [OtherDeviceController::class, 'update']);
     Route::get('deleteotherdevice/{id}', [OtherDeviceController::class, 'delete']);
     // Printer
+    Route::get('printers',[PrinterController::class,'index'])->name('superadmin.printer');
     Route::get('addprinters', [PrinterController::class, 'add']);
     Route::post('saveprinter', [PrinterController::class, 'saves']);
+    Route::get('editprinter/{id}', [PrinterController::class, 'edit']);
+    Route::post('updateprinter', [PrinterController::class, 'update']);
+     Route::get('deleteprinter/{id}', [PrinterController::class, 'delete']);
     //AC
+    Route::get('acload',[AcController::class,'index'])->name('superadmin.acload');
     Route::get('addac', [AcController::class, 'add']);
     Route::post('saveac', [AcController::class, 'saves']);
+    Route::get('editac/{id}', [AcController::class, 'edit']);
+    Route::post('updateac', [AcController::class, 'update']);
+     Route::get('deleteac/{id}', [AcController::class, 'delete']);
     //UPS
+    Route::get('upsload',[UpsController::class,'index'])->name('superadmin.upsload');
     Route::get('addups', [UpsController::class, 'add']);
     Route::post('saveups', [UpsController::class, 'saves']);
+    Route::get('editups/{id}', [UpsController::class, 'edit']);
+    Route::post('updateups', [UpsController::class, 'update']);
+     Route::get('deleteups/{id}', [UpsController::class, 'delete']);
     //Switch
+    Route::get('switch',[SwitchController::class,'index'])->name('superadmin.switch');
     Route::get('addswitch', [SwitchController::class, 'add']);
     Route::post('saveswitch', [SwitchController::class, 'saves']);
+    Route::get('editswitch/{id}', [SwitchController::class, 'edit']);
+    Route::post('updateswitch', [SwitchController::class, 'update']);
+     Route::get('deleteswitch/{id}', [SwitchController::class, 'delete']);
     //Lablist
     Route::get('listinglabs', [LablistController::class, 'listing_labs'])->name('superadmin.listinglabs');
     Route::get('editlistinglabs/{id}', [LablistController::class, 'edit_listing_labs']);

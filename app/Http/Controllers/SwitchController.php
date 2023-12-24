@@ -10,6 +10,15 @@ use App\Models\Labmove_table;
 use App\Models\Lab_Table;
 class SwitchController extends Controller
 {
+    public function index()
+    {
+        $data = NetworkSwitch::get();
+        $totalDeviceCount = Labmove_table::count();
+        $totalTempCount = Temp::count();
+        $LabNames = Lab_Table::get();
+        return view('networkswitch.list', ['data'=>$data, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount,'labs'=>$LabNames]);
+    }
+
     public function add()
     {
         // $data = OtherDevice::get();
@@ -17,6 +26,15 @@ class SwitchController extends Controller
         $labs = Lab_Table::get();
         $totalDeviceCount = Labmove_table::count();
         return view('networkswitch.addlist', ['totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount, 'labs' => $labs]);
+    }
+    public function edit($id)
+    {
+        $datas = NetworkSwitch::get();
+        $totalDeviceCount = Labmove_table::count();
+        $totalTempCount = Temp::count();
+        $labs = Lab_Table::get();
+        $data = NetworkSwitch::where('id', '=', $id)->first();
+        return view('networkswitch.editlist', ['data' => $data, 'datas' => $datas, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount, 'labs' => $labs]);
     }
     public function saves(Request $request)
     {
@@ -43,6 +61,42 @@ class SwitchController extends Controller
         } catch (\Exception $e) {
 
             return redirect()->route('superadmin.otherdevice')->with(['error' => 'Something went wrong !']);
+        }
+    }
+    public function update(Request $request)
+    {
+        try {
+            $id = $request->id;
+            $switch_model = $request->switch_model;
+            $serial_number = $request->serial_number;
+            $status=$request->status;
+            $lab_name = urldecode($request->lab_name);
+            
+            // dd($id);
+            $lab = Lab_Table::where('lab_name', $lab_name)->first();
+            $lab_id = $lab ? $lab->id : null;
+
+            NetworkSwitch::where('id', '=', $id)->update([
+                'switch_model' => $switch_model,
+                'serial_number' => $serial_number,
+                'status'=>$status,
+                'lab_name' => $lab_name,
+                'lab_id' => $lab_id,
+            ]);
+            return redirect()->route('superadmin.switch')->with('success', 'Switch updated successfully');
+        } catch (\Exception $e) {
+            return redirect()->route('superadmin.switch')->with('notification', 'Something went wrong !');
+        }
+    }
+
+    public function delete($id)
+    {
+        try {
+            $data = NetworkSwitch::find($id);
+            $data->delete();
+            return redirect()->back()->with('success', 'Switch deleted successfully !');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Something went wrong !');
         }
     }
 }
