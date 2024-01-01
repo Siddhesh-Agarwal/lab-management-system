@@ -59,7 +59,7 @@
                                                 <th>Capacity</th>
                                                 <th>Status</th>
                                                 <th>Lab name</th>
-                                                <th>Action</th>
+                                                {{-- <th>Action</th> --}}
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -70,7 +70,7 @@
                                                     <td>{{ $dev->ac_capacity }}</td>
                                                     <td>{{ $dev->status }}</td>
                                                     <td>{{ $dev->lab_name }}</td>
-                                                    <td>
+                                                    {{-- <td>
                                                         <div class="button-actions">
                                                             <a href="{{ url('superadmin/editac/' . $dev->id) }}"
                                                                 class="btn btn-primary"><i
@@ -81,7 +81,7 @@
                                                                 <i class="fas fa-trash-alt fa-1x"></i>
                                                             </a>
                                                         </div>
-                                                    </td>
+                                                    </td> --}}
                                                     
                                                 </tr>
                                             @endforeach
