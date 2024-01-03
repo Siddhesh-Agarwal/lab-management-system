@@ -12,6 +12,11 @@ use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ConsumableController;
 use App\Http\Controllers\TempController;
+use App\Http\Controllers\PrinterController;
+use App\Http\Controllers\AcController;
+use App\Http\Controllers\UpsController;
+use App\Http\Controllers\SwitchController;
+use App\Models\Upsload;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +38,7 @@ Route::get('/', function () {
 Route::post('/forget_password', [AdminController::class, 'password']);
 
 Route::prefix('admin')->middleware('admin.auth')->group(function () {
+    Route::post('/lablist/import', [LablistController::class,'import'])->name('lablist.import');
     Route::post('/search', [AdminController::class, 'searchByLabSerial'])->name('admin.searchSerial');
     Route::post('/searchSystem', [AdminController::class, 'searchByLabSystem'])->name('admin.searchSystem');
     Route::post('/searchDevice', [AdminController::class, 'searchByLabDevice'])->name('admin.searchDevice');
@@ -70,6 +76,14 @@ Route::prefix('admin')->middleware('admin.auth')->group(function () {
     Route::post('/movetotemp/{id}', [LabController::class, 'movetotemp'])->name('temps.movecount');
     Route::get('consumables/{lab_name}', [ConsumableController::class, 'indexadmin'])->name('admin.consumables');
     Route::get('log-details', [AdminController::class, 'log_details'])->name('admin.log.details');
+    // PRINTER
+    Route::get('printers',[PrinterController::class,'indexa'])->name('admin.printer');
+    // AC
+    Route::get('acload',[AcController::class,'indexa'])->name('admin.acload');
+    // UPS
+    Route::get('upsload',[UpsController::class,'indexa'])->name('admin.upsload');
+    // SWITCH
+    Route::get('switch',[SwitchController::class,'indexa'])->name('admin.switch');
 });
 
 Route::prefix('superadmin')->middleware('superadmin.auth')->group(function () {
@@ -123,6 +137,35 @@ Route::prefix('superadmin')->middleware('superadmin.auth')->group(function () {
     Route::post('saveotherdevice', [OtherDeviceController::class, 'save']);
     Route::post('updateotherdevice', [OtherDeviceController::class, 'update']);
     Route::get('deleteotherdevice/{id}', [OtherDeviceController::class, 'delete']);
+    // Printer
+    Route::get('printers',[PrinterController::class,'index'])->name('superadmin.printer');
+    Route::get('addprinters', [PrinterController::class, 'add']);
+    Route::post('saveprinter', [PrinterController::class, 'saves']);
+    Route::get('editprinter/{id}', [PrinterController::class, 'edit']);
+    Route::post('updateprinter', [PrinterController::class, 'update']);
+     Route::get('deleteprinter/{id}', [PrinterController::class, 'delete']);
+    //AC
+    Route::get('acload',[AcController::class,'index'])->name('superadmin.acload');
+    Route::get('addac', [AcController::class, 'add']);
+    Route::post('saveac', [AcController::class, 'saves']);
+    Route::get('editac/{id}', [AcController::class, 'edit']);
+    Route::post('updateac', [AcController::class, 'update']);
+     Route::get('deleteac/{id}', [AcController::class, 'delete']);
+    //UPS
+    Route::get('upsload',[UpsController::class,'index'])->name('superadmin.upsload');
+    Route::get('addups', [UpsController::class, 'add']);
+    Route::post('saveups', [UpsController::class, 'saves']);
+    Route::get('editups/{id}', [UpsController::class, 'edit']);
+    Route::post('updateups', [UpsController::class, 'update']);
+     Route::get('deleteups/{id}', [UpsController::class, 'delete']);
+    //Switch
+    Route::get('switch',[SwitchController::class,'index'])->name('superadmin.switch');
+    Route::get('addswitch', [SwitchController::class, 'add']);
+    Route::post('saveswitch', [SwitchController::class, 'saves']);
+    Route::get('editswitch/{id}', [SwitchController::class, 'edit']);
+    Route::post('updateswitch', [SwitchController::class, 'update']);
+     Route::get('deleteswitch/{id}', [SwitchController::class, 'delete']);
+    //Lablist
     Route::get('listinglabs', [LablistController::class, 'listing_labs'])->name('superadmin.listinglabs');
     Route::get('editlistinglabs/{id}', [LablistController::class, 'edit_listing_labs']);
     Route::post('updatelistinglabs', [LablistController::class, 'update_listing_labs']);

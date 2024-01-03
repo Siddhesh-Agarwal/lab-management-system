@@ -7,7 +7,7 @@ import pandas as pd
 import streamlit as st
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import letter
-from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib.styles import getSampleStyleSheet    
 from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
 
 st.set_page_config(
@@ -20,14 +20,12 @@ st.set_page_config(
 
 st.title("Report Generation")
 
-
 @st.cache_data
 def get_lab_names() -> list[str]:
     conn = sql.connect("../database/database.sqlite")
-    labs = pd.read_sql_query("SELECT lab_name FROM lab__tables", conn)["lab_name"].unique()  # type: ignore
+    labs = pd.read_sql_query("SELECT lab_name FROM lab__tables", conn)["lab_name"].unique()
     conn.close()
     return ["All"] + labs.tolist()
-
 
 def get_pdf_report(df: pd.DataFrame, date: str, report_name: str) -> bytes:
     file_name = f"./report-{date}.pdf"
@@ -63,7 +61,14 @@ def get_pdf_report(df: pd.DataFrame, date: str, report_name: str) -> bytes:
             ]
         )
     )
+    column_widths = [100, 100, 200, 100, 100, 100]  # Specify the width for each column
+    table.setStyle(TableStyle([
+    ('COLWIDTH', (0, 0), (-1, -1), column_widths),
+    ('WORDWRAP', (1, 1), (1, -1)),  # Enable word wrapping for the second column (index 1)
+]))
+
     elements.append(table)
+
 
     doc.build(elements)
     # read and store bytes stream in variable `pdf_data`
@@ -71,7 +76,6 @@ def get_pdf_report(df: pd.DataFrame, date: str, report_name: str) -> bytes:
         pdf_data = pdf_file.read()
     os.remove(file_name)  # clears stuff for next run
     return pdf_data
-
 
 LABS: list[str] = get_lab_names()
 
@@ -92,7 +96,7 @@ if st.button("Generate Student Logs"):
 
     with st.spinner("Fetching data..."):
         conn: sql.Connection = sql.connect("../database/database.sqlite")
-        df: pd.DataFrame = pd.read_sql_query(query, conn)  # type: ignore
+        df: pd.DataFrame = pd.read_sql_query(query, conn)
         df.drop(["random"], axis=1, inplace=True)
         df["login_time"] = pd.to_datetime(df["login_time"])
         df["logout_time"] = pd.to_datetime(df["logout_time"])
@@ -178,23 +182,4 @@ if st.button("Generate Maintenance Logs"):
         df.set_index("id", inplace=True)
         conn.close()
 
-    date = datetime.datetime.now().strftime("%Y-%m-%d")
-    st.write(df)
-
-    # CSV Report
-    st.download_button(
-        label="Download Maintenance Logs (CSV)",
-        data=df.to_csv(),
-        file_name=f"maintenance_logs-{date}.csv",
-        mime="text/csv",
-        key=30,
-    )
-
-    # PDF report
-    st.download_button(
-        label="Download Maintenance Logs (PDF)",
-        data=get_pdf_report(df, date, "Maintenance Logs"),
-        file_name=f"maintenance_logs-{date}.pdf",
-        mime="application/pdf",
-        key=31,
-    )
+    date = datetime.datetime

@@ -1,4 +1,19 @@
 {
+    "name": "lab-management-system",
+    "version": "1.0.0",
+    "displayName": "Lab Management System",
+    "license": "MIT",
+    "repository": {
+        "type": "github",
+        "url": "https://github.com/Siddhesh-Agarwal/lab-management-system",
+        "directory": "/"
+    },
+    "maintainers": [
+        "Sanjeevi CS",
+        "Shree Varfshan G <shreevarshang2003@gmail.com>",
+        "Siddhesh Agarwal <siddheshagarwal@protonmail.com>",
+        "Sundarakrishnan RM"
+    ],
     "private": true,
     "scripts": {
         "dev": "vite",

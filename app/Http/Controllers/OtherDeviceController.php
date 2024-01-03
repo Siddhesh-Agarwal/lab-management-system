@@ -13,28 +13,29 @@ class OtherDeviceController extends Controller
 {
     public function index()
     {
-        $data = OtherDevice::get();
+        // $data = OtherDevice::get();
         $totalDeviceCount = Labmove_table::count();
         $totalTempCount = Temp::count();
         $LabNames = Lab_Table::get();
-        return view('otherdevices.list', ['data' => $data, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount,'labs'=>$LabNames]);
+        return view('otherdevices.list', [ 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount,'labs'=>$LabNames]);
     }
 
     public function indexa($lab_name)
     {
-      
-        $labNames = Lab_Table::get();
-        $data = OtherDevice::where('lab_name', '=', $lab_name)->get();
-        return view('otherdevicesadmin.list', ['data' => $data, 'labNames' => $labNames, 'lab_name' => $lab_name]);
+        $totalDeviceCount = Labmove_table::count();
+        $totalTempCount = Temp::count();
+        $LabNames = Lab_Table::get();
+        // dd($LabNames);
+        return view('otherdevicesadmin.listAdmin', [ 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount,'labNames'=>$LabNames, 'lab_name'=> $lab_name]);
     }
 
     public function add()
     {
-        $data = OtherDevice::get();
+        // $data = OtherDevice::get();
         $totalTempCount = Temp::count();
         $labs = Lab_Table::get();
         $totalDeviceCount = Labmove_table::count();
-        return view('otherdevices.addlist', ['data' => $data, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount, 'labs' => $labs]);
+        return view('otherdevices.addlist', [ 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount, 'labs' => $labs]);
     }
 
     public function adda()

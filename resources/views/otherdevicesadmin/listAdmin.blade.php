@@ -1,4 +1,4 @@
-@extends('superadmin.dashboard')
+@extends('admin.dashboard')
 
 @section('content')
     <style>
@@ -43,7 +43,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <a href={{ route('superadmin.printer') }}>
+                            <a href={{ route('admin.printer', ['lab_name' => $lab_name]) }}>
                             <div class="btn-lg">
                                 <div style="width: 250px; margin-inline:auto">
                                     <ol class="breadcrumb" style="display: block">
@@ -52,7 +52,7 @@
                                 </div>
                             </div>
                             </a>
-                            <a href={{ route('superadmin.switch') }}>
+                            <a href={{ route('admin.switch', ['lab_name' => $lab_name]) }}>
                             <div class="btn-lg">
                                 <div style="width: 250px; margin-inline:auto">
                                     <ol class="breadcrumb" style="display: block">
@@ -61,7 +61,7 @@
                                 </div>
                             </div>
                             </a>
-                            <a href={{ route('superadmin.acload') }}>
+                            <a href={{ route('admin.acload', ['lab_name' => $lab_name]) }}>
                             <div class="btn-lg">
                                 <div style="width: 250px; margin-inline:auto">
                                     <ol class="breadcrumb" style="display: block">
@@ -70,7 +70,7 @@
                                 </div>
                             </div>
                             </a>
-                            <a href={{ route('superadmin.upsload') }}>
+                            <a href={{ route('admin.upsload', ['lab_name' => $lab_name]) }}>
                                 <div class="btn-lg">
                                     <div style="width: 250px; margin-inline:auto">
                                         <ol class="breadcrumb" style="display: block">

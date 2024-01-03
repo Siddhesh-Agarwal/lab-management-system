@@ -8,7 +8,9 @@ use App\Models\Labmove_table;
 use App\Models\Lab_Table;
 use App\Models\Temp;
 use Illuminate\Http\Request;
-
+use Maatwebsite\Excel\Facades\Excel;
+// use Maatwebsite\Excel;
+// use Excel;
 class LablistController extends Controller
 {
     public function index()
@@ -17,7 +19,7 @@ class LablistController extends Controller
         $totalDeviceCount = Labmove_table::count();
         $totalTempCount = Temp::count();
         $labNames = Lab_Table::get();
-        return view('lablist.list', ['data' => $data, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount,'labs'=>$labNames]);
+        return view('lablist.list', ['data' => $data, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount, 'labs' => $labNames]);
     }
 
     public function indexa($lab_name)
@@ -50,7 +52,7 @@ class LablistController extends Controller
             $spec = $request->spec;
             $system_number = $request->system_number;
             $desc = $request->desc;
-            $type=$request->type;
+            $type = $request->type;
             $lab_name = urldecode($request->lab_name);
 
             $lab = Lab_Table::where('lab_name', $lab_name)->first();
@@ -64,7 +66,7 @@ class LablistController extends Controller
             $dev->desc = $desc;
             $dev->lab_name = $lab_name;
             $dev->lab_id = $lab_id;
-            $dev->type=$type;
+            $dev->type = $type;
             $dev->save();
 
             return redirect()->route('superadmin.lablists')->with(['success' => 'Device Added successfully!']);
@@ -81,7 +83,7 @@ class LablistController extends Controller
             $system_number = $request->system_number;
             $desc = $request->desc;
             $lab_name = urldecode($request->lab_name);
-            $type=$request->type;
+            $type = $request->type;
             $lab = Lab_Table::where('lab_name', $lab_name)->first();
 
             $lab_id = $lab ? $lab->id : null;
@@ -93,7 +95,7 @@ class LablistController extends Controller
             $dev->desc = $desc;
             $dev->lab_name = $lab_name;
             $dev->lab_id = $lab_id;
-            $dev->type=$type;
+            $dev->type = $type;
             $dev->save();
 
             return redirect()->route('admin.lablist', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with(['success', 'Device added successfully !']);
@@ -101,7 +103,33 @@ class LablistController extends Controller
             return redirect()->route('admin.lablist', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with(['error', 'Something went wrong !']);
         }
     }
+    // public function import(Request $request)
+    // {
+    //     $request->validate([
+    //         'file' => 'required|mimes:xlsx,xls',
+    //     ]);
 
+    //     $path = $request->file('file')->getRealPath();
+    //     $data = Excel::load($path)->get();
+    //     // $data = Excel::import([], $path);
+
+    //     if ($data->count()) {
+    //         foreach ($data as $key => $value) {
+    //             Lablist::create([
+    //                 'device_name' => $value->device_name,
+    //                 'spec' => $value->spec,
+    //                 'system_number' => $value->system_number,
+    //                 'lab_name' => $value->lab_name,
+    //                 'lab_id' => $value->lab_id,
+    //                 'type' => $value->type,
+    //                 'desc' => $value->desc,
+
+    //             ]);
+    //         }
+    //     }
+
+    //     return redirect()->route('admin.lablist', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with(['success', 'Device added successfully !']);
+    // }
     public function edit($id)
     {
         $data = Lablist::where('id', '=', $id)->first();
@@ -135,7 +163,7 @@ class LablistController extends Controller
             $system_number = $request->system_number;
             $desc = $request->desc;
             $lab_name = urldecode($request->lab_name);
-            $type=$request->type;
+            $type = $request->type;
             $lab = Lab_Table::where('lab_name', $lab_name)->first();
 
             $lab_id = $lab ? $lab->id : null;
@@ -146,7 +174,7 @@ class LablistController extends Controller
                 'system_number' => $system_number,
                 'desc' => $desc,
                 'lab_name' => $lab_name,
-                'type'=>$type,
+                'type' => $type,
                 'lab_id' => $lab_id,
             ]);
             return redirect()->route('superadmin.lablists')->with('success', 'Device Updated successfully !');
@@ -164,7 +192,7 @@ class LablistController extends Controller
             $system_number = $request->system_number;
             $desc = $request->desc;
             $lab_name = urldecode($request->lab_name);
-            $type=$request->type;
+            $type = $request->type;
             $lab = Lab_Table::where('lab_name', $lab_name)->first();
 
             $lab_id = $lab ? $lab->id : null;
@@ -175,7 +203,7 @@ class LablistController extends Controller
                 'system_number' => $system_number,
                 'desc' => $desc,
                 'lab_name' => $lab_name,
-                'type'=>$type,
+                'type' => $type,
                 'lab_id' => $lab_id,
             ]);
 
@@ -219,18 +247,18 @@ class LablistController extends Controller
     {
         $labs = Lab_Table::all();
         $totalDeviceCount = Labmove_table::count();
-        $totalTempCount=Temp::count();
+        $totalTempCount = Temp::count();
         // dd($labs);
-        return view('lab.listingLabs', ['labs' => $labs,'totalDeviceCount'=>$totalDeviceCount,'totalTempCount'=>$totalTempCount]);
+        return view('lab.listingLabs', ['labs' => $labs, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount]);
     }
 
     public function edit_listing_labs($id)
     {
         $labs = Lab_Table::get();
         $totalDeviceCount = Labmove_table::count();
-        $totalTempCount=Temp::count();
+        $totalTempCount = Temp::count();
         $data = Lab_Table::where('id', '=', $id)->first();
-        return view('lab.listinglabedit', ['data' => $data, 'labs' => $labs,'totalDeviceCount'=>$totalDeviceCount,'totalTempCount'=>$totalTempCount]);
+        return view('lab.listinglabedit', ['data' => $data, 'labs' => $labs, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount]);
     }
 
     public function update_listing_labs(Request $request)
