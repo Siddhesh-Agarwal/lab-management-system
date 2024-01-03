@@ -13,10 +13,24 @@
             display: flex;
             flex-direction: row;
         }
+
+        .outer{
+            display: flex;
+            justify-content: center;
+        }
+
+        .sample{
+            width:30%;;
+        }
     </style>
 
     <div class="container" style="margin-top: 100px">
         <section class="content">
+            <div style="width: max-content">
+                <ol class="breadcrumb" >
+                    <li class="breadcrumb-item" style="color:black">Other Devices</li>
+                </ol>
+            </div>
             <div class="container-fluid">
                 @if (Session::has('success'))
                     <div id="success-alert" class="alert alert-success" role=alert>
@@ -40,12 +54,13 @@
                         }, 5000);
                     </script>
                 @endif
-                <div class="row">
-                    <div class="col-12">
+                <div class="outer">
+                <div class="sample">
+                    <div class="">
                         <div class="card">
                             <a href={{ route('superadmin.printer') }}>
                             <div class="btn-lg">
-                                <div style="width: 250px; margin-inline:auto">
+                                <div style="width: 250px; margin-inline:auto; margin-top:20px">
                                     <ol class="breadcrumb" style="display: block">
                                         <li class="text-center" style="color:black;">Printer</li>
                                     </ol>
@@ -84,6 +99,7 @@
                     </div>
                     <!-- /.row -->
                 </div>
+            </div>
             </div>
         </section>
     </div>
