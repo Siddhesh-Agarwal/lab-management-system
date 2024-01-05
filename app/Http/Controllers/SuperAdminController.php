@@ -127,20 +127,20 @@ class SuperAdminController extends Controller
             $request->validate([
                 'name' => 'required',
                 'email' => 'required',
-                'password' => 'required|min:8|max:15',
+                'password' => 'required|min:4|max:15',
                 'role' => 'required',
                 'labname' => 'required',
             ]);
             User::find($id)->update([
                 'name' => $request->name,
                 'email' => $request->email,
-                'password' => Crypt::encryptString($request->password),
+                'password' => bcrypt($request->password),
                 'role' => $request->role,
                 'labname' => urldecode($request->labname),
             ]);
             return redirect()->route('superadmin.details')->with('success', 'Successfully admin was updated !');
         } catch (\Exception $e) {
-            return redirect()->route('superadmin.edit.admin', ['id' => $id])->with('error', 'Password should be minimum 8 - 15 characters long !');
+            return redirect()->route('superadmin.edit.admin', ['id' => $id])->with('error', 'Password should be minimum 4 - 15 characters long !');
         }
     }
     public function searchBySerial(Request $request)

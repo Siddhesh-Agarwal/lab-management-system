@@ -7,7 +7,7 @@ import pandas as pd
 import streamlit as st
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import letter
-from reportlab.lib.styles import getSampleStyleSheet    
+from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
 
 st.set_page_config(
@@ -68,8 +68,6 @@ def get_pdf_report(df: pd.DataFrame, date: str, report_name: str) -> bytes:
 ]))
 
     elements.append(table)
-
-
     doc.build(elements)
     # read and store bytes stream in variable `pdf_data`
     with open(file_name, mode="rb+") as pdf_file:

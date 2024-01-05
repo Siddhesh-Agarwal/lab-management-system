@@ -17,6 +17,7 @@ class Labmove_table extends Model
         'desc',
         'source',
         'destination',
-        'lab_id'
+        'lab_id',
+        'type'
     ];
 }

@@ -52,9 +52,12 @@
                                 <label for="spec">Spec</label>
                                 <input type="text" class="form-control" name="spec" value="{{ $data->spec }}"
                                     readonly>
-                                <label for="system_number">System Number</label>
-                                <input type="text" class="form-control" name="system_number"
+                                    <label for="system_number">System Number</label>
+                                    <input type="text" class="form-control" name="system_number"
                                     value="{{ $data->system_number }}" readonly>
+                                    <label for="type">Type</label>
+                                    <input type="text" class="form-control" name="type"
+                                    value="{{ $data->type }}" readonly>
                                 <label for="desc">System Description</label>
                                 <textarea type="text" class="form-control" name="desc">{{ $data->desc }} </textarea>
                                 <input type="hidden" name="id" value="{{ $data->id }}">

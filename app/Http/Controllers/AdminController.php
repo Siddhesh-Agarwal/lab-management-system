@@ -38,7 +38,7 @@ class AdminController extends Controller
     {
         $student = Student::where('labname', Auth::user()->labname)->get();
         $labNames = Lab_Table::get();
-        return view('admin.studentTable', ['students' => $student, 'labNames' => $labNames]);
+        return view('admin.StudentTable', ['students' => $student, 'labNames' => $labNames]);
     }
 
     public function device_detasils()
@@ -61,7 +61,7 @@ class AdminController extends Controller
         $count = Student::where('isLoggedIn', 1)->count();
 
         $student = Student::all();
-        
+
         foreach ($logs as $log) {
             $leaving = Logs::where('rollno', $log->rollno)->latest()->get()->first();
             $val = $leaving->random + 1;
@@ -87,7 +87,7 @@ class AdminController extends Controller
 
         $main = StudentRecord::where('regNo', '=', $request->input('rollno'))->first();
         $res = Student::where('rollno', '=', $request->input('rollno'))->latest()->get()->first();
-        
+
         $lab = Lab_Table::where('lab_name', '=', urldecode($request->labname))->first();
 
         // Get the last allocated system number
@@ -108,6 +108,7 @@ class AdminController extends Controller
 
         $count = Lablist::where('lab_name', Auth::user()->labname)->get()->count();
         $limit = 0;
+        // dd($count);
         if ($limit < $count) {
             // Allocate systems to the student
             $allocatedSystems = [];
@@ -138,7 +139,7 @@ class AdminController extends Controller
         if (is_null($res)) {
 
             $master = Student::create($data);
-        
+
             $system_number = sprintf("SK-%s-%d", $lab->lab_code, $data['systemNumber']);
 
             Logs::create(array(

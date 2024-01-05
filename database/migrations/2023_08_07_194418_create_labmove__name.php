@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('desc')->nullable();
             $table->unsignedBigInteger('lab_id');
             $table->string('source');
+            $table->string('type');
             $table->string('destination');
             $table->foreign('lab_id')->references('id')->on('lab__tables');
             $table->timestamps();
