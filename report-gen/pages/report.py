@@ -39,6 +39,12 @@ def get_pdf_report(df: pd.DataFrame, date: str, report_name: str) -> bytes:
     title_style.leading = 24
     title_style.alignment = 1
     title_style.spaceAfter = 12
+    stylesN = styles["Normal"]
+    stylesN.wordWrap = 'CJK'
+
+    # extract data from df
+    data = df.values.tolist()
+    data = [[Paragraph(str(cell), stylesN) for cell in row] for row in data]
 
     # Add report name as a title
     title = Paragraph(report_name, title_style)
@@ -46,8 +52,9 @@ def get_pdf_report(df: pd.DataFrame, date: str, report_name: str) -> bytes:
     elements.append(Spacer(1, 12))
 
     # Add table with column headings
-    table_data = [df.columns.tolist()] + df.values.tolist()
+    table_data = [df.columns.tolist()] + data
     table = Table(table_data)
+    column_widths = [100, 100, 200, 100, 100, 100]  # Specify the width for each column
     table.setStyle(
         TableStyle(
             [
@@ -58,15 +65,10 @@ def get_pdf_report(df: pd.DataFrame, date: str, report_name: str) -> bytes:
                 ("BOTTOMPADDING", (0, 0), (-1, 0), 12),
                 ("BACKGROUND", (0, 1), (-1, -1), colors.beige),
                 ("GRID", (0, 0), (-1, -1), 1, colors.black),
+                ('COLWIDTH', (0, 0), (-1, -1), column_widths),
             ]
-        )
+        ),
     )
-    column_widths = [100, 100, 200, 100, 100, 100]  # Specify the width for each column
-    table.setStyle(TableStyle([
-    ('COLWIDTH', (0, 0), (-1, -1), column_widths),
-    ('WORDWRAP', (1, 1), (1, -1)),  # Enable word wrapping for the second column (index 1)
-]))
-
     elements.append(table)
     doc.build(elements)
     # read and store bytes stream in variable `pdf_data`
