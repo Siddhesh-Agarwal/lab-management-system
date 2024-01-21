@@ -19,22 +19,20 @@ class ScrapController extends Controller
     }
     public function delete($id)
     {
-        try{
-        Scrap::where('id', '=', $id)->delete();
-        return redirect()->back()->with('success', 'Scrap data was deleted successfully !');
-        }
-        catch(\Exception $e){
+        try {
+            Scrap::where('id', '=', $id)->delete();
+            return redirect()->back()->with('success', 'Scrap data was deleted successfully !');
+        } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Something went wrong !');
         }
     }
     public function deleteAll()
     {
-        try{
-            Scrap::truncate(); 
-        
-        return redirect()->back()->with('success', 'Scrap data was deleted successfully !');
-        }
-        catch(\Exception $e){
+        try {
+            Scrap::truncate();
+
+            return redirect()->back()->with('success', 'Scrap data was deleted successfully !');
+        } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Something went wrong !');
         }
     }
@@ -51,7 +49,7 @@ class ScrapController extends Controller
         $labData->count = $data->count;
         $labData->desc = $data->desc;
         $labData->lab_name = $data->lab_name;
-        // $labData->lab_id = $data->lab_id;
+        // $labData->lab_id = $data->lab_id;    
         $labData->save();
 
         // Delete the row from the scraps table

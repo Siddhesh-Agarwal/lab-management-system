@@ -1,0 +1,10 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "lab_management_system",
+            "database": "${workspaceFolder:lab-management-system}/database/database.sqlite"
+        }
+    ]
+}

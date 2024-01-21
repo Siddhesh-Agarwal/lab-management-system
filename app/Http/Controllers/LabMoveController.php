@@ -36,7 +36,7 @@ class LabMoveController extends Controller
             $desc = $request->desc;
             $source = $request->source;
             $destination = $request->destination;
-
+            $type=$request->type;
             $lab = Lab_Table::where('lab_name', $source)->first();
 
             $lab_id = $lab ? $lab->id : null;
@@ -46,6 +46,7 @@ class LabMoveController extends Controller
             $dev->spec = $spec;
             $dev->system_number = $system_number;
             $dev->desc = $desc;
+            $dev->type=$type;
             $dev->source = $source;
             $dev->destination = $destination;
             $dev->lab_id = $lab_id;
@@ -54,7 +55,7 @@ class LabMoveController extends Controller
             Lablist::where('system_number', $system_number)->delete();
             return redirect()->route('admin.lablist', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with('success', 'Exchange request was sent Successfully !');
         } catch (\Exception $e) {
-            return redirect()->route('admin.lablist', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with('error', 'Something went wrong !');
+            return redirect()->route('admin.lablist', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with('error', $e->getMessage());
         }
     }
     public function moveToSource($id)
@@ -66,6 +67,7 @@ class LabMoveController extends Controller
                 'spec' => $lab->spec,
                 'system_number' => $lab->system_number,
                 'desc' => $lab->desc,
+                'type' => $lab->type,
                 'lab_name' => $lab->source,
                 'lab_id' => $lab->lab_id,
             ]);
@@ -87,6 +89,7 @@ class LabMoveController extends Controller
                 'spec' => $lab->spec,
                 'system_number' => $lab->system_number,
                 'desc' => $lab->desc,
+                'type' => $lab->type,
                 'lab_name' => $lab->destination,
                 'lab_id' => $labId,
             ]);
@@ -96,7 +99,7 @@ class LabMoveController extends Controller
             $lab->delete();
             return redirect()->back()->with('success', ' Request was Accepted successfully !');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Something went wrong !');
+            return redirect()->back()->with('error', $e->getMessage());
         }
     }
 }
