@@ -20,12 +20,16 @@ st.set_page_config(
 
 st.title("Report Generation")
 
+
 @st.cache_data
 def get_lab_names() -> list[str]:
+    """Return the name of all the labs."""
     conn = sql.connect("../database/database.sqlite")
-    labs = pd.read_sql_query("SELECT lab_name FROM lab__tables", conn)["lab_name"].unique()
+    query = "SELECT lab_name FROM lab__tables"
+    labs = pd.read_sql_query(sql=query, con=conn)["lab_name"]
     conn.close()
     return ["All"] + labs.tolist()
+
 
 def get_pdf_report(df: pd.DataFrame, date: str, report_name: str) -> bytes:
     file_name = f"./report-{date}.pdf"
@@ -40,7 +44,7 @@ def get_pdf_report(df: pd.DataFrame, date: str, report_name: str) -> bytes:
     title_style.alignment = 1
     title_style.spaceAfter = 12
     stylesN = styles["Normal"]
-    stylesN.wordWrap = 'CJK'
+    stylesN.wordWrap = "CJK"
 
     # extract data from df
     data = df.values.tolist()
@@ -65,7 +69,7 @@ def get_pdf_report(df: pd.DataFrame, date: str, report_name: str) -> bytes:
                 ("BOTTOMPADDING", (0, 0), (-1, 0), 12),
                 ("BACKGROUND", (0, 1), (-1, -1), colors.beige),
                 ("GRID", (0, 0), (-1, -1), 1, colors.black),
-                ('COLWIDTH', (0, 0), (-1, -1), column_widths),
+                ("COLWIDTH", (0, 0), (-1, -1), column_widths),
             ]
         ),
     )
@@ -76,6 +80,14 @@ def get_pdf_report(df: pd.DataFrame, date: str, report_name: str) -> bytes:
         pdf_data = pdf_file.read()
     os.remove(file_name)  # clears stuff for next run
     return pdf_data
+
+
+def get_records(table: str, column: str, lab: str):
+    if lab == "All":
+        return f"SELECT * FROM {table}"
+    else:
+        return f"SELECT * FROM {table} WHERE {column} = '{lab}'"
+
 
 LABS: list[str] = get_lab_names()
 
@@ -89,14 +101,15 @@ with cols[1]:
 lab = st.selectbox("Select lab", LABS)
 
 if st.button("Generate Student Logs"):
-    if lab == "All":
-        query: str = f"SELECT * FROM log_details"
-    else:
-        query: str = f"SELECT * FROM log_details WHERE labname = '{lab}'"
+    if lab is None:
+        st.error("Please select a lab")
+        st.stop()
 
     with st.spinner("Fetching data..."):
         conn: sql.Connection = sql.connect("../database/database.sqlite")
-        df: pd.DataFrame = pd.read_sql_query(query, conn)
+
+        query1 = get_records("log_details", "labname", lab)
+        df: pd.DataFrame = pd.read_sql_query(query1, conn)
         df.drop(["random"], axis=1, inplace=True)
         df["login_time"] = pd.to_datetime(df["login_time"])
         df["logout_time"] = pd.to_datetime(df["logout_time"])
@@ -105,6 +118,7 @@ if st.button("Generate Student Logs"):
         ]
         df = df.iloc[:, [0, 1, 2, 3, 5, 4]]
         df.set_index("id", inplace=True)
+
         conn.close()
 
     date = datetime.datetime.now().strftime("%Y-%m-%d")
@@ -129,27 +143,32 @@ if st.button("Generate Student Logs"):
     )
 
 if st.button("Generate Device Logs"):
-    if lab == "All":
-        query: str = f"SELECT * FROM lablists"
-    else:
-        query: str = f"SELECT * FROM lablists WHERE lab_name = '{lab}'"
+    if lab is None:
+        st.error("Please enter a lab name")
+        st.stop()
+    query = get_records("lablists", "lab_name", lab)
 
     with st.spinner("Fetching data..."):
         conn: sql.Connection = sql.connect("../database/database.sqlite")
-        df: pd.DataFrame = pd.read_sql_query(query, conn)
-        df.drop(["lab_id", "desc", "updated_at"], axis=1, inplace=True)
-        df["created_at"] = pd.to_datetime(df["created_at"])
-        df = df[(df["created_at"] >= from_datetime) & (df["created_at"] <= to_datetime)]
-        df.set_index("id", inplace=True)
+        df1: pd.DataFrame = pd.read_sql_query(query, conn)
+        df1.drop(["lab_id", "desc", "updated_at"], axis=1, inplace=True)
+        df1["created_at"] = pd.to_datetime(df1["created_at"])
+        df1 = df1[
+            (df1["created_at"] >= from_datetime) & (df1["created_at"] <= to_datetime)
+        ]
+        df1.set_index("id", inplace=True)
         conn.close()
 
+        query2 = get_records("printers", "lab_name", lab)
+        df2 = pd.read_sql(query2, conn)
+        df2 = df2[["printer_model", "serial_number", "lab_name", "status"]]
+
     date = datetime.datetime.now().strftime("%Y-%m-%d")
-    st.write(df)
 
     # CSV Report
     st.download_button(
         label="Download Device Logs (CSV)",
-        data=df.to_csv(),
+        data=df1.to_csv(),
         file_name=f"device_logs-{date}.csv",
         mime="text/csv",
         key=20,
@@ -158,17 +177,18 @@ if st.button("Generate Device Logs"):
     # PDF report
     st.download_button(
         label="Download Device Logs (PDF)",
-        data=get_pdf_report(df, date, "Device Logs"),
+        data=get_pdf_report(df1, date, "Device Logs")
+        + get_pdf_report(df2, date, "Printer Logs"),
         file_name=f"device_logs-{date}.pdf",
         mime="application/pdf",
         key=21,
     )
 
 if st.button("Generate Maintenance Logs"):
-    if lab == "All":
-        query: str = f"SELECT * FROM maintenance_log"
-    else:
-        query: str = f"SELECT * FROM maintenance_log WHERE lab_name = '{lab}'"
+    if lab is None:
+        st.error("Please enter a lab name")
+        st.stop()
+    query = get_records("maintenance_log", "lab_name", lab)
 
     with st.spinner("Fetching data..."):
         conn: sql.Connection = sql.connect("../database/database.sqlite")
