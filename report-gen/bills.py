@@ -1,8 +1,9 @@
 import sqlite3 as sql
 import datetime as dt
+from typing import Optional
 
 import streamlit as st
-from sqlmodel import SQLModel, Session, create_engine, select
+from sqlmodel import Field, SQLModel, Session, create_engine, select, PrimaryKeyConstraint
 
 st.set_page_config(
     page_title="Bill Management",
@@ -30,7 +31,8 @@ def get_lab_names() -> list[str]:
 LABS = get_lab_names()
 
 
-class Bill(SQLModel, table=True):
+class Bills(SQLModel, table=True, extend_existing=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
     date: str
     lab: str
     file: bytes
@@ -60,7 +62,7 @@ with tabs[0]:
             engine = create_engine("sqlite:///bills.db", echo=True)
             SQLModel.metadata.create_all(engine)
             date_str = str(date.strftime("YYYY-MM-DD"))
-            bill = Bill(date=date_str, lab=lab, file=file.read(), name=file.name)
+            bill = Bills(date=date_str, lab=lab, file=file.read(), name=file.name)
             with Session(engine) as session:
                 session.add(bill)
                 session.commit()
@@ -91,7 +93,7 @@ with tabs[1]:
             date2 = str(to_date.strftime("YYYY-MM-DD"))
             engine = create_engine("sqlite:///bills.db", echo=True)
             with Session(engine) as session:
-                query = select(Bill).where(date1 <= Bill.date, date2 <= Bill.date)
+                query = select(Bills).where(date1 <= Bills.date, date2 <= Bills.date)
                 data = list(session.exec(query))
             if len(data) == 0:
                 st.warning("Couldn't find any Bills in those dates.")

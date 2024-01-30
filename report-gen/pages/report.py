@@ -1,7 +1,5 @@
 import datetime
-import os
 import sqlite3 as sql
-import time
 
 import pandas as pd
 import streamlit as st
@@ -9,6 +7,7 @@ from reportlab.lib import colors
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
+from pypdf import PdfMerger
 
 st.set_page_config(
     page_title="Report Generation",
@@ -31,7 +30,7 @@ def get_lab_names() -> list[str]:
     return ["All"] + labs.tolist()
 
 
-def get_pdf_report(df: pd.DataFrame, date: str, report_name: str) -> bytes:
+def get_pdf_report(df: pd.DataFrame, date: str, report_name: str) -> str:
     file_name = f"./report-{date}.pdf"
     doc = SimpleDocTemplate(file_name, pagesize=letter)
     elements = []
@@ -75,18 +74,13 @@ def get_pdf_report(df: pd.DataFrame, date: str, report_name: str) -> bytes:
     )
     elements.append(table)
     doc.build(elements)
-    # read and store bytes stream in variable `pdf_data`
-    with open(file_name, mode="rb+") as pdf_file:
-        pdf_data = pdf_file.read()
-    os.remove(file_name)  # clears stuff for next run
-    return pdf_data
+    return file_name
 
 
 def get_records(table: str, column: str, lab: str):
     if lab == "All":
         return f"SELECT * FROM {table}"
-    else:
-        return f"SELECT * FROM {table} WHERE {column} = '{lab}'"
+    return f"SELECT * FROM {table} WHERE {column} = '{lab}'"
 
 
 LABS: list[str] = get_lab_names()
@@ -118,8 +112,8 @@ if st.button("Generate Student Logs"):
         ]
         df = df.iloc[:, [0, 1, 2, 3, 5, 4]]
         df.set_index("id", inplace=True)
-
         conn.close()
+
 
     date = datetime.datetime.now().strftime("%Y-%m-%d")
     st.write(df)
@@ -151,17 +145,19 @@ if st.button("Generate Device Logs"):
     with st.spinner("Fetching data..."):
         conn: sql.Connection = sql.connect("../database/database.sqlite")
         df1: pd.DataFrame = pd.read_sql_query(query, conn)
-        df1.drop(["lab_id", "desc", "updated_at"], axis=1, inplace=True)
         df1["created_at"] = pd.to_datetime(df1["created_at"])
         df1 = df1[
             (df1["created_at"] >= from_datetime) & (df1["created_at"] <= to_datetime)
         ]
-        df1.set_index("id", inplace=True)
-        conn.close()
+        df1.drop(["lab_id", "desc", "updated_at", "created_at"], axis=1, inplace=True)
+        df1["S.No."] = df1.index#.reindex(target=)
+        df1 = df1[["S.No.", "lab_name", "system_number", "device_name", "spec", "type"]]
+        # df1.set_index("id", inplace=True)
 
         query2 = get_records("printers", "lab_name", lab)
         df2 = pd.read_sql(query2, conn)
         df2 = df2[["printer_model", "serial_number", "lab_name", "status"]]
+        conn.close()
 
     date = datetime.datetime.now().strftime("%Y-%m-%d")
 
@@ -174,11 +170,21 @@ if st.button("Generate Device Logs"):
         key=20,
     )
 
+    report1 = get_pdf_report(df1, date, f"Device Logs - {lab}")
+    report2 = get_pdf_report(df2, date, "Printer Logs")
+    pdfs = [report1, report2]
+    merger = PdfMerger()
+
+    for pdf in pdfs:
+        merger.append(pdf)
+
+    merger.write("./result.pdf")
+    merger.close()
+
     # PDF report
     st.download_button(
         label="Download Device Logs (PDF)",
-        data=get_pdf_report(df1, date, "Device Logs")
-        + get_pdf_report(df2, date, "Printer Logs"),
+        data=open("./result.pdf", mode='rb').read(),
         file_name=f"device_logs-{date}.pdf",
         mime="application/pdf",
         key=21,
