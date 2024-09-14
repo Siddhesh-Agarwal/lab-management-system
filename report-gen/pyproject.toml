@@ -10,8 +10,7 @@ python = "^3.10"
 streamlit = "^1.25.0"
 reportlab = {extras = ["accel"], version = "^4.0.8"}
 pydantic = "^2.2.1"
-pypdf = "^3.15.2"
-sqlmodel = "^0.0.14"
+pypdf = "^4.3.1"
 
 
 [build-system]

@@ -1,9 +1,5 @@
-import sqlite3 as sql
-import datetime as dt
-from typing import Optional
-
 import streamlit as st
-from sqlmodel import Field, SQLModel, Session, create_engine, select, PrimaryKeyConstraint
+import sqlite3
 
 st.set_page_config(
     page_title="Bill Management",
@@ -15,97 +11,62 @@ st.set_page_config(
 
 st.title("Bill Management")
 
-
-@st.cache_data
-def get_lab_names() -> list[str]:
-    conn = sql.connect("../database/database.sqlite")
-    labs: list[str] = [
-        i[0] for i in conn.execute("SELECT lab_name FROM lab__tables").fetchall()
-    ]
-    labs = ["All"] + labs
-    conn.close()
-    return labs
+tab = st.tabs(["Upload Bills", "View Bills"])
 
 
-# Constants
-LABS = get_lab_names()
+def get_labs():
+    return ["temp"]
 
 
-class Bills(SQLModel, table=True, extend_existing=True):
-    id: Optional[int] = Field(default=None, primary_key=True)
-    date: str
-    lab: str
-    file: bytes
-    name: str
-
-
-# Main
-tabs = st.tabs(["Upload bill", "View bills"])
-
-with tabs[0]:
-    st.subheader("Upload bill")
-    file = st.file_uploader("Upload file", type=["pdf"])
-    date = st.date_input("choose a date")
-    lab = st.selectbox(
-        label="Select lab",
-        options=LABS,
-        index=0,
-        key=1,
-    )
-
-    if st.button("Upload"):
-        if file is None:
-            st.error("Please upload a file", icon="⚠️")
-        elif lab is None:
-            st.error("Please choose a lab", icon="⚠️")
-        else:
-            engine = create_engine("sqlite:///bills.db", echo=True)
-            SQLModel.metadata.create_all(engine)
-            date_str = str(date.strftime("YYYY-MM-DD"))
-            bill = Bills(date=date_str, lab=lab, file=file.read(), name=file.name)
-            with Session(engine) as session:
-                session.add(bill)
-                session.commit()
-            st.toast("File uploaded successfully", icon="🎉")
-            st.balloons()
-
-with tabs[1]:
-    st.subheader("View bills")
-
-    cols = st.columns(2)
-    lab: str | None = st.selectbox(label="Select lab", options=LABS, index=0, key=2)
-    with cols[0]:
-        from_date = st.date_input(
-            label="From date",
-            value=dt.datetime.now().date(),
-            max_value=dt.datetime.now().date(),
-        )
-    with cols[1]:
-        to_date = st.date_input(
-            label="To date",
-            value=dt.datetime.now().date(),
-            max_value=dt.datetime.now().date(),
-        )
-    if st.button("View"):
-        # based on dates
-        if from_date and to_date:
-            date1 = str(from_date.strftime("YYYY-MM-DD"))
-            date2 = str(to_date.strftime("YYYY-MM-DD"))
-            engine = create_engine("sqlite:///bills.db", echo=True)
-            with Session(engine) as session:
-                query = select(Bills).where(date1 <= Bills.date, date2 <= Bills.date)
-                data = list(session.exec(query))
-            if len(data) == 0:
-                st.warning("Couldn't find any Bills in those dates.")
+with tab[0]:
+    with st.form("upload_bills"):
+        st.header("Upload Bills")
+        date = st.date_input("Date")
+        lab = st.selectbox("Lab", ["temp"])
+        file = st.file_uploader("File")
+        submit = st.form_submit_button("Upload")
+        if submit:
+            if not date or not lab or not file:
+                st.error("Please fill all the fields")
             else:
-                for i, row in enumerate(data):
-                    st.markdown(f"### {i+1}) {row.name}")
-                    st.markdown(f"Uploaded on: `{row.date}`")
-                    st.download_button(
-                        label=f"Download {row.name}",
-                        data=row.file,
-                        file_name=row.name,
-                        mime="application/pdf",
+                with st.spinner("Uploading..."):
+                    engine = sqlite3.connect("bills.db")
+                    cursor = engine.cursor()
+                    cursor.execute(
+                        "CREATE TABLE IF NOT EXISTS bills (id INTEGER PRIMARY KEY AUTOINCREMENT, date DATE, lab TEXT, file BLOB, name TEXT)"
                     )
-        else:
-            st.error("Invalid dates")
+                    cursor.execute(
+                        "INSERT INTO bills (date, lab, file, name) VALUES (?, ?, ?, ?)",
+                        (date, lab, file.read(), file.name),
+                    )
+                    engine.commit()
+                st.success("Uploaded!")
+
+with tab[1]:
+    with st.form("view_bills"):
+        st.header("View Bills")
+        from_date = st.date_input("From Date")
+        to_date = st.date_input("To Date")
+        lab = st.selectbox("Lab", ["temp"])
+        submit = st.form_submit_button("View")
+        if submit:
+            with st.spinner("Fetching..."):
+                engine = sqlite3.connect("bills.db")
+                cursor = engine.cursor()
+                cursor.execute(
+                    "SELECT * FROM bills WHERE date >= ? AND date <= ? AND lab = ?",
+                    (from_date, to_date, lab),
+                )
+                bills = cursor.fetchall()
+                st.session_state.bills = bills
+    if "bills" in st.session_state:
+        for bill in st.session_state.bills:
+            # display the bill
+            with st.expander(bill[4]):
+                st.write(f"**Added on:** `{bill[1]}`")
+                st.download_button(
+                    label="Download",
+                    data=bill[2],
+                    file_name=bill[4],
+                    mime="application/pdf",
+                )

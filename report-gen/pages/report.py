@@ -1,4 +1,5 @@
 import datetime
+import os
 import sqlite3 as sql
 
 import pandas as pd
@@ -6,8 +7,17 @@ import streamlit as st
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.styles import getSampleStyleSheet
-from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
+from reportlab.platypus import (
+    Image,
+    Paragraph,
+    SimpleDocTemplate,
+    Spacer,
+    Table,
+    TableStyle,
+)
+from PIL import Image as PILImage
 from pypdf import PdfMerger
+
 
 st.set_page_config(
     page_title="Report Generation",
@@ -30,10 +40,18 @@ def get_lab_names() -> list[str]:
     return ["All"] + labs.tolist()
 
 
+def get_image_dimensions(image_path: str) -> tuple[int, int]:
+    pil_im = PILImage.open(image_path)
+    img_height = 50
+    img_width = (img_height * pil_im.width) // pil_im.height
+    return img_height, img_width
+
+
 def get_pdf_report(df: pd.DataFrame, date: str, report_name: str) -> str:
-    file_name = f"./report-{date}.pdf"
+    file_name = f"./{report_name}.pdf"
     doc = SimpleDocTemplate(file_name, pagesize=letter)
     elements = []
+    image_path = "./assets/logo.png"
 
     # Define styles for the PDF report
     styles = getSampleStyleSheet()
@@ -44,6 +62,9 @@ def get_pdf_report(df: pd.DataFrame, date: str, report_name: str) -> str:
     title_style.spaceAfter = 12
     stylesN = styles["Normal"]
     stylesN.wordWrap = "CJK"
+    img_height, img_width = get_image_dimensions(image_path)
+    logo = Image(image_path, height=img_height, width=img_width)
+    elements.append(logo)
 
     # extract data from df
     data = df.values.tolist()
@@ -94,118 +115,165 @@ with cols[1]:
     to_datetime = datetime.datetime.combine(to_date, datetime.time(23, 59, 59, 999999))
 lab = st.selectbox("Select lab", LABS)
 
-if st.button("Generate Student Logs"):
-    if lab is None:
-        st.error("Please select a lab")
-        st.stop()
 
-    with st.spinner("Fetching data..."):
-        conn: sql.Connection = sql.connect("../database/database.sqlite")
+# Student Logs
+with st.container(border=True):
+    if st.button("Generate Student Logs"):
+        if lab is None:
+            st.error("Please select a lab")
+            st.stop()
 
-        query1 = get_records("log_details", "labname", lab)
-        df: pd.DataFrame = pd.read_sql_query(query1, conn)
-        df.drop(["random"], axis=1, inplace=True)
-        df["login_time"] = pd.to_datetime(df["login_time"])
-        df["logout_time"] = pd.to_datetime(df["logout_time"])
-        df = df[
-            (df["login_time"] >= from_datetime) & (df["logout_time"] <= to_datetime)
-        ]
-        df = df.iloc[:, [0, 1, 2, 3, 5, 4]]
-        df.set_index("id", inplace=True)
-        conn.close()
+        with st.spinner("Fetching data..."):
+            conn: sql.Connection = sql.connect("../database/database.sqlite")
+
+            query1 = get_records("log_details", "labname", lab)
+            df: pd.DataFrame = pd.read_sql_query(query1, conn)
+            df.drop(["random"], axis=1, inplace=True)
+            df["login_time"] = pd.to_datetime(df["login_time"])
+            df["logout_time"] = pd.to_datetime(df["logout_time"])
+            df = df[
+                (df["login_time"] >= from_datetime) & (df["logout_time"] <= to_datetime)
+            ]
+            df = df.iloc[:, [0, 1, 2, 3, 5, 4]]
+            df.set_index("id", inplace=True)
+            conn.close()
+
+        date = datetime.datetime.now().strftime("%Y-%m-%d")
+        st.dataframe(df)
+
+        file_name = f"student_logs-{''.join(map(lambda x: x.title(), lab.split()))}-{from_date}-{to_date}"
+        col1, col2 = st.columns(2)
+        # CSV Report
+        with col1:
+            st.download_button(
+                label="Download Student Logs (CSV)",
+                data=df.to_csv(),
+                file_name=f"{file_name}.csv",
+                mime="text/csv",
+                key=10,
+            )
+
+        # PDF report
+        with col2:
+            st.download_button(
+                label="Download Student Logs (PDF)",
+                data=get_pdf_report(df, date, file_name),
+                file_name=f"{file_name}.pdf",
+                mime="application/pdf",
+                key=11,
+            )
 
 
-    date = datetime.datetime.now().strftime("%Y-%m-%d")
-    st.write(df)
+# Device Logs
+with st.container(border=True):
+    if st.button("Generate Device Logs"):
+        if lab is None:
+            st.error("Please enter a lab name")
+            st.stop()
+        query = get_records("lablists", "lab_name", lab)
 
-    # CSV Report
-    st.download_button(
-        label="Download Student Logs (CSV)",
-        data=df.to_csv(),
-        file_name=f"student_logs-{date}.csv",
-        mime="text/csv",
-        key=10,
-    )
+        with st.spinner("Fetching data..."):
+            conn: sql.Connection = sql.connect("../database/database.sqlite")
+            df1: pd.DataFrame = pd.read_sql_query(query, conn)
+            df1["created_at"] = pd.to_datetime(df1["created_at"])
+            df1 = df1[
+                (df1["created_at"] >= from_datetime)
+                & (df1["created_at"] <= to_datetime)
+            ]
+            df1.drop(
+                ["lab_id", "desc", "updated_at", "created_at"], axis=1, inplace=True
+            )
+            df1["S.No."] = df1.index  # .reindex(target=)
+            df1 = df1[
+                ["S.No.", "lab_name", "system_number", "device_name", "spec", "type"]
+            ]
+            # df1.set_index("id", inplace=True)
 
-    # PDF report
-    st.download_button(
-        label="Download Student Logs (PDF)",
-        data=get_pdf_report(df, date, "Student Logs"),
-        file_name=f"student_logs-{date}.pdf",
-        mime="application/pdf",
-        key=11,
-    )
+            query2 = get_records("printers", "lab_name", lab)
+            df2 = pd.read_sql(query2, conn)
+            df2 = df2[["printer_model", "serial_number", "lab_name", "status"]]
+            conn.close()
 
-if st.button("Generate Device Logs"):
-    if lab is None:
-        st.error("Please enter a lab name")
-        st.stop()
-    query = get_records("lablists", "lab_name", lab)
+        date = datetime.datetime.now().strftime("%Y-%m-%d")
+        st.dataframe(df1)
+        st.dataframe(df2)
 
-    with st.spinner("Fetching data..."):
-        conn: sql.Connection = sql.connect("../database/database.sqlite")
-        df1: pd.DataFrame = pd.read_sql_query(query, conn)
-        df1["created_at"] = pd.to_datetime(df1["created_at"])
-        df1 = df1[
-            (df1["created_at"] >= from_datetime) & (df1["created_at"] <= to_datetime)
-        ]
-        df1.drop(["lab_id", "desc", "updated_at", "created_at"], axis=1, inplace=True)
-        df1["S.No."] = df1.index#.reindex(target=)
-        df1 = df1[["S.No.", "lab_name", "system_number", "device_name", "spec", "type"]]
-        # df1.set_index("id", inplace=True)
+        with st.spinner("Generating PDF..."):
+            report1 = get_pdf_report(df1, date, f"Device Logs - {lab}")
+            report2 = get_pdf_report(df2, date, f"Printer Logs - {lab}")
+            pdfs = [report1, report2]
 
-        query2 = get_records("printers", "lab_name", lab)
-        df2 = pd.read_sql(query2, conn)
-        df2 = df2[["printer_model", "serial_number", "lab_name", "status"]]
-        conn.close()
+            result = PdfMerger()
+            for pdf in pdfs:
+                result.append(pdf)
+            result.write("./result.pdf")
+            result.close()
 
-    date = datetime.datetime.now().strftime("%Y-%m-%d")
+        file_name = f"device_logs-{''.join(map(lambda x: x.title(), lab.split()))}-{from_date}-{to_date}"
+        col1, col2 = st.columns(2)
+        # CSV Report
+        with col1:
+            st.download_button(
+                label="Download Device Logs (CSV)",
+                data=df1.to_csv(),
+                file_name=f"{file_name}.csv",
+                mime="text/csv",
+                key=20,
+            )
 
-    # CSV Report
-    st.download_button(
-        label="Download Device Logs (CSV)",
-        data=df1.to_csv(),
-        file_name=f"device_logs-{date}.csv",
-        mime="text/csv",
-        key=20,
-    )
+        with col2:
+            # PDF report
+            st.download_button(
+                label="Download Device Logs (PDF)",
+                data=open("./result.pdf", mode="rb").read(),
+                file_name=f"{file_name}.pdf",
+                mime="application/pdf",
+                key=21,
+            )
 
-    report1 = get_pdf_report(df1, date, f"Device Logs - {lab}")
-    report2 = get_pdf_report(df2, date, "Printer Logs")
-    pdfs = [report1, report2]
-    merger = PdfMerger()
 
-    for pdf in pdfs:
-        merger.append(pdf)
+# Maintenance Logs
+with st.container(border=True):
+    if st.button("Generate Maintenance Logs"):
+        if lab is None:
+            st.error("Please enter a lab name")
+            st.stop()
+        query = get_records("maintenance_log", "lab_name", lab)
 
-    merger.write("./result.pdf")
-    merger.close()
+        with st.spinner("Fetching data..."):
+            conn: sql.Connection = sql.connect("../database/database.sqlite")
+            df: pd.DataFrame = pd.read_sql_query(query, conn)
+            df.drop(["created_at", "updated_at", "lab_id"], axis=1, inplace=True)
+            df["moved_time"] = pd.to_datetime(df["moved_time"])
+            df["returned_time"] = pd.to_datetime(df["returned_time"])
+            df = df[
+                (df["moved_time"] >= from_datetime)
+                & (df["returned_time"] <= to_datetime)
+            ]
+            df.set_index("id", inplace=True)
+            conn.close()
 
-    # PDF report
-    st.download_button(
-        label="Download Device Logs (PDF)",
-        data=open("./result.pdf", mode='rb').read(),
-        file_name=f"device_logs-{date}.pdf",
-        mime="application/pdf",
-        key=21,
-    )
+        date = datetime.datetime.now().strftime("%Y-%m-%d")
+        st.dataframe(df)
 
-if st.button("Generate Maintenance Logs"):
-    if lab is None:
-        st.error("Please enter a lab name")
-        st.stop()
-    query = get_records("maintenance_log", "lab_name", lab)
+        file_name = f"maintenance_logs-{''.join(map(lambda x: x.title(), lab.split()))}-{from_date}-{to_date}"
+        col1, col2 = st.columns(2)
+        # CSV Report
+        with col1:
+            st.download_button(
+                label="Download Maintenance Logs (CSV)",
+                data=df.to_csv(),
+                file_name=f"{file_name}.csv",
+                mime="text/csv",
+                key=30,
+            )
 
-    with st.spinner("Fetching data..."):
-        conn: sql.Connection = sql.connect("../database/database.sqlite")
-        df: pd.DataFrame = pd.read_sql_query(query, conn)
-        df.drop(["created_at", "updated_at", "lab_id"], axis=1, inplace=True)
-        df["moved_time"] = pd.to_datetime(df["moved_time"])
-        df["returned_time"] = pd.to_datetime(df["returned_time"])
-        df = df[
-            (df["moved_time"] >= from_datetime) & (df["returned_time"] <= to_datetime)
-        ]
-        df.set_index("id", inplace=True)
-        conn.close()
-
-    date = datetime.datetime
+        with col2:
+            # PDF report
+            st.download_button(
+                label="Download Maintenance Logs (PDF)",
+                data=get_pdf_report(df, date, file_name),
+                file_name=f"{file_name}.pdf",
+                mime="application/pdf",
+                key=31,
+            )
