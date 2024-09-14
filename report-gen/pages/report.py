@@ -47,7 +47,7 @@ def get_image_dimensions(image_path: str) -> tuple[int, int]:
     return img_height, img_width
 
 
-def get_pdf_report(df: pd.DataFrame, date: str, report_name: str) -> str:
+def get_pdf_report(df: pd.DataFrame, report_name: str, report_title: str) -> str:
     file_name = f"./{report_name}.pdf"
     doc = SimpleDocTemplate(file_name, pagesize=letter)
     elements = []
@@ -71,7 +71,7 @@ def get_pdf_report(df: pd.DataFrame, date: str, report_name: str) -> str:
     data = [[Paragraph(str(cell), stylesN) for cell in row] for row in data]
 
     # Add report name as a title
-    title = Paragraph(report_name, title_style)
+    title = Paragraph(report_title, title_style)
     elements.append(title)
     elements.append(Spacer(1, 12))
 
@@ -157,7 +157,7 @@ with st.container(border=True):
         with col2:
             st.download_button(
                 label="Download Student Logs (PDF)",
-                data=get_pdf_report(df, date, file_name),
+                data=get_pdf_report(df, file_name, f"Student Logs - {lab}"),
                 file_name=f"{file_name}.pdf",
                 mime="application/pdf",
                 key=11,
@@ -199,8 +199,8 @@ with st.container(border=True):
         st.dataframe(df2)
 
         with st.spinner("Generating PDF..."):
-            report1 = get_pdf_report(df1, date, f"Device Logs - {lab}")
-            report2 = get_pdf_report(df2, date, f"Printer Logs - {lab}")
+            report1 = get_pdf_report(df1, f"device_logs-{date}", f"Device Logs - {lab}")
+            report2 = get_pdf_report(df2, f"printer_logs-{date}", f"Printer Logs - {lab}")
             pdfs = [report1, report2]
 
             result = PdfMerger()
@@ -272,7 +272,7 @@ with st.container(border=True):
             # PDF report
             st.download_button(
                 label="Download Maintenance Logs (PDF)",
-                data=get_pdf_report(df, date, file_name),
+                data=get_pdf_report(df, file_name, f"Maintenance Logs - {lab}"),
                 file_name=f"{file_name}.pdf",
                 mime="application/pdf",
                 key=31,
