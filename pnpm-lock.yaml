@@ -9,10 +9,10 @@ importers:
   .:
     dependencies:
       axios:
-        specifier: ^1.7.4
+        specifier: ^1.13.6
         version: 1.13.6
       sweetalert2:
-        specifier: ^11.15.10
+        specifier: ^11.26.21
         version: 11.26.21
       toastr:
         specifier: ^2.1.4
@@ -22,10 +22,10 @@ importers:
         version: 1.0.3
     devDependencies:
       laravel-vite-plugin:
-        specifier: ^0.7.2
+        specifier: ^0.7.8
         version: 0.7.8(vite@4.5.14)
       vite:
-        specifier: ^4.5.9
+        specifier: ^4.5.14
         version: 4.5.14
 
 packages:
