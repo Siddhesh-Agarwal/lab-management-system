@@ -36,28 +36,34 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware("guest")->except("logout");
     }
 
     public function login(Request $request)
     {
         $this->validate($request, [
-            'email' => 'required|email',
-            'password' => 'required|min:4',
+            "email" => "required|email",
+            "password" => "required|min:4",
         ]);
 
         // $this->validateLogin($request);
 
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+        if (
+            Auth::attempt([
+                "email" => $request->email,
+                "password" => $request->password,
+            ])
+        ) {
             $user = Auth::user();
-            if ($user->role == 'admin') {
-                return redirect()->route('admin.dashboard');
+            if ($user->role == "admin") {
+                return redirect()->route("admin.dashboard");
             } else {
-                return redirect()->route('superadmin.dashboard');
+                return redirect()->route("superadmin.dashboard");
             }
         }
 
-        return redirect()->route('login')->with('error', 'Email or Password is Incorrect !');
-
+        return redirect()
+            ->route("login")
+            ->with("error", "Email or Password is Incorrect !");
     }
 }

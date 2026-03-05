@@ -17,14 +17,21 @@ class LabMoveController extends Controller
         $data = Labmove_table::get();
         $totalDeviceCount = Labmove_table::count();
         $totalTempCount = Temp::count();
-        return view('lablist.movelist', ['data' => $data, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount]);
+        return view("lablist.movelist", [
+            "data" => $data,
+            "totalDeviceCount" => $totalDeviceCount,
+            "totalTempCount" => $totalTempCount,
+        ]);
     }
     public function adda($id)
     {
         $labNames = Lab_Table::get();
-        $data = Lablist::where('id', '=', $id)->first();
+        $data = Lablist::where("id", "=", $id)->first();
 
-        return view('lablistadmin.movelist', ['data' => $data, 'labNames' => $labNames]);
+        return view("lablistadmin.movelist", [
+            "data" => $data,
+            "labNames" => $labNames,
+        ]);
     }
     public function save(Request $request)
     {
@@ -36,8 +43,8 @@ class LabMoveController extends Controller
             $desc = $request->desc;
             $source = $request->source;
             $destination = $request->destination;
-            $type=$request->type;
-            $lab = Lab_Table::where('lab_name', $source)->first();
+            $type = $request->type;
+            $lab = Lab_Table::where("lab_name", $source)->first();
 
             $lab_id = $lab ? $lab->id : null;
 
@@ -46,16 +53,40 @@ class LabMoveController extends Controller
             $dev->spec = $spec;
             $dev->system_number = $system_number;
             $dev->desc = $desc;
-            $dev->type=$type;
+            $dev->type = $type;
             $dev->source = $source;
             $dev->destination = $destination;
             $dev->lab_id = $lab_id;
             $dev->save();
 
-            Lablist::where('system_number', $system_number)->delete();
-            return redirect()->route('admin.lablist', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with('success', 'Exchange request was sent Successfully !');
+            $isDeleted = Lablist::where(
+                "system_number",
+                $system_number,
+            )->delete();
+            if ($isDeleted) {
+                return redirect()
+                    ->route("admin.lablist", [
+                        "lab_name" => \Illuminate\Support\Facades\Auth::user()
+                            ->labname,
+                    ])
+                    ->with(
+                        "success",
+                        "Exchange request was sent Successfully !",
+                    );
+            }
+            return redirect()
+                ->route("admin.lablist", [
+                    "lab_name" => \Illuminate\Support\Facades\Auth::user()
+                        ->labname,
+                ])
+                ->with("error", "Failed to remove device from source lab !");
         } catch (\Exception $e) {
-            return redirect()->route('admin.lablist', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with('error', $e->getMessage());
+            return redirect()
+                ->route("admin.lablist", [
+                    "lab_name" => \Illuminate\Support\Facades\Auth::user()
+                        ->labname,
+                ])
+                ->with("error", $e->getMessage());
         }
     }
     public function moveToSource($id)
@@ -63,43 +94,62 @@ class LabMoveController extends Controller
         try {
             $lab = Labmove_table::findOrFail($id);
             $scrap = new Lablist([
-                'device_name' => $lab->device_name,
-                'spec' => $lab->spec,
-                'system_number' => $lab->system_number,
-                'desc' => $lab->desc,
-                'type' => $lab->type,
-                'lab_name' => $lab->source,
-                'lab_id' => $lab->lab_id,
+                "device_name" => $lab->device_name,
+                "spec" => $lab->spec,
+                "system_number" => $lab->system_number,
+                "desc" => $lab->desc,
+                "type" => $lab->type,
+                "lab_name" => $lab->source,
+                "lab_id" => $lab->lab_id,
             ]);
             $scrap->save();
-            $lab->delete();
-            return redirect()->back()->with('success', ' Request was Denied successfully !');
+            $isDeleted = $lab->delete();
+            if ($isDeleted) {
+                return redirect()
+                    ->back()
+                    ->with("success", " Request was Denied successfully !");
+            }
+            return redirect()
+                ->back()
+                ->with("error", "Failed to remove lab move request !");
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', $e->getMessage());
+            return redirect()->back()->with("error", $e->getMessage());
         }
     }
     public function moveToDestination($id)
     {
         try {
             $lab = Labmove_table::findOrFail($id);
-            $destinationLab = Lab_Table::where('lab_name', $lab->destination)->first();
+            $destinationLab = Lab_Table::where(
+                "lab_name",
+                $lab->destination,
+            )->first();
             $labId = $destinationLab->id;
             $scrap = new Lablist([
-                'device_name' => $lab->device_name,
-                'spec' => $lab->spec,
-                'system_number' => $lab->system_number,
-                'desc' => $lab->desc,
-                'type' => $lab->type,
-                'lab_name' => $lab->destination,
-                'lab_id' => $labId,
+                "device_name" => $lab->device_name,
+                "spec" => $lab->spec,
+                "system_number" => $lab->system_number,
+                "desc" => $lab->desc,
+                "type" => $lab->type,
+                "lab_name" => $lab->destination,
+                "lab_id" => $labId,
             ]);
-            Lab::where('system_model_number', $lab->system_number)
-                ->update(['lab_name' => $lab->destination]);
+            Lab::where("system_model_number", $lab->system_number)->update([
+                "lab_name" => $lab->destination,
+            ]);
             $scrap->save();
-            $lab->delete();
-            return redirect()->back()->with('success', ' Request was Accepted successfully !');
+            $isSuccess = $lab->delete();
+            if ($isSuccess) {
+                return redirect()
+                    ->back()
+                    ->with("success", " Request was Accepted successfully !");
+            } else {
+                return redirect()
+                    ->back()
+                    ->with("error", "Failed to delete the lab move request.");
+            }
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', $e->getMessage());
+            return redirect()->back()->with("error", $e->getMessage());
         }
     }
 }

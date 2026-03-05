@@ -157,14 +157,14 @@ Route::prefix('superadmin')->middleware('superadmin.auth')->group(function () {
     Route::post('saveups', [UpsController::class, 'saves']);
     Route::get('editups/{id}', [UpsController::class, 'edit']);
     Route::post('updateups', [UpsController::class, 'update']);
-     Route::get('deleteups/{id}', [UpsController::class, 'delete']);
+    Route::get('deleteups/{id}', [UpsController::class, 'delete']);
     //Switch
     Route::get('switch',[SwitchController::class,'index'])->name('superadmin.switch');
     Route::get('addswitch', [SwitchController::class, 'add']);
     Route::post('saveswitch', [SwitchController::class, 'saves']);
     Route::get('editswitch/{id}', [SwitchController::class, 'edit']);
     Route::post('updateswitch', [SwitchController::class, 'update']);
-     Route::get('deleteswitch/{id}', [SwitchController::class, 'delete']);
+    Route::get('deleteswitch/{id}', [SwitchController::class, 'delete']);
     //Lablist
     Route::get('listinglabs', [LablistController::class, 'listing_labs'])->name('superadmin.listinglabs');
     Route::get('editlistinglabs/{id}', [LablistController::class, 'edit_listing_labs']);

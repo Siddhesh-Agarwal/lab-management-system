@@ -9,26 +9,42 @@ use Illuminate\Http\Request;
 use App\Models\Lab_Table;
 class ConsumableController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $totalDeviceCount = Labmove_table::count();
-        $totalTempCount=Temp::count();
+        $totalTempCount = Temp::count();
         $data = Consumable::all();
-        return view('consumables.list', ['consumables' => $data,'totalDeviceCount'=>$totalDeviceCount,'totalTempCount'=>$totalTempCount]);
+        return view("consumables.list", [
+            "consumables" => $data,
+            "totalDeviceCount" => $totalDeviceCount,
+            "totalTempCount" => $totalTempCount,
+        ]);
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         $totalDeviceCount = Labmove_table::count();
-        $totalTempCount=Temp::count();
+        $totalTempCount = Temp::count();
         $labs = Lab_Table::get();
-        $data = Consumable::where('id', '=', $id)->first();
-        return view('consumables.editlist',['totalDeviceCount'=>$totalDeviceCount,'totalTempCount'=>$totalTempCount,'data'=>$data,'labs'=>$labs]);
+        $data = Consumable::where("id", "=", $id)->first();
+        return view("consumables.editlist", [
+            "totalDeviceCount" => $totalDeviceCount,
+            "totalTempCount" => $totalTempCount,
+            "data" => $data,
+            "labs" => $labs,
+        ]);
     }
-    public function add(){
+    public function add()
+    {
         $totalDeviceCount = Labmove_table::count();
-        $totalTempCount=Temp::count();
+        $totalTempCount = Temp::count();
         $labs = Lab_Table::get();
-       
-        return view('consumables.addlist',['totalDeviceCount'=>$totalDeviceCount,'totalTempCount'=>$totalTempCount,'labs'=>$labs]);
+
+        return view("consumables.addlist", [
+            "totalDeviceCount" => $totalDeviceCount,
+            "totalTempCount" => $totalTempCount,
+            "labs" => $labs,
+        ]);
     }
 
     public function update(Request $request)
@@ -40,17 +56,20 @@ class ConsumableController extends Controller
             $count = $request->count;
             $lab_name = $request->lab_name;
 
-            Consumable::where('id', '=', $id)->update([
-                'device_name' => $device_name,
-                'serial_number' => $serial_number,
-                'count' => $count,
-                'labname' => $lab_name,
-                
+            Consumable::where("id", "=", $id)->update([
+                "device_name" => $device_name,
+                "serial_number" => $serial_number,
+                "count" => $count,
+                "labname" => $lab_name,
             ]);
 
-            return redirect()->route('superadmin.list.consumables')->with('success', 'Consumables Updated successfully !');
+            return redirect()
+                ->route("superadmin.list.consumables")
+                ->with("success", "Consumables Updated successfully !");
         } catch (\Exception $e) {
-            return redirect()->route('superadmin.list.consumables')->with('error', 'Something went wrong !');
+            return redirect()
+                ->route("superadmin.list.consumables")
+                ->with("error", "Something went wrong !");
         }
     }
     public function save(Request $request)
@@ -58,7 +77,7 @@ class ConsumableController extends Controller
         try {
             $device_name = $request->device_name;
             $serial_number = $request->serial_number;
-    
+
             $count = $request->count;
 
             $lab_name = $request->lab_name;
@@ -71,9 +90,13 @@ class ConsumableController extends Controller
 
             $dev->save();
 
-            return redirect()->route('superadmin.list.consumables')->with(['success' => 'Consumables added successfully !']);
+            return redirect()
+                ->route("superadmin.list.consumables")
+                ->with(["success" => "Consumables added successfully !"]);
         } catch (\Exception $e) {
-            return redirect()->route('superadmin.list.consumables')->with(['error' => 'Something went wrong !']);
+            return redirect()
+                ->route("superadmin.list.consumables")
+                ->with(["error" => "Something went wrong !"]);
         }
     }
 
@@ -81,18 +104,33 @@ class ConsumableController extends Controller
     {
         try {
             $data = Consumable::find($id);
-            $data->delete();
-            return redirect()->back()->with('success', 'Consumables deleted successfully !');
+            if (!$data) {
+                return redirect()
+                    ->back()
+                    ->with("error", "Consumable not found !");
+            }
+            $isDeleted = $data->delete();
+            if ($isDeleted) {
+                return redirect()
+                    ->back()
+                    ->with("success", "Consumables deleted successfully !");
+            }
+            return redirect()
+                ->back()
+                ->with("error", "Failed to delete consumable !");
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Something went wrong !');
+            return redirect()->back()->with("error", "Something went wrong !");
         }
     }
 
     public function indexadmin($lab_name)
     {
         $LabNames = Lab_Table::get();
-        $data = Consumable::where('labname', '=', $lab_name)->get();
-        return view('consumables.listadmin', ['data' => $data, 'labname' => $lab_name, 'labNames' => $LabNames]);
+        $data = Consumable::where("labname", "=", $lab_name)->get();
+        return view("consumables.listadmin", [
+            "data" => $data,
+            "labname" => $lab_name,
+            "labNames" => $LabNames,
+        ]);
     }
-
 }

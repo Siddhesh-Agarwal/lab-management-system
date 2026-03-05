@@ -12,18 +12,23 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 class WarrantyController extends Controller
 {
-     public function index(){
+    public function index()
+    {
         $totalDeviceCount = Labmove_table::count();
-        $totalTempCount=Temp::count();
-        $data=Warranty::get();
+        $totalTempCount = Temp::count();
+        $data = Warranty::get();
         $LabNames = Lab_Table::get();
         foreach ($data as $warranty) {
             $warranty->time_period_diff = $this->calculateTimePeriod($warranty);
         }
-        return view('warranty.list',['data' => $data, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount,'labs'=>$LabNames]);
-     }
+        return view("warranty.list", [
+            "data" => $data,
+            "totalDeviceCount" => $totalDeviceCount,
+            "totalTempCount" => $totalTempCount,
+            "labs" => $LabNames,
+        ]);
+    }
 
-     
     public function filter()
     {
         $totalDeviceCount = Labmove_table::count();
@@ -39,47 +44,56 @@ class WarrantyController extends Controller
             return $created_at->diffInMonths($time_period) < 6;
         });
 
-        return view('superadmin.content', [
-            'data' => $filteredData,
-            'totalDeviceCount' => $totalDeviceCount,
-            'totalTempCount' => $totalTempCount,
-            'labs' => $LabNames
+        return view("superadmin.content", [
+            "data" => $filteredData,
+            "totalDeviceCount" => $totalDeviceCount,
+            "totalTempCount" => $totalTempCount,
+            "labs" => $LabNames,
         ]);
     }
 
-     public function add()
-     {
- 
-         $labName = \Illuminate\Support\Facades\Auth::user()->labname;
-         $labNames = Lab_Table::get();
-         $labs=Lab_Table::get();
-         $totalDeviceCount = Labmove_table::count();
-        $totalTempCount=Temp::count();
-         $systemNumbers = Lablist::where('lab_name', $labName)->pluck('system_number');
-         return view('warranty.addlist', ['systemNumbers' => $systemNumbers, 'labNames' => $labNames,'labs'=>$labs, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount]);
-     }
+    public function add()
+    {
+        $labName = \Illuminate\Support\Facades\Auth::user()->labname;
+        $labNames = Lab_Table::get();
+        $labs = Lab_Table::get();
+        $totalDeviceCount = Labmove_table::count();
+        $totalTempCount = Temp::count();
+        $systemNumbers = Lablist::where("lab_name", $labName)->pluck(
+            "system_number",
+        );
+        return view("warranty.addlist", [
+            "systemNumbers" => $systemNumbers,
+            "labNames" => $labNames,
+            "labs" => $labs,
+            "totalDeviceCount" => $totalDeviceCount,
+            "totalTempCount" => $totalTempCount,
+        ]);
+    }
 
-     public function save(Request $request)
+    public function save(Request $request)
     {
         try {
-
             $warranty_name = $request->warranty_name;
             $system_number = $request->system_number;
             $time_period = $request->time_period;
-            $lab_name = $request->input('lab_name');
+            $lab_name = $request->input("lab_name");
 
             $dev = new Warranty();
             $dev->warranty_name = $warranty_name;
             $dev->system_number = $system_number;
             $dev->labname = $lab_name;
             $dev->time_period = $time_period;
-        
 
             $dev->save();
 
-            return redirect()->route('superadmin.warranty')->with('success', 'Warranty Added successfully !');
+            return redirect()
+                ->route("superadmin.warranty")
+                ->with("success", "Warranty Added successfully !");
         } catch (\Exception $e) {
-            return redirect()->route('superadmin.warranty')->with('error', $e->getMessage());
+            return redirect()
+                ->route("superadmin.warranty")
+                ->with("error", $e->getMessage());
         }
     }
 
@@ -88,8 +102,13 @@ class WarrantyController extends Controller
         $totalDeviceCount = Labmove_table::count();
         $totalTempCount = Temp::count();
         $labs = Lab_Table::get();
-        $data = Warranty::where('id', '=', $id)->first();
-        return view('warranty.editlist', ['data' => $data, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount, 'labs' => $labs]);
+        $data = Warranty::where("id", "=", $id)->first();
+        return view("warranty.editlist", [
+            "data" => $data,
+            "totalDeviceCount" => $totalDeviceCount,
+            "totalTempCount" => $totalTempCount,
+            "labs" => $labs,
+        ]);
     }
 
     public function update(Request $request)
@@ -101,16 +120,19 @@ class WarrantyController extends Controller
             $time_period = $request->time_period;
             $lab_name = $request->lab_name;
 
-            Warranty::where('id', '=', $id)->update([
-                'warranty_name' => $warranty_name,
-                'system_number' => $system_number,
-                'time_period' => $time_period,
-                'labname' => $lab_name,
-                
+            Warranty::where("id", "=", $id)->update([
+                "warranty_name" => $warranty_name,
+                "system_number" => $system_number,
+                "time_period" => $time_period,
+                "labname" => $lab_name,
             ]);
-            return redirect()->route('superadmin.warranty')->with('success', 'Warranty Updated successfully !');
+            return redirect()
+                ->route("superadmin.warranty")
+                ->with("success", "Warranty Updated successfully !");
         } catch (\Exception $e) {
-            return redirect()->route('superadmin.warranty')->with('error', 'Something went wrong !');
+            return redirect()
+                ->route("superadmin.warranty")
+                ->with("error", "Something went wrong !");
         }
     }
 
@@ -124,21 +146,38 @@ class WarrantyController extends Controller
     public function delete($id)
     {
         try {
-            $data =Warranty::find($id);
-            $data->delete();
-            return redirect()->back()->with('success', 'Warranty deleted successfully !');
+            $data = Warranty::find($id);
+            if (!$data) {
+                return redirect()
+                    ->back()
+                    ->with("error", "Warranty not found !");
+            }
+            $isDeleted = $data->delete();
+            if ($isDeleted) {
+                return redirect()
+                    ->back()
+                    ->with("success", "Warranty deleted successfully !");
+            }
+            return redirect()
+                ->back()
+                ->with("error", "Failed to delete warranty !");
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Something went wrong !');
+            return redirect()->back()->with("error", "Something went wrong !");
         }
     }
 
     public function searchwarranty(Request $request)
     {
-        $labName = urldecode($request->input('lab_name'));
+        $labName = urldecode($request->input("lab_name"));
         $totalDeviceCount = Labmove_table::count();
         $totalTempCount = Temp::count();
-        $data = Warranty::where('labname', 'like', "%$labName%")->get();
-        session(['search_flag' => true]);
-        return view('warranty.list', ['lab_name' => $labName, 'data' => $data, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount]);
+        $data = Warranty::where("labname", "like", "%$labName%")->get();
+        session(["search_flag" => true]);
+        return view("warranty.list", [
+            "lab_name" => $labName,
+            "data" => $data,
+            "totalDeviceCount" => $totalDeviceCount,
+            "totalTempCount" => $totalTempCount,
+        ]);
     }
 }

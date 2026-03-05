@@ -22,8 +22,8 @@ class SuperAdminController extends Controller
     {
         $totalDeviceCount = Labmove_table::count();
         $totalTempCount = Temp::count();
-        $deviceCount = LabList::where('type', 'Desktop')->count();
-        $laptopCount = LabList::where('type', 'Laptop')->count();
+        $deviceCount = LabList::where("type", "Desktop")->count();
+        $laptopCount = LabList::where("type", "Laptop")->count();
         $labCount = Lab_Table::count();
         $allData = Warranty::get();
         $LabNames = Lab_Table::get();
@@ -33,49 +33,70 @@ class SuperAdminController extends Controller
             $time_period = Carbon::parse($warranty->time_period);
             return $created_at->diffInMonths($time_period) < 6;
         });
-        $admins = User::where('role', 'admin')->count();
-        return view('superadmin.content', ['totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount, 'deviceCount' => $deviceCount, 'admins' => $admins, 'labcount' => $labCount, 'data' => $filteredData, 'warranty' => $warranty, 'laptop' => $laptopCount]);
+        $admins = User::where("role", "admin")->count();
+        return view("superadmin.content", [
+            "totalDeviceCount" => $totalDeviceCount,
+            "totalTempCount" => $totalTempCount,
+            "deviceCount" => $deviceCount,
+            "admins" => $admins,
+            "labcount" => $labCount,
+            "data" => $filteredData,
+            "warranty" => $warranty,
+            "laptop" => $laptopCount,
+        ]);
     }
 
     public function simple_search()
     {
         $totalDeviceCount = Labmove_table::count();
         $totalTempCount = Temp::count();
-        return view('superadmin.simplesearch', ['totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount]);
+        return view("superadmin.simplesearch", [
+            "totalDeviceCount" => $totalDeviceCount,
+            "totalTempCount" => $totalTempCount,
+        ]);
     }
 
     public function advance_search()
     {
-        return view('superadmin.advancesearch');
+        return view("superadmin.advancesearch");
     }
 
     public function contact()
     {
         $totalDeviceCount = Labmove_table::count();
         $totalTempCount = Temp::count();
-        return view('superadmin.contact', ['totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount]);
+        return view("superadmin.contact", [
+            "totalDeviceCount" => $totalDeviceCount,
+            "totalTempCount" => $totalTempCount,
+        ]);
     }
 
     public function create(Request $request)
     {
         try {
             $request->validate([
-                'name' => 'required',
-                'email' => 'required',
-                'password' => 'required|min:8|max:15',
-                'labname' => 'required',
+                "name" => "required",
+                "email" => "required",
+                "password" => "required|min:8|max:15",
+                "labname" => "required",
             ]);
             $data = [
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => bcrypt($request->password),
-                'role' => $request->role,
-                'labname' => urldecode($request->labname),
+                "name" => $request->name,
+                "email" => $request->email,
+                "password" => bcrypt($request->password),
+                "role" => $request->role,
+                "labname" => urldecode($request->labname),
             ];
             User::create($data);
-            return redirect(route('superadmin.details'))->with('success', 'Successfully admin was added !');
+            return redirect(route("superadmin.details"))->with(
+                "success",
+                "Successfully admin was added !",
+            );
         } catch (\Exception $e) {
-            return redirect(route('superadmin.details'))->with('error', 'Something went wrong !');
+            return redirect(route("superadmin.details"))->with(
+                "error",
+                "Something went wrong !",
+            );
         }
     }
 
@@ -83,8 +104,12 @@ class SuperAdminController extends Controller
     {
         $totalDeviceCount = Labmove_table::count();
         $totalTempCount = Temp::count();
-        $details = User::where('role', 'admin')->get();
-        return view('superadmin.admin_details', ['details' => $details, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount]);
+        $details = User::where("role", "admin")->get();
+        return view("superadmin.admin_details", [
+            "details" => $details,
+            "totalDeviceCount" => $totalDeviceCount,
+            "totalTempCount" => $totalTempCount,
+        ]);
     }
 
     public function add_admin()
@@ -92,23 +117,42 @@ class SuperAdminController extends Controller
         $totalDeviceCount = Labmove_table::count();
         $totalTempCount = Temp::count();
         $labs = Lab_Table::get();
-        return view('superadmin.add_admin', ['totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount, 'labs' => $labs]);
+        return view("superadmin.add_admin", [
+            "totalDeviceCount" => $totalDeviceCount,
+            "totalTempCount" => $totalTempCount,
+            "labs" => $labs,
+        ]);
     }
     public function delete_admin(Request $request)
     {
-        User::destroy($request->id);
-        return redirect()->route('superadmin.details')->with('success', 'Successfully admin was deleted !');
+        try {
+            $deleted = User::destroy($request->id);
+            if ($deleted) {
+                return redirect()
+                    ->route("superadmin.details")
+                    ->with("success", "Successfully admin was deleted !");
+            }
+            return redirect()
+                ->route("superadmin.details")
+                ->with("error", "Admin not found or could not be deleted !");
+        } catch (\Exception $e) {
+            return redirect()
+                ->route("superadmin.details")
+                ->with("error", "Something went wrong !");
+        }
     }
 
     public function tables()
     {
-        return view('superadmin.tables');
+        return view("superadmin.tables");
     }
 
     public function logout()
     {
         Auth::logout();
-        return redirect()->route('login')->with('logout', 'Successfully logged out !');
+        return redirect()
+            ->route("login")
+            ->with("logout", "Successfully logged out !");
     }
 
     public function edit_admin(int $id)
@@ -119,58 +163,93 @@ class SuperAdminController extends Controller
         $totalTempCount = Temp::count();
         $labs = Lab_Table::get();
 
-        return view('superadmin.edit_admin', [urlencode('user') => $user, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount, 'labs' => $labs, 'password' => '']);
+        return view("superadmin.edit_admin", [
+            urlencode("user") => $user,
+            "totalDeviceCount" => $totalDeviceCount,
+            "totalTempCount" => $totalTempCount,
+            "labs" => $labs,
+            "password" => "",
+        ]);
     }
     public function update_admin(Request $request, $id)
     {
         try {
             $request->validate([
-                'name' => 'required',
-                'email' => 'required',
-                'password' => 'required|min:4|max:15',
-                'role' => 'required',
-                'labname' => 'required',
+                "name" => "required",
+                "email" => "required",
+                "password" => "required|min:4|max:15",
+                "role" => "required",
+                "labname" => "required",
             ]);
             User::find($id)->update([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => bcrypt($request->password),
-                'role' => $request->role,
-                'labname' => urldecode($request->labname),
+                "name" => $request->name,
+                "email" => $request->email,
+                "password" => bcrypt($request->password),
+                "role" => $request->role,
+                "labname" => urldecode($request->labname),
             ]);
-            return redirect()->route('superadmin.details')->with('success', 'Successfully admin was updated !');
+            return redirect()
+                ->route("superadmin.details")
+                ->with("success", "Successfully admin was updated !");
         } catch (\Exception $e) {
-            return redirect()->route('superadmin.edit.admin', ['id' => $id])->with('error', 'Password should be minimum 4 - 15 characters long !');
+            return redirect()
+                ->route("superadmin.edit.admin", ["id" => $id])
+                ->with(
+                    "error",
+                    "Password should be minimum 4 - 15 characters long !",
+                );
         }
     }
     public function searchBySerial(Request $request)
     {
         $totalDeviceCount = Labmove_table::count();
         $totalTempCount = Temp::count();
-        $searchTerm = $request->input('search_term');
-        $results = Lab::where('serial_number', 'LIKE', '%' . $searchTerm . '%')->get();
+        $searchTerm = $request->input("search_term");
+        $results = Lab::where(
+            "serial_number",
+            "LIKE",
+            "%" . $searchTerm . "%",
+        )->get();
         // dd($results);
-        return view('superadmin.simplesearch', ['results' => $results, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount]);
+        return view("superadmin.simplesearch", [
+            "results" => $results,
+            "totalDeviceCount" => $totalDeviceCount,
+            "totalTempCount" => $totalTempCount,
+        ]);
     }
     public function searchByDevice(Request $request)
     {
         $totalDeviceCount = Labmove_table::count();
         $totalTempCount = Temp::count();
-        $searchTerm = $request->input('search_termd');
-        $resultd = Lab::where('device_name', 'LIKE', '%' . $searchTerm . '%')->get();
+        $searchTerm = $request->input("search_termd");
+        $resultd = Lab::where(
+            "device_name",
+            "LIKE",
+            "%" . $searchTerm . "%",
+        )->get();
         // dd($resultd);
-        return view('superadmin.simplesearch', ['resultd' => $resultd, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount]);
-
+        return view("superadmin.simplesearch", [
+            "resultd" => $resultd,
+            "totalDeviceCount" => $totalDeviceCount,
+            "totalTempCount" => $totalTempCount,
+        ]);
     }
     public function searchBySystem(Request $request)
     {
         $totalDeviceCount = Labmove_table::count();
         $totalTempCount = Temp::count();
-        $searchTerm = $request->input('search_terms');
-        $result = Lablist::where('system_number', 'LIKE', '%' . $searchTerm . '%')->get();
+        $searchTerm = $request->input("search_terms");
+        $result = Lablist::where(
+            "system_number",
+            "LIKE",
+            "%" . $searchTerm . "%",
+        )->get();
         // dd($result);
-        return view('superadmin.simplesearch', ['result' => $result, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount]);
-
+        return view("superadmin.simplesearch", [
+            "result" => $result,
+            "totalDeviceCount" => $totalDeviceCount,
+            "totalTempCount" => $totalTempCount,
+        ]);
     }
     public function getLabDetails()
     {
@@ -183,27 +262,39 @@ class SuperAdminController extends Controller
         // ->get();
         $data = Lab_Table::all();
         // dd($data);
-        return view('superadmin.labdetails', ['data' => $data, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount]);
+        return view("superadmin.labdetails", [
+            "data" => $data,
+            "totalDeviceCount" => $totalDeviceCount,
+            "totalTempCount" => $totalTempCount,
+        ]);
     }
     public function searchlab(Request $request)
     {
-        $labName = $request->input('lab_name');
+        $labName = $request->input("lab_name");
         $totalDeviceCount = Labmove_table::count();
         $totalTempCount = Temp::count();
-        $data = DB::table('lab__tables')
-            ->join('users', 'lab__tables.lab_name', '=', 'users.labname')
-            ->select('lab__tables.lab_name', 'users.name as admin_name')
-            ->where('lab__tables.lab_name', 'like', "%$labName%")
+        $data = DB::table("lab__tables")
+            ->join("users", "lab__tables.lab_name", "=", "users.labname")
+            ->select("lab__tables.lab_name", "users.name as admin_name")
+            ->where("lab__tables.lab_name", "like", "%$labName%")
             ->get();
-        session(['search_flag' => true]);
-        return view('superadmin.labdetails', ['lab_name' => $labName, 'data' => $data, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount]);
+        session(["search_flag" => true]);
+        return view("superadmin.labdetails", [
+            "lab_name" => $labName,
+            "data" => $data,
+            "totalDeviceCount" => $totalDeviceCount,
+            "totalTempCount" => $totalTempCount,
+        ]);
     }
 
     public function addlab()
     {
         $totalDeviceCount = Labmove_table::count();
         $totalTempCount = Temp::count();
-        return view('superadmin.addlablist', ['totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount]);
+        return view("superadmin.addlablist", [
+            "totalDeviceCount" => $totalDeviceCount,
+            "totalTempCount" => $totalTempCount,
+        ]);
     }
 
     public function savelab(Request $request)
@@ -222,15 +313,21 @@ class SuperAdminController extends Controller
             $dev->department = $dep;
             $dev->save();
             // dd($dev);
-            return redirect()->route('superadmin.listinglabs')->with('success', 'Successfully lab added !');
+            return redirect()
+                ->route("superadmin.listinglabs")
+                ->with("success", "Successfully lab added !");
         } catch (\Exception $e) {
-            return redirect()->route('superadmin.listinglabs')->with('error', 'Something went wrong !');
+            return redirect()
+                ->route("superadmin.listinglabs")
+                ->with("error", "Something went wrong !");
         }
     }
 
     public function getSystemNumbers($lab)
     {
-        $systemNumbers = Lablist::where('lab_name', $lab)->pluck('system_number');
+        $systemNumbers = Lablist::where("lab_name", $lab)->pluck(
+            "system_number",
+        );
         return response()->json($systemNumbers);
     }
 
@@ -240,6 +337,11 @@ class SuperAdminController extends Controller
         $details = Logs::all();
         $totalDeviceCount = Labmove_table::count();
         $totalTempCount = Temp::count();
-        return view('superadmin.log_details', ['details' => $details, 'labNames' => $labNames, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount]);
+        return view("superadmin.log_details", [
+            "details" => $details,
+            "labNames" => $labNames,
+            "totalDeviceCount" => $totalDeviceCount,
+            "totalTempCount" => $totalTempCount,
+        ]);
     }
 }

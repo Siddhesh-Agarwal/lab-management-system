@@ -10,7 +10,6 @@ use App\Models\User;
 use Reminder;
 use Mail;
 
-
 class ForgotPasswordController extends Controller
 {
     /*
@@ -33,38 +32,42 @@ class ForgotPasswordController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware("guest");
     }
 
-    function sample(Request $request){
+    function sample(Request $request)
+    {
         // dd($request);
     }
 
-    public function password(Request $request){
-        $user = User::where('email', $request->email)->first();
+    public function password(Request $request)
+    {
+        $user = User::where("email", $request->email)->first();
 
-        if(is_null($user)){
-            return redirect()->back()->with(['error' => 'Email not found']);
+        if (is_null($user)) {
+            return redirect()
+                ->back()
+                ->with(["error" => "Email not found"]);
         }
 
         $user = Sentinel::findById($user->id);
-        $reminder = Reminder::exists($user) ? : Reminder::create($user);
+        $reminder = Reminder::exists($user) ?: Reminder::create($user);
         $this->sendEmail($user, $reminder->code);
 
-
-        return redirect()->back()->with(['success' => 'Reset code has been sent to your email.']);
+        return redirect()
+            ->back()
+            ->with(["success" => "Reset code has been sent to your email."]);
     }
 
-    public function sendEmail($user , $code){
+    public function sendEmail($user, $code)
+    {
         Mail::send(
-            'auth.passwords.forgot',
-            ['user' => $user, 'code' => $code],
-            function($message) use ($user){
+            "auth.passwords.forgot",
+            ["user" => $user, "code" => $code],
+            function ($message) use ($user) {
                 $message->to($user->email);
                 $message->subject("$user->name, reset your password.");
-            }
+            },
         );
     }
-
-
 }

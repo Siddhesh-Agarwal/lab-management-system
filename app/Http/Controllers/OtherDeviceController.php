@@ -17,7 +17,11 @@ class OtherDeviceController extends Controller
         $totalDeviceCount = Labmove_table::count();
         $totalTempCount = Temp::count();
         $LabNames = Lab_Table::get();
-        return view('otherdevices.list', [ 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount,'labs'=>$LabNames]);
+        return view("otherdevices.list", [
+            "totalDeviceCount" => $totalDeviceCount,
+            "totalTempCount" => $totalTempCount,
+            "labs" => $LabNames,
+        ]);
     }
 
     public function indexa($lab_name)
@@ -26,7 +30,12 @@ class OtherDeviceController extends Controller
         $totalTempCount = Temp::count();
         $LabNames = Lab_Table::get();
         // dd($LabNames);
-        return view('otherdevicesadmin.listAdmin', [ 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount,'labNames'=>$LabNames, 'lab_name'=> $lab_name]);
+        return view("otherdevicesadmin.listAdmin", [
+            "totalDeviceCount" => $totalDeviceCount,
+            "totalTempCount" => $totalTempCount,
+            "labNames" => $LabNames,
+            "lab_name" => $lab_name,
+        ]);
     }
 
     public function add()
@@ -35,13 +44,17 @@ class OtherDeviceController extends Controller
         $totalTempCount = Temp::count();
         $labs = Lab_Table::get();
         $totalDeviceCount = Labmove_table::count();
-        return view('otherdevices.addlist', [ 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount, 'labs' => $labs]);
+        return view("otherdevices.addlist", [
+            "totalDeviceCount" => $totalDeviceCount,
+            "totalTempCount" => $totalTempCount,
+            "labs" => $labs,
+        ]);
     }
 
     public function adda()
     {
         $labNames = Lab_Table::get();
-        return view('otherdevicesadmin.addlist', ['labNames' => $labNames]);
+        return view("otherdevicesadmin.addlist", ["labNames" => $labNames]);
     }
 
     public function save(Request $request)
@@ -52,7 +65,7 @@ class OtherDeviceController extends Controller
             $ac_load = $request->ac_load;
             $wifi_access_points = $request->wifi_access_points;
             $lab_name = urldecode($request->lab_name);
-            $lab = Lab_Table::where('lab_name', $lab_name)->first();
+            $lab = Lab_Table::where("lab_name", $lab_name)->first();
 
             $lab_id = $lab ? $lab->id : null;
             // dd($lab_id);
@@ -66,16 +79,18 @@ class OtherDeviceController extends Controller
             $dev->lab_id = $lab_id;
             $dev->save();
 
-            return redirect()->route('superadmin.otherdevice')->with('success', 'Device Added successfully!');
+            return redirect()
+                ->route("superadmin.otherdevice")
+                ->with("success", "Device Added successfully!");
         } catch (\Exception $e) {
-            return redirect()->route('superadmin.otherdevice')->with('error', 'Something went wrong !');
+            return redirect()
+                ->route("superadmin.otherdevice")
+                ->with("error", "Something went wrong !");
         }
-
     }
 
     public function savea(Request $request)
     {
-
         try {
             $network_switches = $request->network_switches;
             $ups_load = $request->ups_load;
@@ -83,7 +98,7 @@ class OtherDeviceController extends Controller
             $wifi_access_points = $request->wifi_access_points;
             $lab_name = urldecode($request->lab_name);
 
-            $lab = Lab_Table::where('lab_name', $lab_name)->first();
+            $lab = Lab_Table::where("lab_name", $lab_name)->first();
             $lab_id = $lab ? $lab->id : null;
             $dev = new OtherDevice();
             $dev->network_switches = $network_switches;
@@ -93,11 +108,12 @@ class OtherDeviceController extends Controller
             $dev->lab_name = $lab_name;
             $dev->lab_id = $lab_id;
             $dev->save();
-            return redirect()->back()->with('success', 'Device added successfully !');
+            return redirect()
+                ->back()
+                ->with("success", "Device added successfully !");
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Something went wrong !');
+            return redirect()->back()->with("error", "Something went wrong !");
         }
-
     }
     public function edit($id)
     {
@@ -105,15 +121,24 @@ class OtherDeviceController extends Controller
         $totalDeviceCount = Labmove_table::count();
         $totalTempCount = Temp::count();
         $labs = Lab_Table::get();
-        $data = OtherDevice::where('id', '=', $id)->first();
-        return view('otherdevices.editlist', ['data' => $data, 'datas' => $datas, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount, 'labs' => $labs]);
+        $data = OtherDevice::where("id", "=", $id)->first();
+        return view("otherdevices.editlist", [
+            "data" => $data,
+            "datas" => $datas,
+            "totalDeviceCount" => $totalDeviceCount,
+            "totalTempCount" => $totalTempCount,
+            "labs" => $labs,
+        ]);
     }
 
     public function edita($id)
     {
         $labNames = Lab_table::get();
-        $data = OtherDevice::where('id', '=', $id)->first();
-        return view('otherdevicesadmin.editlist', ['data' => $data, 'labNames' => $labNames]);
+        $data = OtherDevice::where("id", "=", $id)->first();
+        return view("otherdevicesadmin.editlist", [
+            "data" => $data,
+            "labNames" => $labNames,
+        ]);
     }
 
     public function update(Request $request)
@@ -126,21 +151,25 @@ class OtherDeviceController extends Controller
             $wifi_access_points = $request->wifi_access_points;
             $lab_name = urldecode($request->lab_name);
 
-            $lab = Lab_Table::where('lab_name', $lab_name)->first();
+            $lab = Lab_Table::where("lab_name", $lab_name)->first();
             $lab_id = $lab ? $lab->id : null;
 
-            OtherDevice::where('id', '=', $id)->update([
-                'network_switches' => $network_switches,
-                'ups_load' => $ups_load,
-                'ac_load' => $ac_load,
-                'wifi_access_points' => $wifi_access_points,
-                'lab_name' => $lab_name,
-                'lab_id' => $lab_id,
+            OtherDevice::where("id", "=", $id)->update([
+                "network_switches" => $network_switches,
+                "ups_load" => $ups_load,
+                "ac_load" => $ac_load,
+                "wifi_access_points" => $wifi_access_points,
+                "lab_name" => $lab_name,
+                "lab_id" => $lab_id,
             ]);
 
-            return redirect()->route('superadmin.otherdevice')->with('success', 'Device updated successfully');
+            return redirect()
+                ->route("superadmin.otherdevice")
+                ->with("success", "Device updated successfully");
         } catch (\Exception $e) {
-            return redirect()->route('superadmin.otherdevice')->with('notification', 'Something went wrong !');
+            return redirect()
+                ->route("superadmin.otherdevice")
+                ->with("notification", "Something went wrong !");
         }
     }
 
@@ -154,41 +183,66 @@ class OtherDeviceController extends Controller
             $wifi_access_points = $request->wifi_access_points;
             $lab_name = urldecode($request->lab_name);
 
-            $lab = Lab_Table::where('lab_name', $lab_name)->first();
+            $lab = Lab_Table::where("lab_name", $lab_name)->first();
             $lab_id = $lab ? $lab->id : null;
 
-            OtherDevice::where('id', '=', $id)->update([
-                'network_switches' => $network_switches,
-                'ups_load' => $ups_load,
-                'ac_load' => $ac_load,
-                'wifi_access_points' => $wifi_access_points,
-                'lab_name' => $lab_name,
-                'lab_id' => $lab_id,
+            OtherDevice::where("id", "=", $id)->update([
+                "network_switches" => $network_switches,
+                "ups_load" => $ups_load,
+                "ac_load" => $ac_load,
+                "wifi_access_points" => $wifi_access_points,
+                "lab_name" => $lab_name,
+                "lab_id" => $lab_id,
             ]);
 
-            return redirect()->route('admin.otherdevice', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with('success', 'Device updated successfully !');
+            return redirect()
+                ->route("admin.otherdevice", [
+                    "lab_name" => \Illuminate\Support\Facades\Auth::user()
+                        ->labname,
+                ])
+                ->with("success", "Device updated successfully !");
         } catch (\Exception $e) {
-            return redirect()->route('admin.otherdevice', ['lab_name' => \Illuminate\Support\Facades\Auth::user()->labname])->with('error', 'Something went wrong !');
+            return redirect()
+                ->route("admin.otherdevice", [
+                    "lab_name" => \Illuminate\Support\Facades\Auth::user()
+                        ->labname,
+                ])
+                ->with("error", "Something went wrong !");
         }
     }
     public function searchlab(Request $request)
     {
-        $labName = urldecode($request->input('lab_name'));
+        $labName = urldecode($request->input("lab_name"));
         $totalDeviceCount = Labmove_table::count();
         $totalTempCount = Temp::count();
-        $data = OtherDevice::where('lab_name', 'like', "%$labName%")->get();
-        session(['search_flag' => true]);
+        $data = OtherDevice::where("lab_name", "like", "%$labName%")->get();
+        session(["search_flag" => true]);
 
-        return view('otherdevices.list', ['lab_name' => $labName, 'data' => $data, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount]);
+        return view("otherdevices.list", [
+            "lab_name" => $labName,
+            "data" => $data,
+            "totalDeviceCount" => $totalDeviceCount,
+            "totalTempCount" => $totalTempCount,
+        ]);
     }
     public function delete($id)
     {
         try {
             $data = OtherDevice::find($id);
-            $data->delete();
-            return redirect()->back()->with('success', 'Device deleted successfully !');
+            if (!$data) {
+                return redirect()->back()->with("error", "Device not found !");
+            }
+            $isDeleted = $data->delete();
+            if ($isDeleted) {
+                return redirect()
+                    ->back()
+                    ->with("success", "Device deleted successfully !");
+            }
+            return redirect()
+                ->back()
+                ->with("error", "Failed to delete device !");
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Something went wrong !');
+            return redirect()->back()->with("error", "Something went wrong !");
         }
     }
 }

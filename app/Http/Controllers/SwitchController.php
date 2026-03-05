@@ -16,16 +16,26 @@ class SwitchController extends Controller
         $totalDeviceCount = Labmove_table::count();
         $totalTempCount = Temp::count();
         $LabNames = Lab_Table::get();
-        return view('networkswitch.list', ['data'=>$data, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount,'labs'=>$LabNames]);
+        return view("networkswitch.list", [
+            "data" => $data,
+            "totalDeviceCount" => $totalDeviceCount,
+            "totalTempCount" => $totalTempCount,
+            "labs" => $LabNames,
+        ]);
     }
     public function indexa(Request $request)
     {
         $lab_name = $request->lab_name;
-        $data = NetworkSwitch::where('lab_name', '=', $lab_name)->get();
+        $data = NetworkSwitch::where("lab_name", "=", $lab_name)->get();
         $totalDeviceCount = Labmove_table::count();
         $totalTempCount = Temp::count();
         $LabNames = Lab_Table::get();
-        return view('otherdevicesadmin.networkSwitch', ['data'=>$data, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount,'labNames'=>$LabNames]);
+        return view("otherdevicesadmin.networkSwitch", [
+            "data" => $data,
+            "totalDeviceCount" => $totalDeviceCount,
+            "totalTempCount" => $totalTempCount,
+            "labNames" => $LabNames,
+        ]);
     }
 
     public function add()
@@ -34,7 +44,11 @@ class SwitchController extends Controller
         $totalTempCount = Temp::count();
         $labs = Lab_Table::get();
         $totalDeviceCount = Labmove_table::count();
-        return view('networkswitch.addlist', ['totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount, 'labs' => $labs]);
+        return view("networkswitch.addlist", [
+            "totalDeviceCount" => $totalDeviceCount,
+            "totalTempCount" => $totalTempCount,
+            "labs" => $labs,
+        ]);
     }
     public function edit($id)
     {
@@ -42,8 +56,14 @@ class SwitchController extends Controller
         $totalDeviceCount = Labmove_table::count();
         $totalTempCount = Temp::count();
         $labs = Lab_Table::get();
-        $data = NetworkSwitch::where('id', '=', $id)->first();
-        return view('networkswitch.editlist', ['data' => $data, 'datas' => $datas, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount, 'labs' => $labs]);
+        $data = NetworkSwitch::where("id", "=", $id)->first();
+        return view("networkswitch.editlist", [
+            "data" => $data,
+            "datas" => $datas,
+            "totalDeviceCount" => $totalDeviceCount,
+            "totalTempCount" => $totalTempCount,
+            "labs" => $labs,
+        ]);
     }
     public function saves(Request $request)
     {
@@ -53,7 +73,7 @@ class SwitchController extends Controller
             $status = $request->status;
             $lab_name = urldecode($request->lab_name);
 
-            $lab = Lab_Table::where('lab_name', $lab_name)->first();
+            $lab = Lab_Table::where("lab_name", $lab_name)->first();
 
             $lab_id = $lab ? $lab->id : null;
 
@@ -66,10 +86,13 @@ class SwitchController extends Controller
 
             $dev->save();
 
-            return redirect()->route('superadmin.otherdevice')->with(['success' => 'Switch added successfully !']);
+            return redirect()
+                ->route("superadmin.otherdevice")
+                ->with(["success" => "Switch added successfully !"]);
         } catch (\Exception $e) {
-
-            return redirect()->route('superadmin.otherdevice')->with(['error' => 'Something went wrong !']);
+            return redirect()
+                ->route("superadmin.otherdevice")
+                ->with(["error" => "Something went wrong !"]);
         }
     }
     public function update(Request $request)
@@ -78,23 +101,27 @@ class SwitchController extends Controller
             $id = $request->id;
             $switch_model = $request->switch_model;
             $serial_number = $request->serial_number;
-            $status=$request->status;
+            $status = $request->status;
             $lab_name = urldecode($request->lab_name);
-            
+
             // dd($id);
-            $lab = Lab_Table::where('lab_name', $lab_name)->first();
+            $lab = Lab_Table::where("lab_name", $lab_name)->first();
             $lab_id = $lab ? $lab->id : null;
 
-            NetworkSwitch::where('id', '=', $id)->update([
-                'switch_model' => $switch_model,
-                'serial_number' => $serial_number,
-                'status'=>$status,
-                'lab_name' => $lab_name,
-                'lab_id' => $lab_id,
+            NetworkSwitch::where("id", "=", $id)->update([
+                "switch_model" => $switch_model,
+                "serial_number" => $serial_number,
+                "status" => $status,
+                "lab_name" => $lab_name,
+                "lab_id" => $lab_id,
             ]);
-            return redirect()->route('superadmin.switch')->with('success', 'Switch updated successfully');
+            return redirect()
+                ->route("superadmin.switch")
+                ->with("success", "Switch updated successfully");
         } catch (\Exception $e) {
-            return redirect()->route('superadmin.switch')->with('notification', 'Something went wrong !');
+            return redirect()
+                ->route("superadmin.switch")
+                ->with("notification", "Something went wrong !");
         }
     }
 
@@ -102,10 +129,20 @@ class SwitchController extends Controller
     {
         try {
             $data = NetworkSwitch::find($id);
-            $data->delete();
-            return redirect()->back()->with('success', 'Switch deleted successfully !');
+            if (!$data) {
+                return redirect()->back()->with("error", "Switch not found !");
+            }
+            $isDeleted = $data->delete();
+            if ($isDeleted) {
+                return redirect()
+                    ->back()
+                    ->with("success", "Switch deleted successfully !");
+            }
+            return redirect()
+                ->back()
+                ->with("error", "Failed to delete switch !");
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Something went wrong !');
+            return redirect()->back()->with("error", "Something went wrong !");
         }
     }
 }

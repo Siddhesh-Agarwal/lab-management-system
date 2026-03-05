@@ -12,11 +12,17 @@ use Illuminate\Http\Request;
 class ServiceController extends Controller
 {
     //
-    public function index(){
-        $data=Manitenance::get();
+    public function index()
+    {
+        $data = Manitenance::get();
         $scrapCount = Scrap::count();
         $totalTempCount = Temp::count();
         $totalDeviceCount = Labmove_table::count();
-        return view('service.list', ['data' => $data, 'totalDeviceCount' => $totalDeviceCount, 'scarpCount' => $scrapCount, 'totalTempCount' => $totalTempCount]);
+        return view("service.list", [
+            "data" => $data,
+            "totalDeviceCount" => $totalDeviceCount,
+            "scarpCount" => $scrapCount,
+            "totalTempCount" => $totalTempCount,
+        ]);
     }
 }

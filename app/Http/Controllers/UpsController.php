@@ -17,16 +17,26 @@ class UpsController extends Controller
         $totalDeviceCount = Labmove_table::count();
         $totalTempCount = Temp::count();
         $LabNames = Lab_Table::get();
-        return view('upsload.list', ['data'=>$data, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount,'labs'=>$LabNames]);
+        return view("upsload.list", [
+            "data" => $data,
+            "totalDeviceCount" => $totalDeviceCount,
+            "totalTempCount" => $totalTempCount,
+            "labs" => $LabNames,
+        ]);
     }
     public function indexa(Request $request)
     {
         $lab_name = $request->lab_name;
-        $data = Upsload::where('lab_name', '=', $lab_name)->get();
+        $data = Upsload::where("lab_name", "=", $lab_name)->get();
         $totalDeviceCount = Labmove_table::count();
         $totalTempCount = Temp::count();
         $LabNames = Lab_Table::get();
-        return view('otherdevicesadmin.ups', ['data'=>$data, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount,'labNames'=>$LabNames]);
+        return view("otherdevicesadmin.ups", [
+            "data" => $data,
+            "totalDeviceCount" => $totalDeviceCount,
+            "totalTempCount" => $totalTempCount,
+            "labNames" => $LabNames,
+        ]);
     }
     public function add()
     {
@@ -34,7 +44,11 @@ class UpsController extends Controller
         $totalTempCount = Temp::count();
         $labs = Lab_Table::get();
         $totalDeviceCount = Labmove_table::count();
-        return view('upsload.addlist', [ 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount, 'labs' => $labs]);
+        return view("upsload.addlist", [
+            "totalDeviceCount" => $totalDeviceCount,
+            "totalTempCount" => $totalTempCount,
+            "labs" => $labs,
+        ]);
     }
 
     public function edit($id)
@@ -43,8 +57,14 @@ class UpsController extends Controller
         $totalDeviceCount = Labmove_table::count();
         $totalTempCount = Temp::count();
         $labs = Lab_Table::get();
-        $data = Upsload::where('id', '=', $id)->first();
-        return view('upsload.editlist', ['data' => $data, 'datas' => $datas, 'totalDeviceCount' => $totalDeviceCount, 'totalTempCount' => $totalTempCount, 'labs' => $labs]);
+        $data = Upsload::where("id", "=", $id)->first();
+        return view("upsload.editlist", [
+            "data" => $data,
+            "datas" => $datas,
+            "totalDeviceCount" => $totalDeviceCount,
+            "totalTempCount" => $totalTempCount,
+            "labs" => $labs,
+        ]);
     }
 
     public function saves(Request $request)
@@ -56,7 +76,7 @@ class UpsController extends Controller
             $status = $request->status;
             $lab_name = urldecode($request->lab_name);
 
-            $lab = Lab_Table::where('lab_name', $lab_name)->first();
+            $lab = Lab_Table::where("lab_name", $lab_name)->first();
 
             $lab_id = $lab ? $lab->id : null;
 
@@ -64,16 +84,19 @@ class UpsController extends Controller
             $dev->ups_model = $ups_model;
             $dev->ups_capacity = $ups_capacity;
             $dev->no_batteries = $no_batteries;
-            $dev->status=$status;
+            $dev->status = $status;
             $dev->lab_name = $lab_name;
             $dev->lab_id = $lab_id;
 
             $dev->save();
 
-            return redirect()->route('superadmin.otherdevice')->with(['success' => 'UPS added successfully !']);
+            return redirect()
+                ->route("superadmin.otherdevice")
+                ->with(["success" => "UPS added successfully !"]);
         } catch (\Exception $e) {
-            
-            return redirect()->route('superadmin.otherdevice')->with(['error' => 'Something went wrong !']);
+            return redirect()
+                ->route("superadmin.otherdevice")
+                ->with(["error" => "Something went wrong !"]);
         }
     }
 
@@ -83,25 +106,29 @@ class UpsController extends Controller
             $id = $request->id;
             $ups_model = $request->ups_model;
             $ups_capacity = $request->ups_capacity;
-            $no_batteries=$request->no_batteries;
-            $status=$request->status;
+            $no_batteries = $request->no_batteries;
+            $status = $request->status;
             $lab_name = urldecode($request->lab_name);
-            
+
             // dd($id);
-            $lab = Lab_Table::where('lab_name', $lab_name)->first();
+            $lab = Lab_Table::where("lab_name", $lab_name)->first();
             $lab_id = $lab ? $lab->id : null;
 
-            Upsload::where('id', '=', $id)->update([
-                'ups_model' => $ups_model,
-                'ups_capacity' => $ups_capacity,
-                'no_batteries'=>$no_batteries,
-                'status'=>$status,
-                'lab_name' => $lab_name,
-                'lab_id' => $lab_id,
+            Upsload::where("id", "=", $id)->update([
+                "ups_model" => $ups_model,
+                "ups_capacity" => $ups_capacity,
+                "no_batteries" => $no_batteries,
+                "status" => $status,
+                "lab_name" => $lab_name,
+                "lab_id" => $lab_id,
             ]);
-            return redirect()->route('superadmin.upsload')->with('success', 'Switch updated successfully');
+            return redirect()
+                ->route("superadmin.upsload")
+                ->with("success", "Switch updated successfully");
         } catch (\Exception $e) {
-            return redirect()->route('superadmin.upsload')->with('notification', 'Something went wrong !');
+            return redirect()
+                ->route("superadmin.upsload")
+                ->with("notification", "Something went wrong !");
         }
     }
 
@@ -109,10 +136,18 @@ class UpsController extends Controller
     {
         try {
             $data = Upsload::find($id);
-            $data->delete();
-            return redirect()->back()->with('success', 'Ups deleted successfully !');
+            if (!$data) {
+                return redirect()->back()->with("error", "UPS not found !");
+            }
+            $isDeleted = $data->delete();
+            if ($isDeleted) {
+                return redirect()
+                    ->back()
+                    ->with("success", "Ups deleted successfully !");
+            }
+            return redirect()->back()->with("error", "Failed to delete UPS !");
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Something went wrong !');
+            return redirect()->back()->with("error", "Something went wrong !");
         }
     }
 }
