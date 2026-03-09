@@ -11,8 +11,12 @@ A lab management system with attendance, inventory management, bill management a
 ## Execution
 
 ```sh
-pnpm install
-pnpm run build
+bash run.sh
+```
+
+## Update deps
+
+```sh
+pnpm update
 composer update
-php artisan serve --host=172.16.5.15 --port=8000
 ```
