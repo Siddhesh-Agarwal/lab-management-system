@@ -1,9 +1,18 @@
-# Execution
+# Lab Management System
+
+A lab management system with attendance, inventory management, bill management and report generation.
+
+## Prequesites
+
+- [pnpm](https://pnpm.io/)
+- [composer](https://getcomposer.org/)
+- [php](https://www.php.net/)
+
+## Execution
 
 ```sh
-npm i
+pnpm install
+pnpm run build
 composer update
- phpsan artisan serve --host=172.16.5.15 --port=8000
+php artisan serve --host=172.16.5.15 --port=8000
 ```
-
-A lab management system with attendance, inventory management, bill management and report generation 
