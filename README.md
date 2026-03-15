@@ -4,7 +4,6 @@ A lab management system with attendance, inventory management, bill management a
 
 ## Prequesites
 
-- [pnpm](https://pnpm.io/)
 - [composer](https://getcomposer.org/)
 - [php](https://www.php.net/)
 

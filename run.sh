@@ -1,5 +1,4 @@
 echo "installing dependencies..."
-pnpm install
 composer install
 
 echo "building assets..."
