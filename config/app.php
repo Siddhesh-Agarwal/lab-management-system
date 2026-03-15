@@ -15,7 +15,7 @@ return [
     |
      */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Lab Management System'),
 
     /*
     |--------------------------------------------------------------------------
@@ -55,20 +55,7 @@ return [
      */
 
     'url' => env('APP_URL', 'http://localhost'),
-
     'asset_url' => env('ASSET_URL'),
-    'providers' => [
-        Brian2694\Toastr\ToastrServiceProvider::class,
-        Maatwebsite\Excel\ExcelServiceProvider::class,
-    ],
-    'aliases' => [
-        'Toastr' => Brian2694\Toastr\Facades\Toastr::class,
-        'Excel' => 'Maatwebsite\Excel\Facades\Excel',
-
-    ],
-    
-    
-    
     Brian2694\Toastr\ToastrServiceProvider::class,
     /*
     |--------------------------------------------------------------------------
@@ -79,7 +66,7 @@ return [
     | will be used by the PHP date and date-time functions. We have gone
     | ahead and set this to a sensible default for you out of the box.
     |
-     */
+    */
 
     'timezone' => 'Asia/Kolkata',
 
@@ -92,7 +79,7 @@ return [
     | by the translation service provider. You are free to set this value
     | to any of the locales which will be supported by the application.
     |
-     */
+    */
 
     'locale' => 'en',
 
@@ -105,7 +92,7 @@ return [
     | is not available. You may change the value to correspond to any of
     | the language folders that are provided through your application.
     |
-     */
+    */
 
     'fallback_locale' => 'en',
 
@@ -118,7 +105,7 @@ return [
     | data for your database seeds. For example, this will be used to get
     | localized telephone numbers, street address information and more.
     |
-     */
+    */
 
     'faker_locale' => 'en_US',
 
@@ -131,7 +118,7 @@ return [
     | to a random, 32 character string, otherwise these encrypted strings
     | will not be safe. Please do this before deploying an application!
     |
-     */
+    */
 
     'key' => env('APP_KEY'),
 
@@ -148,7 +135,7 @@ return [
     |
     | Supported drivers: "file", "cache"
     |
-     */
+    */
 
     'maintenance' => [
         'driver' => 'file',
@@ -164,13 +151,13 @@ return [
     | request to your application. Feel free to add your own services to
     | this array to grant expanded functionality to your applications.
     |
-     */
+    */
 
     'providers' => [
-
+        Brian2694\Toastr\ToastrServiceProvider::class,
         /*
-         * Laravel Framework Service Providers...
-         */
+        * Laravel Framework Service Providers...
+        */
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
         Illuminate\Bus\BusServiceProvider::class,
@@ -221,6 +208,7 @@ return [
      */
 
     'aliases' => Facade::defaultAliases()->merge([
-
+        'Toastr' => Brian2694\Toastr\Facades\Toastr::class,
+        'Excel' => 'Maatwebsite\Excel\Facades\Excel',
     ])->toArray(),
 ];
