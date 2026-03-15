@@ -15,6 +15,8 @@
     <link rel="stylesheet" href={{ url('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}>
     <!-- Theme style -->
     <link rel="stylesheet" href={{ url('dist/css/adminlte.min.css') }}>
+    <!-- Toastr -->
+    <link rel="stylesheet" href={{ url('plugins/toastr/toastr.min.css') }}>
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
@@ -100,9 +102,8 @@
 
     <!-- AdminLTE for demo purposes -->
     <script src={{ url('dist/js/demo.js') }}></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
-        integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Toastr -->
+    <script src={{ url('plugins/toastr/toastr.min.js') }}></script>
 </body>
 
 </html>

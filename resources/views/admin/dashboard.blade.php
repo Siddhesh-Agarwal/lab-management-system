@@ -13,6 +13,8 @@
     <link rel="stylesheet" href={{ url('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}>
     <!-- Theme style -->
     <link rel="stylesheet" href={{ url('dist/css/adminlte.min.css') }}>
+    <!-- Toastr -->
+    <link rel="stylesheet" href={{ url('plugins/toastr/toastr.min.css') }}>
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
@@ -151,6 +153,8 @@
     <!-- ChartJS -->
     <script src={{ url('plugins/chart.js/Chart.min.js') }}></script>
 
+    <!-- Toastr -->
+    <script src={{ url('plugins/toastr/toastr.min.js') }}></script>
     <!-- AdminLTE for demo purposes -->
     <script src={{ url('dist/js/demo.js') }}></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->

@@ -17,9 +17,6 @@ importers:
       toastr:
         specifier: ^2.1.4
         version: 2.1.4
-      v-toaster:
-        specifier: ^1.0.3
-        version: 1.0.3
     devDependencies:
       laravel-vite-plugin:
         specifier: ^0.7.8
@@ -305,9 +302,6 @@ packages:
   toastr@2.1.4:
     resolution: {integrity: sha512-LIy77F5n+sz4tefMmFOntcJ6HL0Fv3k1TDnNmFZ0bU/GcvIIfy6eG2v7zQmMiYgaalAiUv75ttFrPn5s0gyqlA==}
 
-  v-toaster@1.0.3:
-    resolution: {integrity: sha512-B+yhvuUDiYykh1g4jgAKTRmnrJa4vrc+O1+/A57HSl4rA3R7OX0+8GGz2kr3eZ9YKkpaRlew9zWSjtksVa0+Bg==}
-
   vite-plugin-full-reload@1.2.0:
     resolution: {integrity: sha512-kz18NW79x0IHbxRSHm0jttP4zoO9P9gXh+n6UTwlNKnviTTEpOlum6oS9SmecrTtSr+muHEn5TUuC75UovQzcA==}
 
@@ -560,8 +554,6 @@ snapshots:
   toastr@2.1.4:
     dependencies:
       jquery: 4.0.0
-
-  v-toaster@1.0.3: {}
 
   vite-plugin-full-reload@1.2.0:
     dependencies:
