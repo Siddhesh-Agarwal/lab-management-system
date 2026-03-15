@@ -31,6 +31,7 @@ with tab[0]:
             else:
                 with st.spinner("Uploading..."):
                     engine = sqlite3.connect("bills.db")
+                    engine.execute("PRAGMA journal_mode=WAL;")
                     cursor = engine.cursor()
                     cursor.execute(
                         "CREATE TABLE IF NOT EXISTS bills (id INTEGER PRIMARY KEY AUTOINCREMENT, date DATE, lab TEXT, file BLOB, name TEXT)"
@@ -52,6 +53,7 @@ with tab[1]:
         if submit:
             with st.spinner("Fetching..."):
                 engine = sqlite3.connect("bills.db")
+                engine.execute("PRAGMA journal_mode=WAL;")
                 cursor = engine.cursor()
                 cursor.execute(
                     "SELECT * FROM bills WHERE date >= ? AND date <= ? AND lab = ?",
